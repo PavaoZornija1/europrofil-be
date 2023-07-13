@@ -10,6 +10,7 @@ import { UsersModule } from './users/users.module';
 import { ProfilesModule } from './profiles/profiles.module';
 import { SettingsModule } from './settings/settings.module';
 import { ShortcutsModule } from './shortcuts/shortcuts.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ShortcutsModule } from './shortcuts/shortcuts.module';
     ProfilesModule,
     SettingsModule,
     ShortcutsModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
