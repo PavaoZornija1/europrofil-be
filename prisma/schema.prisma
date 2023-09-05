@@ -1,0 +1,237 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(uuid())
+  username String  @unique
+  password String
+  email    String? @unique
+}
+
+model Mechanism {
+  id         String  @id @default(uuid())
+  src        String?
+  alt        String?
+  title      String
+  filler     String
+  thickness  String
+  doorWidth  String
+  doorHeight String
+}
+
+model Acos {
+  id          String  @id @default(uuid())
+  parent      Acos?   @relation("ParentChildren", fields: [parentId], references: [id])
+  parentId    String?
+  model       String?
+  foreign_key Int?
+  alias       String?
+  lft         Int?
+  rght        Int?
+  children    Acos[]  @relation("ParentChildren")
+}
+
+model Aros {
+  id          String  @id @default(uuid())
+  parent      Aros?   @relation("ParentChildren", fields: [parentId], references: [id])
+  parentId    String?
+  model       String?
+  foreign_key Int?
+  alias       String?
+  lft         Int?
+  rght        Int?
+  children    Aros[]  @relation("ParentChildren")
+}
+
+// Make connection between aros and acos
+
+model Group {
+  id             String          @id @default(uuid())
+  name           String
+  desc           String?
+  modified       DateTime?
+  created        DateTime
+  administrators Administrator[]
+  // createdBy
+  // modifiedBy
+}
+
+model Administrator {
+  id           String    @id @default(uuid())
+  group        Group     @relation(fields: [groupId], references: [id])
+  groupId      String
+  username     String
+  password     String
+  fullName     String
+  email        String
+  style        String
+  isActive     Boolean   @default(true)
+  recoveryHash String?
+  modified     DateTime?
+  created      DateTime
+  // modifiedBy
+  // createdBy
+}
+
+enum ApprovalStatus {
+  Pending
+  Postponed
+  Rejected
+  Accepted
+}
+
+model CmsUsers {
+  id                 String         @id @default(uuid())
+  username           String?
+  password           String?
+  name               String?
+  phone              String?
+  address            String?
+  deliveryAddres     String?
+  discountHardware   Boolean        @default(false)
+  discountFillings   Boolean        @default(false)
+  useDetailedBilling Boolean        @default(false)
+  lockedDiscount     Boolean        @default(true)
+  note               String?
+  orderCount         Int            @default(0)
+  accessCount        Int            @default(0)
+  approvalStatus     ApprovalStatus @default(Pending)
+  deleted            DateTime?
+  modified           DateTime?
+  created            DateTime
+  // modifiedBy
+  // createdBy
+}
+
+model CmsOrders {
+  id                          String    @id @default(uuid())
+  customerName                String?
+  customerPhone               String?
+  customerAddress             String?
+  customerDeliveryAddress     String?
+  customerDesiredDeliveryDate DateTime?
+  customerDiscountFrame       Decimal?
+  customerDiscountFills       Decimal?
+  customerShowPriceBreakdown  Boolean   @default(false)
+  customerLockedDiscounts     Boolean   @default(false)
+  customerOwnOrderNumber      String?
+  // issuedBy
+  notes                       String?
+  givenOrderNumber            String?
+  orderDate                   DateTime?
+  // cmsMechanismId
+  // cmsHandrailId
+  // cmsHandrailDecorationId
+  // cmsUserId
+  // cmsHorizontalProfileid
+  // handrailDecorationCustomColor
+  firstHandrailEnding         BigInt?
+  secondHandrailEnding        BigInt?
+  // cmsHandrailEndingId
+  openingHeight               Decimal?
+  openingWidth                Decimal?
+  openingDoors                BigInt?
+  railsType                   String?
+  railsLengthTopValue         Decimal?
+  railsLengthTopManual        Boolean   @default(false)
+  railsLengthBottomValue      Decimal?
+  railsLengthBottomManual     Boolean   @default(false)
+  handrailHeight              Decimal?
+  totalDeceleratorPairs       BigInt?
+  servicesFrameName           String?
+  servicesFrameChosen         Boolean   @default(false)
+  servicesFillName            String?
+  servicesFillChosen          Boolean   @default(false)
+  servicesConfectionName      String?
+  servicesConfectionChosen    Boolean   @default(false)
+  servicesInstallationName    String?
+  servicesInstallationChosen  Boolean   @default(false)
+  isActive                    Boolean   @default(false)
+  deleted                     DateTime?
+  modified                    DateTime?
+  created                     DateTime
+  // createdBy
+  // modifiedBy
+  // deletedBy
+}
+
+model CmsDoorMechanisms {
+  id                   String    @id @default(uuid())
+  name                 String
+  productCode          String
+  deceleratorSupport   Boolean   @default(false)
+  deceleratorOpposites String?
+  price                Decimal?
+  cmsMechanismSet      String?
+  isActive             Boolean   @default(true)
+  deleted              DateTime?
+  modified             DateTime?
+  // modifiedBy String?
+  created              DateTime
+  // createdBy String
+}
+
+model CmsHandrails {
+  id                  String    @id @default(uuid())
+  cmsMechanismSet     String?
+  cmsDoorMechanismSet String?
+  roundingSteps       String?
+  name                String?
+  doorWidth           Decimal?
+  profileLength       Decimal?
+  fillWidthGlass      Decimal?
+  fillWidthWood       Decimal?
+  isActive            Boolean   @default(true)
+  deleted             DateTime?
+  modified            DateTime?
+  // modifiedBy String?
+  created             DateTime
+  // createdBy String
+}
+
+model CmsPvcProfiles {
+  id              String    @id @default(uuid())
+  productCode     String?
+  cmsMechanismSet String?
+  name            String?
+  pricePerM       Decimal?
+  ralCode         String?
+  isActive        Boolean   @default(true)
+  deleted         DateTime?
+  modified        DateTime?
+  // modifiedBy String?
+  created         DateTime
+  // createdBy String
+}
+
+model CmsFills {
+  id                 String     @id @default(uuid())
+  parent             CmsFills?  @relation("ParentChildren", fields: [parentId], references: [id])
+  children           CmsFills[] @relation("ParentChildren")
+  parentId           String?
+  name               String?
+  productCode        String?
+  cmsMechanismSet    String?
+  requiresPvcProfile Boolean    @default(false)
+  requiresThinning   Boolean    @default(false)
+  customNameAllowed  Boolean    @default(false)
+  lft                BigInt?
+  rght               BigInt?
+  foilAvailable      Boolean    @default(false)
+  pricePerMSquare    Decimal?
+  isActive           Boolean    @default(true)
+  deleted            DateTime?
+  modified           DateTime?
+  // modifiedBy String?
+  created            DateTime
+  // createdBy String
+}
