@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMechanismDto } from './dto/create-mechanism.dto';
 import { UpdateMechanismDto } from './dto/update-mechanism.dto';
-import { Mechanism, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 export const mechanism = [
   {
