@@ -4,7 +4,6 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
-// import { UsersService } from '@europrofil-admin-be/users';
 import { JwtService } from '@nestjs/jwt';
 import { compare, genSalt, hash } from 'bcrypt';
 import { UsersService } from 'src/users/users.service';
@@ -60,30 +59,6 @@ export class AuthService {
     }
 
     const token = await this.authenticate(username);
-
-    // const result = new LoginResultVm();
-    // result.token = token;
-    // result.user = await this._mapper.mapAsync(user, UserInformationVm);
     return token;
-    // const { email, password } = loginDto;
-    // const user = await this.userService.findByEmail(email);
-
-    // if (!user) {
-    //   throw new BadRequestException(email, 'Wrong credentials');
-    // }
-
-    // const isMatched = await this.comparePassword(password, user.password);
-    // if (!isMatched) {
-    //   throw new BadRequestException(password, 'Wrong credentials');
-    // }
-
-    // const token = await this.authenticate(username);
-
-    // const result = new LoginResultVm();
-    // result.token = token;
-    // result.user = await this._mapper.mapAsync(user, UserInformationVm);
-    // return token;
-
-    // return 'eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAxfQ';
   }
 }

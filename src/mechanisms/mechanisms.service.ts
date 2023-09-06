@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMechanismDto } from './dto/create-mechanism.dto';
 import { UpdateMechanismDto } from './dto/update-mechanism.dto';
+import { Mechanism, PrismaClient } from '@prisma/client';
 
 export const mechanism = [
   {
@@ -125,6 +126,8 @@ export const mechanism = [
   },
 ];
 
+const prisma = new PrismaClient();
+
 @Injectable()
 export class MechanismsService {
   create(createMechanismDto: CreateMechanismDto) {
@@ -132,7 +135,8 @@ export class MechanismsService {
   }
 
   findAll() {
-    return mechanism;
+    // return mechanism;
+    return prisma.mechanism.findMany();
   }
 
   findOne(id: number) {
