@@ -309,36 +309,37 @@ model CmsMechanisms {
   id                          String                   @id @default(uuid())
   name                        String?
   productCode                 String?
-  constantsHeight             Decimal
-  constantsHandrailHeight     Decimal
-  constantsDeceleratorHeight  Decimal
-  constantsProfileTopWood     Decimal
-  constantsProfileTopGlass    Decimal
-  constantsProfileBottomWood  Decimal
-  constantsProfileBottomGlass Decimal
-  constantsSeparatorThickness Decimal
-  constantsSeparatorGlassGap  Decimal
-  constantsSeparatorWoodGap   Decimal
-  pvcProfileAvailable         Boolean
-  thinningAvailable           Boolean
-  decelaratorSupport          Boolean
-  differentHandrails          Boolean
-  withoutTopAndBottomProfiles Boolean
-  loadMin                     Decimal
-  loadMax                     Decimal
-  widthMin                    Decimal
-  widthMax                    Decimal
-  heightMin                   Decimal
-  heightMax                   Decimal
-  fillThicknessMin            Decimal
-  fillThicknessMax            Decimal
+  constantsHeight             Decimal?
+  constantsHandrailHeight     Decimal?
+  constantsDeceleratorHeight  Decimal?
+  constantsProfileTopWood     Decimal?
+  constantsProfileTopGlass    Decimal?
+  constantsProfileBottomWood  Decimal?
+  constantsProfileBottomGlass Decimal?
+  constantsSeparatorThickness Decimal?
+  constantsSeparatorGlassGap  Decimal?
+  constantsSeparatorWoodGap   Decimal?
+  pvcProfileAvailable         Boolean?
+  thinningAvailable           Boolean?
+  deceleratorSupport          Boolean?
+  differentHandrails          Boolean?
+  withoutTopAndBottomProfiles Boolean?
+  loadMin                     Decimal?
+  loadMax                     Decimal?
+  widthMin                    Decimal?
+  widthMax                    Decimal?
+  heightMin                   Decimal?
+  heightMax                   Decimal?
+  fillThicknessMin            Decimal?
+  fillThicknessMax            Decimal?
+  heavyThreshold              Decimal?
   fillTypes                   String?
   detailsLink                 String?
   confectionPricePerDoor      Decimal?
   installationPricePerDoor    Decimal?
   confectionProductCode       String?
   installationProductCode     String?
-  ordering                    BigInt
+  ordering                    BigInt?
   cmsOrders                   CmsOrders[]
   cmsHorizontalProfiles       CmsHorizontalProfiles[]
   cmsDoorMechanisms           CmsDoorMechanisms[]

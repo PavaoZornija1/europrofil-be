@@ -130,23 +130,79 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class MechanismsService {
-  create(createMechanismDto: CreateMechanismDto) {
+  async create(createMechanismDto: CreateMechanismDto) {
     return 'This action adds a new mechanism';
   }
 
-  findAll() {
-    return prisma.mechanism.findMany();
+  async findAll() {
+    return await prisma.cmsMechanisms.findMany();
   }
 
-  findOne(id: number) {
-    return mechanism.find((el) => el.id == id);
+  async findOne(id: string) {
+    return prisma.cmsMechanisms.findUnique({
+      where: { id: id, isActive: true },
+    });
+    // return mechanism.find((el) => el.id == id);
   }
 
-  update(id: number, updateMechanismDto: UpdateMechanismDto) {
-    return `This action updates a #${id} mechanism`;
+  async update(id: string, updateMechanismDto: UpdateMechanismDto) {
+    return await prisma.cmsMechanisms.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name: updateMechanismDto.name,
+        ordering: updateMechanismDto.ordering,
+        productCode: updateMechanismDto.productCode,
+        constantsHeight: updateMechanismDto.constantsHeight,
+        constantsHandrailHeight: updateMechanismDto.constantsHandrailHeight,
+        constantsDeceleratorHeight:
+          updateMechanismDto.constantsDeceleratorHeight,
+        constantsProfileTopWood: updateMechanismDto.constantsDeceleratorHeight,
+        constantsProfileTopGlass: updateMechanismDto.constantsProfileTopGlass,
+        constantsProfileBottomWood:
+          updateMechanismDto.constantsProfileBottomWood,
+        constantsProfileBottomGlass:
+          updateMechanismDto.constantsProfileBottomGlass,
+        constantsSeparatorThickness:
+          updateMechanismDto.constantsSeparatorThickness,
+        constantsSeparatorGlassGap:
+          updateMechanismDto.constantsSeparatorGlassGap,
+        constantsSeparatorWoodGap: updateMechanismDto.constantsSeparatorWoodGap,
+        pvcProfileAvailable: updateMechanismDto.pvcProfileAvailable,
+        thinningAvailable: updateMechanismDto.thinningAvailable,
+        deceleratorSupport: updateMechanismDto.deceleratorSupport,
+        differentHandrails: updateMechanismDto.differentHandrails,
+        withoutTopAndBottomProfiles: updateMechanismDto.pvcProfileAvailable,
+        loadMin: updateMechanismDto.loadMin,
+        loadMax: updateMechanismDto.loadMax,
+        widthMin: updateMechanismDto.widthMin,
+        heavyThreshold: updateMechanismDto.heavyThreshold,
+        widthMax: updateMechanismDto.widthMax,
+        heightMin: updateMechanismDto.heightMin,
+        heightMax: updateMechanismDto.heightMax,
+        fillThicknessMin: updateMechanismDto.fillThicknessMin,
+        fillThicknessMax: updateMechanismDto.fillThicknessMax,
+        fillTypes: updateMechanismDto.fillTypes,
+        detailsLink: updateMechanismDto.detailsLink,
+        confectionPricePerDoor: updateMechanismDto.confectionPricePerDoor,
+        installationPricePerDoor: updateMechanismDto.installationPricePerDoor,
+        confectionProductCode: updateMechanismDto.confectionProductCode,
+        installationProductCode: updateMechanismDto.installationProductCode,
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} mechanism`;
+  async remove(id: string) {
+    return await prisma.cmsMechanisms.update({
+      where: {
+        id: id,
+      },
+      data: {
+        isActive: false,
+        isDeleted: true,
+        deleted: new Date(),
+      },
+    });
   }
 }

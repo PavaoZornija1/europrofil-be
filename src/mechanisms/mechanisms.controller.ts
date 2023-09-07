@@ -27,7 +27,7 @@ export class MechanismsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.mechanismsService.findOne(+id);
+    return this.mechanismsService.findOne(id);
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class MechanismsController {
     @Param('id') id: string,
     @Body() updateMechanismDto: UpdateMechanismDto,
   ) {
-    return this.mechanismsService.update(+id, updateMechanismDto);
+    return this.mechanismsService.update(id, updateMechanismDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.mechanismsService.remove(+id);
+    return this.mechanismsService.remove(id);
   }
 }
