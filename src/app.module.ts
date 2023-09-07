@@ -11,6 +11,10 @@ import { ProfilesModule } from './profiles/profiles.module';
 import { SettingsModule } from './settings/settings.module';
 import { ShortcutsModule } from './shortcuts/shortcuts.module';
 import { OrdersModule } from './orders/orders.module';
+import { HorizontalProfilesModule } from './horizontal-profiles/horizontal-profiles.module';
+import { DoorMechanismsModule } from './door-mechanisms/door-mechanisms.module';
+import { HandrailEndingsModule } from './handrail-endings/handrail-endings.module';
+import { HandrailDecorationsModule } from './handrail-decorations/handrail-decorations.module';
 
 @Module({
   imports: [
@@ -28,6 +32,10 @@ import { OrdersModule } from './orders/orders.module';
     SettingsModule,
     ShortcutsModule,
     OrdersModule,
+    HorizontalProfilesModule,
+    DoorMechanismsModule,
+    HandrailEndingsModule,
+    HandrailDecorationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -135,7 +135,6 @@ export class MechanismsService {
   }
 
   findAll() {
-    // return mechanism;
     return prisma.mechanism.findMany();
   }
 

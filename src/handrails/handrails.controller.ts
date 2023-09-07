@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { HandrailsService } from './handrails.service';
 import { CreateHandrailDto } from './dto/create-handrail.dto';
 import { UpdateHandrailDto } from './dto/update-handrail.dto';
@@ -19,16 +27,19 @@ export class HandrailsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.handrailsService.findOne(+id);
+    return this.handrailsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateHandrailDto: UpdateHandrailDto) {
-    return this.handrailsService.update(+id, updateHandrailDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateHandrailDto: UpdateHandrailDto,
+  ) {
+    return this.handrailsService.update(id, updateHandrailDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.handrailsService.remove(+id);
+    return this.handrailsService.remove(id);
   }
 }

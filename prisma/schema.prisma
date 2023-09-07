@@ -112,67 +112,261 @@ model CmsUsers {
   // createdBy
 }
 
-model CmsOrders {
-  id                          String    @id @default(uuid())
-  customerName                String?
-  customerPhone               String?
-  customerAddress             String?
-  customerDeliveryAddress     String?
-  customerDesiredDeliveryDate DateTime?
-  customerDiscountFrame       Decimal?
-  customerDiscountFills       Decimal?
-  customerShowPriceBreakdown  Boolean   @default(false)
-  customerLockedDiscounts     Boolean   @default(false)
-  customerOwnOrderNumber      String?
-  // issuedBy
-  notes                       String?
-  givenOrderNumber            String?
-  orderDate                   DateTime?
-  // cmsMechanismId
-  // cmsHandrailId
-  // cmsHandrailDecorationId
-  // cmsUserId
-  // cmsHorizontalProfileid
-  // handrailDecorationCustomColor
-  firstHandrailEnding         BigInt?
-  secondHandrailEnding        BigInt?
-  // cmsHandrailEndingId
-  openingHeight               Decimal?
-  openingWidth                Decimal?
-  openingDoors                BigInt?
-  railsType                   String?
-  railsLengthTopValue         Decimal?
-  railsLengthTopManual        Boolean   @default(false)
-  railsLengthBottomValue      Decimal?
-  railsLengthBottomManual     Boolean   @default(false)
-  handrailHeight              Decimal?
-  totalDeceleratorPairs       BigInt?
-  servicesFrameName           String?
-  servicesFrameChosen         Boolean   @default(false)
-  servicesFillName            String?
-  servicesFillChosen          Boolean   @default(false)
-  servicesConfectionName      String?
-  servicesConfectionChosen    Boolean   @default(false)
-  servicesInstallationName    String?
-  servicesInstallationChosen  Boolean   @default(false)
-  isActive                    Boolean   @default(false)
-  deleted                     DateTime?
-  modified                    DateTime?
-  created                     DateTime
+model CmsHorizontalProfiles {
+  id                   String                 @id @default(uuid())
+  cmsOrders            CmsOrders[]
+  cmsSupportedProfiles CmsSupportedProfiles[]
+  name                 String?
+  cmsMechanism         CmsMechanisms?         @relation(fields: [cmsMechanismsId], references: [id])
+  cmsMechanismsId      String?
+  constantsThickness   Decimal?
+  constantsGlassGap    Decimal?
+  constantsWoodGap     Decimal?
+  isActive             Boolean                @default(true)
+  isDeleted            Boolean                @default(false)
+  deleted              DateTime?
+  modified             DateTime?
+  created              DateTime
   // createdBy
   // modifiedBy
   // deletedBy
 }
 
+model CmsOrderDoors {
+  id                 String             @id @default(uuid())
+  cmsOrder           CmsOrders?         @relation(fields: [cmsOrderId], references: [id])
+  cmsOrderId         String?
+  doorWidthValue     Decimal
+  doorWidthManual    Decimal
+  doorHandrailLeft   Decimal
+  doorHandrailRight  Decimal
+  cmsDoorMechanism   CmsDoorMechanisms? @relation(fields: [cmsDoorMechanismId], references: [id])
+  cmsDoorMechanismId String?
+  confectionOnly     Boolean
+  forceHeave         Boolean
+  profileLength      Decimal
+  fillWidthGlass     Decimal
+  fillWidthWood      Decimal
+  deceleratorsLeft   String?
+  deceleratorsRight  String?
+  numberOfFields     BigInt
+  modified           DateTime?
+  created            DateTime
+  // createdBy
+  // modifiedBy
+}
+
+model CmsOrders {
+  id                            String                  @id @default(uuid())
+  customerName                  String?
+  customerPhone                 String?
+  customerAddress               String?
+  customerDeliveryAddress       String?
+  customerDesiredDeliveryDate   DateTime?
+  customerDiscountFrame         Decimal?
+  customerDiscountFills         Decimal?
+  customerShowPriceBreakdown    Boolean                 @default(false)
+  customerLockedDiscounts       Boolean                 @default(false)
+  customerOwnOrderNumber        String?
+  // issuedBy
+  notes                         String?
+  givenOrderNumber              String?
+  orderDate                     DateTime?
+  cmsOrderDoors                 CmsOrderDoors[]
+  cmsMechanism                  CmsMechanisms?          @relation(fields: [cmsMechanismId], references: [id])
+  cmsMechanismId                String?
+  cmsHandrail                   CmsHandrails?           @relation(fields: [cmsHandrailId], references: [id])
+  cmsHandrailId                 String?
+  cmsHandrailDecoration         CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
+  cmsHandrailDecorationId       String?
+  // cmsUserId
+  cmsHorizontalProfile          CmsHorizontalProfiles?  @relation(fields: [cmsHorizontalProfileid], references: [id])
+  cmsHorizontalProfileid        String?
+  handrailDecorationCustomColor String?
+  firstHandrailEnding           Decimal?
+  secondHandrailEnding          Decimal?
+  cmsHandrailEnding             CmsHandrailEndings?     @relation(fields: [cmsHandrailEndingId], references: [id])
+  cmsHandrailEndingId           String?
+  openingHeight                 Decimal?
+  openingWidth                  Decimal?
+  openingDoors                  BigInt?
+  railsType                     String?
+  railsLengthTopValue           Decimal?
+  railsLengthTopManual          Boolean                 @default(false)
+  railsLengthBottomValue        Decimal?
+  railsLengthBottomManual       Boolean                 @default(false)
+  handrailHeight                Decimal?
+  totalDeceleratorPairs         BigInt?
+  servicesFrameName             String?
+  servicesFrameChosen           Boolean                 @default(false)
+  servicesFillName              String?
+  servicesFillChosen            Boolean                 @default(false)
+  servicesConfectionName        String?
+  servicesConfectionChosen      Boolean                 @default(false)
+  servicesInstallationName      String?
+  servicesInstallationChosen    Boolean                 @default(false)
+  isActive                      Boolean                 @default(false)
+  deleted                       DateTime?
+  modified                      DateTime?
+  created                       DateTime
+  // createdBy
+  // modifiedBy
+  // deletedBy
+}
+
+model CmsSupportedProfiles {
+  id                      String                  @id @default(uuid())
+  cmsHorizontalProfile    CmsHorizontalProfiles?  @relation(fields: [cmsHorizontalProfileId], references: [id])
+  cmsHorizontalProfileId  String?
+  cmsHandrailDecoration   CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
+  cmsHandrailDecorationId String?
+  price                   Decimal?
+  productCode             String?
+  isActive                Boolean                 @default(true)
+  isDeleted               Boolean                 @default(false)
+  deleted                 DateTime?
+  modified                DateTime?
+  created                 DateTime
+  // createdBy
+  // modifiedBy
+  // deletedBy
+}
+
+model CmsHandrailDecorations {
+  id                      String                    @id @default(uuid())
+  cmsSupportedDecorations CmsSupportedDecorations[]
+  cmsSupportedProfiles    CmsSupportedProfiles[]
+  cmsOrders               CmsOrders[]
+  name                    String?
+
+  cmsMechanism                CmsMechanisms? @relation(fields: [cmsMechanismsId], references: [id])
+  cmsMechanismsId             String?
+  customColorAvailable        Boolean
+  isSilverGloss               Boolean
+  priceTopRailSingle          Decimal?
+  priceTopRailDouble          Decimal?
+  priceBottomRailSingle       Decimal?
+  priceBottomRailDouble       Decimal?
+  priceDivider                Decimal?
+  priceTopProfile             Decimal?
+  priceBottomProfile          Decimal?
+  productCodeTopRailSingle    String?
+  productCodeBottomRailSingle String?
+  productCodeTopRailDouble    String?
+  productCodeBottomRailDouble String?
+  productCodeDivider          String?
+  productCodeTopProfile       String?
+  productCodeBottomProfile    String?
+  isActive                    Boolean        @default(true)
+  isDeleted                   Boolean        @default(false)
+  deleted                     DateTime?
+  modified                    DateTime?
+  // modifiedBy String?
+  created                     DateTime
+  // createdBy String
+}
+
+model CmsSupportedDecorations {
+  id                      String                  @id @default(uuid())
+  cmsHandrail             CmsHandrails?           @relation(fields: [cmsHandrailId], references: [id])
+  cmsHandrailId           String?
+  cmsHandrailDecoration   CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
+  cmsHandrailDecorationId String?
+  price                   Decimal
+  productCode             String?
+  isActive                Boolean                 @default(true)
+  isDeleted               Boolean                 @default(false)
+  deleted                 DateTime?
+  modified                DateTime?
+  // modifiedBy String?
+  created                 DateTime
+  // createdBy String
+}
+
+model CmsHandrailEndings {
+  id              String               @id @default(uuid())
+  parentId        String?
+  parent          CmsHandrailEndings?  @relation("ParentChildren", fields: [parentId], references: [id])
+  children        CmsHandrailEndings[] @relation("ParentChildren")
+  cmsOrders       CmsOrders[]
+  name            String?
+  productCode     String?
+  cmsMechanism    CmsMechanisms?       @relation(fields: [cmsMechanismsId], references: [id])
+  cmsMechanismsId String?
+  pricePerM       Decimal
+  cmsHandrail     CmsHandrails?        @relation(fields: [cmsHandrailId], references: [id])
+  cmsHandrailId   String?
+  isActive        Boolean              @default(true)
+  isDeleted       Boolean              @default(false)
+  deleted         DateTime?
+  modified        DateTime?
+  // modifiedBy String?
+  created         DateTime
+  // createdBy String
+}
+
+model CmsMechanisms {
+  id                          String                   @id @default(uuid())
+  name                        String?
+  productCode                 String?
+  constantsHeight             Decimal
+  constantsHandrailHeight     Decimal
+  constantsDeceleratorHeight  Decimal
+  constantsProfileTopWood     Decimal
+  constantsProfileTopGlass    Decimal
+  constantsProfileBottomWood  Decimal
+  constantsProfileBottomGlass Decimal
+  constantsSeparatorThickness Decimal
+  constantsSeparatorGlassGap  Decimal
+  constantsSeparatorWoodGap   Decimal
+  pvcProfileAvailable         Boolean
+  thinningAvailable           Boolean
+  decelaratorSupport          Boolean
+  differentHandrails          Boolean
+  withoutTopAndBottomProfiles Boolean
+  loadMin                     Decimal
+  loadMax                     Decimal
+  widthMin                    Decimal
+  widthMax                    Decimal
+  heightMin                   Decimal
+  heightMax                   Decimal
+  fillThicknessMin            Decimal
+  fillThicknessMax            Decimal
+  fillTypes                   String?
+  detailsLink                 String?
+  confectionPricePerDoor      Decimal?
+  installationPricePerDoor    Decimal?
+  confectionProductCode       String?
+  installationProductCode     String?
+  ordering                    BigInt
+  cmsOrders                   CmsOrders[]
+  cmsHorizontalProfiles       CmsHorizontalProfiles[]
+  cmsDoorMechanisms           CmsDoorMechanisms[]
+  cmsHandrails                CmsHandrails[]
+  cmsHandrailEndings          CmsHandrailEndings[]
+  cmsHandrailDecorations      CmsHandrailDecorations[]
+  isActive                    Boolean                  @default(true)
+  isDeleted                   Boolean                  @default(false)
+  deleted                     DateTime?
+  modified                    DateTime?
+  // modifiedBy String?
+  created                     DateTime
+  // createdBy String
+}
+
 model CmsDoorMechanisms {
-  id                   String    @id @default(uuid())
+  id                   String          @id @default(uuid())
   name                 String
   productCode          String
-  deceleratorSupport   Boolean   @default(false)
+  deceleratorSupport   Boolean         @default(false)
   deceleratorOpposites String?
   price                Decimal?
-  cmsMechanismSet      String?
-  isActive             Boolean   @default(true)
+  cmsMechanism         CmsMechanisms?  @relation(fields: [cmsMechanismsId], references: [id])
+  cmsMechanismsId      String?
+  cmsOrderDoors        CmsOrderDoors[]
+  cmsHandrails         CmsHandrails[]
+  isActive             Boolean         @default(true)
+  isDeleted            Boolean         @default(false)
   deleted              DateTime?
   modified             DateTime?
   // modifiedBy String?
@@ -181,20 +375,26 @@ model CmsDoorMechanisms {
 }
 
 model CmsHandrails {
-  id                  String    @id @default(uuid())
-  cmsMechanismSet     String?
-  cmsDoorMechanismSet String?
-  roundingSteps       String?
-  name                String?
-  doorWidth           Decimal?
-  profileLength       Decimal?
-  fillWidthGlass      Decimal?
-  fillWidthWood       Decimal?
-  isActive            Boolean   @default(true)
-  deleted             DateTime?
-  modified            DateTime?
+  id                      String                    @id @default(uuid())
+  cmsMechanism            CmsMechanisms?            @relation(fields: [cmsMechanismsId], references: [id])
+  cmsMechanismsId         String?
+  cmsDoorMechanism        CmsDoorMechanisms?        @relation(fields: [cmsDoorMechanismsId], references: [id])
+  cmsDoorMechanismsId     String?
+  cmsSupportedDecorations CmsSupportedDecorations[]
+  cmsOrders               CmsOrders[]
+  cmsHandrailEndings      CmsHandrailEndings[]
+  roundingSteps           String?
+  name                    String?
+  doorWidth               Decimal?
+  profileLength           Decimal?
+  fillWidthGlass          Decimal?
+  fillWidthWood           Decimal?
+  isActive                Boolean                   @default(true)
+  isDeleted               Boolean                   @default(false)
+  deleted                 DateTime?
+  modified                DateTime?
   // modifiedBy String?
-  created             DateTime
+  created                 DateTime
   // createdBy String
 }
 
@@ -210,6 +410,54 @@ model CmsPvcProfiles {
   modified        DateTime?
   // modifiedBy String?
   created         DateTime
+  // createdBy String
+}
+
+model CmsExtras {
+  id              String    @id @default(uuid())
+  name            String?
+  productCode     String?
+  cmsMechanismSet String?
+  unit            String?
+  pricePerUnit    Decimal
+  isActive        Boolean   @default(true)
+  deleted         DateTime?
+  modified        DateTime?
+  // modifiedBy String?
+  created         DateTime
+  // createdBy String
+}
+
+model CmsOrderExtras {
+  id              String    @id @default(uuid())
+  cmsOrderId      String
+  cmsExtraId      String
+  // quantity Int
+  // Ordering Int
+  productCode     String?
+  cmsMechanismSet String?
+  name            String?
+  pricePerM       Decimal?
+  ralCode         String?
+  isActive        Boolean   @default(true)
+  deleted         DateTime?
+  modified        DateTime?
+  // modifiedBy String?
+  created         DateTime
+  // createdBy String
+}
+
+model CmsFoils {
+  id          String    @id @default(uuid())
+  name        String?
+  productCode String?
+  colorCode   String?
+  ralCode     String?
+  isActive    Boolean   @default(true)
+  deleted     DateTime?
+  modified    DateTime?
+  // modifiedBy String?
+  created     DateTime
   // createdBy String
 }
 
@@ -233,5 +481,270 @@ model CmsFills {
   modified           DateTime?
   // modifiedBy String?
   created            DateTime
+  // createdBy String
+}
+
+// Aluramovi dio:
+
+model CmsAluOrders {
+  id                          String    @id @default(uuid())
+  code                        String?
+  codeNumber                  BigInt?
+  codeMonth                   BigInt?
+  codeYear                    BigInt?
+  customerName                String?
+  customerPhone               String?
+  customerAddress             String?
+  customerDeliveryAddress     String?
+  customerDesiredDeliveryDate DateTime?
+  customerInternalOrderNumber String?
+  customerNotes               String?
+  customerDiscount            Decimal?
+  // cmsFrameTypeId String?
+  // cmsFrameTreatmentId String?
+  // cmsFillId String?
+  frameTypeCode               String?
+  frameTypeName               String?
+  frameTreatmentCode          String?
+  frameTreatmentName          String?
+  frameTreatmentPrice         Decimal?
+  frameTreatmentPriceIncrease Decimal?
+  fillCode                    String?
+  fillName                    String?
+  fillPrice                   Decimal?
+  fillPriceIncrease           Decimal?
+  cornerCoverProductCode      String?
+  cornerCoverCount            BigInt?
+  costVatRate                 Decimal?
+  costBase                    Decimal?
+  costVat                     Decimal?
+  costTotal                   Decimal?
+  costPerMeterBase            Decimal?
+  costPerMeterTotal           Decimal?
+  totalFrameCount             BigInt?
+  totalFrameLength            Decimal?
+  totalFillArea               Decimal?
+  // issuedBy String?
+  // giverOrderNumber String?
+  orderDate                   DateTime?
+  jsonConfiguration           String?
+  jsonOrder                   String?
+  jsonHeader                  String?
+  jsonFronts                  String?
+  jsonCost                    String?
+  confirmed                   String?
+  confirmedOn                 DateTime?
+  isHandled                   Boolean   @default(false)
+  isDeleted                   Boolean   @default(false)
+  deleted                     DateTime?
+  modified                    DateTime?
+  // modifiedBy String?
+  created                     DateTime
+  // createdBy String
+}
+
+model CmsAluFrameTreatments {
+  id                   String    @id @default(uuid())
+  cmsFrameTypeId       String?
+  name                 String?
+  productCode          String?
+  customColorAvailable Boolean   @default(false)
+  pricePerMeter        Decimal?
+  priceIncrease        Decimal?
+  ordering             BigInt?
+  isActive             Boolean   @default(true)
+  isDeleted            Boolean   @default(false)
+  deleted              DateTime?
+  modified             DateTime?
+  // modifiedBy String?
+  created              DateTime
+  // createdBy String
+}
+
+model CmsAluFrameTypes {
+  id                     String    @id @default(uuid())
+  name                   String?
+  productCode            String?
+  detailsLink            String?
+  fillingWidthReduction  Decimal?
+  fillingHeightReduction Decimal?
+  handleHoleInlet        Decimal?
+  handleHoleOffset       Decimal?
+  requiresKp             Boolean   @default(false)
+  requiresPvc            Boolean   @default(false)
+  requiresSpecialHinges  Boolean   @default(false)
+  pricePerMeter          Decimal?
+  priceIncrease          Decimal?
+  corverCoverPrice       Decimal?
+  corverCoverProductCode String?
+  ordering               BigInt?
+  isActive               Boolean   @default(true)
+  isDeleted              Boolean   @default(false)
+  deleted                DateTime?
+  modified               DateTime?
+  // modifiedBy String?
+  created                DateTime
+  // createdBy String
+}
+
+model CmsAluHandleHoles {
+  id        String    @id @default(uuid())
+  length    Decimal?
+  isActive  Boolean   @default(true)
+  isDeleted Boolean   @default(false)
+  deleted   DateTime?
+  modified  DateTime?
+  // modifiedBy String?
+  created   DateTime
+  // createdBy String
+}
+
+model CmsAluFoils {
+  id                  String    @id @default(uuid())
+  name                String?
+  productCode         String?
+  color               String?
+  ralCode             String?
+  pricePerSquareMeter Decimal?
+  priceIncrease       Decimal?
+  isActive            Boolean   @default(true)
+  isDeleted           Boolean   @default(false)
+  deleted             DateTime?
+  modified            DateTime?
+  // modifiedBy String?
+  created             DateTime
+  // createdBy String
+}
+
+model CmsAluLiftSupports {
+  id              String    @id @default(uuid())
+  name            String?
+  productCode     String?
+  pricePerUnit    Decimal?
+  cmsFrameTypeSet String?
+  description     String?
+  ordering        BigInt?
+  isActive        Boolean   @default(true)
+  isDeleted       Boolean   @default(false)
+  deleted         DateTime?
+  modified        DateTime?
+  // modifiedBy String?
+  created         DateTime
+  // createdBy String
+}
+
+model CmsAluHandleProfiles {
+  id                   String    @id @default(uuid())
+  name                 String?
+  productCode          String?
+  cmsFrameTypeSet      String?
+  pricePerMeter        Decimal?
+  priceIncrease        Decimal?
+  frameLengthReduction Decimal?
+  customColorAvailable Boolean   @default(true)
+  ordering             BigInt?
+  isActive             Boolean   @default(true)
+  isDeleted            Boolean   @default(false)
+  deleted              DateTime?
+  modified             DateTime?
+  // modifiedBy String?
+  created              DateTime
+  // createdBy String
+}
+
+model CmsAluFills {
+  id                  String        @id @default(uuid())
+  parent              CmsAluFills?  @relation("ParentChildren", fields: [parentId], references: [id])
+  parentId            String?
+  children            CmsAluFills[] @relation("ParentChildren")
+  name                String?
+  productCode         String?
+  cmsFrameTypeSet     String?
+  foilAvailable       Boolean       @default(true)
+  pricePerSquareMeter Decimal?
+  priceIncrease       Decimal?
+  lft                 Decimal?
+  rght                Decimal?
+  isActive            Boolean       @default(true)
+  isDeleted           Boolean       @default(false)
+  deleted             DateTime?
+  modified            DateTime?
+  // modifiedBy String?
+  created             DateTime
+  // createdBy String
+}
+
+model CmsAluHinges {
+  id             String         @id @default(uuid())
+  name           String?
+  cmsHingeType   CmsHingeTypes? @relation(fields: [cmsHingeTypeId], references: [id])
+  cmsHingeTypeId String?
+}
+
+model CmsHingeTypes {
+  id           String         @id @default(uuid())
+  name         String?
+  code         String?
+  cmsAluHinges CmsAluHinges[]
+  ordering     BigInt?
+  isDeleted    Boolean        @default(false)
+  deleted      DateTime?
+  modified     DateTime?
+  // modifiedBy String?
+  created      DateTime
+  // createdBy String
+}
+
+model CmsAluSettings {
+  id                                       String    @id @default(uuid())
+  iso9001DocumentName                      String?
+  orderEmail                               String?
+  currency                                 String?
+  vat                                      Decimal?
+  introText                                String?
+  handleHolePrice                          Decimal?
+  hingeHolePrice                           Decimal?
+  hingeHoleWithInstallationPrice           Decimal?
+  lockHolePrice                            Decimal?
+  serviceCostPercentage                    Decimal?
+  serviceCostPerFrame                      Decimal?
+  serviceCostPerMeter                      Decimal?
+  kpPricePerMeter                          Decimal?
+  bevel5mmPricePerMeter                    Decimal?
+  bevel10mmPricePerMeter                   Decimal?
+  bevel15mmPricePerMeter                   Decimal?
+  bevel20mmPricePerMeter                   Decimal?
+  sandblastingPricePerMeterSquared         Decimal?
+  sandblastingWithFoilPricePerMeterSquared Decimal?
+  temperingGlassPerMeterSquared            Decimal?
+  protectiveFoilPerMeterSquared            Decimal?
+  decorativeFoilPerMeterSquared            Decimal?
+  motiveFoilPerMeterSquared                Decimal?
+  sandblastedFoilPerMeterSquared           Decimal?
+  modified                                 DateTime?
+  // modifiedBy String?
+  created                                  DateTime
+  // createdBy String
+}
+
+model AluUploads {
+  id        String    @id @default(uuid())
+  locale    String?
+  file      String?
+  filename  String?
+  path      String?
+  filesize  Decimal?
+  extension String?
+  mimetype  String?
+  width     BigInt?
+  height    BigInt?
+  isImage   Boolean?
+  extra     String?
+  alt       String?
+  source    String?
+  meta      String?
+  modified  DateTime?
+  // modifiedBy String?
+  created   DateTime
   // createdBy String
 }

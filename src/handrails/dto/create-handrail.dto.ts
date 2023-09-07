@@ -1,1 +1,37 @@
-export class CreateHandrailDto {}
+import { CmsDoorMechanisms, CmsMechanisms } from '@prisma/client';
+import { IsString, IsNotEmpty, IsDecimal } from 'class-validator';
+
+export class CreateHandrailDto {
+  @IsString()
+  @IsNotEmpty()
+  public name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  public roundingSteps: string;
+
+  @IsDecimal()
+  @IsNotEmpty()
+  public doorWidth: number;
+
+  @IsDecimal()
+  @IsNotEmpty()
+  public profileLength: number;
+
+  @IsDecimal()
+  @IsNotEmpty()
+  public fillWidthGlass: number;
+
+  @IsDecimal()
+  @IsNotEmpty()
+  public fillWidthWood: number;
+
+  @IsNotEmpty()
+  public mechanism: CmsMechanisms;
+
+  @IsNotEmpty()
+  public doorMechanism: CmsDoorMechanisms;
+
+  @IsNotEmpty()
+  public picture: any;
+}
