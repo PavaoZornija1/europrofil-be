@@ -7,18 +7,43 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class HandrailDecorationsService {
-  create(createHandrailDecorationDto: CreateHandrailDecorationDto) {
-    return 'This action adds a new handrailDecoration';
+  async create(createHandrailDecorationDto: CreateHandrailDecorationDto) {
+    return await prisma.cmsHandrailDecorations.create({
+      data: {
+        name: createHandrailDecorationDto.name,
+        productCodeTopRailSingle:
+          createHandrailDecorationDto.productCodeTopRailSingle,
+        productCodeTopRailDouble:
+          createHandrailDecorationDto.productCodeTopRailDouble,
+        productCodeBottomRailSingle:
+          createHandrailDecorationDto.productCodeBottomRailSingle,
+        productCodeBottomRailDouble:
+          createHandrailDecorationDto.productCodeBottomRailDouble,
+        productCodeDivider: createHandrailDecorationDto.productCodeDivider,
+        productCodeTopProfile:
+          createHandrailDecorationDto.productCodeTopProfile,
+        productCodeBottomProfile:
+          createHandrailDecorationDto.productCodeBottomProfile,
+        priceTopRailSingle: createHandrailDecorationDto.priceTopRailSingle,
+        priceTopRailDouble: createHandrailDecorationDto.priceTopRailDouble,
+        priceTopProfile: createHandrailDecorationDto.priceTopProfile,
+        isSilverGloss: createHandrailDecorationDto.isSilverGloss,
+        customColorAvailable: createHandrailDecorationDto.customColorAvailable,
+        priceBottomProfile: createHandrailDecorationDto.priceBottomProfile,
+        priceDivider: createHandrailDecorationDto.priceDivider,
+        cmsMechanismsId: createHandrailDecorationDto.mechanism?.id,
+      },
+    });
   }
 
-  findAll() {
-    return prisma.cmsHandrailDecorations.findMany({
+  async findAll() {
+    return await prisma.cmsHandrailDecorations.findMany({
       where: { isActive: true },
     });
   }
 
-  findOne(id: string) {
-    return prisma.cmsHandrailDecorations.findUnique({
+  async findOne(id: string) {
+    return await prisma.cmsHandrailDecorations.findUnique({
       where: { id: id, isActive: true },
     });
   }

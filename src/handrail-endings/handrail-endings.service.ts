@@ -7,16 +7,27 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class HandrailEndingsService {
-  create(createHandrailEndingDto: CreateHandrailEndingDto) {
-    return 'This action adds a new handrailEnding';
+  async create(createHandrailEndingDto: CreateHandrailEndingDto) {
+    return await prisma.cmsHandrailEndings.create({
+      data: {
+        name: createHandrailEndingDto.name,
+        productCode: createHandrailEndingDto.productCode,
+        pricePerM: createHandrailEndingDto.pricePerM,
+        cmsHandrailId: createHandrailEndingDto.handrail?.id,
+        cmsMechanismsId: createHandrailEndingDto.mechanism?.id,
+        parentId: createHandrailEndingDto.parent?.id,
+      },
+    });
   }
 
-  findAll() {
-    return prisma.cmsHandrailEndings.findMany({ where: { isActive: true } });
+  async findAll() {
+    return await prisma.cmsHandrailEndings.findMany({
+      where: { isActive: true },
+    });
   }
 
-  findOne(id: string) {
-    return prisma.cmsHandrailEndings.findUnique({
+  async findOne(id: string) {
+    return await prisma.cmsHandrailEndings.findUnique({
       where: { id: id, isActive: true },
     });
   }
