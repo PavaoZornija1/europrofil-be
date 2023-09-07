@@ -7,8 +7,19 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class HandrailsService {
-  create(createHandrailDto: CreateHandrailDto) {
-    return 'This action adds a new handrail';
+  async create(createHandrailDto: CreateHandrailDto) {
+    return await prisma.cmsHandrails.create({
+      data: {
+        name: createHandrailDto.name,
+        roundingSteps: createHandrailDto.roundingSteps,
+        doorWidth: createHandrailDto.doorWidth,
+        profileLength: createHandrailDto.profileLength,
+        fillWidthGlass: createHandrailDto.fillWidthGlass,
+        fillWidthWood: createHandrailDto.fillWidthWood,
+        cmsMechanismsId: createHandrailDto.mechanism?.id,
+        cmsDoorMechanismsId: createHandrailDto.doorMechanism?.id,
+      },
+    });
   }
 
   async findAll() {

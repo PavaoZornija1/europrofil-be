@@ -7,16 +7,25 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class ProfilesService {
-  create(createProfileDto: CreateProfileDto) {
-    return 'This action adds a new profile';
+  async create(createProfileDto: CreateProfileDto) {
+    return await prisma.cmsSupportedProfiles.create({
+      data: {
+        productCode: createProfileDto.productCode,
+        price: createProfileDto.price,
+        cmsHorizontalProfileId: createProfileDto.horizontalProfile?.id,
+        cmsHandrailDecorationId: createProfileDto.handrailDecoration?.id,
+      },
+    });
   }
 
-  findAll() {
-    return prisma.cmsSupportedProfiles.findMany({ where: { isActive: true } });
+  async findAll() {
+    return await prisma.cmsSupportedProfiles.findMany({
+      where: { isActive: true },
+    });
   }
 
-  findOne(id: string) {
-    return prisma.cmsSupportedProfiles.findUnique({
+  async findOne(id: string) {
+    return await prisma.cmsSupportedProfiles.findUnique({
       where: { id: id, isActive: true },
     });
   }

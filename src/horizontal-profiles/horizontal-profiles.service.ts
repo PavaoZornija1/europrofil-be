@@ -8,16 +8,15 @@ const prisma = new PrismaClient();
 @Injectable()
 export class HorizontalProfilesService {
   async create(createHorizontalProfileDto: CreateHorizontalProfileDto) {
-    return true;
-    // return await prisma.cmsHorizontalProfiles.create({
-    //   data: {
-    //     name: createHorizontalProfileDto.name,
-    //     constantsGlassGap: createHorizontalProfileDto.constantsGlassGap,
-    //     constantsThickness: createHorizontalProfileDto.constantsThickness,
-    //     constantsWoodGap: createHorizontalProfileDto.constantsWoodGap,
-    //     cmsMechanismsId: createHorizontalProfileDto.mechanism?.id,
-    //   },
-    // });
+    return await prisma.cmsHorizontalProfiles.create({
+      data: {
+        name: createHorizontalProfileDto.name,
+        constantsGlassGap: createHorizontalProfileDto.constantsGlassGap,
+        constantsThickness: createHorizontalProfileDto.constantsThickness,
+        constantsWoodGap: createHorizontalProfileDto.constantsWoodGap,
+        cmsMechanismsId: createHorizontalProfileDto.mechanism?.id,
+      },
+    });
   }
 
   findAll() {

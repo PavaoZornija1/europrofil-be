@@ -7,12 +7,22 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class DoorMechanismsService {
-  create(createDoorMechanismDto: CreateDoorMechanismDto) {
-    return prisma.cmsDoorMechanisms.findMany({ where: { isActive: true } });
+  async create(createDoorMechanismDto: CreateDoorMechanismDto) {
+    return await prisma.cmsDoorMechanisms.create({
+      data: {
+        name: createDoorMechanismDto.name,
+        productCode: createDoorMechanismDto.productCode,
+        deceleratorSupport: createDoorMechanismDto.deceleratorSupport,
+        deceleratorOpposites: createDoorMechanismDto.deceleratorOpposites,
+        cmsMechanismsId: createDoorMechanismDto.mechanism?.id,
+      },
+    });
   }
 
-  findAll() {
-    return prisma.cmsDoorMechanisms.findMany({ where: { isActive: true } });
+  async findAll() {
+    return await prisma.cmsDoorMechanisms.findMany({
+      where: { isActive: true },
+    });
   }
 
   findOne(id: string) {

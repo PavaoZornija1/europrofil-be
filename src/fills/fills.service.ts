@@ -7,16 +7,26 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class FillsService {
-  create(createFillDto: CreateFillDto) {
-    return 'This action adds a new fill';
+  async create(createFillDto: CreateFillDto) {
+    return await prisma.cmsFills.create({
+      data: {
+        name: createFillDto.name,
+        productCode: createFillDto.productCode,
+        requiresPvcProfile: createFillDto.requiresPvcProfile,
+        requiresThinning: createFillDto.requiresThinning,
+        customNameAllowed: createFillDto.customNameAllowed,
+        cmsMechanismsId: createFillDto.mechanism?.id,
+        foilAvailable: createFillDto.foilAvailable,
+      },
+    });
   }
 
-  findAll() {
-    return prisma.cmsFills.findMany({ where: { isActive: true } });
+  async findAll() {
+    return await prisma.cmsFills.findMany({ where: { isActive: true } });
   }
 
-  findOne(id: string) {
-    return prisma.cmsFills.findUnique({
+  async findOne(id: string) {
+    return await prisma.cmsFills.findUnique({
       where: { id: id, isActive: true },
     });
   }

@@ -1,10 +1,4 @@
-import {
-  IsString,
-  IsNotEmpty,
-  IsNumber,
-  IsNumber,
-  IsBoolean,
-} from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsBoolean } from 'class-validator';
 
 export class CreateMechanismDto {
   @IsString()

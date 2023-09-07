@@ -7,8 +7,15 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class FoilsService {
-  create(createFoilDto: CreateFoilDto) {
-    return 'This action adds a new foil';
+  async create(createFoilDto: CreateFoilDto) {
+    return await prisma.cmsFoils.create({
+      data: {
+        name: createFoilDto.name,
+        productCode: createFoilDto.productCode,
+        colorCode: createFoilDto.colorCode,
+        ralCode: createFoilDto.ralCode,
+      },
+    });
   }
 
   async findAll() {

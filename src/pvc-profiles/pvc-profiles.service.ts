@@ -7,8 +7,16 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class PvcProfilesService {
-  create(createPvcProfileDto: CreatePvcProfileDto) {
-    return 'This action adds a new pvcProfile';
+  async create(createPvcProfileDto: CreatePvcProfileDto) {
+    return await prisma.cmsPvcProfiles.create({
+      data: {
+        name: createPvcProfileDto.name,
+        productCode: createPvcProfileDto.productCode,
+        pricePerM: createPvcProfileDto.pricePerM,
+        ralCode: createPvcProfileDto.ralCode,
+        cmsMechanismsId: createPvcProfileDto.mechanism?.id,
+      },
+    });
   }
 
   async findAll() {
