@@ -1,5 +1,5 @@
 import { CmsMechanisms } from '@prisma/client';
-import { IsString, IsNotEmpty, IsDecimal, IsBoolean } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsBoolean } from 'class-validator';
 
 export class CreateDoorMechanismDto {
   @IsString()
@@ -13,7 +13,7 @@ export class CreateDoorMechanismDto {
   @IsBoolean()
   public deceleratorSupport: boolean;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public price: number;
 

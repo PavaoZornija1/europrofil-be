@@ -1,20 +1,20 @@
 import { CmsMechanisms } from '@prisma/client';
-import { IsString, IsNotEmpty, IsDecimal } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateHorizontalProfileDto {
   @IsString()
   @IsNotEmpty()
   public name: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public constantsThickness: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public constantsGlassGap: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public constantsWoodGap: number;
 

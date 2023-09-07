@@ -1,5 +1,5 @@
 import { CmsDoorMechanisms, CmsMechanisms } from '@prisma/client';
-import { IsString, IsNotEmpty, IsDecimal } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateHandrailDto {
   @IsString()
@@ -10,19 +10,19 @@ export class CreateHandrailDto {
   @IsNotEmpty()
   public roundingSteps: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public doorWidth: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public profileLength: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public fillWidthGlass: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public fillWidthWood: number;
 

@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsDecimal } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateSettingDto {
   @IsString()
@@ -9,7 +9,7 @@ export class CreateSettingDto {
   @IsNotEmpty()
   public currency: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public vat: number;
 

@@ -1,12 +1,12 @@
 import { CmsHandrailDecorations, CmsHorizontalProfiles } from '@prisma/client';
-import { IsString, IsNotEmpty, IsDecimal } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateProfileDto {
   @IsString()
   @IsNotEmpty()
   public productCode: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public price: number;
 

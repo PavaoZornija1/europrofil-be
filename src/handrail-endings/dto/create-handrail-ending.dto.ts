@@ -3,7 +3,7 @@ import {
   CmsHandrails,
   CmsHandrailEndings,
 } from '@prisma/client';
-import { IsString, IsNotEmpty, IsDecimal } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateHandrailEndingDto {
   @IsString()
@@ -14,11 +14,11 @@ export class CreateHandrailEndingDto {
   @IsNotEmpty()
   public productCode: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public doorWidth: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public pricePerM: number;
 

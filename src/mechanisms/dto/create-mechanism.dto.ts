@@ -1,7 +1,7 @@
 import {
   IsString,
   IsNotEmpty,
-  IsDecimal,
+  IsNumber,
   IsNumber,
   IsBoolean,
 } from 'class-validator';
@@ -18,34 +18,34 @@ export class CreateMechanismDto {
   @IsNumber()
   public ordering: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsHeight: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsHandrailHeight: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsDeceleratorHeight: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsProfileTopWood: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsProfileTopGlass: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsProfileBottomWood: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsProfileBottomGlass: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsSeparatorThickness: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsSeparatorGlassGap: number;
 
-  @IsDecimal()
+  @IsNumber()
   public constantsSeparatorWoodGap: number;
 
   @IsBoolean()
@@ -63,31 +63,31 @@ export class CreateMechanismDto {
   @IsBoolean()
   public withoutTopAndBottomProfiles: boolean;
 
-  @IsDecimal()
+  @IsNumber()
   public loadMin: number;
 
-  @IsDecimal()
+  @IsNumber()
   public loadMax: number;
 
-  @IsDecimal()
+  @IsNumber()
   public widthMin: number;
 
-  @IsDecimal()
+  @IsNumber()
   public heavyThreshold: number;
 
-  @IsDecimal()
+  @IsNumber()
   public widthMax: number;
 
-  @IsDecimal()
+  @IsNumber()
   public heightMin: number;
 
-  @IsDecimal()
+  @IsNumber()
   public heightMax: number;
 
-  @IsDecimal()
+  @IsNumber()
   public fillThicknessMin: number;
 
-  @IsDecimal()
+  @IsNumber()
   public fillThicknessMax: number;
 
   @IsString()
@@ -96,10 +96,10 @@ export class CreateMechanismDto {
   @IsString()
   public detailsLink: string;
 
-  @IsDecimal()
+  @IsNumber()
   public confectionPricePerDoor: number;
 
-  @IsDecimal()
+  @IsNumber()
   public installationPricePerDoor: number;
 
   @IsString()

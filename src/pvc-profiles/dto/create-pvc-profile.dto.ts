@@ -1,5 +1,5 @@
 import { CmsMechanisms } from '@prisma/client';
-import { IsString, IsNotEmpty, IsDecimal } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreatePvcProfileDto {
   @IsString()
@@ -10,7 +10,7 @@ export class CreatePvcProfileDto {
   @IsNotEmpty()
   public productCode: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public pricePerM: number;
 

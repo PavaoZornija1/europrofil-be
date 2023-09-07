@@ -1,5 +1,5 @@
 import { CmsMechanisms } from '@prisma/client';
-import { IsString, IsNotEmpty, IsDecimal, IsBoolean } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsBoolean } from 'class-validator';
 
 export class CreateHandrailDecorationDto {
   @IsString()
@@ -27,25 +27,25 @@ export class CreateHandrailDecorationDto {
   @IsString()
   public productCodeBottomProfile: string;
 
-  @IsDecimal()
+  @IsNumber()
   public priceTopRailSingle: number;
 
-  @IsDecimal()
+  @IsNumber()
   public priceTopRailDouble: number;
 
-  @IsDecimal()
+  @IsNumber()
   public priceBottomRailSingle: number;
 
-  @IsDecimal()
+  @IsNumber()
   public priceBottomRailDouble: number;
 
-  @IsDecimal()
+  @IsNumber()
   public priceDivider: number;
 
-  @IsDecimal()
+  @IsNumber()
   public priceTopProfile: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public priceBottomProfile: number;
 

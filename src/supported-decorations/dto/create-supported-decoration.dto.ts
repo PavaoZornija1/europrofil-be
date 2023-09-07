@@ -1,8 +1,8 @@
 import { CmsHandrails, CmsHandrailDecorations } from '@prisma/client';
-import { IsString, IsNotEmpty, IsDecimal } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateSupportedDecorationDto {
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public price: number;
 

@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsDecimal } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateAluSettingDto {
   @IsString()
@@ -17,79 +17,79 @@ export class CreateAluSettingDto {
   @IsNotEmpty()
   public introText: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public vat: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public handleHolePrice: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public hingeHolePrice: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public hingeHoleWithInstallationPrice: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public lockHolePrice: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public serviceCostPercentage: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public serviceCostPerFrame: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public serviceCostPerMeter: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public bevel5mmPricePerMeter: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public bevel10mmPricePerMeter: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public bevel15mmPricePerMeter: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public bevel20mmPricePerMeter: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public sandblastingPricePerMeterSquared: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public sandblastingWithFoilPricePerMeterSquared: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public temperingGlassPerMeterSquared: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public protectiveFoilPerMeterSquared: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public decorativeFoilPerMeterSquared: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public motiveFoilPerMeterSquared: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsNotEmpty()
   public sandblastedFoilPerMeterSquared: number;
 }
