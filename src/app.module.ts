@@ -15,6 +15,9 @@ import { HorizontalProfilesModule } from './horizontal-profiles/horizontal-profi
 import { DoorMechanismsModule } from './door-mechanisms/door-mechanisms.module';
 import { HandrailEndingsModule } from './handrail-endings/handrail-endings.module';
 import { HandrailDecorationsModule } from './handrail-decorations/handrail-decorations.module';
+import { SupportedDecorationsModule } from './supported-decorations/supported-decorations.module';
+import { FillsModule } from './fills/fills.module';
+import { FoilsModule } from './foils/foils.module';
 
 @Module({
   imports: [
@@ -36,6 +39,9 @@ import { HandrailDecorationsModule } from './handrail-decorations/handrail-decor
     DoorMechanismsModule,
     HandrailEndingsModule,
     HandrailDecorationsModule,
+    SupportedDecorationsModule,
+    FillsModule,
+    FoilsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

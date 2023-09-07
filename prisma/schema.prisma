@@ -345,6 +345,7 @@ model CmsMechanisms {
   cmsHandrails                CmsHandrails[]
   cmsHandrailEndings          CmsHandrailEndings[]
   cmsHandrailDecorations      CmsHandrailDecorations[]
+  cmsFills                    CmsFills[]
   isActive                    Boolean                  @default(true)
   isDeleted                   Boolean                  @default(false)
   deleted                     DateTime?
@@ -454,6 +455,7 @@ model CmsFoils {
   colorCode   String?
   ralCode     String?
   isActive    Boolean   @default(true)
+  isDeleted   Boolean   @default(false)
   deleted     DateTime?
   modified    DateTime?
   // modifiedBy String?
@@ -462,21 +464,24 @@ model CmsFoils {
 }
 
 model CmsFills {
-  id                 String     @id @default(uuid())
-  parent             CmsFills?  @relation("ParentChildren", fields: [parentId], references: [id])
-  children           CmsFills[] @relation("ParentChildren")
+  id                 String         @id @default(uuid())
+  parent             CmsFills?      @relation("ParentChildren", fields: [parentId], references: [id])
+  children           CmsFills[]     @relation("ParentChildren")
+  cmsMechanism       CmsMechanisms? @relation(fields: [cmsMechanismsId], references: [id])
+  cmsMechanismsId    String?
   parentId           String?
   name               String?
   productCode        String?
   cmsMechanismSet    String?
-  requiresPvcProfile Boolean    @default(false)
-  requiresThinning   Boolean    @default(false)
-  customNameAllowed  Boolean    @default(false)
+  requiresPvcProfile Boolean        @default(false)
+  requiresThinning   Boolean        @default(false)
+  customNameAllowed  Boolean        @default(false)
   lft                BigInt?
   rght               BigInt?
-  foilAvailable      Boolean    @default(false)
+  foilAvailable      Boolean        @default(false)
   pricePerMSquare    Decimal?
-  isActive           Boolean    @default(true)
+  isActive           Boolean        @default(true)
+  isDeleted          Boolean        @default(false)
   deleted            DateTime?
   modified           DateTime?
   // modifiedBy String?
