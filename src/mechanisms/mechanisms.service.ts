@@ -131,7 +131,48 @@ const prisma = new PrismaClient();
 @Injectable()
 export class MechanismsService {
   async create(createMechanismDto: CreateMechanismDto) {
-    return 'This action adds a new mechanism';
+    return await prisma.cmsMechanisms.create({
+      data: {
+        name: createMechanismDto.name,
+        ordering: createMechanismDto.ordering,
+        productCode: createMechanismDto.productCode,
+        constantsHeight: createMechanismDto.constantsHeight,
+        constantsHandrailHeight: createMechanismDto.constantsHandrailHeight,
+        constantsDeceleratorHeight:
+          createMechanismDto.constantsDeceleratorHeight,
+        constantsProfileTopWood: createMechanismDto.constantsDeceleratorHeight,
+        constantsProfileTopGlass: createMechanismDto.constantsProfileTopGlass,
+        constantsProfileBottomWood:
+          createMechanismDto.constantsProfileBottomWood,
+        constantsProfileBottomGlass:
+          createMechanismDto.constantsProfileBottomGlass,
+        constantsSeparatorThickness:
+          createMechanismDto.constantsSeparatorThickness,
+        constantsSeparatorGlassGap:
+          createMechanismDto.constantsSeparatorGlassGap,
+        constantsSeparatorWoodGap: createMechanismDto.constantsSeparatorWoodGap,
+        pvcProfileAvailable: createMechanismDto.pvcProfileAvailable,
+        thinningAvailable: createMechanismDto.thinningAvailable,
+        deceleratorSupport: createMechanismDto.deceleratorSupport,
+        differentHandrails: createMechanismDto.differentHandrails,
+        withoutTopAndBottomProfiles: createMechanismDto.pvcProfileAvailable,
+        loadMin: createMechanismDto.loadMin,
+        loadMax: createMechanismDto.loadMax,
+        widthMin: createMechanismDto.widthMin,
+        heavyThreshold: createMechanismDto.heavyThreshold,
+        widthMax: createMechanismDto.widthMax,
+        heightMin: createMechanismDto.heightMin,
+        heightMax: createMechanismDto.heightMax,
+        fillThicknessMin: createMechanismDto.fillThicknessMin,
+        fillThicknessMax: createMechanismDto.fillThicknessMax,
+        fillTypes: createMechanismDto.fillTypes,
+        detailsLink: createMechanismDto.detailsLink,
+        confectionPricePerDoor: createMechanismDto.confectionPricePerDoor,
+        installationPricePerDoor: createMechanismDto.installationPricePerDoor,
+        confectionProductCode: createMechanismDto.confectionProductCode,
+        installationProductCode: createMechanismDto.installationProductCode,
+      },
+    });
   }
 
   async findAll() {
