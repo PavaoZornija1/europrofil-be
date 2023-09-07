@@ -18,6 +18,9 @@ import { HandrailDecorationsModule } from './handrail-decorations/handrail-decor
 import { SupportedDecorationsModule } from './supported-decorations/supported-decorations.module';
 import { FillsModule } from './fills/fills.module';
 import { FoilsModule } from './foils/foils.module';
+import { PvcProfilesModule } from './pvc-profiles/pvc-profiles.module';
+import { AluProfilesModule } from './alu-profiles/alu-profiles.module';
+import { AluSettingsModule } from './alu-settings/alu-settings.module';
 
 @Module({
   imports: [
@@ -42,6 +45,9 @@ import { FoilsModule } from './foils/foils.module';
     SupportedDecorationsModule,
     FillsModule,
     FoilsModule,
+    PvcProfilesModule,
+    AluProfilesModule,
+    AluSettingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

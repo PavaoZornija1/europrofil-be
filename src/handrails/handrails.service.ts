@@ -11,12 +11,12 @@ export class HandrailsService {
     return 'This action adds a new handrail';
   }
 
-  findAll() {
-    return prisma.cmsHandrails.findMany({ where: { isActive: true } });
+  async findAll() {
+    return await prisma.cmsHandrails.findMany({ where: { isActive: true } });
   }
 
-  findOne(id: string) {
-    return prisma.cmsHandrails.findUnique({
+  async findOne(id: string) {
+    return await prisma.cmsHandrails.findUnique({
       where: { id: id, isActive: true },
     });
   }
