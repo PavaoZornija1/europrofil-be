@@ -38,4 +38,7 @@ export class CreateAluProfileDto {
 
   @IsNumber()
   public handleHoleOffset: number;
+
+  @IsString()
+  public detailsLink: string;
 }
