@@ -189,14 +189,14 @@ model CmsOrders {
   cmsHandrailEndingId           String?
   openingHeight                 Decimal?
   openingWidth                  Decimal?
-  openingDoors                  BigInt?
+  openingDoors                  Int?
   railsType                     String?
   railsLengthTopValue           Decimal?
   railsLengthTopManual          Boolean                 @default(false)
   railsLengthBottomValue        Decimal?
   railsLengthBottomManual       Boolean                 @default(false)
   handrailHeight                Decimal?
-  totalDeceleratorPairs         BigInt?
+  totalDeceleratorPairs         Int?
   servicesFrameName             String?
   servicesFrameChosen           Boolean                 @default(false)
   servicesFillName              String?
@@ -339,7 +339,7 @@ model CmsMechanisms {
   installationPricePerDoor    Decimal?
   confectionProductCode       String?
   installationProductCode     String?
-  ordering                    BigInt?
+  ordering                    Int?
   cmsOrders                   CmsOrders[]
   cmsHorizontalProfiles       CmsHorizontalProfiles[]
   cmsDoorMechanisms           CmsDoorMechanisms[]
@@ -483,8 +483,8 @@ model CmsFills {
   requiresPvcProfile Boolean        @default(false)
   requiresThinning   Boolean        @default(false)
   customNameAllowed  Boolean        @default(false)
-  lft                BigInt?
-  rght               BigInt?
+  lft                Int?
+  rght               Int?
   foilAvailable      Boolean        @default(false)
   pricePerMSquare    Decimal?
   isActive           Boolean        @default(true)
@@ -501,9 +501,9 @@ model CmsFills {
 model CmsAluOrders {
   id                          String    @id @default(uuid())
   code                        String?
-  codeNumber                  BigInt?
-  codeMonth                   BigInt?
-  codeYear                    BigInt?
+  codeNumber                  Int?
+  codeMonth                   Int?
+  codeYear                    Int?
   customerName                String?
   customerPhone               String?
   customerAddress             String?
@@ -526,14 +526,14 @@ model CmsAluOrders {
   fillPrice                   Decimal?
   fillPriceIncrease           Decimal?
   cornerCoverProductCode      String?
-  cornerCoverCount            BigInt?
+  cornerCoverCount            Int?
   costVatRate                 Decimal?
   costBase                    Decimal?
   costVat                     Decimal?
   costTotal                   Decimal?
   costPerMeterBase            Decimal?
   costPerMeterTotal           Decimal?
-  totalFrameCount             BigInt?
+  totalFrameCount             Int?
   totalFrameLength            Decimal?
   totalFillArea               Decimal?
   // issuedBy String?
@@ -562,7 +562,7 @@ model CmsAluFrameTreatments {
   customColorAvailable Boolean   @default(false)
   pricePerMeter        Decimal?
   priceIncrease        Decimal?
-  ordering             BigInt?
+  ordering             Int?
   isActive             Boolean   @default(true)
   isDeleted            Boolean   @default(false)
   deleted              DateTime?
@@ -634,7 +634,7 @@ model CmsAluLiftSupports {
   pricePerUnit    Decimal?
   cmsFrameTypeSet String?
   description     String?
-  ordering        BigInt?
+  ordering        Int?
   isActive        Boolean   @default(true)
   isDeleted       Boolean   @default(false)
   deleted         DateTime?
@@ -706,7 +706,7 @@ model CmsHingeTypes {
   name         String?
   code         String?
   cmsAluHinges CmsAluHinges[]
-  ordering     BigInt?
+  ordering     Int?
   isActive     Boolean        @default(true)
   isDeleted    Boolean        @default(false)
   deleted      DateTime?
@@ -769,8 +769,8 @@ model AluUploads {
   filesize  Decimal?
   extension String?
   mimetype  String?
-  width     BigInt?
-  height    BigInt?
+  width     Int?
+  height    Int?
   isImage   Boolean?
   extra     String?
   alt       String?
