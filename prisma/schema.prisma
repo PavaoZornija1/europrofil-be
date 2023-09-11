@@ -588,7 +588,7 @@ model CmsAluFrameTypes {
   priceIncrease          Decimal?
   corverCoverPrice       Decimal?
   corverCoverProductCode String?
-  ordering               BigInt?
+  ordering               Int?
   isActive               Boolean   @default(true)
   isDeleted              Boolean   @default(false)
   deleted                DateTime?
