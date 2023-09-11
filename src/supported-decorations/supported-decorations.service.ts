@@ -7,8 +7,16 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class SupportedDecorationsService {
-  create(createSupportedDecorationDto: CreateSupportedDecorationDto) {
-    return 'This action adds a new supportedDecoration';
+  async create(createSupportedDecorationDto: CreateSupportedDecorationDto) {
+    return await prisma.cmsSupportedDecorations.create({
+      data: {
+        price: createSupportedDecorationDto.price,
+        productCode: createSupportedDecorationDto.productCode,
+        cmsHandrailId: createSupportedDecorationDto.handrail?.id,
+        cmsHandrailDecorationId:
+          createSupportedDecorationDto.handrailDecoration?.id,
+      },
+    });
   }
 
   findAll() {

@@ -12,6 +12,7 @@ export class DoorMechanismsService {
       data: {
         name: createDoorMechanismDto.name,
         productCode: createDoorMechanismDto.productCode,
+        price: createDoorMechanismDto.price,
         deceleratorSupport: createDoorMechanismDto.deceleratorSupport,
         deceleratorOpposites: createDoorMechanismDto.deceleratorOpposites,
         cmsMechanismsId: createDoorMechanismDto.mechanism?.id,
@@ -39,6 +40,8 @@ export class DoorMechanismsService {
       data: {
         name: updateDoorMechanismDto.name,
         productCode: updateDoorMechanismDto.productCode,
+        price: updateDoorMechanismDto.price,
+
         deceleratorSupport: updateDoorMechanismDto.deceleratorSupport,
         deceleratorOpposites: updateDoorMechanismDto.deceleratorOpposites,
         cmsMechanismsId: updateDoorMechanismDto.mechanism?.id,

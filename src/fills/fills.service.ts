@@ -17,6 +17,7 @@ export class FillsService {
         customNameAllowed: createFillDto.customNameAllowed,
         cmsMechanismsId: createFillDto.mechanism?.id,
         foilAvailable: createFillDto.foilAvailable,
+        pricePerMSquare: createFillDto.pricePerMSquare,
       },
     });
   }
@@ -44,6 +45,7 @@ export class FillsService {
         customNameAllowed: updateFillDto.customNameAllowed,
         cmsMechanismsId: updateFillDto.mechanism?.id,
         foilAvailable: updateFillDto.foilAvailable,
+        pricePerMSquare: updateFillDto.pricePerMSquare,
       },
     });
   }
