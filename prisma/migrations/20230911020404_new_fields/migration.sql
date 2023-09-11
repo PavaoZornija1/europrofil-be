@@ -1,0 +1,9 @@
+-- AlterTable
+ALTER TABLE "CmsAluHinges" ADD COLUMN     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN     "deleted" TIMESTAMP(3),
+ADD COLUMN     "isActive" BOOLEAN NOT NULL DEFAULT true,
+ADD COLUMN     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "modified" TIMESTAMP(3);
+
+-- AlterTable
+ALTER TABLE "CmsHingeTypes" ADD COLUMN     "isActive" BOOLEAN NOT NULL DEFAULT true;

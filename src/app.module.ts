@@ -21,6 +21,15 @@ import { FoilsModule } from './foils/foils.module';
 import { PvcProfilesModule } from './pvc-profiles/pvc-profiles.module';
 import { AluProfilesModule } from './alu-profiles/alu-profiles.module';
 import { AluSettingsModule } from './alu-settings/alu-settings.module';
+import { ReportsModule } from './reports/reports.module';
+import { SupportedProfilesModule } from './supported-profiles/supported-profiles.module';
+import { ExtrasModule } from './extras/extras.module';
+import { EmployeesModule } from './employees/employees.module';
+import { AluFillsModule } from './alu-fills/alu-fills.module';
+import { AluHandleProfilesModule } from './alu-handle-profiles/alu-handle-profiles.module';
+import { AluLiftSupportsModule } from './alu-lift-supports/alu-lift-supports.module';
+import { AluFrameTreatmentsModule } from './alu-frame-treatments/alu-frame-treatments.module';
+import { AluHingesModule } from './alu-hinges/alu-hinges.module';
 
 @Module({
   imports: [
@@ -48,6 +57,15 @@ import { AluSettingsModule } from './alu-settings/alu-settings.module';
     PvcProfilesModule,
     AluProfilesModule,
     AluSettingsModule,
+    ReportsModule,
+    SupportedProfilesModule,
+    ExtrasModule,
+    EmployeesModule,
+    AluFillsModule,
+    AluHandleProfilesModule,
+    AluLiftSupportsModule,
+    AluFrameTreatmentsModule,
+    AluHingesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

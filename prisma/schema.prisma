@@ -348,6 +348,7 @@ model CmsMechanisms {
   cmsHandrailDecorations      CmsHandrailDecorations[]
   cmsPvcProfiles              CmsPvcProfiles[]
   cmsFills                    CmsFills[]
+  cmsExtras                   CmsExtras[]
   isActive                    Boolean                  @default(true)
   isDeleted                   Boolean                  @default(false)
   deleted                     DateTime?
@@ -419,17 +420,19 @@ model CmsPvcProfiles {
 }
 
 model CmsExtras {
-  id              String    @id @default(uuid())
+  id              String         @id @default(uuid())
   name            String?
   productCode     String?
-  cmsMechanismSet String?
+  cmsMechanism    CmsMechanisms? @relation(fields: [cmsMechanismsId], references: [id])
+  cmsMechanismsId String?
   unit            String?
   pricePerUnit    Decimal
-  isActive        Boolean   @default(true)
+  isActive        Boolean        @default(true)
+  isDeleted       Boolean        @default(false)
   deleted         DateTime?
   modified        DateTime?
   // modifiedBy String?
-  created         DateTime  @default(now())
+  created         DateTime       @default(now())
   // createdBy String
 }
 
@@ -554,7 +557,6 @@ model CmsAluOrders {
 
 model CmsAluFrameTreatments {
   id                   String    @id @default(uuid())
-  cmsFrameTypeId       String?
   name                 String?
   productCode          String?
   customColorAvailable Boolean   @default(false)
@@ -686,8 +688,17 @@ model CmsAluFills {
 model CmsAluHinges {
   id             String         @id @default(uuid())
   name           String?
+  productCode    String?
+  price          Decimal?
   cmsHingeType   CmsHingeTypes? @relation(fields: [cmsHingeTypeId], references: [id])
   cmsHingeTypeId String?
+  isActive       Boolean        @default(true)
+  isDeleted      Boolean        @default(false)
+  deleted        DateTime?
+  modified       DateTime?
+  // modifiedBy String?
+  created        DateTime       @default(now())
+  // createdBy String
 }
 
 model CmsHingeTypes {
@@ -696,6 +707,7 @@ model CmsHingeTypes {
   code         String?
   cmsAluHinges CmsAluHinges[]
   ordering     BigInt?
+  isActive     Boolean        @default(true)
   isDeleted    Boolean        @default(false)
   deleted      DateTime?
   modified     DateTime?
