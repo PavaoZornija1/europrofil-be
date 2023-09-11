@@ -149,7 +149,7 @@ model CmsOrderDoors {
   fillWidthWood      Decimal
   deceleratorsLeft   String?
   deceleratorsRight  String?
-  numberOfFields     BigInt
+  numberOfFields     Int
   modified           DateTime?
   created            DateTime           @default(now())
   // createdBy
@@ -653,7 +653,7 @@ model CmsAluHandleProfiles {
   priceIncrease        Decimal?
   frameLengthReduction Decimal?
   customColorAvailable Boolean   @default(true)
-  ordering             BigInt?
+  ordering             Int?
   isActive             Boolean   @default(true)
   isDeleted            Boolean   @default(false)
   deleted              DateTime?
