@@ -12,7 +12,7 @@ export class AluProfilesService {
       data: {
         name: createAluProfileDto.name,
         requiresKp: createAluProfileDto.requiresKp,
-        corverCoverPrice: createAluProfileDto.corverCoverPrice,
+        corverCoverPrice: createAluProfileDto.cornerCoverPrice,
         productCode: createAluProfileDto.productCode,
         requiresPvc: createAluProfileDto.requiresPvc,
         requiresSpecialHinges: createAluProfileDto.requiresSpecialHinges,
@@ -46,7 +46,7 @@ export class AluProfilesService {
       data: {
         name: updateAluProfileDto.name,
         requiresKp: updateAluProfileDto.requiresKp,
-        corverCoverPrice: updateAluProfileDto.corverCoverPrice,
+        corverCoverPrice: updateAluProfileDto.cornerCoverPrice,
         productCode: updateAluProfileDto.productCode,
         requiresPvc: updateAluProfileDto.requiresPvc,
         requiresSpecialHinges: updateAluProfileDto.requiresSpecialHinges,

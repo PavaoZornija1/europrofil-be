@@ -16,7 +16,7 @@ export class CreateAluProfileDto {
   public cornerCoverProductCode: string;
 
   @IsNumber()
-  public corverCoverPrice: number;
+  public cornerCoverPrice: number;
 
   @IsBoolean()
   public requiresKp: boolean;
