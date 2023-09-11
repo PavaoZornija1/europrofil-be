@@ -30,6 +30,7 @@ import { AluHandleProfilesModule } from './alu-handle-profiles/alu-handle-profil
 import { AluLiftSupportsModule } from './alu-lift-supports/alu-lift-supports.module';
 import { AluFrameTreatmentsModule } from './alu-frame-treatments/alu-frame-treatments.module';
 import { AluHingesModule } from './alu-hinges/alu-hinges.module';
+import { DepartmentsModule } from './departments/departments.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { AluHingesModule } from './alu-hinges/alu-hinges.module';
     AluLiftSupportsModule,
     AluFrameTreatmentsModule,
     AluHingesModule,
+    DepartmentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

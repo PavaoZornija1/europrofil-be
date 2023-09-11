@@ -90,24 +90,26 @@ enum ApprovalStatus {
 }
 
 model CmsUsers {
-  id                 String         @id @default(uuid())
+  id                 String          @id @default(uuid())
   username           String?
   password           String?
   name               String?
   phone              String?
   address            String?
   deliveryAddres     String?
-  discountHardware   Boolean        @default(false)
-  discountFillings   Boolean        @default(false)
-  useDetailedBilling Boolean        @default(false)
-  lockedDiscount     Boolean        @default(true)
+  discountHardware   Boolean         @default(false)
+  discountFillings   Boolean         @default(false)
+  useDetailedBilling Boolean         @default(false)
+  lockedDiscount     Boolean         @default(true)
   note               String?
-  orderCount         Int            @default(0)
-  accessCount        Int            @default(0)
-  approvalStatus     ApprovalStatus @default(Pending)
+  cmsDepartment      CmsDepartments? @relation(fields: [cmsDepartmentId], references: [id])
+  cmsDepartmentId    String?
+  orderCount         Int             @default(0)
+  accessCount        Int             @default(0)
+  approvalStatus     ApprovalStatus  @default(Pending)
   deleted            DateTime?
   modified           DateTime?
-  created            DateTime       @default(now())
+  created            DateTime        @default(now())
   // modifiedBy 
   // createdBy
 }
@@ -624,6 +626,19 @@ model CmsAluFoils {
   modified            DateTime?
   // modifiedBy String?
   created             DateTime  @default(now())
+  // createdBy String
+}
+
+model CmsDepartments {
+  id        String     @id @default(uuid())
+  name      String?
+  isActive  Boolean    @default(true)
+  isDeleted Boolean    @default(false)
+  cmsUsers  CmsUsers[]
+  deleted   DateTime?
+  modified  DateTime?
+  // modifiedBy String?
+  created   DateTime   @default(now())
   // createdBy String
 }
 
