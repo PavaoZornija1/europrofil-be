@@ -27,7 +27,7 @@ export class SupportedProfilesService {
 
   async findOne(id: string) {
     return await prisma.cmsSupportedProfiles.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

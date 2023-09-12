@@ -1,11 +1,15 @@
-/*
-  Warnings:
-
-  - A unique constraint covering the columns `[username]` on the table `User` will be added. If there are existing duplicate values, this will fail.
-
-*/
 -- CreateEnum
 CREATE TYPE "ApprovalStatus" AS ENUM ('Pending', 'Postponed', 'Rejected', 'Accepted');
+
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "email" TEXT,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "Mechanism" (
@@ -78,7 +82,10 @@ CREATE TABLE "Administrator" (
 -- CreateTable
 CREATE TABLE "CmsUsers" (
     "id" TEXT NOT NULL,
+    "isAdministrator" BOOLEAN NOT NULL DEFAULT false,
+    "isEmployee" BOOLEAN NOT NULL DEFAULT false,
     "username" TEXT,
+    "email" TEXT,
     "password" TEXT,
     "name" TEXT,
     "phone" TEXT,
@@ -93,6 +100,8 @@ CREATE TABLE "CmsUsers" (
     "orderCount" INTEGER NOT NULL DEFAULT 0,
     "accessCount" INTEGER NOT NULL DEFAULT 0,
     "approvalStatus" "ApprovalStatus" NOT NULL DEFAULT 'Pending',
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -748,6 +757,9 @@ CREATE TABLE "AluUploads" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- AddForeignKey
 ALTER TABLE "Acos" ADD CONSTRAINT "Acos_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "Acos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
