@@ -26,6 +26,10 @@ export class HandrailDecorationsService {
           createHandrailDecorationDto.productCodeBottomProfile,
         priceTopRailSingle: createHandrailDecorationDto.priceTopRailSingle,
         priceTopRailDouble: createHandrailDecorationDto.priceTopRailDouble,
+        priceBottomRailSingle:
+          createHandrailDecorationDto.priceBottomRailSingle,
+        priceBottomRailDouble:
+          createHandrailDecorationDto.priceBottomRailDouble,
         priceTopProfile: createHandrailDecorationDto.priceTopProfile,
         isSilverGloss: createHandrailDecorationDto.isSilverGloss,
         customColorAvailable: createHandrailDecorationDto.customColorAvailable,
