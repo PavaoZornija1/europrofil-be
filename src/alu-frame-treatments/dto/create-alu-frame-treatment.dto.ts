@@ -9,8 +9,8 @@ export class CreateAluFrameTreatmentDto {
   @IsNotEmpty()
   public productCode: string;
 
-  @IsNumber()
-  public ordering: number;
+  // @IsNumber()
+  // public ordering: number;
 
   @IsBoolean()
   public customColorAvailable: boolean;
