@@ -91,6 +91,8 @@ enum ApprovalStatus {
 
 model CmsUsers {
   id                 String          @id @default(uuid())
+  isAdministrator    Boolean         @default(false)
+  isEmployee         Boolean         @default(false)
   username           String?
   password           String?
   name               String?
@@ -107,6 +109,8 @@ model CmsUsers {
   orderCount         Int             @default(0)
   accessCount        Int             @default(0)
   approvalStatus     ApprovalStatus  @default(Pending)
+  isActive           Boolean         @default(true)
+  isDeleted          Boolean         @default(false)
   deleted            DateTime?
   modified           DateTime?
   created            DateTime        @default(now())
