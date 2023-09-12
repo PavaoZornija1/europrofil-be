@@ -21,7 +21,7 @@ export class DepartmentsService {
 
   async findOne(id: string) {
     return await prisma.cmsDepartments.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

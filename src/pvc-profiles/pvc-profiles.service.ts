@@ -25,7 +25,7 @@ export class PvcProfilesService {
 
   async findOne(id: string) {
     return prisma.cmsPvcProfiles.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

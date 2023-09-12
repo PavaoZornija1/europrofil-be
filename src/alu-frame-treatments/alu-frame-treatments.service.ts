@@ -28,7 +28,7 @@ export class AluFrameTreatmentsService {
 
   async findOne(id: string) {
     return await prisma.cmsAluFrameTreatments.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

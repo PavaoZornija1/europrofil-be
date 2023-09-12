@@ -34,7 +34,7 @@ export class EmployeesService {
 
   async findOne(id: string) {
     return await prisma.cmsUsers.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

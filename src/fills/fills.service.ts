@@ -28,7 +28,7 @@ export class FillsService {
 
   async findOne(id: string) {
     return await prisma.cmsFills.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

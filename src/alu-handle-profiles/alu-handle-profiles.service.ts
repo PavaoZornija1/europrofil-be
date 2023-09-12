@@ -29,7 +29,7 @@ export class AluHandleProfilesService {
 
   async findOne(id: string) {
     return await prisma.cmsAluHandleProfiles.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

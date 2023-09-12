@@ -35,7 +35,7 @@ export class AluProfilesService {
 
   async findOne(id: string) {
     return await prisma.cmsAluFrameTypes.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

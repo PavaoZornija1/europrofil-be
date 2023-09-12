@@ -25,7 +25,7 @@ export class HorizontalProfilesService {
 
   findOne(id: string) {
     return prisma.cmsHorizontalProfiles.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 
