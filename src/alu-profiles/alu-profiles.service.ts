@@ -12,7 +12,7 @@ export class AluProfilesService {
       data: {
         name: createAluProfileDto.name,
         requiresKp: createAluProfileDto.requiresKp,
-        corverCoverPrice: createAluProfileDto.corverCoverPrice,
+        corverCoverPrice: createAluProfileDto.cornerCoverPrice,
         productCode: createAluProfileDto.productCode,
         requiresPvc: createAluProfileDto.requiresPvc,
         requiresSpecialHinges: createAluProfileDto.requiresSpecialHinges,
@@ -21,7 +21,8 @@ export class AluProfilesService {
         handleHoleInlet: createAluProfileDto.handleHoleInlet,
         handleHoleOffset: createAluProfileDto.handleHoleOffset,
         ordering: createAluProfileDto.ordering,
-        // cornerCoverProductCode: createAluProfileDto.cornerCoverProductCode
+        corverCoverProductCode: createAluProfileDto.cornerCoverProductCode,
+        detailsLink: createAluProfileDto.detailsLink,
       },
     });
   }
@@ -46,7 +47,7 @@ export class AluProfilesService {
       data: {
         name: updateAluProfileDto.name,
         requiresKp: updateAluProfileDto.requiresKp,
-        corverCoverPrice: updateAluProfileDto.corverCoverPrice,
+        corverCoverPrice: updateAluProfileDto.cornerCoverPrice,
         productCode: updateAluProfileDto.productCode,
         requiresPvc: updateAluProfileDto.requiresPvc,
         requiresSpecialHinges: updateAluProfileDto.requiresSpecialHinges,
@@ -55,7 +56,7 @@ export class AluProfilesService {
         handleHoleInlet: updateAluProfileDto.handleHoleInlet,
         handleHoleOffset: updateAluProfileDto.handleHoleOffset,
         ordering: updateAluProfileDto.ordering,
-        // cornerCoverProductCode: createAluProfileDto.cornerCoverProductCode
+        // cornerCoverProductCode: updateAluProfileDto.cornerCoverProductCode
       },
     });
   }
