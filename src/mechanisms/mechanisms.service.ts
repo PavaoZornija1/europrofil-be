@@ -181,7 +181,7 @@ export class MechanismsService {
 
   async findOne(id: string) {
     return prisma.cmsMechanisms.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
     // return mechanism.find((el) => el.id == id);
   }

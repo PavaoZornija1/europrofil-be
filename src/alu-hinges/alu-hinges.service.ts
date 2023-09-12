@@ -24,7 +24,7 @@ export class AluHingesService {
 
   async findOne(id: string) {
     return await prisma.cmsAluHinges.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

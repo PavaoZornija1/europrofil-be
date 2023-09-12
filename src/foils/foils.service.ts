@@ -24,7 +24,7 @@ export class FoilsService {
 
   async findOne(id: string) {
     return await prisma.cmsFoils.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

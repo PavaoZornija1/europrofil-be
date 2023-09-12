@@ -25,7 +25,7 @@ export class ExtrasService {
 
   async findOne(id: string) {
     return await prisma.cmsExtras.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

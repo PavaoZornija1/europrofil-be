@@ -28,7 +28,7 @@ export class HandrailEndingsService {
 
   async findOne(id: string) {
     return await prisma.cmsHandrailEndings.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 

@@ -25,7 +25,7 @@ export class AluFillsService {
 
   async findOne(id: string) {
     return await prisma.cmsAluFills.findUnique({
-      where: { id: id, isActive: true },
+      where: { id: id },
     });
   }
 
