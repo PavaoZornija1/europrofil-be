@@ -8,6 +8,14 @@ export class CreateEmployeeDto {
 
   @IsString()
   @IsNotEmpty()
+  public email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  public phone: string;
+
+  @IsString()
+  @IsNotEmpty()
   public username: string;
 
   @IsString()

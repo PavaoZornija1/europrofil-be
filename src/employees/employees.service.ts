@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
-import { ApprovalStatus, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -11,19 +11,25 @@ export class EmployeesService {
     return await prisma.cmsUsers.create({
       data: {
         name: createEmployeeDto.name,
+        email: createEmployeeDto.email,
+        username: createEmployeeDto.username,
         isEmployee: true,
         isAdministrator: createEmployeeDto.isAdministrator,
+        // hesirati
         password: createEmployeeDto.password,
+        phone: createEmployeeDto.phone,
         address: createEmployeeDto.address,
         note: createEmployeeDto.note,
-        approvalStatus: ApprovalStatus.Accepted,
+        approvalStatus: createEmployeeDto.approvalStatus,
         cmsDepartmentId: createEmployeeDto.department?.id,
       },
     });
   }
 
   async findAll() {
-    return await prisma.cmsUsers.findMany({ where: { isActive: true } });
+    return await prisma.cmsUsers.findMany({
+      where: { isActive: true, isEmployee: true, isAdministrator: false },
+    });
   }
 
   async findOne(id: string) {
@@ -39,12 +45,13 @@ export class EmployeesService {
       },
       data: {
         name: updateEmployeeDto.name,
+        username: updateEmployeeDto.username,
         isEmployee: true,
         isAdministrator: updateEmployeeDto.isAdministrator,
         password: updateEmployeeDto.password,
         address: updateEmployeeDto.address,
         note: updateEmployeeDto.note,
-        approvalStatus: ApprovalStatus.Accepted,
+        approvalStatus: updateEmployeeDto.approvalStatus,
         cmsDepartmentId: updateEmployeeDto.department?.id,
       },
     });

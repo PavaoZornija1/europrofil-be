@@ -94,6 +94,7 @@ model CmsUsers {
   isAdministrator    Boolean         @default(false)
   isEmployee         Boolean         @default(false)
   username           String?
+  email              String?
   password           String?
   name               String?
   phone              String?
