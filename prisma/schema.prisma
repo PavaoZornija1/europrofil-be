@@ -156,7 +156,7 @@ model CmsOrderDoors {
   fillWidthWood      Decimal
   deceleratorsLeft   String?
   deceleratorsRight  String?
-  numberOfFields     Int
+  numberOfFields     Int?
   modified           DateTime?
   created            DateTime           @default(now())
   // createdBy
