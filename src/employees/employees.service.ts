@@ -45,10 +45,12 @@ export class EmployeesService {
       },
       data: {
         name: updateEmployeeDto.name,
+        email: updateEmployeeDto.email,
         username: updateEmployeeDto.username,
         isEmployee: true,
         isAdministrator: updateEmployeeDto.isAdministrator,
         password: updateEmployeeDto.password,
+        phone: updateEmployeeDto.phone,
         address: updateEmployeeDto.address,
         note: updateEmployeeDto.note,
         approvalStatus: updateEmployeeDto.approvalStatus,
