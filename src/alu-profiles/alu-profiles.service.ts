@@ -56,7 +56,8 @@ export class AluProfilesService {
         handleHoleInlet: updateAluProfileDto.handleHoleInlet,
         handleHoleOffset: updateAluProfileDto.handleHoleOffset,
         ordering: updateAluProfileDto.ordering,
-        // cornerCoverProductCode: updateAluProfileDto.cornerCoverProductCode
+        corverCoverProductCode: updateAluProfileDto.cornerCoverProductCode,
+        detailsLink: updateAluProfileDto.detailsLink,
       },
     });
   }
