@@ -176,14 +176,53 @@ export class MechanismsService {
   }
 
   async findAll() {
-    return await prisma.cmsMechanisms.findMany();
+    return await prisma.cmsMechanisms.findMany({
+      include: {
+        cmsOrders: true,
+        cmsHorizontalProfiles: true,
+        // cmsDoorMechanisms: true,
+        cmsDoorMechanisms: {
+          include: {
+            cmsOrderDoors: true,
+            cmsHandrails: true,
+          },
+        },
+        // cmsHandrails: true,
+        cmsHandrails: {
+          include: {
+            cmsDoorMechanism: true,
+            cmsSupportedDecorations: true,
+            cmsHandrailEndings: {
+              include: {
+                children: true,
+              },
+            },
+          },
+        },
+        cmsHandrailEndings: true,
+        cmsHandrailDecorations: true,
+        cmsPvcProfiles: true,
+        cmsFills: true,
+        cmsExtras: true,
+      },
+    });
   }
 
   async findOne(id: string) {
     return prisma.cmsMechanisms.findUnique({
       where: { id: id },
+      include: {
+        cmsOrders: true,
+        cmsHorizontalProfiles: true,
+        cmsDoorMechanisms: true,
+        cmsHandrails: true,
+        cmsHandrailEndings: true,
+        cmsHandrailDecorations: true,
+        cmsPvcProfiles: true,
+        cmsFills: true,
+        cmsExtras: true,
+      },
     });
-    // return mechanism.find((el) => el.id == id);
   }
 
   async update(id: string, updateMechanismDto: UpdateMechanismDto) {

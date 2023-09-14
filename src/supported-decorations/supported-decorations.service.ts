@@ -26,7 +26,9 @@ export class SupportedDecorationsService {
   }
 
   findOne(id: string) {
-    return `This action returns a #${id} supportedDecoration`;
+    return prisma.cmsSupportedDecorations.findUnique({
+      where: { id: id },
+    });
   }
 
   async update(
