@@ -16,10 +16,6 @@ export class CreateHandrailEndingDto {
 
   @IsNumber()
   @IsNotEmpty()
-  public doorWidth: number;
-
-  @IsNumber()
-  @IsNotEmpty()
   public pricePerM: number;
 
   public mechanism: CmsMechanisms;
