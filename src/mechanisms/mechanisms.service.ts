@@ -155,7 +155,8 @@ export class MechanismsService {
         thinningAvailable: createMechanismDto.thinningAvailable,
         deceleratorSupport: createMechanismDto.deceleratorSupport,
         differentHandrails: createMechanismDto.differentHandrails,
-        withoutTopAndBottomProfiles: createMechanismDto.pvcProfileAvailable,
+        withoutTopAndBottomProfiles:
+          createMechanismDto.withoutTopAndBottomProfiles,
         loadMin: createMechanismDto.loadMin,
         loadMax: createMechanismDto.loadMax,
         widthMin: createMechanismDto.widthMin,
@@ -253,7 +254,8 @@ export class MechanismsService {
         thinningAvailable: updateMechanismDto.thinningAvailable,
         deceleratorSupport: updateMechanismDto.deceleratorSupport,
         differentHandrails: updateMechanismDto.differentHandrails,
-        withoutTopAndBottomProfiles: updateMechanismDto.pvcProfileAvailable,
+        withoutTopAndBottomProfiles:
+          updateMechanismDto.withoutTopAndBottomProfiles,
         loadMin: updateMechanismDto.loadMin,
         loadMax: updateMechanismDto.loadMax,
         widthMin: updateMechanismDto.widthMin,
