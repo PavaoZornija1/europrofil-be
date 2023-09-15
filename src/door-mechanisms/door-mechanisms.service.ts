@@ -27,8 +27,8 @@ export class DoorMechanismsService {
   }
 
   findOne(id: string) {
-    return prisma.cmsDoorMechanisms.findMany({
-      where: { id: id, isActive: true },
+    return prisma.cmsDoorMechanisms.findUnique({
+      where: { id: id },
     });
   }
 
