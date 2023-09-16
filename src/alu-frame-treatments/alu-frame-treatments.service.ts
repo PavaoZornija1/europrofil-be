@@ -52,7 +52,10 @@ export class AluFrameTreatmentsService {
   }
 
   async remove(id: string) {
-    return await prisma.cmsAluFrameTreatments.create({
+    return await prisma.cmsAluFrameTreatments.update({
+      where: {
+        id: id,
+      },
       data: {
         isActive: false,
         isDeleted: true,
