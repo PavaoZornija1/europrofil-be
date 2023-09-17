@@ -1,4 +1,4 @@
-import { CmsMechanisms } from '@prisma/client';
+import { CmsFills, CmsMechanisms } from '@prisma/client';
 import { IsString, IsNotEmpty, IsBoolean, IsNumber } from 'class-validator';
 
 export class CreateFillDto {
@@ -32,4 +32,6 @@ export class CreateFillDto {
 
   @IsNotEmpty()
   public mechanism: CmsMechanisms;
+
+  public parent: CmsFills;
 }

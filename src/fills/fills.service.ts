@@ -18,6 +18,7 @@ export class FillsService {
         cmsMechanismsId: createFillDto.mechanism?.id,
         foilAvailable: createFillDto.foilAvailable,
         pricePerMSquare: createFillDto.pricePerMSquare,
+        parentId: createFillDto.parent?.id,
       },
     });
   }
@@ -46,6 +47,7 @@ export class FillsService {
         cmsMechanismsId: updateFillDto.mechanism?.id,
         foilAvailable: updateFillDto.foilAvailable,
         pricePerMSquare: updateFillDto.pricePerMSquare,
+        parentId: updateFillDto.parent?.id,
       },
     });
   }
