@@ -21,12 +21,20 @@ export class SupportedProfilesService {
 
   async findAll() {
     return await prisma.cmsSupportedProfiles.findMany({
+      include: {
+        cmsHandrailDecoration: true,
+        cmsHorizontalProfile: true,
+      },
       where: { isActive: true },
     });
   }
 
   async findOne(id: string) {
     return await prisma.cmsSupportedProfiles.findUnique({
+      include: {
+        cmsHandrailDecoration: true,
+        cmsHorizontalProfile: true,
+      },
       where: { id: id },
     });
   }
