@@ -33,5 +33,5 @@ export class CreateFillDto {
   @IsNotEmpty()
   public mechanism: CmsMechanisms;
 
-  public parent: CmsFills;
+  public parent?: CmsFills;
 }
