@@ -178,6 +178,9 @@ export class MechanismsService {
 
   async findAll() {
     return await prisma.cmsMechanisms.findMany({
+      where: {
+        isActive: true,
+      },
       include: {
         cmsOrders: true,
         cmsHorizontalProfiles: true,
