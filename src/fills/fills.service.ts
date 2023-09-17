@@ -24,12 +24,24 @@ export class FillsService {
   }
 
   async findAll() {
-    return await prisma.cmsFills.findMany({ where: { isActive: true } });
+    return await prisma.cmsFills.findMany({
+      where: { isActive: true },
+      include: {
+        parent: true,
+        children: true,
+        cmsMechanism: true,
+      },
+    });
   }
 
   async findOne(id: string) {
     return await prisma.cmsFills.findUnique({
       where: { id: id },
+      include: {
+        parent: true,
+        children: true,
+        cmsMechanism: true,
+      },
     });
   }
 
