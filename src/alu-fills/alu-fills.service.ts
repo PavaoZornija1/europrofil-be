@@ -15,11 +15,13 @@ export class AluFillsService {
         foilAvailable: createAluFillDto.foilAvailable,
         pricePerSquareMeter: createAluFillDto.pricePerSquareMeter,
         priceIncrease: createAluFillDto.priceIncrease,
-        parent: {
-          connect: {
-            id: createAluFillDto.parent?.id,
-          },
-        },
+        parent: createAluFillDto.parent?.id
+          ? {
+              connect: {
+                id: createAluFillDto.parent?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -45,11 +47,13 @@ export class AluFillsService {
         foilAvailable: updateAluFillDto.foilAvailable,
         pricePerSquareMeter: updateAluFillDto.pricePerSquareMeter,
         priceIncrease: updateAluFillDto.priceIncrease,
-        parent: {
-          connect: {
-            id: updateAluFillDto.parent?.id,
-          },
-        },
+        parent: updateAluFillDto.parent?.id
+          ? {
+              connect: {
+                id: updateAluFillDto.parent?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
