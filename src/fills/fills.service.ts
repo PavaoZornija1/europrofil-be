@@ -19,6 +19,7 @@ export class FillsService {
         foilAvailable: createFillDto.foilAvailable,
         pricePerMSquare: createFillDto.pricePerMSquare,
         parentId: createFillDto.parent?.id,
+        parent: createFillDto.parent,
       },
     });
   }
@@ -60,6 +61,7 @@ export class FillsService {
         foilAvailable: updateFillDto.foilAvailable,
         pricePerMSquare: updateFillDto.pricePerMSquare,
         parentId: updateFillDto.parent?.id,
+        parent: updateFillDto.parent,
       },
     });
   }

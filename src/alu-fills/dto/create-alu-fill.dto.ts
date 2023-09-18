@@ -22,7 +22,7 @@ export class CreateAluFillDto {
   @IsNotEmpty()
   public priceIncrease: number;
 
-  public frameType: CmsAluFrameTypes;
+  public frameType: any;
 
-  public parent: CmsAluFills;
+  public parent: any;
 }
