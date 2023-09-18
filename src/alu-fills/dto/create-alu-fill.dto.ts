@@ -24,5 +24,6 @@ export class CreateAluFillDto {
 
   public frameType: any;
 
+  @IsNotEmpty()
   public parent: any;
 }
