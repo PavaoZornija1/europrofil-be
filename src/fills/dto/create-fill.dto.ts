@@ -31,7 +31,7 @@ export class CreateFillDto {
   public pricePerMSquare: number;
 
   @IsNotEmpty()
-  public mechanism: CmsMechanisms;
+  public mechanism: any;
 
-  public parent?: CmsFills;
+  public parent?: any;
 }
