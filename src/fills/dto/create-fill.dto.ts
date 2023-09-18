@@ -1,5 +1,10 @@
-import { CmsFills, CmsMechanisms } from '@prisma/client';
-import { IsString, IsNotEmpty, IsBoolean, IsNumber } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateFillDto {
   @IsString()
@@ -30,9 +35,9 @@ export class CreateFillDto {
   @IsNotEmpty()
   public pricePerMSquare: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   public mechanism: any;
 
-  @IsNotEmpty()
+  @IsOptional()
   public parent: any;
 }

@@ -17,16 +17,20 @@ export class FillsService {
         customNameAllowed: createFillDto.customNameAllowed,
         foilAvailable: createFillDto.foilAvailable,
         pricePerMSquare: createFillDto.pricePerMSquare,
-        cmsMechanism: {
-          connect: {
-            id: createFillDto.mechanism?.id,
-          },
-        },
-        parent: {
-          connect: {
-            id: createFillDto.parent?.id,
-          },
-        },
+        cmsMechanism: createFillDto.mechanism?.id
+          ? {
+              connect: {
+                id: createFillDto.mechanism.id,
+              },
+            }
+          : undefined,
+        parent: createFillDto.parent?.id
+          ? {
+              connect: {
+                id: createFillDto.parent.id,
+              },
+            }
+          : undefined,
       },
     });
   }
