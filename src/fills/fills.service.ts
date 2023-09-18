@@ -36,7 +36,11 @@ export class FillsService {
       where: { isActive: true },
       include: {
         parent: true,
-        children: true,
+        children: {
+          where: {
+            isActive: true,
+          },
+        },
         cmsMechanism: true,
       },
     });
