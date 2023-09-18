@@ -33,5 +33,6 @@ export class CreateFillDto {
   @IsNotEmpty()
   public mechanism: any;
 
-  public parent?: any;
+  @IsNotEmpty()
+  public parent: any;
 }
