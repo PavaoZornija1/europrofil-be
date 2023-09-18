@@ -15,11 +15,18 @@ export class FillsService {
         requiresPvcProfile: createFillDto.requiresPvcProfile,
         requiresThinning: createFillDto.requiresThinning,
         customNameAllowed: createFillDto.customNameAllowed,
-        cmsMechanismsId: createFillDto.mechanism?.id,
         foilAvailable: createFillDto.foilAvailable,
         pricePerMSquare: createFillDto.pricePerMSquare,
-        parentId: createFillDto.parent?.id,
-        parent: createFillDto.parent,
+        cmsMechanism: {
+          connect: {
+            id: createFillDto.mechanism?.id,
+          },
+        },
+        parent: {
+          connect: {
+            id: createFillDto.parent?.id,
+          },
+        },
       },
     });
   }
@@ -57,11 +64,18 @@ export class FillsService {
         requiresPvcProfile: updateFillDto.requiresPvcProfile,
         requiresThinning: updateFillDto.requiresThinning,
         customNameAllowed: updateFillDto.customNameAllowed,
-        cmsMechanismsId: updateFillDto.mechanism?.id,
         foilAvailable: updateFillDto.foilAvailable,
         pricePerMSquare: updateFillDto.pricePerMSquare,
-        parentId: updateFillDto.parent?.id,
-        parent: updateFillDto.parent,
+        cmsMechanism: {
+          connect: {
+            id: updateFillDto.mechanism?.id,
+          },
+        },
+        parent: {
+          connect: {
+            id: updateFillDto.parent?.id,
+          },
+        },
       },
     });
   }
