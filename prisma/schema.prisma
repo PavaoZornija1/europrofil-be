@@ -691,8 +691,6 @@ model CmsAluFills {
   children            CmsAluFills[]     @relation("ParentChildren")
   name                String?
   productCode         String?
-  cmsAluFrameType     CmsAluFrameTypes? @relation(fields: [cmsAluFrameTypeId], references: [id])
-  cmsAluFrameTypeId   String?
   // dodati id
   cmsFrameTypeSet     String?
   foilAvailable       Boolean           @default(true)
@@ -707,6 +705,8 @@ model CmsAluFills {
   // modifiedBy String?
   created             DateTime          @default(now())
   // createdBy String
+  cmsAluFrameType     CmsAluFrameTypes? @relation(fields: [cmsAluFrameTypeId], references: [id])
+  cmsAluFrameTypeId   String?
 }
 
 model CmsAluHinges {
