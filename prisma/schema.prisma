@@ -604,6 +604,7 @@ model CmsAluFrameTypes {
   created                DateTime      @default(now())
   // createdBy String
   // cmsAluFills            CmsAluFills[]
+  cmsAluFills            CmsAluFills[]
 }
 
 model CmsAluHandleHoles {
@@ -705,8 +706,8 @@ model CmsAluFills {
   // modifiedBy String?
   created             DateTime          @default(now())
   // createdBy String
-  // cmsAluFrameType     CmsAluFrameTypes? @relation(fields: [cmsAluFrameTypeId], references: [id])
-  // cmsAluFrameTypeId   String?
+  cmsAluFrameType     CmsAluFrameTypes? @relation(fields: [cmsAluFrameTypeId], references: [id])
+  cmsAluFrameTypeId   String?
 }
 
 model CmsAluHinges {

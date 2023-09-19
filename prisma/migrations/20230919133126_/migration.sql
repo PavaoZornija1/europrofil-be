@@ -651,7 +651,6 @@ CREATE TABLE "CmsAluFills" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "cmsAluFrameTypeId" TEXT,
 
     CONSTRAINT "CmsAluFills_pkey" PRIMARY KEY ("id")
 );
@@ -845,9 +844,6 @@ ALTER TABLE "CmsFills" ADD CONSTRAINT "CmsFills_cmsMechanismsId_fkey" FOREIGN KE
 
 -- AddForeignKey
 ALTER TABLE "CmsAluFills" ADD CONSTRAINT "CmsAluFills_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "CmsAluFills"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CmsAluFills" ADD CONSTRAINT "CmsAluFills_cmsAluFrameTypeId_fkey" FOREIGN KEY ("cmsAluFrameTypeId") REFERENCES "CmsAluFrameTypes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsAluHinges" ADD CONSTRAINT "CmsAluHinges_cmsHingeTypeId_fkey" FOREIGN KEY ("cmsHingeTypeId") REFERENCES "CmsHingeTypes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
