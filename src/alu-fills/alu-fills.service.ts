@@ -23,13 +23,13 @@ export class AluFillsService {
               },
             }
           : undefined,
-        cmsAluFrameType: createAluFillDto.frameType?.id
-          ? {
-              connect: {
-                id: createAluFillDto.frameType?.id,
-              },
-            }
-          : undefined,
+        //   cmsAluFrameType: createAluFillDto.frameType?.id
+        //     ? {
+        //         connect: {
+        //           id: createAluFillDto.frameType?.id,
+        //         },
+        //       }
+        //     : undefined,
       },
     });
   }
@@ -72,13 +72,13 @@ export class AluFillsService {
               },
             }
           : undefined,
-        cmsAluFrameType: updateAluFillDto.frameType?.id
-          ? {
-              connect: {
-                id: updateAluFillDto.frameType?.id,
-              },
-            }
-          : undefined,
+        // cmsAluFrameType: updateAluFillDto.frameType?.id
+        //     ? {
+        //         connect: {
+        //           id: updateAluFillDto.frameType?.id,
+        //         },
+        //       }
+        //     : undefined,
       },
     });
   }
