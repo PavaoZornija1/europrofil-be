@@ -30,6 +30,9 @@ export class AluProfilesService {
   async findAll() {
     return await prisma.cmsAluFrameTypes.findMany({
       where: { isActive: true },
+      include: {
+        cmsAluFills: true,
+      },
     });
   }
 
