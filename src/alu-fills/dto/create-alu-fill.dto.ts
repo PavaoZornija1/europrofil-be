@@ -22,6 +22,7 @@ export class CreateAluFillDto {
   @IsNotEmpty()
   public priceIncrease: number;
 
+  @IsNotEmpty()
   public frameType: any;
 
   @IsNotEmpty()
