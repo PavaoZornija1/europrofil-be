@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 @Injectable()
 export class AluFillsService {
   async create(createAluFillDto: CreateAluFillDto) {
+    console.log(createAluFillDto, 'adasd');
     return await prisma.cmsAluFills.create({
       data: {
         name: createAluFillDto.name,
@@ -27,7 +28,13 @@ export class AluFillsService {
   }
 
   async findAll() {
-    return await prisma.cmsAluFills.findMany({ where: { isActive: true } });
+    return await prisma.cmsAluFills.findMany({
+      where: { isActive: true },
+      include: {
+        parent: true,
+        children: true,
+      },
+    });
   }
 
   async findOne(id: string) {
