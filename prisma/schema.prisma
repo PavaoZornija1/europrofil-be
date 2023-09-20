@@ -604,6 +604,7 @@ model CmsAluFrameTypes {
   // cmsAluFills            CmsAluFills[]
   cmsAluFills            CmsAluFills[]
   cmsAluFrameTreatments  CmsAluFrameTreatments[]
+  cmsAluHinges           CmsAluHinges[]
 }
 
 model CmsAluHandleHoles {
@@ -707,19 +708,20 @@ model CmsAluFills {
 }
 
 model CmsAluHinges {
-  id             String         @id @default(uuid())
-  name           String?
-  productCode    String?
-  price          Decimal?
-  cmsHingeType   CmsHingeTypes? @relation(fields: [cmsHingeTypeId], references: [id])
-  cmsHingeTypeId String?
-  isActive       Boolean        @default(true)
-  isDeleted      Boolean        @default(false)
-  deleted        DateTime?
-  modified       DateTime?
+  id               String             @id @default(uuid())
+  name             String?
+  productCode      String?
+  price            Decimal?
+  cmsHingeType     CmsHingeTypes?     @relation(fields: [cmsHingeTypeId], references: [id])
+  cmsHingeTypeId   String?
+  isActive         Boolean            @default(true)
+  isDeleted        Boolean            @default(false)
+  deleted          DateTime?
+  modified         DateTime?
   // modifiedBy String?
-  created        DateTime       @default(now())
+  created          DateTime           @default(now())
   // createdBy String
+  cmsAluFrameTypes CmsAluFrameTypes[]
 }
 
 model CmsHingeTypes {
