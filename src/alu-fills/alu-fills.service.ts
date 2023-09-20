@@ -71,6 +71,15 @@ export class AluFillsService {
   }
 
   async update(id: string, updateAluFillDto: UpdateAluFillDto) {
+    await prisma.cmsAluFills.update({
+      where: { id: id },
+      data: {
+        cmsAluFrameTypes: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsAluFills.update({
       where: {
         id: id,

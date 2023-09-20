@@ -12,7 +12,18 @@ export class AluHingesService {
       data: {
         name: createAluHingeDto.name,
         productCode: createAluHingeDto.productCode,
-        cmsHingeTypeId: createAluHingeDto.hingeType?.id,
+        cmsHingeType: createAluHingeDto.hingeType
+          ? {
+              connect: {
+                id: createAluHingeDto.hingeType,
+              },
+            }
+          : undefined,
+        cmsAluFrameTypes: {
+          connect: createAluHingeDto.frameTypes.map((frameType) => ({
+            id: frameType,
+          })),
+        },
         price: createAluHingeDto.price,
       },
     });
@@ -29,6 +40,15 @@ export class AluHingesService {
   }
 
   async update(id: string, updateAluHingeDto: UpdateAluHingeDto) {
+    await prisma.cmsAluHinges.update({
+      where: { id: id },
+      data: {
+        cmsAluFrameTypes: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsAluHinges.update({
       where: {
         id: id,
@@ -36,7 +56,18 @@ export class AluHingesService {
       data: {
         name: updateAluHingeDto.name,
         productCode: updateAluHingeDto.productCode,
-        cmsHingeTypeId: updateAluHingeDto.hingeType?.id,
+        cmsHingeType: updateAluHingeDto.hingeType
+          ? {
+              connect: {
+                id: updateAluHingeDto.hingeType,
+              },
+            }
+          : undefined,
+        cmsAluFrameTypes: {
+          connect: updateAluHingeDto.frameTypes.map((frameType) => ({
+            id: frameType,
+          })),
+        },
         price: updateAluHingeDto.price,
       },
     });

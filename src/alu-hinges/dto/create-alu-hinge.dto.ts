@@ -1,4 +1,3 @@
-import { CmsAluFrameTypes, CmsHingeTypes } from '@prisma/client';
 import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateAluHingeDto {
@@ -15,10 +14,10 @@ export class CreateAluHingeDto {
   public price: number;
 
   @IsNotEmpty()
-  public hingeType: CmsHingeTypes;
+  public hingeType: string;
 
   @IsNotEmpty()
-  public frameTypes: CmsAluFrameTypes;
+  public frameTypes: any[];
 
   @IsNotEmpty()
   public picture: any;
