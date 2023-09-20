@@ -40,9 +40,13 @@ export class AluFillsService {
         children: {
           where: {
             isActive: true,
-          }
+          },
         },
-        cmsAluFrameTypes: true,
+        cmsAluFrameTypes: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }
@@ -52,8 +56,16 @@ export class AluFillsService {
       where: { id: id },
       include: {
         parent: true,
-        children: true,
-        cmsAluFrameTypes: true,
+        children: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsAluFrameTypes: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }
