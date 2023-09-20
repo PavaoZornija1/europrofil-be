@@ -20,4 +20,7 @@ export class CreateAluFrameTreatmentDto {
 
   @IsNumber()
   public priceIncrease: number;
+
+  @IsNotEmpty()
+  public frameTypes: any[];
 }
