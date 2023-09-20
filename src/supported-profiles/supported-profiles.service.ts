@@ -12,17 +12,17 @@ export class SupportedProfilesService {
       data: {
         price: createSupportedProfileDto.price,
         productCode: createSupportedProfileDto.productCode,
-        cmsHandrailDecoration: createSupportedProfileDto.handrailDecoration?.id
+        cmsHandrailDecoration: createSupportedProfileDto.handrailDecoration
           ? {
               connect: {
-                id: createSupportedProfileDto.handrailDecoration?.id,
+                id: createSupportedProfileDto.handrailDecoration,
               },
             }
           : undefined,
-        cmsHorizontalProfile: createSupportedProfileDto.horizontalProfile?.id
+        cmsHorizontalProfile: createSupportedProfileDto.horizontalProfile
           ? {
               connect: {
-                id: createSupportedProfileDto.horizontalProfile?.id,
+                id: createSupportedProfileDto.horizontalProfile,
               },
             }
           : undefined,
@@ -61,17 +61,17 @@ export class SupportedProfilesService {
       data: {
         price: updateSupportedProfileDto.price,
         productCode: updateSupportedProfileDto.productCode,
-        cmsHandrailDecoration: updateSupportedProfileDto.handrailDecoration?.id
+        cmsHandrailDecoration: updateSupportedProfileDto.handrailDecoration
           ? {
               connect: {
-                id: updateSupportedProfileDto.handrailDecoration?.id,
+                id: updateSupportedProfileDto.handrailDecoration,
               },
             }
           : undefined,
-        cmsHorizontalProfile: updateSupportedProfileDto.horizontalProfile?.id
+        cmsHorizontalProfile: updateSupportedProfileDto.horizontalProfile
           ? {
               connect: {
-                id: updateSupportedProfileDto.horizontalProfile?.id,
+                id: updateSupportedProfileDto.horizontalProfile,
               },
             }
           : undefined,

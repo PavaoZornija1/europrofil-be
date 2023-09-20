@@ -245,8 +245,8 @@ model CmsHandrailDecorations {
   cmsOrders                   CmsOrders[]
   name                        String?
   cmsMechanisms               CmsMechanisms[]
-  customColorAvailable        Boolean
-  isSilverGloss               Boolean
+  customColorAvailable        Boolean                   @default(true)
+  isSilverGloss               Boolean                   @default(false)
   priceTopRailSingle          Decimal?
   priceTopRailDouble          Decimal?
   priceBottomRailSingle       Decimal?

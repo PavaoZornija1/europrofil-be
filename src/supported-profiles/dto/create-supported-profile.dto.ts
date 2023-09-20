@@ -11,8 +11,10 @@ export class CreateSupportedProfileDto {
   public productCode: string;
 
   @IsNotEmpty()
-  public horizontalProfile: CmsHorizontalProfiles;
+  public horizontalProfile: string;
+  // public horizontalProfile: CmsHorizontalProfiles;
 
   @IsNotEmpty()
-  public handrailDecoration: CmsHandrailDecorations;
+  public handrailDecoration: string;
+  // public handrailDecoration: CmsHandrailDecorations;
 }
