@@ -23,6 +23,11 @@ export class AluFillsService {
               },
             }
           : undefined,
+        cmsAluFrameTypes: {
+          connect: createAluFillDto.frameTypes.map((frameType) => ({
+            id: frameType.id,
+          })),
+        },
       },
     });
   }
