@@ -31,8 +31,16 @@ export class AluProfilesService {
     return await prisma.cmsAluFrameTypes.findMany({
       where: { isActive: true },
       include: {
-        cmsAluFills: true,
-        cmsAluFrameTreatments: true,
+        cmsAluFills: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsAluFrameTreatments: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }
@@ -43,11 +51,23 @@ export class AluProfilesService {
       include: {
         cmsAluFills: {
           include: {
-            children: true,
-            parent: true,
+            children: {
+              where: {
+                isActive: true,
+              },
+            },
+            parent: {
+              where: {
+                isActive: true,
+              },
+            },
           },
         },
-        cmsAluFrameTreatments: true,
+        cmsAluFrameTreatments: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }
