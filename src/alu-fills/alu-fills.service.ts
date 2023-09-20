@@ -24,9 +24,7 @@ export class AluFillsService {
             }
           : undefined,
         cmsAluFrameTypes: {
-          connect: createAluFillDto.frameTypes.map((frameType) => ({
-            id: frameType.id,
-          })),
+          connect: createAluFillDto.frameTypes,
         },
       },
     });
@@ -70,13 +68,9 @@ export class AluFillsService {
               },
             }
           : undefined,
-        // cmsAluFrameType: updateAluFillDto.frameType?.id
-        //     ? {
-        //         connect: {
-        //           id: updateAluFillDto.frameType?.id,
-        //         },
-        //       }
-        //     : undefined,
+        cmsAluFrameTypes: {
+          connect: updateAluFillDto.frameTypes,
+        },
       },
     });
   }
