@@ -41,7 +41,12 @@ export class AluProfilesService {
     return await prisma.cmsAluFrameTypes.findUnique({
       where: { id: id },
       include: {
-        cmsAluFills: true,
+        cmsAluFills: {
+          include: {
+            children: true,
+            parent: true,
+          },
+        },
         cmsAluFrameTreatments: true,
       },
     });
