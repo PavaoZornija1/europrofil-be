@@ -37,7 +37,11 @@ export class AluFillsService {
       where: { isActive: true },
       include: {
         parent: true,
-        children: true,
+        children: {
+          where: {
+            isActive: true,
+          }
+        },
         cmsAluFrameTypes: true,
       },
     });
