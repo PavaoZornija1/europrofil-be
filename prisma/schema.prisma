@@ -783,24 +783,49 @@ model CmsSettings {
   // createdBy String
 }
 
-model AluUploads {
-  id        String    @id @default(uuid())
-  locale    String?
-  file      String?
-  filename  String?
-  path      String?
-  filesize  Decimal?
-  extension String?
-  mimetype  String?
-  width     Int?
-  height    Int?
-  isImage   Boolean?
-  extra     String?
-  alt       String?
-  source    String?
-  meta      String?
-  modified  DateTime?
+// model AluUploads {
+//   id        String    @id @default(uuid())
+//   locale    String?
+//   file      String?
+//   filename  String?
+//   path      String?
+//   filesize  Decimal?
+//   extension String?
+//   mimetype  String?
+//   width     Int?
+//   height    Int?
+//   isImage   Boolean?
+//   extra     String?
+//   alt       String?
+//   source    String?
+//   meta      String?
+//   modified  DateTime?
+//   // modifiedBy String?
+//   created   DateTime  @default(now())
+//   // createdBy String
+// }
+
+model Files {
+  id         String    @id @default(uuid())
+  locale     String?
+  file       String?
+  filename   String?
+  path       String?
+  entityId   String
+  entityType String
+  // entityType   EntityType
+  filesize   Decimal?
+  extension  String?
+  mimetype   String?
+  width      Int?
+  height     Int?
+  isImage    Boolean?
+  extra      String?
+  alt        String?
+  source     String?
+  meta       String?
+  modified   DateTime?
   // modifiedBy String?
-  created   DateTime  @default(now())
+  created    DateTime  @default(now())
   // createdBy String
 }

@@ -30,12 +30,30 @@ export class AluHingesService {
   }
 
   async findAll() {
-    return await prisma.cmsAluHinges.findMany({ where: { isActive: true } });
+    return await prisma.cmsAluHinges.findMany({
+      where: { isActive: true },
+      include: {
+        cmsAluFrameTypes: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsHingeType: true,
+      },
+    });
   }
 
   async findOne(id: string) {
     return await prisma.cmsAluHinges.findUnique({
       where: { id: id },
+      include: {
+        cmsAluFrameTypes: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsHingeType: true,
+      },
     });
   }
 
