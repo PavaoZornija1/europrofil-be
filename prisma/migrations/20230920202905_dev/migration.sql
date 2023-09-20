@@ -218,8 +218,8 @@ CREATE TABLE "CmsSupportedProfiles" (
 CREATE TABLE "CmsHandrailDecorations" (
     "id" TEXT NOT NULL,
     "name" TEXT,
-    "customColorAvailable" BOOLEAN NOT NULL,
-    "isSilverGloss" BOOLEAN NOT NULL,
+    "customColorAvailable" BOOLEAN NOT NULL DEFAULT true,
+    "isSilverGloss" BOOLEAN NOT NULL DEFAULT false,
     "priceTopRailSingle" DECIMAL(65,30),
     "priceTopRailDouble" DECIMAL(65,30),
     "priceBottomRailSingle" DECIMAL(65,30),
@@ -723,12 +723,14 @@ CREATE TABLE "CmsSettings" (
 );
 
 -- CreateTable
-CREATE TABLE "AluUploads" (
+CREATE TABLE "Files" (
     "id" TEXT NOT NULL,
     "locale" TEXT,
     "file" TEXT,
     "filename" TEXT,
     "path" TEXT,
+    "entityId" TEXT NOT NULL,
+    "entityType" TEXT NOT NULL,
     "filesize" DECIMAL(65,30),
     "extension" TEXT,
     "mimetype" TEXT,
@@ -742,7 +744,7 @@ CREATE TABLE "AluUploads" (
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "AluUploads_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Files_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -801,6 +803,18 @@ CREATE TABLE "_CmsExtrasToCmsMechanisms" (
 
 -- CreateTable
 CREATE TABLE "_CmsFillsToCmsMechanisms" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsAluFrameTypesToCmsAluHinges" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsAluFrameTypesToCmsAluHandleProfiles" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
@@ -876,6 +890,18 @@ CREATE UNIQUE INDEX "_CmsFillsToCmsMechanisms_AB_unique" ON "_CmsFillsToCmsMecha
 
 -- CreateIndex
 CREATE INDEX "_CmsFillsToCmsMechanisms_B_index" ON "_CmsFillsToCmsMechanisms"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsAluFrameTypesToCmsAluHinges_AB_unique" ON "_CmsAluFrameTypesToCmsAluHinges"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsAluFrameTypesToCmsAluHinges_B_index" ON "_CmsAluFrameTypesToCmsAluHinges"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsAluFrameTypesToCmsAluHandleProfiles_AB_unique" ON "_CmsAluFrameTypesToCmsAluHandleProfiles"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsAluFrameTypesToCmsAluHandleProfiles_B_index" ON "_CmsAluFrameTypesToCmsAluHandleProfiles"("B");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_CmsAluFillsToCmsAluFrameTypes_AB_unique" ON "_CmsAluFillsToCmsAluFrameTypes"("A", "B");
@@ -1002,6 +1028,18 @@ ALTER TABLE "_CmsFillsToCmsMechanisms" ADD CONSTRAINT "_CmsFillsToCmsMechanisms_
 
 -- AddForeignKey
 ALTER TABLE "_CmsFillsToCmsMechanisms" ADD CONSTRAINT "_CmsFillsToCmsMechanisms_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsAluFrameTypesToCmsAluHinges" ADD CONSTRAINT "_CmsAluFrameTypesToCmsAluHinges_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsAluFrameTypes"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsAluFrameTypesToCmsAluHinges" ADD CONSTRAINT "_CmsAluFrameTypesToCmsAluHinges_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsAluHinges"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsAluFrameTypesToCmsAluHandleProfiles" ADD CONSTRAINT "_CmsAluFrameTypesToCmsAluHandleProfiles_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsAluFrameTypes"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsAluFrameTypesToCmsAluHandleProfiles" ADD CONSTRAINT "_CmsAluFrameTypesToCmsAluHandleProfiles_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsAluHandleProfiles"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CmsAluFillsToCmsAluFrameTypes" ADD CONSTRAINT "_CmsAluFillsToCmsAluFrameTypes_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsAluFills"("id") ON DELETE CASCADE ON UPDATE CASCADE;
