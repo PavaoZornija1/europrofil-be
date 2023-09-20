@@ -605,6 +605,7 @@ model CmsAluFrameTypes {
   cmsAluFills            CmsAluFills[]
   cmsAluFrameTreatments  CmsAluFrameTreatments[]
   cmsAluHinges           CmsAluHinges[]
+  cmsAluHandleProfiles   CmsAluHandleProfiles[]
 }
 
 model CmsAluHandleHoles {
@@ -667,22 +668,23 @@ model CmsAluLiftSupports {
 }
 
 model CmsAluHandleProfiles {
-  id                   String    @id @default(uuid())
+  id                   String             @id @default(uuid())
   name                 String?
   productCode          String?
   cmsFrameTypeSet      String?
   pricePerMeter        Decimal?
   priceIncrease        Decimal?
   frameLengthReduction Decimal?
-  customColorAvailable Boolean   @default(true)
+  customColorAvailable Boolean            @default(true)
   ordering             Int?
-  isActive             Boolean   @default(true)
-  isDeleted            Boolean   @default(false)
+  isActive             Boolean            @default(true)
+  isDeleted            Boolean            @default(false)
   deleted              DateTime?
   modified             DateTime?
   // modifiedBy String?
-  created              DateTime  @default(now())
+  created              DateTime           @default(now())
   // createdBy String
+  cmsAluFrameTypes     CmsAluFrameTypes[]
 }
 
 model CmsAluFills {

@@ -17,6 +17,11 @@ export class AluHandleProfilesService {
         pricePerMeter: createAluHandleProfileDto.pricePerMeter,
         priceIncrease: createAluHandleProfileDto.priceIncrease,
         ordering: createAluHandleProfileDto.ordering,
+        cmsAluFrameTypes: {
+          connect: createAluHandleProfileDto.frameTypes.map((frameType) => ({
+            id: frameType,
+          })),
+        },
       },
     });
   }
@@ -37,6 +42,15 @@ export class AluHandleProfilesService {
     id: string,
     updateAluHandleProfileDto: UpdateAluHandleProfileDto,
   ) {
+    await prisma.cmsAluHandleProfiles.update({
+      where: { id: id },
+      data: {
+        cmsAluFrameTypes: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsAluHandleProfiles.update({
       where: {
         id: id,
@@ -49,6 +63,11 @@ export class AluHandleProfilesService {
         pricePerMeter: updateAluHandleProfileDto.pricePerMeter,
         priceIncrease: updateAluHandleProfileDto.priceIncrease,
         ordering: updateAluHandleProfileDto.ordering,
+        cmsAluFrameTypes: {
+          connect: updateAluHandleProfileDto.frameTypes.map((frameType) => ({
+            id: frameType,
+          })),
+        },
       },
     });
   }

@@ -31,5 +31,5 @@ export class CreateAluHandleProfileDto {
   public ordering: number;
 
   @IsNotEmpty()
-  public frameTypes: CmsAluFrameTypes[];
+  public frameTypes: any[];
 }

@@ -31,7 +31,12 @@ export class AluProfilesService {
     return await prisma.cmsAluFrameTypes.findMany({
       where: { isActive: true },
       include: {
-         cmsAluHinges: {
+        cmsAluHandleProfiles: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsAluHinges: {
           where: {
             isActive: true,
           },
@@ -54,6 +59,11 @@ export class AluProfilesService {
     return await prisma.cmsAluFrameTypes.findUnique({
       where: { id: id },
       include: {
+        cmsAluHandleProfiles: {
+          where: {
+            isActive: true,
+          },
+        },
         cmsAluHinges: {
           include: {
             cmsHingeType: true,
