@@ -16,20 +16,16 @@ export class HandrailsService {
         profileLength: createHandrailDto.profileLength,
         fillWidthGlass: createHandrailDto.fillWidthGlass,
         fillWidthWood: createHandrailDto.fillWidthWood,
-        cmsMechanisms: createHandrailDto.mechanism?.id
-          ? {
-              connect: {
-                id: createHandrailDto.mechanism?.id,
-              },
-            }
-          : undefined,
-        cmsDoorMechanisms: createHandrailDto.mechanism?.id
-          ? {
-              connect: {
-                id: createHandrailDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: createHandrailDto.mechanisms.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
+        cmsDoorMechanisms: {
+          connect: createHandrailDto.doorMechanisms.map((doorMechanism) => ({
+            id: doorMechanism,
+          })),
+        },
       },
     });
   }
@@ -68,20 +64,16 @@ export class HandrailsService {
         profileLength: updateHandrailDto.profileLength,
         fillWidthGlass: updateHandrailDto.fillWidthGlass,
         fillWidthWood: updateHandrailDto.fillWidthWood,
-        cmsMechanisms: updateHandrailDto.mechanism?.id
-          ? {
-              connect: {
-                id: updateHandrailDto.mechanism?.id,
-              },
-            }
-          : undefined,
-        cmsDoorMechanisms: updateHandrailDto.mechanism?.id
-          ? {
-              connect: {
-                id: updateHandrailDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: updateHandrailDto.mechanisms.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
+        cmsDoorMechanisms: {
+          connect: updateHandrailDto.doorMechanisms.map((doorMechanism) => ({
+            id: doorMechanism,
+          })),
+        },
       },
     });
   }

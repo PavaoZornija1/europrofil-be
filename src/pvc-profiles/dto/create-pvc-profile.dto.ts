@@ -1,4 +1,3 @@
-import { CmsMechanisms } from '@prisma/client';
 import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreatePvcProfileDto {
@@ -19,5 +18,5 @@ export class CreatePvcProfileDto {
   public ralCode: string;
 
   @IsNotEmpty()
-  public mechanism: CmsMechanisms;
+  public mechanisms: any[];
 }

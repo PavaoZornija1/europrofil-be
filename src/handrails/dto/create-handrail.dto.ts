@@ -27,10 +27,10 @@ export class CreateHandrailDto {
   public fillWidthWood: number;
 
   @IsNotEmpty()
-  public mechanism: CmsMechanisms;
+  public mechanisms: any[];
 
   @IsNotEmpty()
-  public doorMechanism: CmsDoorMechanisms;
+  public doorMechanisms: any[];
 
   @IsNotEmpty()
   public picture: any;

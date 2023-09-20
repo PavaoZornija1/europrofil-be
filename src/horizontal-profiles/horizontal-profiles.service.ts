@@ -14,24 +14,30 @@ export class HorizontalProfilesService {
         constantsGlassGap: createHorizontalProfileDto.constantsGlassGap,
         constantsThickness: createHorizontalProfileDto.constantsThickness,
         constantsWoodGap: createHorizontalProfileDto.constantsWoodGap,
-        cmsMechanisms: createHorizontalProfileDto.mechanism?.id
-          ? {
-              connect: {
-                id: createHorizontalProfileDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: createHorizontalProfileDto.mechanisms.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
       },
     });
   }
 
   findAll() {
-    return prisma.cmsHorizontalProfiles.findMany({ where: { isActive: true } });
+    return prisma.cmsHorizontalProfiles.findMany({
+      where: { isActive: true },
+      include: {
+        cmsSupportedProfiles: true,
+      },
+    });
   }
 
   findOne(id: string) {
     return prisma.cmsHorizontalProfiles.findUnique({
       where: { id: id },
+      include: {
+        cmsSupportedProfiles: true,
+      },
     });
   }
 
@@ -57,13 +63,11 @@ export class HorizontalProfilesService {
         constantsGlassGap: updateHorizontalProfileDto.constantsGlassGap,
         constantsThickness: updateHorizontalProfileDto.constantsThickness,
         constantsWoodGap: updateHorizontalProfileDto.constantsWoodGap,
-        cmsMechanisms: updateHorizontalProfileDto.mechanism?.id
-          ? {
-              connect: {
-                id: updateHorizontalProfileDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: updateHorizontalProfileDto.mechanisms.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
       },
     });
   }

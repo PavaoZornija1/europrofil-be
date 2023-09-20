@@ -1,4 +1,3 @@
-import { CmsMechanisms } from '@prisma/client';
 import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateHorizontalProfileDto {
@@ -22,5 +21,5 @@ export class CreateHorizontalProfileDto {
   public picture: any;
 
   @IsNotEmpty()
-  public mechanism: CmsMechanisms;
+  public mechanisms: any[];
 }

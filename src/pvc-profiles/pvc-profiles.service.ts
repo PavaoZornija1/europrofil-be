@@ -14,13 +14,11 @@ export class PvcProfilesService {
         productCode: createPvcProfileDto.productCode,
         pricePerM: createPvcProfileDto.pricePerM,
         ralCode: createPvcProfileDto.ralCode,
-        cmsMechanisms: createPvcProfileDto.mechanism?.id
-          ? {
-              connect: {
-                id: createPvcProfileDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: createPvcProfileDto.mechanisms.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
       },
     });
   }
@@ -54,13 +52,11 @@ export class PvcProfilesService {
         productCode: updatePvcProfileDto.productCode,
         pricePerM: updatePvcProfileDto.pricePerM,
         ralCode: updatePvcProfileDto.ralCode,
-        cmsMechanisms: updatePvcProfileDto.mechanism?.id
-          ? {
-              connect: {
-                id: updatePvcProfileDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: updatePvcProfileDto.mechanisms.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
       },
     });
   }

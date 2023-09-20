@@ -136,6 +136,7 @@ model CmsHorizontalProfiles {
   // createdBy
   // modifiedBy
   // deletedBy
+  pic                  Files?                 @relation(name: "HorizontalProfilePic")
 }
 
 model CmsOrderDoors {
@@ -358,6 +359,8 @@ model CmsMechanisms {
   // modifiedBy String?
   created                     DateTime                 @default(now())
   // createdBy String
+  pic                         Files?                   @relation(name: "MechanismPic")
+  thinningpPic                Files?                   @relation(name: "MechanismThinningPic")
 }
 
 // Ovo treba many to many sa mechanisms
@@ -406,6 +409,7 @@ model CmsHandrails {
   // modifiedBy String?
   created                 DateTime                  @default(now())
   // createdBy String
+  pic                     Files?                    @relation(name: "HandrailPic")
 }
 
 model CmsPvcProfiles {
@@ -575,6 +579,8 @@ model CmsAluFrameTreatments {
   // modifiedBy String?
   created              DateTime          @default(now())
   // createdBy String
+
+  gallery Files[]
 }
 
 model CmsAluFrameTypes {
@@ -607,6 +613,10 @@ model CmsAluFrameTypes {
   cmsAluHinges           CmsAluHinges[]
   cmsAluHandleProfiles   CmsAluHandleProfiles[]
   cmsAluLiftSupports     CmsAluLiftSupports[]
+
+  pic          Files?  @relation(name: "AluFrameTypePic")
+  technicalPic Files?  @relation(name: "AluFrameTypeTechnicalPic")
+  gallery      Files[] @relation(name: "AluFrameTypeGalleryPic")
 }
 
 model CmsAluHandleHoles {
@@ -666,6 +676,7 @@ model CmsAluLiftSupports {
   created          DateTime           @default(now())
   // createdBy String
   cmsAluFrameTypes CmsAluFrameTypes[]
+  gallery          Files[]
 }
 
 model CmsAluHandleProfiles {
@@ -708,6 +719,7 @@ model CmsAluFills {
   created             DateTime           @default(now())
   // createdBy String
   cmsAluFrameTypes    CmsAluFrameTypes[]
+  gallery             Files[]
 }
 
 model CmsAluHinges {
@@ -725,6 +737,7 @@ model CmsAluHinges {
   created          DateTime           @default(now())
   // createdBy String
   cmsAluFrameTypes CmsAluFrameTypes[]
+  pic              Files?
 }
 
 model CmsHingeTypes {
@@ -826,11 +839,33 @@ model Files {
   meta      String?
   modified  DateTime?
 
-  entityId   String?
-  entityType String?
+  mechanismPic                CmsMechanisms?         @relation(fields: [mechanismPicId], references: [id], name: "MechanismPic")
+  mechanismPicId              String?                @unique
+  mechanismThinningPic        CmsMechanisms?         @relation(fields: [mechanismThinningPicId], references: [id], name: "MechanismThinningPic")
+  mechanismThinningPicId      String?                @unique
+  horizontalProfilePic        CmsHorizontalProfiles? @relation(fields: [horizontalProfilePicId], references: [id], name: "HorizontalProfilePic")
+  horizontalProfilePicId      String?                @unique
+  handrailPic                 CmsHandrails?          @relation(fields: [handrailPicId], references: [id], name: "HandrailPic")
+  handrailPicId               String?                @unique
+  aluFrameTypePic             CmsAluFrameTypes?      @relation(fields: [aluFrameTypePicId], references: [id], name: "AluFrameTypePic")
+  aluFrameTypePicId           String?                @unique
+  aluFrameTypeTechnicalPic    CmsAluFrameTypes?      @relation(fields: [aluFrameTypeTechnicalPicId], references: [id], name: "AluFrameTypeTechnicalPic")
+  aluFrameTypeTechnicalPicId  String?                @unique
+  aluFrameTypeGallery         CmsAluFrameTypes?      @relation(fields: [aluFrameTypeGalleryId], references: [id], name: "AluFrameTypeGalleryPic")
+  aluFrameTypeGalleryId       String?
+  aluFrameTreatmentsGallery   CmsAluFrameTreatments? @relation(fields: [aluFrameTreatmentsGalleryId], references: [id])
+  aluFrameTreatmentsGalleryId String?
+  aluFill                     CmsAluFills?           @relation(fields: [aluFillId], references: [id])
+  aluFillId                   String?
+  aluHinge                    CmsAluHinges?          @relation(fields: [aluHingeId], references: [id])
+  aluHingeId                  String?                @unique
+  aluLiftSupports             CmsAluLiftSupports?    @relation(fields: [aluLiftSupportId], references: [id])
+  aluLiftSupportId            String?                @unique
+  // entityId   String?
+  // entityType String?
 
-  // Photo Photo? @relation("PhotoLike", fields: [entityId], references: [id], map: "photo_likableId")
-  // Video Video? @relation("VideoLike", fields: [entityId], references: [id], map: "video_likableId")
+  // MechanismPic CmsMechanisms? @relation("MechanismPic", fields: [entityId], references: [id], map: "mechanismPic_entityId")
+  // MechanismThinningpic CmsMechanisms? @relation("MechanismThinningpic", fields: [entityId], references: [id], map: "mechanismThinningpic_entityId")
 
   // modifiedBy String?
   created DateTime @default(now())
