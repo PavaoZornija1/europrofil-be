@@ -603,7 +603,7 @@ model CmsAluFrameTypes {
   // createdBy String
   // cmsAluFills            CmsAluFills[]
   cmsAluFills            CmsAluFills[]
-  CmsAluFrameTreatments  CmsAluFrameTreatments[]
+  cmsAluFrameTreatments  CmsAluFrameTreatments[]
 }
 
 model CmsAluHandleHoles {
