@@ -113,7 +113,6 @@ CREATE TABLE "CmsUsers" (
 CREATE TABLE "CmsHorizontalProfiles" (
     "id" TEXT NOT NULL,
     "name" TEXT,
-    "cmsMechanismsId" TEXT,
     "constantsThickness" DECIMAL(65,30),
     "constantsGlassGap" DECIMAL(65,30),
     "constantsWoodGap" DECIMAL(65,30),
@@ -219,7 +218,6 @@ CREATE TABLE "CmsSupportedProfiles" (
 CREATE TABLE "CmsHandrailDecorations" (
     "id" TEXT NOT NULL,
     "name" TEXT,
-    "cmsMechanismsId" TEXT,
     "customColorAvailable" BOOLEAN NOT NULL,
     "isSilverGloss" BOOLEAN NOT NULL,
     "priceTopRailSingle" DECIMAL(65,30),
@@ -267,9 +265,7 @@ CREATE TABLE "CmsHandrailEndings" (
     "parentId" TEXT,
     "name" TEXT,
     "productCode" TEXT,
-    "cmsMechanismsId" TEXT,
     "pricePerM" DECIMAL(65,30) NOT NULL,
-    "cmsHandrailId" TEXT,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "deleted" TIMESTAMP(3),
@@ -332,7 +328,6 @@ CREATE TABLE "CmsDoorMechanisms" (
     "deceleratorSupport" BOOLEAN NOT NULL DEFAULT false,
     "deceleratorOpposites" TEXT,
     "price" DECIMAL(65,30),
-    "cmsMechanismsId" TEXT,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "deleted" TIMESTAMP(3),
@@ -345,8 +340,6 @@ CREATE TABLE "CmsDoorMechanisms" (
 -- CreateTable
 CREATE TABLE "CmsHandrails" (
     "id" TEXT NOT NULL,
-    "cmsMechanismsId" TEXT,
-    "cmsDoorMechanismsId" TEXT,
     "roundingSteps" TEXT,
     "name" TEXT,
     "doorWidth" DECIMAL(65,30),
@@ -366,7 +359,6 @@ CREATE TABLE "CmsHandrails" (
 CREATE TABLE "CmsPvcProfiles" (
     "id" TEXT NOT NULL,
     "productCode" TEXT,
-    "cmsMechanismsId" TEXT,
     "name" TEXT,
     "pricePerM" DECIMAL(65,30),
     "ralCode" TEXT,
@@ -384,7 +376,6 @@ CREATE TABLE "CmsExtras" (
     "id" TEXT NOT NULL,
     "name" TEXT,
     "productCode" TEXT,
-    "cmsMechanismsId" TEXT,
     "unit" TEXT,
     "pricePerUnit" DECIMAL(65,30) NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
@@ -433,7 +424,6 @@ CREATE TABLE "CmsFoils" (
 -- CreateTable
 CREATE TABLE "CmsFills" (
     "id" TEXT NOT NULL,
-    "cmsMechanismsId" TEXT,
     "parentId" TEXT,
     "name" TEXT,
     "productCode" TEXT,
@@ -510,6 +500,7 @@ CREATE TABLE "CmsAluOrders" (
 -- CreateTable
 CREATE TABLE "CmsAluFrameTreatments" (
     "id" TEXT NOT NULL,
+    "cmsAluFrameTypeId" TEXT,
     "name" TEXT,
     "productCode" TEXT,
     "customColorAvailable" BOOLEAN NOT NULL DEFAULT false,
@@ -640,7 +631,6 @@ CREATE TABLE "CmsAluFills" (
     "parentId" TEXT,
     "name" TEXT,
     "productCode" TEXT,
-    "cmsFrameTypeSet" TEXT,
     "foilAvailable" BOOLEAN NOT NULL DEFAULT true,
     "pricePerSquareMeter" DECIMAL(65,30),
     "priceIncrease" DECIMAL(65,30),
@@ -755,11 +745,143 @@ CREATE TABLE "AluUploads" (
     CONSTRAINT "AluUploads_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "_CmsHorizontalProfilesToCmsMechanisms" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsHandrailDecorationsToCmsMechanisms" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsHandrailEndingsToCmsMechanisms" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsHandrailEndingsToCmsHandrails" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsMechanismsToCmsPvcProfiles" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsDoorMechanismsToCmsMechanisms" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsDoorMechanismsToCmsHandrails" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsHandrailsToCmsMechanisms" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsExtrasToCmsMechanisms" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsFillsToCmsMechanisms" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_CmsAluFillsToCmsAluFrameTypes" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsHorizontalProfilesToCmsMechanisms_AB_unique" ON "_CmsHorizontalProfilesToCmsMechanisms"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsHorizontalProfilesToCmsMechanisms_B_index" ON "_CmsHorizontalProfilesToCmsMechanisms"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsHandrailDecorationsToCmsMechanisms_AB_unique" ON "_CmsHandrailDecorationsToCmsMechanisms"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsHandrailDecorationsToCmsMechanisms_B_index" ON "_CmsHandrailDecorationsToCmsMechanisms"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsHandrailEndingsToCmsMechanisms_AB_unique" ON "_CmsHandrailEndingsToCmsMechanisms"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsHandrailEndingsToCmsMechanisms_B_index" ON "_CmsHandrailEndingsToCmsMechanisms"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsHandrailEndingsToCmsHandrails_AB_unique" ON "_CmsHandrailEndingsToCmsHandrails"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsHandrailEndingsToCmsHandrails_B_index" ON "_CmsHandrailEndingsToCmsHandrails"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsMechanismsToCmsPvcProfiles_AB_unique" ON "_CmsMechanismsToCmsPvcProfiles"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsMechanismsToCmsPvcProfiles_B_index" ON "_CmsMechanismsToCmsPvcProfiles"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsDoorMechanismsToCmsMechanisms_AB_unique" ON "_CmsDoorMechanismsToCmsMechanisms"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsDoorMechanismsToCmsMechanisms_B_index" ON "_CmsDoorMechanismsToCmsMechanisms"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsDoorMechanismsToCmsHandrails_AB_unique" ON "_CmsDoorMechanismsToCmsHandrails"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsDoorMechanismsToCmsHandrails_B_index" ON "_CmsDoorMechanismsToCmsHandrails"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsHandrailsToCmsMechanisms_AB_unique" ON "_CmsHandrailsToCmsMechanisms"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsHandrailsToCmsMechanisms_B_index" ON "_CmsHandrailsToCmsMechanisms"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsExtrasToCmsMechanisms_AB_unique" ON "_CmsExtrasToCmsMechanisms"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsExtrasToCmsMechanisms_B_index" ON "_CmsExtrasToCmsMechanisms"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsFillsToCmsMechanisms_AB_unique" ON "_CmsFillsToCmsMechanisms"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsFillsToCmsMechanisms_B_index" ON "_CmsFillsToCmsMechanisms"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_CmsAluFillsToCmsAluFrameTypes_AB_unique" ON "_CmsAluFillsToCmsAluFrameTypes"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsAluFillsToCmsAluFrameTypes_B_index" ON "_CmsAluFillsToCmsAluFrameTypes"("B");
 
 -- AddForeignKey
 ALTER TABLE "Acos" ADD CONSTRAINT "Acos_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "Acos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -772,9 +894,6 @@ ALTER TABLE "Administrator" ADD CONSTRAINT "Administrator_groupId_fkey" FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE "CmsUsers" ADD CONSTRAINT "CmsUsers_cmsDepartmentId_fkey" FOREIGN KEY ("cmsDepartmentId") REFERENCES "CmsDepartments"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CmsHorizontalProfiles" ADD CONSTRAINT "CmsHorizontalProfiles_cmsMechanismsId_fkey" FOREIGN KEY ("cmsMechanismsId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsOrderDoors" ADD CONSTRAINT "CmsOrderDoors_cmsOrderId_fkey" FOREIGN KEY ("cmsOrderId") REFERENCES "CmsOrders"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -804,9 +923,6 @@ ALTER TABLE "CmsSupportedProfiles" ADD CONSTRAINT "CmsSupportedProfiles_cmsHoriz
 ALTER TABLE "CmsSupportedProfiles" ADD CONSTRAINT "CmsSupportedProfiles_cmsHandrailDecorationId_fkey" FOREIGN KEY ("cmsHandrailDecorationId") REFERENCES "CmsHandrailDecorations"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "CmsHandrailDecorations" ADD CONSTRAINT "CmsHandrailDecorations_cmsMechanismsId_fkey" FOREIGN KEY ("cmsMechanismsId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "CmsSupportedDecorations" ADD CONSTRAINT "CmsSupportedDecorations_cmsHandrailId_fkey" FOREIGN KEY ("cmsHandrailId") REFERENCES "CmsHandrails"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -816,34 +932,79 @@ ALTER TABLE "CmsSupportedDecorations" ADD CONSTRAINT "CmsSupportedDecorations_cm
 ALTER TABLE "CmsHandrailEndings" ADD CONSTRAINT "CmsHandrailEndings_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "CmsHandrailEndings"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "CmsHandrailEndings" ADD CONSTRAINT "CmsHandrailEndings_cmsMechanismsId_fkey" FOREIGN KEY ("cmsMechanismsId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CmsHandrailEndings" ADD CONSTRAINT "CmsHandrailEndings_cmsHandrailId_fkey" FOREIGN KEY ("cmsHandrailId") REFERENCES "CmsHandrails"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CmsDoorMechanisms" ADD CONSTRAINT "CmsDoorMechanisms_cmsMechanismsId_fkey" FOREIGN KEY ("cmsMechanismsId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CmsHandrails" ADD CONSTRAINT "CmsHandrails_cmsMechanismsId_fkey" FOREIGN KEY ("cmsMechanismsId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CmsHandrails" ADD CONSTRAINT "CmsHandrails_cmsDoorMechanismsId_fkey" FOREIGN KEY ("cmsDoorMechanismsId") REFERENCES "CmsDoorMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CmsPvcProfiles" ADD CONSTRAINT "CmsPvcProfiles_cmsMechanismsId_fkey" FOREIGN KEY ("cmsMechanismsId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CmsExtras" ADD CONSTRAINT "CmsExtras_cmsMechanismsId_fkey" FOREIGN KEY ("cmsMechanismsId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "CmsFills" ADD CONSTRAINT "CmsFills_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "CmsFills"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "CmsFills" ADD CONSTRAINT "CmsFills_cmsMechanismsId_fkey" FOREIGN KEY ("cmsMechanismsId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "CmsAluFrameTreatments" ADD CONSTRAINT "CmsAluFrameTreatments_cmsAluFrameTypeId_fkey" FOREIGN KEY ("cmsAluFrameTypeId") REFERENCES "CmsAluFrameTypes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsAluFills" ADD CONSTRAINT "CmsAluFills_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "CmsAluFills"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsAluHinges" ADD CONSTRAINT "CmsAluHinges_cmsHingeTypeId_fkey" FOREIGN KEY ("cmsHingeTypeId") REFERENCES "CmsHingeTypes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHorizontalProfilesToCmsMechanisms" ADD CONSTRAINT "_CmsHorizontalProfilesToCmsMechanisms_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsHorizontalProfiles"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHorizontalProfilesToCmsMechanisms" ADD CONSTRAINT "_CmsHorizontalProfilesToCmsMechanisms_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHandrailDecorationsToCmsMechanisms" ADD CONSTRAINT "_CmsHandrailDecorationsToCmsMechanisms_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsHandrailDecorations"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHandrailDecorationsToCmsMechanisms" ADD CONSTRAINT "_CmsHandrailDecorationsToCmsMechanisms_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHandrailEndingsToCmsMechanisms" ADD CONSTRAINT "_CmsHandrailEndingsToCmsMechanisms_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsHandrailEndings"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHandrailEndingsToCmsMechanisms" ADD CONSTRAINT "_CmsHandrailEndingsToCmsMechanisms_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHandrailEndingsToCmsHandrails" ADD CONSTRAINT "_CmsHandrailEndingsToCmsHandrails_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsHandrailEndings"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHandrailEndingsToCmsHandrails" ADD CONSTRAINT "_CmsHandrailEndingsToCmsHandrails_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsHandrails"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsMechanismsToCmsPvcProfiles" ADD CONSTRAINT "_CmsMechanismsToCmsPvcProfiles_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsMechanismsToCmsPvcProfiles" ADD CONSTRAINT "_CmsMechanismsToCmsPvcProfiles_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsPvcProfiles"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsDoorMechanismsToCmsMechanisms" ADD CONSTRAINT "_CmsDoorMechanismsToCmsMechanisms_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsDoorMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsDoorMechanismsToCmsMechanisms" ADD CONSTRAINT "_CmsDoorMechanismsToCmsMechanisms_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsDoorMechanismsToCmsHandrails" ADD CONSTRAINT "_CmsDoorMechanismsToCmsHandrails_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsDoorMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsDoorMechanismsToCmsHandrails" ADD CONSTRAINT "_CmsDoorMechanismsToCmsHandrails_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsHandrails"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHandrailsToCmsMechanisms" ADD CONSTRAINT "_CmsHandrailsToCmsMechanisms_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsHandrails"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsHandrailsToCmsMechanisms" ADD CONSTRAINT "_CmsHandrailsToCmsMechanisms_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsExtrasToCmsMechanisms" ADD CONSTRAINT "_CmsExtrasToCmsMechanisms_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsExtras"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsExtrasToCmsMechanisms" ADD CONSTRAINT "_CmsExtrasToCmsMechanisms_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsFillsToCmsMechanisms" ADD CONSTRAINT "_CmsFillsToCmsMechanisms_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsFills"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsFillsToCmsMechanisms" ADD CONSTRAINT "_CmsFillsToCmsMechanisms_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsAluFillsToCmsAluFrameTypes" ADD CONSTRAINT "_CmsAluFillsToCmsAluFrameTypes_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsAluFills"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsAluFillsToCmsAluFrameTypes" ADD CONSTRAINT "_CmsAluFillsToCmsAluFrameTypes_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsAluFrameTypes"("id") ON DELETE CASCADE ON UPDATE CASCADE;

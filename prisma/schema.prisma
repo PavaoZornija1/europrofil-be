@@ -560,8 +560,8 @@ model CmsAluOrders {
 
 model CmsAluFrameTreatments {
   id                   String            @id @default(uuid())
-  aluFrameType         CmsAluFrameTypes? @relation(fields: [aluFrameTypeId], references: [id])
-  aluFrameTypeId       String?
+  cmsAluFrameType      CmsAluFrameTypes? @relation(fields: [cmsAluFrameTypeId], references: [id])
+  cmsAluFrameTypeId    String?
   name                 String?
   productCode          String?
   customColorAvailable Boolean           @default(false)
@@ -691,8 +691,6 @@ model CmsAluFills {
   children            CmsAluFills[]      @relation("ParentChildren")
   name                String?
   productCode         String?
-  // dodati id
-  cmsFrameTypeSet     String?
   foilAvailable       Boolean            @default(true)
   pricePerSquareMeter Decimal?
   priceIncrease       Decimal?

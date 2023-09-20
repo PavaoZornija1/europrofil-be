@@ -15,7 +15,7 @@ export class AluFrameTreatmentsService {
         customColorAvailable: createAluFrameTreatmentDto.customColorAvailable,
         pricePerMeter: createAluFrameTreatmentDto.pricePerMeter,
         priceIncrease: createAluFrameTreatmentDto.priceIncrease,
-        aluFrameType: createAluFrameTreatmentDto.frameType?.id
+        cmsAluFrameType: createAluFrameTreatmentDto.frameType?.id
           ? {
               connect: {
                 id: createAluFrameTreatmentDto.frameType?.id,
@@ -53,7 +53,7 @@ export class AluFrameTreatmentsService {
         // ordering: updateAluFrameTreatmentDto.ordering,
         pricePerMeter: updateAluFrameTreatmentDto.pricePerMeter,
         priceIncrease: updateAluFrameTreatmentDto.priceIncrease,
-        aluFrameType: updateAluFrameTreatmentDto.frameType?.id
+        cmsAluFrameType: updateAluFrameTreatmentDto.frameType?.id
           ? {
               connect: {
                 id: updateAluFrameTreatmentDto.frameType?.id,
