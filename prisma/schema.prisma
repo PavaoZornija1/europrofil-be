@@ -559,24 +559,26 @@ model CmsAluOrders {
 }
 
 model CmsAluFrameTreatments {
-  id                   String    @id @default(uuid())
+  id                   String            @id @default(uuid())
+  aluFrameType         CmsAluFrameTypes? @relation(fields: [aluFrameTypeId], references: [id])
+  aluFrameTypeId       String?
   name                 String?
   productCode          String?
-  customColorAvailable Boolean   @default(false)
+  customColorAvailable Boolean           @default(false)
   pricePerMeter        Decimal?
   priceIncrease        Decimal?
   ordering             Int?
-  isActive             Boolean   @default(true)
-  isDeleted            Boolean   @default(false)
+  isActive             Boolean           @default(true)
+  isDeleted            Boolean           @default(false)
   deleted              DateTime?
   modified             DateTime?
   // modifiedBy String?
-  created              DateTime  @default(now())
+  created              DateTime          @default(now())
   // createdBy String
 }
 
 model CmsAluFrameTypes {
-  id                     String        @id @default(uuid())
+  id                     String                  @id @default(uuid())
   name                   String?
   productCode            String?
   detailsLink            String?
@@ -584,23 +586,24 @@ model CmsAluFrameTypes {
   fillingHeightReduction Decimal?
   handleHoleInlet        Decimal?
   handleHoleOffset       Decimal?
-  requiresKp             Boolean       @default(false)
-  requiresPvc            Boolean       @default(false)
-  requiresSpecialHinges  Boolean       @default(false)
+  requiresKp             Boolean                 @default(false)
+  requiresPvc            Boolean                 @default(false)
+  requiresSpecialHinges  Boolean                 @default(false)
   pricePerMeter          Decimal?
   priceIncrease          Decimal?
   corverCoverPrice       Decimal?
   corverCoverProductCode String?
   ordering               Int?
-  isActive               Boolean       @default(true)
-  isDeleted              Boolean       @default(false)
+  isActive               Boolean                 @default(true)
+  isDeleted              Boolean                 @default(false)
   deleted                DateTime?
   modified               DateTime?
   // modifiedBy String?
-  created                DateTime      @default(now())
+  created                DateTime                @default(now())
   // createdBy String
   // cmsAluFills            CmsAluFills[]
   cmsAluFills            CmsAluFills[]
+  CmsAluFrameTreatments  CmsAluFrameTreatments[]
 }
 
 model CmsAluHandleHoles {
@@ -682,28 +685,27 @@ model CmsAluHandleProfiles {
 }
 
 model CmsAluFills {
-  id                  String            @id @default(uuid())
-  parent              CmsAluFills?      @relation("ParentChildren", fields: [parentId], references: [id])
+  id                  String             @id @default(uuid())
+  parent              CmsAluFills?       @relation("ParentChildren", fields: [parentId], references: [id])
   parentId            String?
-  children            CmsAluFills[]     @relation("ParentChildren")
+  children            CmsAluFills[]      @relation("ParentChildren")
   name                String?
   productCode         String?
   // dodati id
   cmsFrameTypeSet     String?
-  foilAvailable       Boolean           @default(true)
+  foilAvailable       Boolean            @default(true)
   pricePerSquareMeter Decimal?
   priceIncrease       Decimal?
   lft                 Decimal?
   rght                Decimal?
-  isActive            Boolean           @default(true)
-  isDeleted           Boolean           @default(false)
+  isActive            Boolean            @default(true)
+  isDeleted           Boolean            @default(false)
   deleted             DateTime?
   modified            DateTime?
   // modifiedBy String?
-  created             DateTime          @default(now())
+  created             DateTime           @default(now())
   // createdBy String
-  cmsAluFrameType     CmsAluFrameTypes? @relation(fields: [cmsAluFrameTypeId], references: [id])
-  cmsAluFrameTypeId   String?
+  cmsAluFrameTypes    CmsAluFrameTypes[]
 }
 
 model CmsAluHinges {

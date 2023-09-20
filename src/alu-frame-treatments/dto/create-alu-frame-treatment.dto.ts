@@ -22,5 +22,5 @@ export class CreateAluFrameTreatmentDto {
   public priceIncrease: number;
 
   @IsNotEmpty()
-  public frameTypes: any[];
+  public frameType: any;
 }

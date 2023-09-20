@@ -13,9 +13,15 @@ export class AluFrameTreatmentsService {
         name: createAluFrameTreatmentDto.name,
         productCode: createAluFrameTreatmentDto.productCode,
         customColorAvailable: createAluFrameTreatmentDto.customColorAvailable,
-        // ordering: createAluFrameTreatmentDto.ordering,
         pricePerMeter: createAluFrameTreatmentDto.pricePerMeter,
         priceIncrease: createAluFrameTreatmentDto.priceIncrease,
+        aluFrameType: createAluFrameTreatmentDto.frameType?.id
+          ? {
+              connect: {
+                id: createAluFrameTreatmentDto.frameType?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -47,6 +53,13 @@ export class AluFrameTreatmentsService {
         // ordering: updateAluFrameTreatmentDto.ordering,
         pricePerMeter: updateAluFrameTreatmentDto.pricePerMeter,
         priceIncrease: updateAluFrameTreatmentDto.priceIncrease,
+        aluFrameType: updateAluFrameTreatmentDto.frameType?.id
+          ? {
+              connect: {
+                id: updateAluFrameTreatmentDto.frameType?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
