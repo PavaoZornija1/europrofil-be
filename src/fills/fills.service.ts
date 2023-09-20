@@ -17,7 +17,7 @@ export class FillsService {
         customNameAllowed: createFillDto.customNameAllowed,
         foilAvailable: createFillDto.foilAvailable,
         pricePerMSquare: createFillDto.pricePerMSquare,
-        cmsMechanism: createFillDto.mechanism?.id
+        cmsMechanisms: createFillDto.mechanism?.id
           ? {
               connect: {
                 id: createFillDto.mechanism.id,
@@ -45,7 +45,7 @@ export class FillsService {
             isActive: true,
           },
         },
-        cmsMechanism: true,
+        cmsMechanisms: true,
       },
     });
   }
@@ -56,12 +56,21 @@ export class FillsService {
       include: {
         parent: true,
         children: true,
-        cmsMechanism: true,
+        cmsMechanisms: true,
       },
     });
   }
 
   async update(id: string, updateFillDto: UpdateFillDto) {
+    await prisma.cmsFills.update({
+      where: { id: id },
+      data: {
+        cmsMechanisms: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsFills.update({
       where: {
         id: id,
@@ -74,7 +83,7 @@ export class FillsService {
         customNameAllowed: updateFillDto.customNameAllowed,
         foilAvailable: updateFillDto.foilAvailable,
         pricePerMSquare: updateFillDto.pricePerMSquare,
-        cmsMechanism: {
+        cmsMechanisms: {
           connect: {
             id: updateFillDto.mechanism?.id,
           },

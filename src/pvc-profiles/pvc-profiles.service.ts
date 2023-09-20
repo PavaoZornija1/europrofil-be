@@ -14,7 +14,13 @@ export class PvcProfilesService {
         productCode: createPvcProfileDto.productCode,
         pricePerM: createPvcProfileDto.pricePerM,
         ralCode: createPvcProfileDto.ralCode,
-        cmsMechanismsId: createPvcProfileDto.mechanism?.id,
+        cmsMechanisms: createPvcProfileDto.mechanism?.id
+          ? {
+              connect: {
+                id: createPvcProfileDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -30,6 +36,15 @@ export class PvcProfilesService {
   }
 
   async update(id: string, updatePvcProfileDto: UpdatePvcProfileDto) {
+    await prisma.cmsPvcProfiles.update({
+      where: { id: id },
+      data: {
+        cmsMechanisms: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsPvcProfiles.update({
       where: {
         id: id,
@@ -39,7 +54,13 @@ export class PvcProfilesService {
         productCode: updatePvcProfileDto.productCode,
         pricePerM: updatePvcProfileDto.pricePerM,
         ralCode: updatePvcProfileDto.ralCode,
-        cmsMechanismsId: updatePvcProfileDto.mechanism?.id,
+        cmsMechanisms: updatePvcProfileDto.mechanism?.id
+          ? {
+              connect: {
+                id: updatePvcProfileDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }

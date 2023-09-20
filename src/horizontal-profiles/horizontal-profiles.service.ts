@@ -14,7 +14,13 @@ export class HorizontalProfilesService {
         constantsGlassGap: createHorizontalProfileDto.constantsGlassGap,
         constantsThickness: createHorizontalProfileDto.constantsThickness,
         constantsWoodGap: createHorizontalProfileDto.constantsWoodGap,
-        cmsMechanismsId: createHorizontalProfileDto.mechanism?.id,
+        cmsMechanisms: createHorizontalProfileDto.mechanism?.id
+          ? {
+              connect: {
+                id: createHorizontalProfileDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -33,6 +39,15 @@ export class HorizontalProfilesService {
     id: string,
     updateHorizontalProfileDto: UpdateHorizontalProfileDto,
   ) {
+    await prisma.cmsHorizontalProfiles.update({
+      where: { id: id },
+      data: {
+        cmsMechanisms: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsHorizontalProfiles.update({
       where: {
         id: id,
@@ -42,7 +57,13 @@ export class HorizontalProfilesService {
         constantsGlassGap: updateHorizontalProfileDto.constantsGlassGap,
         constantsThickness: updateHorizontalProfileDto.constantsThickness,
         constantsWoodGap: updateHorizontalProfileDto.constantsWoodGap,
-        cmsMechanismsId: updateHorizontalProfileDto.mechanism?.id,
+        cmsMechanisms: updateHorizontalProfileDto.mechanism?.id
+          ? {
+              connect: {
+                id: updateHorizontalProfileDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }

@@ -124,8 +124,7 @@ model CmsHorizontalProfiles {
   cmsOrders            CmsOrders[]
   cmsSupportedProfiles CmsSupportedProfiles[]
   name                 String?
-  cmsMechanism         CmsMechanisms?         @relation(fields: [cmsMechanismsId], references: [id])
-  cmsMechanismsId      String?
+  cmsMechanisms        CmsMechanisms[]
   constantsThickness   Decimal?
   constantsGlassGap    Decimal?
   constantsWoodGap     Decimal?
@@ -410,19 +409,18 @@ model CmsHandrails {
 }
 
 model CmsPvcProfiles {
-  id              String         @id @default(uuid())
-  productCode     String?
-  cmsMechanism    CmsMechanisms? @relation(fields: [cmsMechanismsId], references: [id])
-  cmsMechanismsId String?
-  name            String?
-  pricePerM       Decimal?
-  ralCode         String?
-  isActive        Boolean        @default(true)
-  isDeleted       Boolean        @default(false)
-  deleted         DateTime?
-  modified        DateTime?
+  id            String          @id @default(uuid())
+  productCode   String?
+  cmsMechanisms CmsMechanisms[]
+  name          String?
+  pricePerM     Decimal?
+  ralCode       String?
+  isActive      Boolean         @default(true)
+  isDeleted     Boolean         @default(false)
+  deleted       DateTime?
+  modified      DateTime?
   // modifiedBy String?
-  created         DateTime       @default(now())
+  created       DateTime        @default(now())
   // createdBy String
 }
 
@@ -477,28 +475,27 @@ model CmsFoils {
 }
 
 model CmsFills {
-  id                 String         @id @default(uuid())
-  parent             CmsFills?      @relation("ParentChildren", fields: [parentId], references: [id])
-  children           CmsFills[]     @relation("ParentChildren")
-  cmsMechanism       CmsMechanisms? @relation(fields: [cmsMechanismsId], references: [id])
-  cmsMechanismsId    String?
+  id                 String          @id @default(uuid())
+  parent             CmsFills?       @relation("ParentChildren", fields: [parentId], references: [id])
+  children           CmsFills[]      @relation("ParentChildren")
+  cmsMechanisms      CmsMechanisms[]
   parentId           String?
   name               String?
   productCode        String?
   cmsMechanismSet    String?
-  requiresPvcProfile Boolean        @default(false)
-  requiresThinning   Boolean        @default(false)
-  customNameAllowed  Boolean        @default(false)
+  requiresPvcProfile Boolean         @default(false)
+  requiresThinning   Boolean         @default(false)
+  customNameAllowed  Boolean         @default(false)
   lft                Int?
   rght               Int?
-  foilAvailable      Boolean        @default(false)
+  foilAvailable      Boolean         @default(false)
   pricePerMSquare    Decimal?
-  isActive           Boolean        @default(true)
-  isDeleted          Boolean        @default(false)
+  isActive           Boolean         @default(true)
+  isDeleted          Boolean         @default(false)
   deleted            DateTime?
   modified           DateTime?
   // modifiedBy String?
-  created            DateTime       @default(now())
+  created            DateTime        @default(now())
   // createdBy String
 }
 
