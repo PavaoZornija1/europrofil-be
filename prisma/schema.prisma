@@ -606,6 +606,7 @@ model CmsAluFrameTypes {
   cmsAluFrameTreatments  CmsAluFrameTreatments[]
   cmsAluHinges           CmsAluHinges[]
   cmsAluHandleProfiles   CmsAluHandleProfiles[]
+  cmsAluLiftSupports     CmsAluLiftSupports[]
 }
 
 model CmsAluHandleHoles {
@@ -651,20 +652,20 @@ model CmsDepartments {
 }
 
 model CmsAluLiftSupports {
-  id              String    @id @default(uuid())
-  name            String?
-  productCode     String?
-  pricePerUnit    Decimal?
-  cmsFrameTypeSet String?
-  description     String?
-  ordering        Int?
-  isActive        Boolean   @default(true)
-  isDeleted       Boolean   @default(false)
-  deleted         DateTime?
-  modified        DateTime?
+  id               String             @id @default(uuid())
+  name             String?
+  productCode      String?
+  pricePerUnit     Decimal?
+  description      String?
+  ordering         Int?
+  isActive         Boolean            @default(true)
+  isDeleted        Boolean            @default(false)
+  deleted          DateTime?
+  modified         DateTime?
   // modifiedBy String?
-  created         DateTime  @default(now())
+  created          DateTime           @default(now())
   // createdBy String
+  cmsAluFrameTypes CmsAluFrameTypes[]
 }
 
 model CmsAluHandleProfiles {
@@ -808,26 +809,30 @@ model CmsSettings {
 // }
 
 model Files {
-  id         String    @id @default(uuid())
-  locale     String?
-  file       String?
-  filename   String?
-  path       String?
-  entityId   String
-  entityType String
-  // entityType   EntityType
-  filesize   Decimal?
-  extension  String?
-  mimetype   String?
-  width      Int?
-  height     Int?
-  isImage    Boolean?
-  extra      String?
-  alt        String?
-  source     String?
-  meta       String?
-  modified   DateTime?
+  id        String    @id @default(uuid())
+  locale    String?
+  file      String?
+  filename  String?
+  path      String?
+  filesize  Decimal?
+  extension String?
+  mimetype  String?
+  width     Int?
+  height    Int?
+  isImage   Boolean?
+  extra     String?
+  alt       String?
+  source    String?
+  meta      String?
+  modified  DateTime?
+
+  entityId   String?
+  entityType String?
+
+  // Photo Photo? @relation("PhotoLike", fields: [entityId], references: [id], map: "photo_likableId")
+  // Video Video? @relation("VideoLike", fields: [entityId], references: [id], map: "video_likableId")
+
   // modifiedBy String?
-  created    DateTime  @default(now())
+  created DateTime @default(now())
   // createdBy String
 }

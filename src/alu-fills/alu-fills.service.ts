@@ -38,6 +38,9 @@ export class AluFillsService {
       include: {
         parent: true,
         children: {
+          include: {
+            cmsAluFrameTypes: true,
+          },
           where: {
             isActive: true,
           },
@@ -57,6 +60,9 @@ export class AluFillsService {
       include: {
         parent: true,
         children: {
+          include: {
+            cmsAluFrameTypes: true,
+          },
           where: {
             isActive: true,
           },

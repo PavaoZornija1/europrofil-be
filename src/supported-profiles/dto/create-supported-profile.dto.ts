@@ -1,4 +1,3 @@
-import { CmsHorizontalProfiles, CmsHandrailDecorations } from '@prisma/client';
 import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateSupportedProfileDto {
@@ -12,9 +11,7 @@ export class CreateSupportedProfileDto {
 
   @IsNotEmpty()
   public horizontalProfile: string;
-  // public horizontalProfile: CmsHorizontalProfiles;
 
   @IsNotEmpty()
   public handrailDecoration: string;
-  // public handrailDecoration: CmsHandrailDecorations;
 }
