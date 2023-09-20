@@ -35,7 +35,13 @@ export class HandrailDecorationsService {
         customColorAvailable: createHandrailDecorationDto.customColorAvailable,
         priceBottomProfile: createHandrailDecorationDto.priceBottomProfile,
         priceDivider: createHandrailDecorationDto.priceDivider,
-        cmsMechanismsId: createHandrailDecorationDto.mechanism?.id,
+        cmsMechanisms: createHandrailDecorationDto.mechanism?.id
+          ? {
+              connect: {
+                id: createHandrailDecorationDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -56,6 +62,15 @@ export class HandrailDecorationsService {
     id: string,
     updateHandrailDecorationDto: UpdateHandrailDecorationDto,
   ) {
+    await prisma.cmsHandrailDecorations.update({
+      where: { id: id },
+      data: {
+        cmsMechanisms: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsHandrailDecorations.update({
       where: {
         id: id,
@@ -82,7 +97,13 @@ export class HandrailDecorationsService {
         customColorAvailable: updateHandrailDecorationDto.customColorAvailable,
         priceBottomProfile: updateHandrailDecorationDto.priceBottomProfile,
         priceDivider: updateHandrailDecorationDto.priceDivider,
-        cmsMechanismsId: updateHandrailDecorationDto.mechanism?.id,
+        cmsMechanisms: updateHandrailDecorationDto.mechanism?.id
+          ? {
+              connect: {
+                id: updateHandrailDecorationDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }

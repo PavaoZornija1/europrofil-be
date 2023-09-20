@@ -12,9 +12,21 @@ export class SupportedDecorationsService {
       data: {
         price: createSupportedDecorationDto.price,
         productCode: createSupportedDecorationDto.productCode,
-        cmsHandrailId: createSupportedDecorationDto.handrail?.id,
-        cmsHandrailDecorationId:
-          createSupportedDecorationDto.handrailDecoration?.id,
+        cmsHandrail: createSupportedDecorationDto.handrail?.id
+          ? {
+              connect: {
+                id: createSupportedDecorationDto.handrail?.id,
+              },
+            }
+          : undefined,
+        cmsHandrailDecoration: createSupportedDecorationDto.handrailDecoration
+          ?.id
+          ? {
+              connect: {
+                id: createSupportedDecorationDto.handrailDecoration?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -42,9 +54,21 @@ export class SupportedDecorationsService {
       data: {
         price: updateSupportedDecorationDto.price,
         productCode: updateSupportedDecorationDto.productCode,
-        cmsHandrailId: updateSupportedDecorationDto.handrail?.id,
-        cmsHandrailDecorationId:
-          updateSupportedDecorationDto.handrailDecoration?.id,
+        cmsHandrail: updateSupportedDecorationDto.handrail?.id
+          ? {
+              connect: {
+                id: updateSupportedDecorationDto.handrail?.id,
+              },
+            }
+          : undefined,
+        cmsHandrailDecoration: updateSupportedDecorationDto.handrailDecoration
+          ?.id
+          ? {
+              connect: {
+                id: updateSupportedDecorationDto.handrailDecoration?.id,
+              },
+            }
+          : undefined,
       },
     });
   }

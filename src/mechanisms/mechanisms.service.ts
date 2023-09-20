@@ -194,7 +194,7 @@ export class MechanismsService {
         // cmsHandrails: true,
         cmsHandrails: {
           include: {
-            cmsDoorMechanism: true,
+            cmsDoorMechanisms: true,
             cmsSupportedDecorations: true,
             cmsHandrailEndings: {
               include: {

@@ -13,9 +13,27 @@ export class HandrailEndingsService {
         name: createHandrailEndingDto.name,
         productCode: createHandrailEndingDto.productCode,
         pricePerM: createHandrailEndingDto.pricePerM,
-        cmsHandrailId: createHandrailEndingDto.handrail?.id,
-        cmsMechanismsId: createHandrailEndingDto.mechanism?.id,
-        parentId: createHandrailEndingDto.parent?.id,
+        cmsHandrails: createHandrailEndingDto.mechanism?.id
+          ? {
+              connect: {
+                id: createHandrailEndingDto.mechanism?.id,
+              },
+            }
+          : undefined,
+        cmsMechanisms: createHandrailEndingDto.mechanism?.id
+          ? {
+              connect: {
+                id: createHandrailEndingDto.mechanism?.id,
+              },
+            }
+          : undefined,
+        parent: createHandrailEndingDto.parent?.id
+          ? {
+              connect: {
+                id: createHandrailEndingDto.parent?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -33,6 +51,18 @@ export class HandrailEndingsService {
   }
 
   async update(id: string, updateHandrailEndingDto: UpdateHandrailEndingDto) {
+    await prisma.cmsHandrailEndings.update({
+      where: { id: id },
+      data: {
+        cmsMechanisms: {
+          set: [],
+        },
+        cmsHandrails: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsHandrailEndings.update({
       where: {
         id: id,
@@ -41,9 +71,27 @@ export class HandrailEndingsService {
         name: updateHandrailEndingDto.name,
         productCode: updateHandrailEndingDto.productCode,
         pricePerM: updateHandrailEndingDto.pricePerM,
-        cmsHandrailId: updateHandrailEndingDto.handrail?.id,
-        cmsMechanismsId: updateHandrailEndingDto.mechanism?.id,
-        parentId: updateHandrailEndingDto.parent?.id,
+        cmsHandrails: updateHandrailEndingDto.mechanism?.id
+          ? {
+              connect: {
+                id: updateHandrailEndingDto.mechanism?.id,
+              },
+            }
+          : undefined,
+        cmsMechanisms: updateHandrailEndingDto.mechanism?.id
+          ? {
+              connect: {
+                id: updateHandrailEndingDto.mechanism?.id,
+              },
+            }
+          : undefined,
+        parent: updateHandrailEndingDto.parent?.id
+          ? {
+              connect: {
+                id: updateHandrailEndingDto.parent?.id,
+              },
+            }
+          : undefined,
       },
     });
   }

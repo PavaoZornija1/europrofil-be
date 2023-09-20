@@ -14,7 +14,13 @@ export class ExtrasService {
         productCode: createExtraDto.productCode,
         unit: createExtraDto.unit,
         pricePerUnit: createExtraDto.pricePerUnit,
-        cmsMechanismsId: createExtraDto.mechanism?.id,
+        cmsMechanisms: createExtraDto.mechanism?.id
+          ? {
+              connect: {
+                id: createExtraDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -30,6 +36,15 @@ export class ExtrasService {
   }
 
   async update(id: string, updateExtraDto: UpdateExtraDto) {
+    await prisma.cmsExtras.update({
+      where: { id: id },
+      data: {
+        cmsMechanisms: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsExtras.update({
       where: {
         id: id,
@@ -39,7 +54,13 @@ export class ExtrasService {
         productCode: updateExtraDto.productCode,
         unit: updateExtraDto.unit,
         pricePerUnit: updateExtraDto.pricePerUnit,
-        cmsMechanismsId: updateExtraDto.mechanism?.id,
+        cmsMechanisms: updateExtraDto.mechanism?.id
+          ? {
+              connect: {
+                id: updateExtraDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }

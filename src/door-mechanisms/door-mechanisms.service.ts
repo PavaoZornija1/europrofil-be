@@ -15,7 +15,13 @@ export class DoorMechanismsService {
         price: createDoorMechanismDto.price,
         deceleratorSupport: createDoorMechanismDto.deceleratorSupport,
         deceleratorOpposites: createDoorMechanismDto.deceleratorOpposites,
-        cmsMechanismsId: createDoorMechanismDto.mechanism?.id,
+        cmsMechanisms: createDoorMechanismDto.mechanism?.id
+          ? {
+              connect: {
+                id: createDoorMechanismDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -33,6 +39,15 @@ export class DoorMechanismsService {
   }
 
   async update(id: string, updateDoorMechanismDto: UpdateDoorMechanismDto) {
+    await prisma.cmsDoorMechanisms.update({
+      where: { id: id },
+      data: {
+        cmsMechanisms: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsDoorMechanisms.update({
       where: {
         id: id,
@@ -41,10 +56,15 @@ export class DoorMechanismsService {
         name: updateDoorMechanismDto.name,
         productCode: updateDoorMechanismDto.productCode,
         price: updateDoorMechanismDto.price,
-
         deceleratorSupport: updateDoorMechanismDto.deceleratorSupport,
         deceleratorOpposites: updateDoorMechanismDto.deceleratorOpposites,
-        cmsMechanismsId: updateDoorMechanismDto.mechanism?.id,
+        cmsMechanisms: updateDoorMechanismDto.mechanism?.id
+          ? {
+              connect: {
+                id: updateDoorMechanismDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }

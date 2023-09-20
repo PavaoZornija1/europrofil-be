@@ -16,8 +16,20 @@ export class HandrailsService {
         profileLength: createHandrailDto.profileLength,
         fillWidthGlass: createHandrailDto.fillWidthGlass,
         fillWidthWood: createHandrailDto.fillWidthWood,
-        cmsMechanismsId: createHandrailDto.mechanism?.id,
-        cmsDoorMechanismsId: createHandrailDto.doorMechanism?.id,
+        cmsMechanisms: createHandrailDto.mechanism?.id
+          ? {
+              connect: {
+                id: createHandrailDto.mechanism?.id,
+              },
+            }
+          : undefined,
+        cmsDoorMechanisms: createHandrailDto.mechanism?.id
+          ? {
+              connect: {
+                id: createHandrailDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -33,6 +45,18 @@ export class HandrailsService {
   }
 
   async update(id: string, updateHandrailDto: UpdateHandrailDto) {
+    await prisma.cmsHandrails.update({
+      where: { id: id },
+      data: {
+        cmsMechanisms: {
+          set: [],
+        },
+        cmsDoorMechanisms: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsHandrails.update({
       where: {
         id: id,
@@ -44,8 +68,20 @@ export class HandrailsService {
         profileLength: updateHandrailDto.profileLength,
         fillWidthGlass: updateHandrailDto.fillWidthGlass,
         fillWidthWood: updateHandrailDto.fillWidthWood,
-        cmsMechanismsId: updateHandrailDto.mechanism?.id,
-        cmsDoorMechanismsId: updateHandrailDto.doorMechanism?.id,
+        cmsMechanisms: updateHandrailDto.mechanism?.id
+          ? {
+              connect: {
+                id: updateHandrailDto.mechanism?.id,
+              },
+            }
+          : undefined,
+        cmsDoorMechanisms: updateHandrailDto.mechanism?.id
+          ? {
+              connect: {
+                id: updateHandrailDto.mechanism?.id,
+              },
+            }
+          : undefined,
       },
     });
   }

@@ -12,9 +12,20 @@ export class SupportedProfilesService {
       data: {
         price: createSupportedProfileDto.price,
         productCode: createSupportedProfileDto.productCode,
-        cmsHandrailDecorationId:
-          createSupportedProfileDto.handrailDecoration?.id,
-        cmsHorizontalProfileId: createSupportedProfileDto.horizontalProfile?.id,
+        cmsHandrailDecoration: createSupportedProfileDto.handrailDecoration?.id
+          ? {
+              connect: {
+                id: createSupportedProfileDto.handrailDecoration?.id,
+              },
+            }
+          : undefined,
+        cmsHorizontalProfile: createSupportedProfileDto.horizontalProfile?.id
+          ? {
+              connect: {
+                id: createSupportedProfileDto.horizontalProfile?.id,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -50,9 +61,20 @@ export class SupportedProfilesService {
       data: {
         price: updateSupportedProfileDto.price,
         productCode: updateSupportedProfileDto.productCode,
-        cmsHandrailDecorationId:
-          updateSupportedProfileDto.handrailDecoration?.id,
-        cmsHorizontalProfileId: updateSupportedProfileDto.horizontalProfile?.id,
+        cmsHandrailDecoration: updateSupportedProfileDto.handrailDecoration?.id
+          ? {
+              connect: {
+                id: updateSupportedProfileDto.handrailDecoration?.id,
+              },
+            }
+          : undefined,
+        cmsHorizontalProfile: updateSupportedProfileDto.horizontalProfile?.id
+          ? {
+              connect: {
+                id: updateSupportedProfileDto.horizontalProfile?.id,
+              },
+            }
+          : undefined,
       },
     });
   }

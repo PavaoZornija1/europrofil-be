@@ -23,13 +23,6 @@ export class AluFillsService {
               },
             }
           : undefined,
-        //   cmsAluFrameType: createAluFillDto.frameType?.id
-        //     ? {
-        //         connect: {
-        //           id: createAluFillDto.frameType?.id,
-        //         },
-        //       }
-        //     : undefined,
       },
     });
   }
