@@ -32,6 +32,7 @@ export class AluProfilesService {
       where: { isActive: true },
       include: {
         cmsAluFills: true,
+        cmsAluFrameTreatments: true,
       },
     });
   }
