@@ -55,6 +55,9 @@ export class AluProfilesService {
       where: { id: id },
       include: {
         cmsAluHinges: {
+          include: {
+            cmsHingeType: true,
+          },
           where: {
             isActive: true,
           },
