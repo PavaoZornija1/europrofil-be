@@ -50,6 +50,9 @@ export class AluProfilesService {
       where: { id: id },
       include: {
         cmsAluFills: {
+          where: {
+            isActive: true,
+          },
           include: {
             children: {
               where: {
