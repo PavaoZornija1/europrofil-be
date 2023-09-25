@@ -41,12 +41,20 @@ export class HandrailEndingsService {
   async findAll() {
     return await prisma.cmsHandrailEndings.findMany({
       where: { isActive: true },
+      include: {
+        cmsHandrails: true,
+        cmsMechanisms: true,
+      },
     });
   }
 
   async findOne(id: string) {
     return await prisma.cmsHandrailEndings.findUnique({
       where: { id: id },
+      include: {
+        cmsHandrails: true,
+        cmsMechanisms: true,
+      },
     });
   }
 
