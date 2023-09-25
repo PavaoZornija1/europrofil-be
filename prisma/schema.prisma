@@ -389,10 +389,6 @@ model CmsHandrails {
   id                      String                    @id @default(uuid())
   cmsMechanisms           CmsMechanisms[]
   cmsDoorMechanisms       CmsDoorMechanisms[]
-  // cmsMechanism            CmsMechanisms?            @relation(fields: [cmsMechanismsId], references: [id])
-  // cmsMechanismsId         String?
-  // cmsDoorMechanism        CmsDoorMechanisms?        @relation(fields: [cmsDoorMechanismsId], references: [id])
-  // cmsDoorMechanismsId     String?
   cmsSupportedDecorations CmsSupportedDecorations[]
   cmsOrders               CmsOrders[]
   cmsHandrailEndings      CmsHandrailEndings[]

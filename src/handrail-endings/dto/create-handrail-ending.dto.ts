@@ -3,7 +3,7 @@ import {
   CmsHandrails,
   CmsHandrailEndings,
 } from '@prisma/client';
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateHandrailEndingDto {
   @IsString()
@@ -18,9 +18,12 @@ export class CreateHandrailEndingDto {
   @IsNotEmpty()
   public pricePerM: number;
 
-  public mechanism: CmsMechanisms;
+  @IsOptional()
+  public mechanism: any[];
 
-  public handrail: CmsHandrails;
+  @IsOptional()
+  public handrail: any[];
 
-  public parent: CmsHandrailEndings;
+  @IsOptional()
+  public parent: any;
 }

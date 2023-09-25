@@ -13,24 +13,20 @@ export class HandrailEndingsService {
         name: createHandrailEndingDto.name,
         productCode: createHandrailEndingDto.productCode,
         pricePerM: createHandrailEndingDto.pricePerM,
-        cmsHandrails: createHandrailEndingDto.mechanism?.id
+        cmsMechanisms: {
+          connect: createHandrailEndingDto.mechanism.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
+        cmsHandrails: {
+          connect: createHandrailEndingDto.handrail.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
+        parent: createHandrailEndingDto.parent
           ? {
               connect: {
-                id: createHandrailEndingDto.mechanism?.id,
-              },
-            }
-          : undefined,
-        cmsMechanisms: createHandrailEndingDto.mechanism?.id
-          ? {
-              connect: {
-                id: createHandrailEndingDto.mechanism?.id,
-              },
-            }
-          : undefined,
-        parent: createHandrailEndingDto.parent?.id
-          ? {
-              connect: {
-                id: createHandrailEndingDto.parent?.id,
+                id: createHandrailEndingDto.parent,
               },
             }
           : undefined,
@@ -79,24 +75,20 @@ export class HandrailEndingsService {
         name: updateHandrailEndingDto.name,
         productCode: updateHandrailEndingDto.productCode,
         pricePerM: updateHandrailEndingDto.pricePerM,
-        cmsHandrails: updateHandrailEndingDto.mechanism?.id
+        cmsMechanisms: {
+          connect: updateHandrailEndingDto.mechanism.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
+        cmsHandrails: {
+          connect: updateHandrailEndingDto.handrail.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
+        parent: updateHandrailEndingDto.parent
           ? {
               connect: {
-                id: updateHandrailEndingDto.mechanism?.id,
-              },
-            }
-          : undefined,
-        cmsMechanisms: updateHandrailEndingDto.mechanism?.id
-          ? {
-              connect: {
-                id: updateHandrailEndingDto.mechanism?.id,
-              },
-            }
-          : undefined,
-        parent: updateHandrailEndingDto.parent?.id
-          ? {
-              connect: {
-                id: updateHandrailEndingDto.parent?.id,
+                id: updateHandrailEndingDto.parent,
               },
             }
           : undefined,
