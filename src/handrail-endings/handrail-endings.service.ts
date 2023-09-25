@@ -38,8 +38,20 @@ export class HandrailEndingsService {
     return await prisma.cmsHandrailEndings.findMany({
       where: { isActive: true },
       include: {
-        cmsHandrails: true,
-        cmsMechanisms: true,
+        children: {
+          where: { isActive: true },
+          include: {
+            children: {
+              where: { isActive: true },
+            },
+          },
+        },
+        cmsHandrails: {
+          where: { isActive: true },
+        },
+        cmsMechanisms: {
+          where: { isActive: true },
+        },
       },
     });
   }
@@ -48,8 +60,20 @@ export class HandrailEndingsService {
     return await prisma.cmsHandrailEndings.findUnique({
       where: { id: id },
       include: {
-        cmsHandrails: true,
-        cmsMechanisms: true,
+        children: {
+          where: { isActive: true },
+          include: {
+            children: {
+              where: { isActive: true },
+            },
+          },
+        },
+        cmsHandrails: {
+          where: { isActive: true },
+        },
+        cmsMechanisms: {
+          where: { isActive: true },
+        },
       },
     });
   }
