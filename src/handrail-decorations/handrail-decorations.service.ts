@@ -49,12 +49,22 @@ export class HandrailDecorationsService {
   async findAll() {
     return await prisma.cmsHandrailDecorations.findMany({
       where: { isActive: true },
+      include: {
+        cmsMechanisms: true,
+        cmsSupportedDecorations: true,
+        cmsSupportedProfiles: true,
+      },
     });
   }
 
   async findOne(id: string) {
     return await prisma.cmsHandrailDecorations.findUnique({
       where: { id: id },
+      include: {
+        cmsMechanisms: true,
+        cmsSupportedDecorations: true,
+        cmsSupportedProfiles: true,
+      },
     });
   }
 
