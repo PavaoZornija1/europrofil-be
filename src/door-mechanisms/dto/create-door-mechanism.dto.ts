@@ -1,4 +1,3 @@
-import { CmsMechanisms } from '@prisma/client';
 import { IsString, IsNotEmpty, IsNumber, IsBoolean } from 'class-validator';
 
 export class CreateDoorMechanismDto {
@@ -21,5 +20,5 @@ export class CreateDoorMechanismDto {
   public deceleratorOpposites?: string;
 
   @IsNotEmpty()
-  public mechanism: CmsMechanisms;
+  public mechanism: any[];
 }

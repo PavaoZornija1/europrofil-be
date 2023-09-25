@@ -15,13 +15,11 @@ export class DoorMechanismsService {
         price: createDoorMechanismDto.price,
         deceleratorSupport: createDoorMechanismDto.deceleratorSupport,
         deceleratorOpposites: createDoorMechanismDto.deceleratorOpposites,
-        cmsMechanisms: createDoorMechanismDto.mechanism?.id
-          ? {
-              connect: {
-                id: createDoorMechanismDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: createDoorMechanismDto.mechanism.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
       },
     });
   }
@@ -68,13 +66,11 @@ export class DoorMechanismsService {
         price: updateDoorMechanismDto.price,
         deceleratorSupport: updateDoorMechanismDto.deceleratorSupport,
         deceleratorOpposites: updateDoorMechanismDto.deceleratorOpposites,
-        cmsMechanisms: updateDoorMechanismDto.mechanism?.id
-          ? {
-              connect: {
-                id: updateDoorMechanismDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: updateDoorMechanismDto.mechanism.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
       },
     });
   }
