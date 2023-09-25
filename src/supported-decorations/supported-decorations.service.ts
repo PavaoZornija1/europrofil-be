@@ -12,18 +12,17 @@ export class SupportedDecorationsService {
       data: {
         price: createSupportedDecorationDto.price,
         productCode: createSupportedDecorationDto.productCode,
-        cmsHandrail: createSupportedDecorationDto.handrail?.id
+        cmsHandrail: createSupportedDecorationDto.handrail
           ? {
               connect: {
-                id: createSupportedDecorationDto.handrail?.id,
+                id: createSupportedDecorationDto.handrail,
               },
             }
           : undefined,
         cmsHandrailDecoration: createSupportedDecorationDto.handrailDecoration
-          ?.id
           ? {
               connect: {
-                id: createSupportedDecorationDto.handrailDecoration?.id,
+                id: createSupportedDecorationDto.handrailDecoration,
               },
             }
           : undefined,
@@ -34,12 +33,36 @@ export class SupportedDecorationsService {
   findAll() {
     return prisma.cmsSupportedDecorations.findMany({
       where: { isActive: true },
+      include: {
+        cmsHandrail: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsHandrailDecoration: {
+          where: {
+            isActive: true,
+          },
+        },
+      },
     });
   }
 
   findOne(id: string) {
     return prisma.cmsSupportedDecorations.findUnique({
       where: { id: id },
+      include: {
+        cmsHandrail: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsHandrailDecoration: {
+          where: {
+            isActive: true,
+          },
+        },
+      },
     });
   }
 
@@ -54,18 +77,17 @@ export class SupportedDecorationsService {
       data: {
         price: updateSupportedDecorationDto.price,
         productCode: updateSupportedDecorationDto.productCode,
-        cmsHandrail: updateSupportedDecorationDto.handrail?.id
+        cmsHandrail: updateSupportedDecorationDto.handrail
           ? {
               connect: {
-                id: updateSupportedDecorationDto.handrail?.id,
+                id: updateSupportedDecorationDto.handrail,
               },
             }
           : undefined,
         cmsHandrailDecoration: updateSupportedDecorationDto.handrailDecoration
-          ?.id
           ? {
               connect: {
-                id: updateSupportedDecorationDto.handrailDecoration?.id,
+                id: updateSupportedDecorationDto.handrailDecoration,
               },
             }
           : undefined,

@@ -1,4 +1,3 @@
-import { CmsHandrails, CmsHandrailDecorations } from '@prisma/client';
 import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateSupportedDecorationDto {
@@ -11,8 +10,8 @@ export class CreateSupportedDecorationDto {
   public productCode: string;
 
   @IsNotEmpty()
-  public handrail: CmsHandrails;
+  public handrail: any;
 
   @IsNotEmpty()
-  public handrailDecoration: CmsHandrailDecorations;
+  public handrailDecoration: any;
 }
