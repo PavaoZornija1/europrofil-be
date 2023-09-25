@@ -21,7 +21,8 @@ export class CreateAluLiftSupportDto {
   @IsNotEmpty()
   public ordering: number;
 
-  public frameTypes: CmsAluFrameTypes;
+  @IsNotEmpty()
+  public frameTypes: any[];
 
   @IsNotEmpty()
   public picture: any;

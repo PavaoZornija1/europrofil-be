@@ -15,6 +15,11 @@ export class AluLiftSupportsService {
         ordering: createAluLiftSupportDto.ordering,
         description: createAluLiftSupportDto.description,
         pricePerUnit: createAluLiftSupportDto.pricePerUnit,
+        cmsAluFrameTypes: {
+          connect: createAluLiftSupportDto.frameTypes.map((frameType) => ({
+            id: frameType,
+          })),
+        },
       },
     });
   }
@@ -22,16 +27,31 @@ export class AluLiftSupportsService {
   async findAll() {
     return await prisma.cmsAluLiftSupports.findMany({
       where: { isActive: true },
+      include: {
+        cmsAluFrameTypes: true,
+      },
     });
   }
 
   async findOne(id: string) {
     return await prisma.cmsAluLiftSupports.findUnique({
       where: { id: id },
+      include: {
+        cmsAluFrameTypes: true,
+      },
     });
   }
 
   async update(id: string, updateAluLiftSupportDto: UpdateAluLiftSupportDto) {
+    await prisma.cmsAluLiftSupports.update({
+      where: { id: id },
+      data: {
+        cmsAluFrameTypes: {
+          set: [],
+        },
+      },
+    });
+
     return await prisma.cmsAluLiftSupports.update({
       where: {
         id: id,
@@ -42,6 +62,11 @@ export class AluLiftSupportsService {
         ordering: updateAluLiftSupportDto.ordering,
         description: updateAluLiftSupportDto.description,
         pricePerUnit: updateAluLiftSupportDto.pricePerUnit,
+        cmsAluFrameTypes: {
+          connect: updateAluLiftSupportDto.frameTypes.map((frameType) => ({
+            id: frameType,
+          })),
+        },
       },
     });
   }
