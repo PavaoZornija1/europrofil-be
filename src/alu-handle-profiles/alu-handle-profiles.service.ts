@@ -29,12 +29,18 @@ export class AluHandleProfilesService {
   async findAll() {
     return await prisma.cmsAluHandleProfiles.findMany({
       where: { isActive: true },
+      include: {
+        cmsAluFrameTypes: true,
+      },
     });
   }
 
   async findOne(id: string) {
     return await prisma.cmsAluHandleProfiles.findUnique({
       where: { id: id },
+      include: {
+        cmsAluFrameTypes: true,
+      },
     });
   }
 
