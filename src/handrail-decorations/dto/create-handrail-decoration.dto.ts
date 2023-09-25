@@ -56,5 +56,5 @@ export class CreateHandrailDecorationDto {
   public isSilverGloss: boolean;
 
   @IsNotEmpty()
-  public mechanism: CmsMechanisms;
+  public mechanism: any[];
 }

@@ -35,13 +35,11 @@ export class HandrailDecorationsService {
         customColorAvailable: createHandrailDecorationDto.customColorAvailable,
         priceBottomProfile: createHandrailDecorationDto.priceBottomProfile,
         priceDivider: createHandrailDecorationDto.priceDivider,
-        cmsMechanisms: createHandrailDecorationDto.mechanism?.id
-          ? {
-              connect: {
-                id: createHandrailDecorationDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: createHandrailDecorationDto.mechanism.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
       },
     });
   }
@@ -107,13 +105,11 @@ export class HandrailDecorationsService {
         customColorAvailable: updateHandrailDecorationDto.customColorAvailable,
         priceBottomProfile: updateHandrailDecorationDto.priceBottomProfile,
         priceDivider: updateHandrailDecorationDto.priceDivider,
-        cmsMechanisms: updateHandrailDecorationDto.mechanism?.id
-          ? {
-              connect: {
-                id: updateHandrailDecorationDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: updateHandrailDecorationDto.mechanism.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
       },
     });
   }
