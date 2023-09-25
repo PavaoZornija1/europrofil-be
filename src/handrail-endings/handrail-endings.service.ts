@@ -41,8 +41,22 @@ export class HandrailEndingsService {
         children: {
           where: { isActive: true },
           include: {
+            cmsHandrails: {
+              where: { isActive: true },
+            },
+            cmsMechanisms: {
+              where: { isActive: true },
+            },
             children: {
               where: { isActive: true },
+              include: {
+                cmsHandrails: {
+                  where: { isActive: true },
+                },
+                cmsMechanisms: {
+                  where: { isActive: true },
+                },
+              },
             },
           },
         },
@@ -63,8 +77,22 @@ export class HandrailEndingsService {
         children: {
           where: { isActive: true },
           include: {
+            cmsHandrails: {
+              where: { isActive: true },
+            },
+            cmsMechanisms: {
+              where: { isActive: true },
+            },
             children: {
               where: { isActive: true },
+              include: {
+                cmsHandrails: {
+                  where: { isActive: true },
+                },
+                cmsMechanisms: {
+                  where: { isActive: true },
+                },
+              },
             },
           },
         },
