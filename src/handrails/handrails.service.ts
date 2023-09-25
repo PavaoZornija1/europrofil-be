@@ -31,12 +31,26 @@ export class HandrailsService {
   }
 
   async findAll() {
-    return await prisma.cmsHandrails.findMany({ where: { isActive: true } });
+    return await prisma.cmsHandrails.findMany({
+      where: { isActive: true },
+      include: {
+        cmsDoorMechanisms: true,
+        cmsMechanisms: true,
+        cmsSupportedDecorations: true,
+        cmsHandrailEndings: true,
+      },
+    });
   }
 
   async findOne(id: string) {
     return await prisma.cmsHandrails.findUnique({
       where: { id: id },
+      include: {
+        cmsDoorMechanisms: true,
+        cmsMechanisms: true,
+        cmsSupportedDecorations: true,
+        cmsHandrailEndings: true,
+      },
     });
   }
 
