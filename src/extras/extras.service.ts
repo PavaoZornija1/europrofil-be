@@ -26,12 +26,20 @@ export class ExtrasService {
   }
 
   async findAll() {
-    return await prisma.cmsExtras.findMany({ where: { isActive: true } });
+    return await prisma.cmsExtras.findMany({
+      where: { isActive: true },
+      include: {
+        cmsMechanisms: true,
+      },
+    });
   }
 
   async findOne(id: string) {
     return await prisma.cmsExtras.findUnique({
       where: { id: id },
+      include: {
+        cmsMechanisms: true,
+      },
     });
   }
 
