@@ -28,6 +28,7 @@ export class HorizontalProfilesService {
       where: { isActive: true },
       include: {
         cmsSupportedProfiles: true,
+        cmsMechanisms: true,
       },
     });
   }
@@ -37,6 +38,7 @@ export class HorizontalProfilesService {
       where: { id: id },
       include: {
         cmsSupportedProfiles: true,
+        cmsMechanisms: true,
       },
     });
   }
