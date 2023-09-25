@@ -29,12 +29,22 @@ export class DoorMechanismsService {
   async findAll() {
     return await prisma.cmsDoorMechanisms.findMany({
       where: { isActive: true },
+      include: {
+        cmsMechanisms: true,
+        cmsOrderDoors: true,
+        cmsHandrails: true,
+      },
     });
   }
 
   findOne(id: string) {
     return prisma.cmsDoorMechanisms.findUnique({
       where: { id: id },
+      include: {
+        cmsMechanisms: true,
+        cmsOrderDoors: true,
+        cmsHandrails: true,
+      },
     });
   }
 

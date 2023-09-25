@@ -486,7 +486,6 @@ model CmsFills {
   parentId           String?
   name               String?
   productCode        String?
-  cmsMechanismSet    String?
   requiresPvcProfile Boolean         @default(false)
   requiresThinning   Boolean         @default(false)
   customNameAllowed  Boolean         @default(false)
@@ -683,7 +682,6 @@ model CmsAluHandleProfiles {
   id                   String             @id @default(uuid())
   name                 String?
   productCode          String?
-  cmsFrameTypeSet      String?
   pricePerMeter        Decimal?
   priceIncrease        Decimal?
   frameLengthReduction Decimal?
