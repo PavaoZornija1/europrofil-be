@@ -17,17 +17,15 @@ export class FillsService {
         customNameAllowed: createFillDto.customNameAllowed,
         foilAvailable: createFillDto.foilAvailable,
         pricePerMSquare: createFillDto.pricePerMSquare,
-        cmsMechanisms: createFillDto.mechanism?.id
+        cmsMechanisms: {
+          connect: createFillDto.mechanism.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
+        parent: createFillDto.parent
           ? {
               connect: {
-                id: createFillDto.mechanism.id,
-              },
-            }
-          : undefined,
-        parent: createFillDto.parent?.id
-          ? {
-              connect: {
-                id: createFillDto.parent.id,
+                id: createFillDto.parent,
               },
             }
           : undefined,
@@ -84,15 +82,17 @@ export class FillsService {
         foilAvailable: updateFillDto.foilAvailable,
         pricePerMSquare: updateFillDto.pricePerMSquare,
         cmsMechanisms: {
-          connect: {
-            id: updateFillDto.mechanism?.id,
-          },
+          connect: updateFillDto.mechanism.map((mechanism) => ({
+            id: mechanism,
+          })),
         },
-        parent: {
-          connect: {
-            id: updateFillDto.parent?.id,
-          },
-        },
+        parent: updateFillDto.parent
+          ? {
+              connect: {
+                id: updateFillDto.parent,
+              },
+            }
+          : undefined,
       },
     });
   }
