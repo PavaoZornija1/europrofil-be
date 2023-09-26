@@ -3,35 +3,35 @@ import { IsString, IsNotEmpty, IsBoolean, IsOptional } from 'class-validator';
 
 export class CreateCustomerDto {
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public email: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public phone: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public username: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public password: string;
 
   @IsBoolean()
-  @IsNotEmpty()
+  @IsOptional()
   public isAdministrator: boolean;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public address: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public deliveryAddress: string;
 
   @IsOptional()
@@ -39,11 +39,14 @@ export class CreateCustomerDto {
   public lockedDiscounts?: boolean;
 
   @IsOptional()
+  public discount?: number;
+
+  @IsOptional()
   @IsBoolean()
   public useDetailedBilling?: boolean;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public note: string;
 
   @IsString()

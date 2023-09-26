@@ -20,6 +20,7 @@ export class CustomersService {
         note: createCustomerDto.note,
         approvalStatus: createCustomerDto.approvalStatus,
         lockedDiscount: createCustomerDto.lockedDiscounts,
+        discount: createCustomerDto.discount,
         email: createCustomerDto.email,
         useDetailedBilling: createCustomerDto.useDetailedBilling,
       },

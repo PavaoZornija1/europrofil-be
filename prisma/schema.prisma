@@ -93,6 +93,7 @@ model CmsUsers {
   id                 String          @id @default(uuid())
   isAdministrator    Boolean         @default(false)
   isEmployee         Boolean         @default(false)
+  discount           Decimal?
   username           String?
   email              String?
   password           String?
