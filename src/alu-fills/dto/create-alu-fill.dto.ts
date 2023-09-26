@@ -1,5 +1,11 @@
 import { CmsAluFills, CmsAluFrameTypes } from '@prisma/client';
-import { IsString, IsNotEmpty, IsNumber, IsBoolean } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsBoolean,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateAluFillDto {
   @IsString()
@@ -25,6 +31,6 @@ export class CreateAluFillDto {
   @IsNotEmpty()
   public frameTypes: any[];
 
-  @IsNotEmpty()
+  @IsOptional()
   public parent: any;
 }
