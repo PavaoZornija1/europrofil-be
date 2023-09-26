@@ -22,6 +22,7 @@ export class CustomersService {
         lockedDiscount: createCustomerDto.lockedDiscounts,
         email: createCustomerDto.email,
         useDetailedBilling: createCustomerDto.useDetailedBilling,
+        deliveryAddres: createCustomerDto.deliveryAddress,
       },
     });
   }
