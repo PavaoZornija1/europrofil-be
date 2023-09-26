@@ -36,7 +36,7 @@ export class CreateFillDto {
   public pricePerMSquare: number;
 
   @IsOptional()
-  public mechanism: any;
+  public mechanism: any[];
 
   @IsOptional()
   public parent: any;
