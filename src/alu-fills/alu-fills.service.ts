@@ -8,7 +8,6 @@ const prisma = new PrismaClient();
 @Injectable()
 export class AluFillsService {
   async create(createAluFillDto: CreateAluFillDto) {
-    console.log(createAluFillDto, 'adasd');
     return await prisma.cmsAluFills.create({
       data: {
         name: createAluFillDto.name,
