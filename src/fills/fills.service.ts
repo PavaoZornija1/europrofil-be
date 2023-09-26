@@ -37,13 +37,21 @@ export class FillsService {
     return await prisma.cmsFills.findMany({
       where: { isActive: true },
       include: {
-        parent: true,
+        parent: {
+          where: {
+            isActive: true,
+          },
+        },
         children: {
           where: {
             isActive: true,
           },
         },
-        cmsMechanisms: true,
+        cmsMechanisms: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }
@@ -52,9 +60,21 @@ export class FillsService {
     return await prisma.cmsFills.findUnique({
       where: { id: id },
       include: {
-        parent: true,
-        children: true,
-        cmsMechanisms: true,
+        parent: {
+          where: {
+            isActive: true,
+          },
+        },
+        children: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsMechanisms: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }
