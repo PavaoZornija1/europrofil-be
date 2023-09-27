@@ -18,6 +18,12 @@ export class CreateAluProfileDto {
   @IsNumber()
   public cornerCoverPrice: number;
 
+  @IsNumber()
+  public pricePerMeter: number;
+
+  @IsNumber()
+  public priceIncrease: number;
+
   @IsBoolean()
   public requiresKp: boolean;
 
