@@ -11,6 +11,8 @@ export class AluProfilesService {
     return await prisma.cmsAluFrameTypes.create({
       data: {
         name: createAluProfileDto.name,
+        pricePerMeter: createAluProfileDto.pricePerMeter,
+        priceIncrease: createAluProfileDto.priceIncrease,
         requiresKp: createAluProfileDto.requiresKp,
         corverCoverPrice: createAluProfileDto.cornerCoverPrice,
         productCode: createAluProfileDto.productCode,
@@ -105,6 +107,8 @@ export class AluProfilesService {
       },
       data: {
         name: updateAluProfileDto.name,
+        pricePerMeter: updateAluProfileDto.pricePerMeter,
+        priceIncrease: updateAluProfileDto.priceIncrease,
         requiresKp: updateAluProfileDto.requiresKp,
         corverCoverPrice: updateAluProfileDto.cornerCoverPrice,
         productCode: updateAluProfileDto.productCode,
