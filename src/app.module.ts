@@ -33,6 +33,8 @@ import { AluHingesModule } from './alu-hinges/alu-hinges.module';
 import { DepartmentsModule } from './departments/departments.module';
 import { AluHingeTypeModule } from './alu-hinge-type/alu-hinge-type.module';
 import { FilesModule } from './files/files.module';
+import { BevelOptionsModule } from './bevel-options/bevel-options.module';
+import { SandBlastingOptionsModule } from './sand-blasting-options/sand-blasting-options.module';
 
 @Module({
   imports: [
@@ -72,6 +74,8 @@ import { FilesModule } from './files/files.module';
     DepartmentsModule,
     AluHingeTypeModule,
     FilesModule,
+    BevelOptionsModule,
+    SandBlastingOptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
