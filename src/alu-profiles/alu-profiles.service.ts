@@ -33,6 +33,11 @@ export class AluProfilesService {
     return await prisma.cmsAluFrameTypes.findMany({
       where: { isActive: true },
       include: {
+        cmsAluLiftSupports: {
+          where: {
+            isActive: true,
+          },
+        },
         cmsAluHandleProfiles: {
           where: {
             isActive: true,
@@ -61,6 +66,11 @@ export class AluProfilesService {
     return await prisma.cmsAluFrameTypes.findUnique({
       where: { id: id },
       include: {
+        cmsAluLiftSupports: {
+          where: {
+            isActive: true,
+          },
+        },
         cmsAluHandleProfiles: {
           where: {
             isActive: true,
