@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
+import { genSalt, hash } from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -8,6 +9,9 @@ const prisma = new PrismaClient();
 @Injectable()
 export class CustomersService {
   async create(createCustomerDto: CreateCustomerDto) {
+    const salt = await genSalt(10);
+    const hashedPw = await hash(createCustomerDto.password, salt);
+
     return await prisma.cmsUsers.create({
       data: {
         name: createCustomerDto.name,
@@ -15,7 +19,7 @@ export class CustomersService {
         isEmployee: false,
         isAdministrator: false,
         phone: createCustomerDto.phone,
-        password: createCustomerDto.password,
+        password: hashedPw,
         address: createCustomerDto.address,
         note: createCustomerDto.note,
         approvalStatus: createCustomerDto.approvalStatus,
@@ -41,6 +45,9 @@ export class CustomersService {
   }
 
   async update(id: string, updateCustomerDto: UpdateCustomerDto) {
+    const salt = await genSalt(10);
+    const hashedPw = await hash(updateCustomerDto.password, salt);
+
     return await prisma.cmsUsers.update({
       where: {
         id: id,
@@ -51,13 +58,14 @@ export class CustomersService {
         isEmployee: false,
         isAdministrator: false,
         phone: updateCustomerDto.phone,
-        password: updateCustomerDto.password,
+        password: hashedPw,
         address: updateCustomerDto.address,
         note: updateCustomerDto.note,
         approvalStatus: updateCustomerDto.approvalStatus,
         lockedDiscount: updateCustomerDto.lockedDiscounts,
         email: updateCustomerDto.email,
         useDetailedBilling: updateCustomerDto.useDetailedBilling,
+        modified: new Date(),
       },
     });
   }

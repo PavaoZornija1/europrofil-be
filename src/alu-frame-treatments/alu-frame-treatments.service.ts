@@ -51,6 +51,7 @@ export class AluFrameTreatmentsService {
         productCode: updateAluFrameTreatmentDto.productCode,
         customColorAvailable: updateAluFrameTreatmentDto.customColorAvailable,
         // ordering: updateAluFrameTreatmentDto.ordering,
+        modified: new Date(),
         pricePerMeter: updateAluFrameTreatmentDto.pricePerMeter,
         priceIncrease: updateAluFrameTreatmentDto.priceIncrease,
         cmsAluFrameType: updateAluFrameTreatmentDto.frameType

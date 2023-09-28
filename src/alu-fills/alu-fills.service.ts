@@ -95,6 +95,7 @@ export class AluFillsService {
         foilAvailable: updateAluFillDto.foilAvailable,
         pricePerSquareMeter: updateAluFillDto.pricePerSquareMeter,
         priceIncrease: updateAluFillDto.priceIncrease,
+        modified: new Date(),
         parent: updateAluFillDto.parent?.id
           ? {
               connect: {

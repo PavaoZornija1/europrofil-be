@@ -125,6 +125,7 @@ export class HandrailEndingsService {
       },
       data: {
         name: updateHandrailEndingDto.name,
+        modified: new Date(),
         productCode: updateHandrailEndingDto.productCode,
         pricePerM: updateHandrailEndingDto.pricePerM,
         cmsMechanisms: {

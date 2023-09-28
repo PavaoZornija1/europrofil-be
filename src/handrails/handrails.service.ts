@@ -73,6 +73,7 @@ export class HandrailsService {
       },
       data: {
         name: updateHandrailDto.name,
+        modified: new Date(),
         roundingSteps: updateHandrailDto.roundingSteps,
         doorWidth: updateHandrailDto.doorWidth,
         profileLength: updateHandrailDto.profileLength,

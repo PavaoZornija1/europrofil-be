@@ -60,6 +60,7 @@ export class AluLiftSupportsService {
         name: updateAluLiftSupportDto.name,
         productCode: updateAluLiftSupportDto.productCode,
         ordering: updateAluLiftSupportDto.ordering,
+        modified: new Date(),
         description: updateAluLiftSupportDto.description,
         pricePerUnit: updateAluLiftSupportDto.pricePerUnit,
         cmsAluFrameTypes: {

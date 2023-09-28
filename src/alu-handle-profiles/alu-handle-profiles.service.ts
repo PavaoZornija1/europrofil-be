@@ -69,6 +69,7 @@ export class AluHandleProfilesService {
         pricePerMeter: updateAluHandleProfileDto.pricePerMeter,
         priceIncrease: updateAluHandleProfileDto.priceIncrease,
         ordering: updateAluHandleProfileDto.ordering,
+        modified: new Date(),
         cmsAluFrameTypes: {
           connect: updateAluHandleProfileDto.frameTypes.map((frameType) => ({
             id: frameType,

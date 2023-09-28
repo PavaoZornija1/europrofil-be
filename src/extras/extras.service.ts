@@ -61,6 +61,7 @@ export class ExtrasService {
         name: updateExtraDto.name,
         productCode: updateExtraDto.productCode,
         unit: updateExtraDto.unit,
+        modified: new Date(),
         pricePerUnit: updateExtraDto.pricePerUnit,
         cmsMechanisms: updateExtraDto.mechanism?.id
           ? {

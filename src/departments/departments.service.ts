@@ -32,6 +32,7 @@ export class DepartmentsService {
       },
       data: {
         name: updateDepartmentDto.name,
+        modified: new Date(),
       },
     });
   }

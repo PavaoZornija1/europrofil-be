@@ -85,6 +85,7 @@ export class HandrailDecorationsService {
       },
       data: {
         name: updateHandrailDecorationDto.name,
+        modified: new Date(),
         productCodeTopRailSingle:
           updateHandrailDecorationDto.productCodeTopRailSingle,
         productCodeTopRailDouble:

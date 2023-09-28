@@ -66,6 +66,7 @@ export class DoorMechanismsService {
         price: updateDoorMechanismDto.price,
         deceleratorSupport: updateDoorMechanismDto.deceleratorSupport,
         deceleratorOpposites: updateDoorMechanismDto.deceleratorOpposites,
+        modified: new Date(),
         cmsMechanisms: {
           connect: updateDoorMechanismDto.mechanism.map((mechanism) => ({
             id: mechanism,

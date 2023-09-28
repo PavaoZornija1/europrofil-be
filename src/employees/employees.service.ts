@@ -48,6 +48,7 @@ export class EmployeesService {
         email: updateEmployeeDto.email,
         username: updateEmployeeDto.username,
         isEmployee: true,
+        modified: new Date(),
         isAdministrator: updateEmployeeDto.isAdministrator,
         password: updateEmployeeDto.password,
         phone: updateEmployeeDto.phone,

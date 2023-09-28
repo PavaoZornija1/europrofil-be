@@ -76,6 +76,7 @@ export class SupportedDecorationsService {
       },
       data: {
         price: updateSupportedDecorationDto.price,
+        modified: new Date(),
         productCode: updateSupportedDecorationDto.productCode,
         cmsHandrail: updateSupportedDecorationDto.handrail
           ? {

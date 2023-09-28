@@ -110,6 +110,7 @@ export class FillsService {
       data: {
         name: updateFillDto.name,
         productCode: updateFillDto.productCode,
+        modified: new Date(),
         requiresPvcProfile: updateFillDto.requiresPvcProfile,
         requiresThinning: updateFillDto.requiresThinning,
         customNameAllowed: updateFillDto.customNameAllowed,

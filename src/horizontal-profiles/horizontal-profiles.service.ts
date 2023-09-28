@@ -62,6 +62,7 @@ export class HorizontalProfilesService {
       },
       data: {
         name: updateHorizontalProfileDto.name,
+        modified: new Date(),
         constantsGlassGap: updateHorizontalProfileDto.constantsGlassGap,
         constantsThickness: updateHorizontalProfileDto.constantsThickness,
         constantsWoodGap: updateHorizontalProfileDto.constantsWoodGap,

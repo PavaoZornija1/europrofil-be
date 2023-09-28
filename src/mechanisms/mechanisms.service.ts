@@ -184,14 +184,12 @@ export class MechanismsService {
       include: {
         cmsOrders: true,
         cmsHorizontalProfiles: true,
-        // cmsDoorMechanisms: true,
         cmsDoorMechanisms: {
           include: {
             cmsOrderDoors: true,
             cmsHandrails: true,
           },
         },
-        // cmsHandrails: true,
         cmsHandrails: {
           include: {
             cmsDoorMechanisms: true,
@@ -236,6 +234,7 @@ export class MechanismsService {
       },
       data: {
         name: updateMechanismDto.name,
+        modified: new Date(),
         ordering: updateMechanismDto.ordering,
         productCode: updateMechanismDto.productCode,
         constantsHeight: updateMechanismDto.constantsHeight,

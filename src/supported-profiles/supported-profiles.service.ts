@@ -60,6 +60,7 @@ export class SupportedProfilesService {
       },
       data: {
         price: updateSupportedProfileDto.price,
+        modified: new Date(),
         productCode: updateSupportedProfileDto.productCode,
         cmsHandrailDecoration: updateSupportedProfileDto.handrailDecoration
           ? {

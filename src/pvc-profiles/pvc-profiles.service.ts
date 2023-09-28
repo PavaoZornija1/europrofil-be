@@ -52,6 +52,7 @@ export class PvcProfilesService {
         productCode: updatePvcProfileDto.productCode,
         pricePerM: updatePvcProfileDto.pricePerM,
         ralCode: updatePvcProfileDto.ralCode,
+        modified: new Date(),
         cmsMechanisms: {
           connect: updatePvcProfileDto.mechanisms.map((mechanism) => ({
             id: mechanism,

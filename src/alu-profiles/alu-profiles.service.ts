@@ -118,6 +118,7 @@ export class AluProfilesService {
       data: {
         name: updateAluProfileDto.name,
         pricePerMeter: updateAluProfileDto.pricePerMeter,
+        modified: new Date(),
         priceIncrease: updateAluProfileDto.priceIncrease,
         requiresKp: updateAluProfileDto.requiresKp,
         corverCoverPrice: updateAluProfileDto.cornerCoverPrice,

@@ -74,6 +74,7 @@ export class AluHingesService {
       data: {
         name: updateAluHingeDto.name,
         productCode: updateAluHingeDto.productCode,
+        modified: new Date(),
         cmsHingeType: updateAluHingeDto.hingeType
           ? {
               connect: {

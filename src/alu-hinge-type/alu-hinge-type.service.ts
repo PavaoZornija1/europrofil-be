@@ -34,6 +34,7 @@ export class AluHingeTypeService {
       data: {
         name: updateAluHingeTypeDto.name,
         code: updateAluHingeTypeDto.code,
+        modified: new Date(),
       },
     });
   }

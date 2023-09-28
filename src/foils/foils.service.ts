@@ -38,6 +38,7 @@ export class FoilsService {
         productCode: updateFoilDto.productCode,
         colorCode: updateFoilDto.colorCode,
         ralCode: updateFoilDto.ralCode,
+        modified: new Date(),
       },
     });
   }

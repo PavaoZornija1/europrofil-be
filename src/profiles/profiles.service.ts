@@ -38,6 +38,7 @@ export class ProfilesService {
       data: {
         productCode: updateProfileDto.productCode,
         price: updateProfileDto.price,
+        modified: new Date(),
         cmsHorizontalProfileId: updateProfileDto.horizontalProfile?.id,
         cmsHandrailDecorationId: updateProfileDto.handrailDecoration?.id,
       },
