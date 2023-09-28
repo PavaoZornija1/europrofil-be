@@ -130,7 +130,7 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class MechanismsService {
-  async create(createMechanismDto: CreateMechanismDto) {
+  async create(createMechanismDto: CreateMechanismDto, userId: string) {
     return await prisma.cmsMechanisms.create({
       data: {
         name: createMechanismDto.name,
@@ -172,6 +172,13 @@ export class MechanismsService {
         installationPricePerDoor: createMechanismDto.installationPricePerDoor,
         confectionProductCode: createMechanismDto.confectionProductCode,
         installationProductCode: createMechanismDto.installationProductCode,
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -227,7 +234,11 @@ export class MechanismsService {
     });
   }
 
-  async update(id: string, updateMechanismDto: UpdateMechanismDto) {
+  async update(
+    id: string,
+    updateMechanismDto: UpdateMechanismDto,
+    userId: string,
+  ) {
     return await prisma.cmsMechanisms.update({
       where: {
         id: id,
@@ -273,6 +284,13 @@ export class MechanismsService {
         installationPricePerDoor: updateMechanismDto.installationPricePerDoor,
         confectionProductCode: updateMechanismDto.confectionProductCode,
         installationProductCode: updateMechanismDto.installationProductCode,
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

@@ -43,7 +43,7 @@ import { SandBlastingOptionsModule } from './sand-blasting-options/sand-blasting
     JwtModule.register({
       global: true,
       secret: 'secret',
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '7d' },
     }),
     HandrailsModule,
     CustomersModule,

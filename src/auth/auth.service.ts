@@ -35,8 +35,8 @@ export class AuthService {
     }
   }
 
-  private authenticate(username: string): Promise<string> {
-    const payload = { username };
+  private authenticate(userId: string): Promise<string> {
+    const payload = { userId: userId };
     return this.jwtService.signAsync(payload);
   }
 
@@ -58,7 +58,11 @@ export class AuthService {
       throw new BadRequestException(password, 'Wrong credentials');
     }
 
-    const token = await this.authenticate(username);
-    return token;
+    const token = await this.authenticate(user.id);
+    return {
+      token: token,
+      ...user,
+    };
+    // return token;
   }
 }

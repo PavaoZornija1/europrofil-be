@@ -12,10 +12,75 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(uuid())
-  username String  @unique
-  password String
-  email    String? @unique
+  id                             String                      @id @default(uuid())
+  username                       String                      @unique
+  password                       String
+  email                          String?                     @unique
+  cmsDepartment                  CmsDepartments?             @relation(fields: [cmsDepartmentId], references: [id])
+  cmsDepartmentId                String?
+  createdUsers                   CmsUsers[]                  @relation(name: "CreatedUsers")
+  modifiedUsers                  CmsUsers[]                  @relation(name: "ModifiedUsers")
+  createdHorizontalProfiles      CmsHorizontalProfiles[]     @relation(name: "CreatedHorizontalProfiles")
+  modifiedHorizontalProfiles     CmsHorizontalProfiles[]     @relation(name: "ModifiedHorizontalProfiles")
+  createdOrderDoors              CmsOrderDoors[]             @relation(name: "CreatedOD")
+  modifiedOrderDoors             CmsOrderDoors[]             @relation(name: "ModifiedOD")
+  createdSupportedProfiles       CmsSupportedProfiles[]      @relation(name: "CreatedSP")
+  modifiedSupportedProfiles      CmsSupportedProfiles[]      @relation(name: "ModifiedSP")
+  createdHandrailsDecorations    CmsHandrailDecorations[]    @relation(name: "CreatedHD")
+  modifiedHandrailsDecorations   CmsHandrailDecorations[]    @relation(name: "ModifiedHD")
+  createdSupportedDecorations    CmsSupportedDecorations[]   @relation(name: "CreatedSD")
+  modifiedSupportedDecorations   CmsSupportedDecorations[]   @relation(name: "ModifiedSD")
+  createdHandrailEndings         CmsHandrailEndings[]        @relation(name: "CreatedHE")
+  modifiedHandrailEndings        CmsHandrailEndings[]        @relation(name: "ModifiedHE")
+  createdMechanisms              CmsMechanisms[]             @relation(name: "CreatedM")
+  modifiedMechanisms             CmsMechanisms[]             @relation(name: "ModifiedM")
+  createdDoorMechanisms          CmsDoorMechanisms[]         @relation(name: "CreatedDM")
+  modifiedDoorMechanisms         CmsDoorMechanisms[]         @relation(name: "ModifiedDM")
+  createdHandrails               CmsHandrails[]              @relation(name: "CreatedH")
+  modifiedHandrails              CmsHandrails[]              @relation(name: "ModifiedH")
+  createdPvcProfiles             CmsPvcProfiles[]            @relation(name: "CreatedPP")
+  modifiedPvcProfiles            CmsPvcProfiles[]            @relation(name: "ModifiedPP")
+  createdExtras                  CmsExtras[]                 @relation(name: "CreatedE")
+  modifiedExtras                 CmsExtras[]                 @relation(name: "ModifiedE")
+  createdOrderExtras             CmsOrderExtras[]            @relation(name: "CreatedOE")
+  modifiedOrderExtras            CmsOrderExtras[]            @relation(name: "ModifiedOE")
+  createdFoils                   CmsFoils[]                  @relation(name: "CreatedFO")
+  modifiedFoils                  CmsFoils[]                  @relation(name: "ModifiedFO")
+  createdFills                   CmsFills[]                  @relation(name: "CreatedFI")
+  modifiedFills                  CmsFills[]                  @relation(name: "ModifiedFI")
+  createdAluFrameTreatments      CmsAluFrameTreatments[]     @relation(name: "CreatedAFT")
+  modifiedAluFrameTreatments     CmsAluFrameTreatments[]     @relation(name: "ModifiedAFT")
+  createdAluBevelOptions         CmsAluBevelOptions[]        @relation(name: "CreatedABO")
+  modifiedAluBevelOptions        CmsAluBevelOptions[]        @relation(name: "ModifiedABO")
+  createdAluSandBlastingOptions  CmsAluSandBlastingOptions[] @relation(name: "CreatedASBO")
+  modifiedAluSandBlastingOptions CmsAluSandBlastingOptions[] @relation(name: "ModifiedASBO")
+
+  createdAluFrameTypes  CmsAluFrameTypes[] @relation(name: "CreatedAFTT")
+  modifiedAluFrameTypes CmsAluFrameTypes[] @relation(name: "ModifiedAFTT")
+
+  createdAluHandleHoles  CmsAluHandleHoles[] @relation(name: "CreatedAHH")
+  modifiedAluHandleHoles CmsAluHandleHoles[] @relation(name: "ModifiedAHH")
+
+  createdAluFoils  CmsAluFoils[] @relation(name: "CreatedAFO")
+  modifiedAluFoils CmsAluFoils[] @relation(name: "ModifiedAFO")
+
+  createdDepartments  CmsDepartments[] @relation(name: "CreatedAD")
+  modifiedDepartments CmsDepartments[] @relation(name: "ModifiedAD")
+
+  createdAluLiftSupports  CmsAluLiftSupports[] @relation(name: "CreatedALS")
+  modifiedAluLiftSupports CmsAluLiftSupports[] @relation(name: "ModifiedALS")
+
+  createdAluHandleProfiles  CmsAluHandleProfiles[] @relation(name: "CreatedAHP")
+  modifiedAluHandleProfiles CmsAluHandleProfiles[] @relation(name: "ModifiedAHP")
+
+  createdAluFills  CmsAluFills[] @relation(name: "CreatedAFI")
+  modifiedAluFills CmsAluFills[] @relation(name: "ModifiedAFI")
+
+  createdAluHinges  CmsAluHinges[] @relation(name: "CreatedAH")
+  modifiedAluHinges CmsAluHinges[] @relation(name: "ModifiedAH")
+
+  createdAluHingeTypes  CmsHingeTypes[] @relation(name: "CreatedAHT")
+  modifiedAluHingeTypes CmsHingeTypes[] @relation(name: "ModifiedAHT")
 }
 
 model Mechanism {
@@ -91,9 +156,9 @@ enum ApprovalStatus {
 }
 
 model CmsUsers {
-  id                 String          @id @default(uuid())
-  isAdministrator    Boolean         @default(false)
-  isEmployee         Boolean         @default(false)
+  id                 String         @id @default(uuid())
+  isAdministrator    Boolean        @default(false)
+  isEmployee         Boolean        @default(false)
   discount           Decimal?
   username           String?
   email              String?
@@ -101,24 +166,24 @@ model CmsUsers {
   name               String?
   phone              String?
   address            String?
-  deliveryAddres     String?
-  discountHardware   Boolean         @default(false)
-  discountFillings   Boolean         @default(false)
-  useDetailedBilling Boolean         @default(false)
-  lockedDiscount     Boolean         @default(true)
+  deliveryAddress    String?
+  discountHardware   Boolean        @default(false)
+  discountFillings   Boolean        @default(false)
+  useDetailedBilling Boolean        @default(false)
+  lockedDiscount     Boolean        @default(true)
   note               String?
-  cmsDepartment      CmsDepartments? @relation(fields: [cmsDepartmentId], references: [id])
-  cmsDepartmentId    String?
-  orderCount         Int             @default(0)
-  accessCount        Int             @default(0)
-  approvalStatus     ApprovalStatus  @default(Pending)
-  isActive           Boolean         @default(true)
-  isDeleted          Boolean         @default(false)
+  orderCount         Int            @default(0)
+  accessCount        Int            @default(0)
+  approvalStatus     ApprovalStatus @default(Pending)
+  isActive           Boolean        @default(true)
+  isDeleted          Boolean        @default(false)
   deleted            DateTime?
   modified           DateTime?
-  created            DateTime        @default(now())
-  // modifiedBy 
-  // createdBy
+  created            DateTime       @default(now())
+  createdBy          User?          @relation(fields: [createdById], references: [id], name: "CreatedUsers")
+  createdById        String?
+  modifiedBy         User?          @relation(fields: [modifiedById], references: [id], name: "ModifiedUsers")
+  modifiedById       String?
 }
 
 model CmsHorizontalProfiles {
@@ -135,10 +200,11 @@ model CmsHorizontalProfiles {
   deleted              DateTime?
   modified             DateTime?
   created              DateTime               @default(now())
-  // createdBy
-  // modifiedBy
-  // deletedBy
   pic                  Files?                 @relation(name: "HorizontalProfilePic")
+  createdBy            User?                  @relation(fields: [createdById], references: [id], name: "CreatedHorizontalProfiles")
+  createdById          String?
+  modifiedBy           User?                  @relation(fields: [modifiedById], references: [id], name: "ModifiedHorizontalProfiles")
+  modifiedById         String?
 }
 
 model CmsOrderDoors {
@@ -161,8 +227,10 @@ model CmsOrderDoors {
   numberOfFields     Int?
   modified           DateTime?
   created            DateTime           @default(now())
-  // createdBy
-  // modifiedBy
+  modifiedBy         User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedOD")
+  modifiedById       String?
+  createdBy          User?              @relation(fields: [createdById], references: [id], name: "CreatedOD")
+  createdById        String?
 }
 
 model CmsOrders {
@@ -236,9 +304,10 @@ model CmsSupportedProfiles {
   deleted                 DateTime?
   modified                DateTime?
   created                 DateTime                @default(now())
-  // createdBy
-  // modifiedBy
-  // deletedBy
+  modifiedBy              User?                   @relation(fields: [modifiedById], references: [id], name: "ModifiedSP")
+  modifiedById            String?
+  createdBy               User?                   @relation(fields: [createdById], references: [id], name: "CreatedSP")
+  createdById             String?
 }
 
 model CmsHandrailDecorations {
@@ -268,9 +337,11 @@ model CmsHandrailDecorations {
   isDeleted                   Boolean                   @default(false)
   deleted                     DateTime?
   modified                    DateTime?
-  // modifiedBy String?
   created                     DateTime                  @default(now())
-  // createdBy String
+  modifiedBy                  User?                     @relation(fields: [modifiedById], references: [id], name: "ModifiedHD")
+  modifiedById                String?
+  createdBy                   User?                     @relation(fields: [createdById], references: [id], name: "CreatedHD")
+  createdById                 String?
 }
 
 model CmsSupportedDecorations {
@@ -285,9 +356,11 @@ model CmsSupportedDecorations {
   isDeleted               Boolean                 @default(false)
   deleted                 DateTime?
   modified                DateTime?
-  // modifiedBy String?
   created                 DateTime                @default(now())
-  // createdBy String
+  modifiedBy              User?                   @relation(fields: [modifiedById], references: [id], name: "ModifiedSD")
+  modifiedById            String?
+  createdBy               User?                   @relation(fields: [createdById], references: [id], name: "CreatedSD")
+  createdById             String?
 }
 
 model CmsHandrailEndings {
@@ -305,9 +378,11 @@ model CmsHandrailEndings {
   isDeleted     Boolean              @default(false)
   deleted       DateTime?
   modified      DateTime?
-  // modifiedBy String?
   created       DateTime             @default(now())
-  // createdBy String
+  modifiedBy    User?                @relation(fields: [modifiedById], references: [id], name: "ModifiedHE")
+  modifiedById  String?
+  createdBy     User?                @relation(fields: [createdById], references: [id], name: "CreatedHE")
+  createdById   String?
 }
 
 model CmsMechanisms {
@@ -358,14 +433,15 @@ model CmsMechanisms {
   isDeleted                   Boolean                  @default(false)
   deleted                     DateTime?
   modified                    DateTime?
-  // modifiedBy String?
   created                     DateTime                 @default(now())
-  // createdBy String
   pic                         Files?                   @relation(name: "MechanismPic")
   thinningpPic                Files?                   @relation(name: "MechanismThinningPic")
+  modifiedBy                  User?                    @relation(fields: [modifiedById], references: [id], name: "ModifiedM")
+  modifiedById                String?
+  createdBy                   User?                    @relation(fields: [createdById], references: [id], name: "CreatedM")
+  createdById                 String?
 }
 
-// Ovo treba many to many sa mechanisms
 model CmsDoorMechanisms {
   id                   String          @id @default(uuid())
   name                 String
@@ -374,17 +450,17 @@ model CmsDoorMechanisms {
   deceleratorOpposites String?
   price                Decimal?
   cmsMechanisms        CmsMechanisms[]
-  // cmsMechanism         CmsMechanisms?  @relation(fields: [cmsMechanismsId], references: [id])
-  // cmsMechanismsId      String?
   cmsOrderDoors        CmsOrderDoors[]
   cmsHandrails         CmsHandrails[]
   isActive             Boolean         @default(true)
   isDeleted            Boolean         @default(false)
   deleted              DateTime?
   modified             DateTime?
-  // modifiedBy String?
   created              DateTime        @default(now())
-  // createdBy String
+  modifiedBy           User?           @relation(fields: [modifiedById], references: [id], name: "CreatedDM", map: "modified_dm_fk")
+  modifiedById         String?
+  createdBy            User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedDM", map: "created_dm_fk")
+  createdById          String?
 }
 
 model CmsHandrails {
@@ -404,9 +480,11 @@ model CmsHandrails {
   isDeleted               Boolean                   @default(false)
   deleted                 DateTime?
   modified                DateTime?
-  // modifiedBy String?
   created                 DateTime                  @default(now())
-  // createdBy String
+  modifiedBy              User?                     @relation(fields: [modifiedById], references: [id], name: "ModifiedH")
+  modifiedById            String?
+  createdBy               User?                     @relation(fields: [createdById], references: [id], name: "CreatedH")
+  createdById             String?
   pic                     Files?                    @relation(name: "HandrailPic")
 }
 
@@ -421,9 +499,11 @@ model CmsPvcProfiles {
   isDeleted     Boolean         @default(false)
   deleted       DateTime?
   modified      DateTime?
-  // modifiedBy String?
   created       DateTime        @default(now())
-  // createdBy String
+  modifiedBy    User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedPP")
+  modifiedById  String?
+  createdBy     User?           @relation(fields: [createdById], references: [id], name: "CreatedPP")
+  createdById   String?
 }
 
 model CmsExtras {
@@ -437,9 +517,11 @@ model CmsExtras {
   isDeleted     Boolean         @default(false)
   deleted       DateTime?
   modified      DateTime?
-  // modifiedBy String?
   created       DateTime        @default(now())
-  // createdBy String
+  modifiedBy    User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedE")
+  modifiedById  String?
+  createdBy     User?           @relation(fields: [createdById], references: [id], name: "CreatedE")
+  createdById   String?
 }
 
 model CmsOrderExtras {
@@ -456,24 +538,28 @@ model CmsOrderExtras {
   isActive        Boolean   @default(true)
   deleted         DateTime?
   modified        DateTime?
-  // modifiedBy String?
   created         DateTime  @default(now())
-  // createdBy String
+  modifiedBy      User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedOE")
+  modifiedById    String?
+  createdBy       User?     @relation(fields: [createdById], references: [id], name: "CreatedOE")
+  createdById     String?
 }
 
 model CmsFoils {
-  id          String    @id @default(uuid())
-  name        String?
-  productCode String?
-  colorCode   String?
-  ralCode     String?
-  isActive    Boolean   @default(true)
-  isDeleted   Boolean   @default(false)
-  deleted     DateTime?
-  modified    DateTime?
-  // modifiedBy String?
-  created     DateTime  @default(now())
-  // createdBy String
+  id           String    @id @default(uuid())
+  name         String?
+  productCode  String?
+  colorCode    String?
+  ralCode      String?
+  isActive     Boolean   @default(true)
+  isDeleted    Boolean   @default(false)
+  deleted      DateTime?
+  modified     DateTime?
+  created      DateTime  @default(now())
+  modifiedBy   User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedFO")
+  modifiedById String?
+  createdBy    User?     @relation(fields: [createdById], references: [id], name: "CreatedFO")
+  createdById  String?
 }
 
 model CmsFills {
@@ -495,9 +581,11 @@ model CmsFills {
   isDeleted          Boolean         @default(false)
   deleted            DateTime?
   modified           DateTime?
-  // modifiedBy String?
   created            DateTime        @default(now())
-  // createdBy String
+  modifiedBy         User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedFI")
+  modifiedById       String?
+  createdBy          User?           @relation(fields: [createdById], references: [id], name: "CreatedFI")
+  createdById        String?
 }
 
 // Aluramovi dio:
@@ -573,25 +661,35 @@ model CmsAluFrameTreatments {
   isDeleted            Boolean           @default(false)
   deleted              DateTime?
   modified             DateTime?
-  // modifiedBy String?
   created              DateTime          @default(now())
-  // createdBy String
+  modifiedBy           User?             @relation(fields: [modifiedById], references: [id], name: "ModifiedAFT")
+  modifiedById         String?
+  createdBy            User?             @relation(fields: [createdById], references: [id], name: "CreatedAFT")
+  createdById          String?
 
   gallery Files[]
 }
 
 model CmsAluBevelOptions {
-  id    String   @id @default(uuid())
-  name  String?
-  code  String?
-  price Decimal?
+  id           String   @id @default(uuid())
+  name         String?
+  code         String?
+  price        Decimal?
+  modifiedBy   User?    @relation(fields: [modifiedById], references: [id], name: "ModifiedABO")
+  modifiedById String?
+  createdBy    User?    @relation(fields: [createdById], references: [id], name: "CreatedABO")
+  createdById  String?
 }
 
 model CmsAluSandBlastingOptions {
-  id    String   @id @default(uuid())
-  name  String?
-  code  String?
-  price Decimal?
+  id           String   @id @default(uuid())
+  name         String?
+  code         String?
+  price        Decimal?
+  modifiedBy   User?    @relation(fields: [modifiedById], references: [id], name: "ModifiedASBO")
+  modifiedById String?
+  createdBy    User?    @relation(fields: [createdById], references: [id], name: "CreatedASBO")
+  createdById  String?
 }
 
 model CmsAluFrameTypes {
@@ -615,10 +713,11 @@ model CmsAluFrameTypes {
   isDeleted              Boolean                 @default(false)
   deleted                DateTime?
   modified               DateTime?
-  // modifiedBy String?
   created                DateTime                @default(now())
-  // createdBy String
-  // cmsAluFills            CmsAluFills[]
+  createdBy              User?                   @relation(fields: [createdById], references: [id], name: "CreatedAFTT")
+  createdById            String?
+  modifiedBy             User?                   @relation(fields: [modifiedById], references: [id], name: "ModifiedAFTT")
+  modifiedById           String?
   cmsAluFills            CmsAluFills[]
   cmsAluFrameTreatments  CmsAluFrameTreatments[]
   cmsAluHinges           CmsAluHinges[]
@@ -631,15 +730,17 @@ model CmsAluFrameTypes {
 }
 
 model CmsAluHandleHoles {
-  id        String    @id @default(uuid())
-  length    Decimal?
-  isActive  Boolean   @default(true)
-  isDeleted Boolean   @default(false)
-  deleted   DateTime?
-  modified  DateTime?
-  // modifiedBy String?
-  created   DateTime  @default(now())
-  // createdBy String
+  id           String    @id @default(uuid())
+  length       Decimal?
+  isActive     Boolean   @default(true)
+  isDeleted    Boolean   @default(false)
+  deleted      DateTime?
+  modified     DateTime?
+  created      DateTime  @default(now())
+  createdBy    User?     @relation(fields: [createdById], references: [id], name: "CreatedAHH")
+  createdById  String?
+  modifiedBy   User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedAHH")
+  modifiedById String?
 }
 
 model CmsAluFoils {
@@ -654,22 +755,27 @@ model CmsAluFoils {
   isDeleted           Boolean   @default(false)
   deleted             DateTime?
   modified            DateTime?
-  // modifiedBy String?
   created             DateTime  @default(now())
-  // createdBy String
+  createdBy           User?     @relation(fields: [createdById], references: [id], name: "CreatedAFO")
+  createdById         String?
+  modifiedBy          User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedAFO")
+  modifiedById        String?
 }
 
 model CmsDepartments {
-  id        String     @id @default(uuid())
-  name      String?
-  isActive  Boolean    @default(true)
-  isDeleted Boolean    @default(false)
-  cmsUsers  CmsUsers[]
-  deleted   DateTime?
-  modified  DateTime?
-  // modifiedBy String?
-  created   DateTime   @default(now())
-  // createdBy String
+  id           String    @id @default(uuid())
+  name         String?
+  isActive     Boolean   @default(true)
+  isDeleted    Boolean   @default(false)
+  isAlu        Boolean   @default(false)
+  users        User[]
+  deleted      DateTime?
+  modified     DateTime?
+  created      DateTime  @default(now())
+  createdBy    User?     @relation(fields: [createdById], references: [id], name: "CreatedAD")
+  createdById  String?
+  modifiedBy   User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedAD")
+  modifiedById String?
 }
 
 model CmsAluLiftSupports {
@@ -683,9 +789,11 @@ model CmsAluLiftSupports {
   isDeleted        Boolean            @default(false)
   deleted          DateTime?
   modified         DateTime?
-  // modifiedBy String?
   created          DateTime           @default(now())
-  // createdBy String
+  createdBy        User?              @relation(fields: [createdById], references: [id], name: "CreatedALS")
+  createdById      String?
+  modifiedBy       User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedALS")
+  modifiedById     String?
   cmsAluFrameTypes CmsAluFrameTypes[]
   gallery          Files[]
 }
@@ -703,9 +811,11 @@ model CmsAluHandleProfiles {
   isDeleted            Boolean            @default(false)
   deleted              DateTime?
   modified             DateTime?
-  // modifiedBy String?
   created              DateTime           @default(now())
-  // createdBy String
+  createdBy            User?              @relation(fields: [createdById], references: [id], name: "CreatedAHP")
+  createdById          String?
+  modifiedBy           User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedAHP")
+  modifiedById         String?
   cmsAluFrameTypes     CmsAluFrameTypes[]
 }
 
@@ -725,9 +835,11 @@ model CmsAluFills {
   isDeleted           Boolean            @default(false)
   deleted             DateTime?
   modified            DateTime?
-  // modifiedBy String?
   created             DateTime           @default(now())
-  // createdBy String
+  createdBy           User?              @relation(fields: [createdById], references: [id], name: "CreatedAFI")
+  createdById         String?
+  modifiedBy          User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedAFI")
+  modifiedById        String?
   cmsAluFrameTypes    CmsAluFrameTypes[]
   gallery             Files[]
 }
@@ -743,9 +855,11 @@ model CmsAluHinges {
   isDeleted        Boolean            @default(false)
   deleted          DateTime?
   modified         DateTime?
-  // modifiedBy String?
   created          DateTime           @default(now())
-  // createdBy String
+  createdBy        User?              @relation(fields: [createdById], references: [id], name: "CreatedAH")
+  createdById      String?
+  modifiedBy       User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedAH")
+  modifiedById     String?
   cmsAluFrameTypes CmsAluFrameTypes[]
   pic              Files?
 }
@@ -760,9 +874,11 @@ model CmsHingeTypes {
   isDeleted    Boolean        @default(false)
   deleted      DateTime?
   modified     DateTime?
-  // modifiedBy String?
   created      DateTime       @default(now())
-  // createdBy String
+  createdBy    User?          @relation(fields: [createdById], references: [id], name: "CreatedAHT")
+  createdById  String?
+  modifiedBy   User?          @relation(fields: [modifiedById], references: [id], name: "ModifiedAHT")
+  modifiedById String?
 }
 
 model CmsAluSettings {

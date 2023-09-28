@@ -21,7 +21,7 @@ export class EmployeesService {
         address: createEmployeeDto.address,
         note: createEmployeeDto.note,
         approvalStatus: createEmployeeDto.approvalStatus,
-        cmsDepartmentId: createEmployeeDto.department?.id,
+        // cmsDepartmentId: createEmployeeDto.department?.id,
       },
     });
   }
@@ -55,7 +55,7 @@ export class EmployeesService {
         address: updateEmployeeDto.address,
         note: updateEmployeeDto.note,
         approvalStatus: updateEmployeeDto.approvalStatus,
-        cmsDepartmentId: updateEmployeeDto.department?.id,
+        // cmsDepartmentId: updateEmployeeDto.department?.id,
       },
     });
   }

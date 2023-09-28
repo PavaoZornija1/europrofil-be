@@ -7,6 +7,7 @@ CREATE TABLE "User" (
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "email" TEXT,
+    "cmsDepartmentId" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -84,19 +85,19 @@ CREATE TABLE "CmsUsers" (
     "id" TEXT NOT NULL,
     "isAdministrator" BOOLEAN NOT NULL DEFAULT false,
     "isEmployee" BOOLEAN NOT NULL DEFAULT false,
+    "discount" DECIMAL(65,30),
     "username" TEXT,
     "email" TEXT,
     "password" TEXT,
     "name" TEXT,
     "phone" TEXT,
     "address" TEXT,
-    "deliveryAddres" TEXT,
+    "deliveryAddress" TEXT,
     "discountHardware" BOOLEAN NOT NULL DEFAULT false,
     "discountFillings" BOOLEAN NOT NULL DEFAULT false,
     "useDetailedBilling" BOOLEAN NOT NULL DEFAULT false,
     "lockedDiscount" BOOLEAN NOT NULL DEFAULT true,
     "note" TEXT,
-    "cmsDepartmentId" TEXT,
     "orderCount" INTEGER NOT NULL DEFAULT 0,
     "accessCount" INTEGER NOT NULL DEFAULT 0,
     "approvalStatus" "ApprovalStatus" NOT NULL DEFAULT 'Pending',
@@ -105,6 +106,8 @@ CREATE TABLE "CmsUsers" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsUsers_pkey" PRIMARY KEY ("id")
 );
@@ -121,6 +124,8 @@ CREATE TABLE "CmsHorizontalProfiles" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsHorizontalProfiles_pkey" PRIMARY KEY ("id")
 );
@@ -144,6 +149,8 @@ CREATE TABLE "CmsOrderDoors" (
     "numberOfFields" INTEGER,
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsOrderDoors_pkey" PRIMARY KEY ("id")
 );
@@ -210,6 +217,8 @@ CREATE TABLE "CmsSupportedProfiles" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsSupportedProfiles_pkey" PRIMARY KEY ("id")
 );
@@ -239,6 +248,8 @@ CREATE TABLE "CmsHandrailDecorations" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsHandrailDecorations_pkey" PRIMARY KEY ("id")
 );
@@ -255,6 +266,8 @@ CREATE TABLE "CmsSupportedDecorations" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsSupportedDecorations_pkey" PRIMARY KEY ("id")
 );
@@ -271,6 +284,8 @@ CREATE TABLE "CmsHandrailEndings" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsHandrailEndings_pkey" PRIMARY KEY ("id")
 );
@@ -316,6 +331,8 @@ CREATE TABLE "CmsMechanisms" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsMechanisms_pkey" PRIMARY KEY ("id")
 );
@@ -333,6 +350,8 @@ CREATE TABLE "CmsDoorMechanisms" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsDoorMechanisms_pkey" PRIMARY KEY ("id")
 );
@@ -351,6 +370,8 @@ CREATE TABLE "CmsHandrails" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsHandrails_pkey" PRIMARY KEY ("id")
 );
@@ -367,6 +388,8 @@ CREATE TABLE "CmsPvcProfiles" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsPvcProfiles_pkey" PRIMARY KEY ("id")
 );
@@ -383,6 +406,8 @@ CREATE TABLE "CmsExtras" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsExtras_pkey" PRIMARY KEY ("id")
 );
@@ -401,6 +426,8 @@ CREATE TABLE "CmsOrderExtras" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsOrderExtras_pkey" PRIMARY KEY ("id")
 );
@@ -417,6 +444,8 @@ CREATE TABLE "CmsFoils" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsFoils_pkey" PRIMARY KEY ("id")
 );
@@ -427,7 +456,6 @@ CREATE TABLE "CmsFills" (
     "parentId" TEXT,
     "name" TEXT,
     "productCode" TEXT,
-    "cmsMechanismSet" TEXT,
     "requiresPvcProfile" BOOLEAN NOT NULL DEFAULT false,
     "requiresThinning" BOOLEAN NOT NULL DEFAULT false,
     "customNameAllowed" BOOLEAN NOT NULL DEFAULT false,
@@ -440,6 +468,8 @@ CREATE TABLE "CmsFills" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsFills_pkey" PRIMARY KEY ("id")
 );
@@ -512,8 +542,34 @@ CREATE TABLE "CmsAluFrameTreatments" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "modifiedById" TEXT,
+    "createdById" TEXT,
 
     CONSTRAINT "CmsAluFrameTreatments_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "CmsAluBevelOptions" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "code" TEXT,
+    "price" DECIMAL(65,30),
+    "modifiedById" TEXT,
+    "createdById" TEXT,
+
+    CONSTRAINT "CmsAluBevelOptions_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "CmsAluSandBlastingOptions" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "code" TEXT,
+    "price" DECIMAL(65,30),
+    "modifiedById" TEXT,
+    "createdById" TEXT,
+
+    CONSTRAINT "CmsAluSandBlastingOptions_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -539,6 +595,8 @@ CREATE TABLE "CmsAluFrameTypes" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsAluFrameTypes_pkey" PRIMARY KEY ("id")
 );
@@ -552,6 +610,8 @@ CREATE TABLE "CmsAluHandleHoles" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsAluHandleHoles_pkey" PRIMARY KEY ("id")
 );
@@ -570,6 +630,8 @@ CREATE TABLE "CmsAluFoils" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsAluFoils_pkey" PRIMARY KEY ("id")
 );
@@ -580,9 +642,12 @@ CREATE TABLE "CmsDepartments" (
     "name" TEXT,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "isAlu" BOOLEAN NOT NULL DEFAULT false,
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsDepartments_pkey" PRIMARY KEY ("id")
 );
@@ -593,7 +658,6 @@ CREATE TABLE "CmsAluLiftSupports" (
     "name" TEXT,
     "productCode" TEXT,
     "pricePerUnit" DECIMAL(65,30),
-    "cmsFrameTypeSet" TEXT,
     "description" TEXT,
     "ordering" INTEGER,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
@@ -601,6 +665,8 @@ CREATE TABLE "CmsAluLiftSupports" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsAluLiftSupports_pkey" PRIMARY KEY ("id")
 );
@@ -610,7 +676,6 @@ CREATE TABLE "CmsAluHandleProfiles" (
     "id" TEXT NOT NULL,
     "name" TEXT,
     "productCode" TEXT,
-    "cmsFrameTypeSet" TEXT,
     "pricePerMeter" DECIMAL(65,30),
     "priceIncrease" DECIMAL(65,30),
     "frameLengthReduction" DECIMAL(65,30),
@@ -621,6 +686,8 @@ CREATE TABLE "CmsAluHandleProfiles" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsAluHandleProfiles_pkey" PRIMARY KEY ("id")
 );
@@ -641,6 +708,8 @@ CREATE TABLE "CmsAluFills" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsAluFills_pkey" PRIMARY KEY ("id")
 );
@@ -657,6 +726,8 @@ CREATE TABLE "CmsAluHinges" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsAluHinges_pkey" PRIMARY KEY ("id")
 );
@@ -672,6 +743,8 @@ CREATE TABLE "CmsHingeTypes" (
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdById" TEXT,
+    "modifiedById" TEXT,
 
     CONSTRAINT "CmsHingeTypes_pkey" PRIMARY KEY ("id")
 );
@@ -729,8 +802,6 @@ CREATE TABLE "Files" (
     "file" TEXT,
     "filename" TEXT,
     "path" TEXT,
-    "entityId" TEXT NOT NULL,
-    "entityType" TEXT NOT NULL,
     "filesize" DECIMAL(65,30),
     "extension" TEXT,
     "mimetype" TEXT,
@@ -742,6 +813,17 @@ CREATE TABLE "Files" (
     "source" TEXT,
     "meta" TEXT,
     "modified" TIMESTAMP(3),
+    "mechanismPicId" TEXT,
+    "mechanismThinningPicId" TEXT,
+    "horizontalProfilePicId" TEXT,
+    "handrailPicId" TEXT,
+    "aluFrameTypePicId" TEXT,
+    "aluFrameTypeTechnicalPicId" TEXT,
+    "aluFrameTypeGalleryId" TEXT,
+    "aluFrameTreatmentsGalleryId" TEXT,
+    "aluFillId" TEXT,
+    "aluHingeId" TEXT,
+    "aluLiftSupportId" TEXT,
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Files_pkey" PRIMARY KEY ("id")
@@ -820,6 +902,12 @@ CREATE TABLE "_CmsAluFrameTypesToCmsAluHandleProfiles" (
 );
 
 -- CreateTable
+CREATE TABLE "_CmsAluFrameTypesToCmsAluLiftSupports" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "_CmsAluFillsToCmsAluFrameTypes" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
@@ -830,6 +918,30 @@ CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Files_mechanismPicId_key" ON "Files"("mechanismPicId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Files_mechanismThinningPicId_key" ON "Files"("mechanismThinningPicId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Files_horizontalProfilePicId_key" ON "Files"("horizontalProfilePicId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Files_handrailPicId_key" ON "Files"("handrailPicId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Files_aluFrameTypePicId_key" ON "Files"("aluFrameTypePicId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Files_aluFrameTypeTechnicalPicId_key" ON "Files"("aluFrameTypeTechnicalPicId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Files_aluHingeId_key" ON "Files"("aluHingeId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Files_aluLiftSupportId_key" ON "Files"("aluLiftSupportId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_CmsHorizontalProfilesToCmsMechanisms_AB_unique" ON "_CmsHorizontalProfilesToCmsMechanisms"("A", "B");
@@ -904,10 +1016,19 @@ CREATE UNIQUE INDEX "_CmsAluFrameTypesToCmsAluHandleProfiles_AB_unique" ON "_Cms
 CREATE INDEX "_CmsAluFrameTypesToCmsAluHandleProfiles_B_index" ON "_CmsAluFrameTypesToCmsAluHandleProfiles"("B");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "_CmsAluFrameTypesToCmsAluLiftSupports_AB_unique" ON "_CmsAluFrameTypesToCmsAluLiftSupports"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_CmsAluFrameTypesToCmsAluLiftSupports_B_index" ON "_CmsAluFrameTypesToCmsAluLiftSupports"("B");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "_CmsAluFillsToCmsAluFrameTypes_AB_unique" ON "_CmsAluFillsToCmsAluFrameTypes"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_CmsAluFillsToCmsAluFrameTypes_B_index" ON "_CmsAluFillsToCmsAluFrameTypes"("B");
+
+-- AddForeignKey
+ALTER TABLE "User" ADD CONSTRAINT "User_cmsDepartmentId_fkey" FOREIGN KEY ("cmsDepartmentId") REFERENCES "CmsDepartments"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Acos" ADD CONSTRAINT "Acos_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "Acos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -919,13 +1040,28 @@ ALTER TABLE "Aros" ADD CONSTRAINT "Aros_parentId_fkey" FOREIGN KEY ("parentId") 
 ALTER TABLE "Administrator" ADD CONSTRAINT "Administrator_groupId_fkey" FOREIGN KEY ("groupId") REFERENCES "Group"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "CmsUsers" ADD CONSTRAINT "CmsUsers_cmsDepartmentId_fkey" FOREIGN KEY ("cmsDepartmentId") REFERENCES "CmsDepartments"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "CmsUsers" ADD CONSTRAINT "CmsUsers_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsUsers" ADD CONSTRAINT "CmsUsers_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHorizontalProfiles" ADD CONSTRAINT "CmsHorizontalProfiles_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHorizontalProfiles" ADD CONSTRAINT "CmsHorizontalProfiles_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsOrderDoors" ADD CONSTRAINT "CmsOrderDoors_cmsOrderId_fkey" FOREIGN KEY ("cmsOrderId") REFERENCES "CmsOrders"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsOrderDoors" ADD CONSTRAINT "CmsOrderDoors_cmsDoorMechanismId_fkey" FOREIGN KEY ("cmsDoorMechanismId") REFERENCES "CmsDoorMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsOrderDoors" ADD CONSTRAINT "CmsOrderDoors_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsOrderDoors" ADD CONSTRAINT "CmsOrderDoors_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsOrders" ADD CONSTRAINT "CmsOrders_cmsMechanismId_fkey" FOREIGN KEY ("cmsMechanismId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -949,25 +1085,202 @@ ALTER TABLE "CmsSupportedProfiles" ADD CONSTRAINT "CmsSupportedProfiles_cmsHoriz
 ALTER TABLE "CmsSupportedProfiles" ADD CONSTRAINT "CmsSupportedProfiles_cmsHandrailDecorationId_fkey" FOREIGN KEY ("cmsHandrailDecorationId") REFERENCES "CmsHandrailDecorations"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "CmsSupportedProfiles" ADD CONSTRAINT "CmsSupportedProfiles_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsSupportedProfiles" ADD CONSTRAINT "CmsSupportedProfiles_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHandrailDecorations" ADD CONSTRAINT "CmsHandrailDecorations_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHandrailDecorations" ADD CONSTRAINT "CmsHandrailDecorations_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "CmsSupportedDecorations" ADD CONSTRAINT "CmsSupportedDecorations_cmsHandrailId_fkey" FOREIGN KEY ("cmsHandrailId") REFERENCES "CmsHandrails"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsSupportedDecorations" ADD CONSTRAINT "CmsSupportedDecorations_cmsHandrailDecorationId_fkey" FOREIGN KEY ("cmsHandrailDecorationId") REFERENCES "CmsHandrailDecorations"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "CmsSupportedDecorations" ADD CONSTRAINT "CmsSupportedDecorations_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsSupportedDecorations" ADD CONSTRAINT "CmsSupportedDecorations_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "CmsHandrailEndings" ADD CONSTRAINT "CmsHandrailEndings_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "CmsHandrailEndings"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHandrailEndings" ADD CONSTRAINT "CmsHandrailEndings_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHandrailEndings" ADD CONSTRAINT "CmsHandrailEndings_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsMechanisms" ADD CONSTRAINT "CmsMechanisms_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsMechanisms" ADD CONSTRAINT "CmsMechanisms_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsDoorMechanisms" ADD CONSTRAINT "modified_dm_fk" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsDoorMechanisms" ADD CONSTRAINT "created_dm_fk" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHandrails" ADD CONSTRAINT "CmsHandrails_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHandrails" ADD CONSTRAINT "CmsHandrails_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsPvcProfiles" ADD CONSTRAINT "CmsPvcProfiles_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsPvcProfiles" ADD CONSTRAINT "CmsPvcProfiles_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsExtras" ADD CONSTRAINT "CmsExtras_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsExtras" ADD CONSTRAINT "CmsExtras_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsOrderExtras" ADD CONSTRAINT "CmsOrderExtras_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsOrderExtras" ADD CONSTRAINT "CmsOrderExtras_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsFoils" ADD CONSTRAINT "CmsFoils_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsFoils" ADD CONSTRAINT "CmsFoils_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsFills" ADD CONSTRAINT "CmsFills_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "CmsFills"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "CmsFills" ADD CONSTRAINT "CmsFills_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsFills" ADD CONSTRAINT "CmsFills_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "CmsAluFrameTreatments" ADD CONSTRAINT "CmsAluFrameTreatments_cmsAluFrameTypeId_fkey" FOREIGN KEY ("cmsAluFrameTypeId") REFERENCES "CmsAluFrameTypes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluFrameTreatments" ADD CONSTRAINT "CmsAluFrameTreatments_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluFrameTreatments" ADD CONSTRAINT "CmsAluFrameTreatments_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluBevelOptions" ADD CONSTRAINT "CmsAluBevelOptions_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluBevelOptions" ADD CONSTRAINT "CmsAluBevelOptions_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluSandBlastingOptions" ADD CONSTRAINT "CmsAluSandBlastingOptions_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluSandBlastingOptions" ADD CONSTRAINT "CmsAluSandBlastingOptions_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluFrameTypes" ADD CONSTRAINT "CmsAluFrameTypes_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluFrameTypes" ADD CONSTRAINT "CmsAluFrameTypes_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluHandleHoles" ADD CONSTRAINT "CmsAluHandleHoles_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluHandleHoles" ADD CONSTRAINT "CmsAluHandleHoles_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluFoils" ADD CONSTRAINT "CmsAluFoils_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluFoils" ADD CONSTRAINT "CmsAluFoils_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsDepartments" ADD CONSTRAINT "CmsDepartments_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsDepartments" ADD CONSTRAINT "CmsDepartments_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluLiftSupports" ADD CONSTRAINT "CmsAluLiftSupports_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluLiftSupports" ADD CONSTRAINT "CmsAluLiftSupports_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluHandleProfiles" ADD CONSTRAINT "CmsAluHandleProfiles_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluHandleProfiles" ADD CONSTRAINT "CmsAluHandleProfiles_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CmsAluFills" ADD CONSTRAINT "CmsAluFills_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "CmsAluFills"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "CmsAluFills" ADD CONSTRAINT "CmsAluFills_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluFills" ADD CONSTRAINT "CmsAluFills_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "CmsAluHinges" ADD CONSTRAINT "CmsAluHinges_cmsHingeTypeId_fkey" FOREIGN KEY ("cmsHingeTypeId") REFERENCES "CmsHingeTypes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluHinges" ADD CONSTRAINT "CmsAluHinges_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsAluHinges" ADD CONSTRAINT "CmsAluHinges_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHingeTypes" ADD CONSTRAINT "CmsHingeTypes_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CmsHingeTypes" ADD CONSTRAINT "CmsHingeTypes_modifiedById_fkey" FOREIGN KEY ("modifiedById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_mechanismPicId_fkey" FOREIGN KEY ("mechanismPicId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_mechanismThinningPicId_fkey" FOREIGN KEY ("mechanismThinningPicId") REFERENCES "CmsMechanisms"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_horizontalProfilePicId_fkey" FOREIGN KEY ("horizontalProfilePicId") REFERENCES "CmsHorizontalProfiles"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_handrailPicId_fkey" FOREIGN KEY ("handrailPicId") REFERENCES "CmsHandrails"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_aluFrameTypePicId_fkey" FOREIGN KEY ("aluFrameTypePicId") REFERENCES "CmsAluFrameTypes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_aluFrameTypeTechnicalPicId_fkey" FOREIGN KEY ("aluFrameTypeTechnicalPicId") REFERENCES "CmsAluFrameTypes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_aluFrameTypeGalleryId_fkey" FOREIGN KEY ("aluFrameTypeGalleryId") REFERENCES "CmsAluFrameTypes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_aluFrameTreatmentsGalleryId_fkey" FOREIGN KEY ("aluFrameTreatmentsGalleryId") REFERENCES "CmsAluFrameTreatments"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_aluFillId_fkey" FOREIGN KEY ("aluFillId") REFERENCES "CmsAluFills"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_aluHingeId_fkey" FOREIGN KEY ("aluHingeId") REFERENCES "CmsAluHinges"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Files" ADD CONSTRAINT "Files_aluLiftSupportId_fkey" FOREIGN KEY ("aluLiftSupportId") REFERENCES "CmsAluLiftSupports"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CmsHorizontalProfilesToCmsMechanisms" ADD CONSTRAINT "_CmsHorizontalProfilesToCmsMechanisms_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsHorizontalProfiles"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -1040,6 +1353,12 @@ ALTER TABLE "_CmsAluFrameTypesToCmsAluHandleProfiles" ADD CONSTRAINT "_CmsAluFra
 
 -- AddForeignKey
 ALTER TABLE "_CmsAluFrameTypesToCmsAluHandleProfiles" ADD CONSTRAINT "_CmsAluFrameTypesToCmsAluHandleProfiles_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsAluHandleProfiles"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsAluFrameTypesToCmsAluLiftSupports" ADD CONSTRAINT "_CmsAluFrameTypesToCmsAluLiftSupports_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsAluFrameTypes"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_CmsAluFrameTypesToCmsAluLiftSupports" ADD CONSTRAINT "_CmsAluFrameTypesToCmsAluLiftSupports_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsAluLiftSupports"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CmsAluFillsToCmsAluFrameTypes" ADD CONSTRAINT "_CmsAluFillsToCmsAluFrameTypes_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsAluFills"("id") ON DELETE CASCADE ON UPDATE CASCADE;
