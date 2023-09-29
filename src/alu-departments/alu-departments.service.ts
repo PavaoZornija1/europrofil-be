@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { CreateDepartmentDto } from './dto/create-department.dto';
-import { UpdateDepartmentDto } from './dto/update-department.dto';
+import { CreateAluDepartmentDto } from './dto/create-alu-department.dto';
+import { UpdateAluDepartmentDto } from './dto/update-alu-department.dto';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 @Injectable()
-export class DepartmentsService {
-  async create(createDepartmentDto: CreateDepartmentDto, userId: string) {
+export class AluDepartmentsService {
+  async create(createDepartmentDto: CreateAluDepartmentDto, userId: string) {
     return await prisma.cmsDepartments.create({
       data: {
         name: createDepartmentDto.name,
-        isAlu: false,
+        isAlu: true,
         createdBy: userId
           ? {
               connect: {
@@ -25,7 +25,7 @@ export class DepartmentsService {
 
   async findAll() {
     return await prisma.cmsDepartments.findMany({
-      where: { isActive: true, isAlu: false },
+      where: { isActive: true, isAlu: true },
     });
   }
 
@@ -37,7 +37,7 @@ export class DepartmentsService {
 
   async update(
     id: string,
-    updateDepartmentDto: UpdateDepartmentDto,
+    updateDepartmentDto: UpdateAluDepartmentDto,
     userId: string,
   ) {
     return await prisma.cmsDepartments.update({
@@ -47,7 +47,7 @@ export class DepartmentsService {
       data: {
         name: updateDepartmentDto.name,
         modified: new Date(),
-        isAlu: false,
+        isAlu: true,
         modifiedBy: userId
           ? {
               connect: {
