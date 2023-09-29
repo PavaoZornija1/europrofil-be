@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { HandrailDecorationsService } from './handrail-decorations.service';
 import { CreateHandrailDecorationDto } from './dto/create-handrail-decoration.dto';
 import { UpdateHandrailDecorationDto } from './dto/update-handrail-decoration.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('handrail-decorations')
 export class HandrailDecorationsController {
@@ -18,8 +21,16 @@ export class HandrailDecorationsController {
   ) {}
 
   @Post()
-  create(@Body() createHandrailDecorationDto: CreateHandrailDecorationDto) {
-    return this.handrailDecorationsService.create(createHandrailDecorationDto);
+  @UseGuards(AuthGuard)
+  create(
+    @Req() req: any,
+    @Body() createHandrailDecorationDto: CreateHandrailDecorationDto,
+  ) {
+    const userId = req.user?.userId;
+    return this.handrailDecorationsService.create(
+      createHandrailDecorationDto,
+      userId,
+    );
   }
 
   @Get()
@@ -33,13 +44,17 @@ export class HandrailDecorationsController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
+    @Req() req: any,
     @Param('id') id: string,
     @Body() updateHandrailDecorationDto: UpdateHandrailDecorationDto,
   ) {
+    const userId = req.user?.userId;
     return this.handrailDecorationsService.update(
       id,
       updateHandrailDecorationDto,
+      userId,
     );
   }
 

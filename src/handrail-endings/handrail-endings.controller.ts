@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { HandrailEndingsService } from './handrail-endings.service';
 import { CreateHandrailEndingDto } from './dto/create-handrail-ending.dto';
 import { UpdateHandrailEndingDto } from './dto/update-handrail-ending.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('handrail-endings')
 export class HandrailEndingsController {
@@ -18,8 +21,13 @@ export class HandrailEndingsController {
   ) {}
 
   @Post()
-  create(@Body() createHandrailEndingDto: CreateHandrailEndingDto) {
-    return this.handrailEndingsService.create(createHandrailEndingDto);
+  @UseGuards(AuthGuard)
+  create(
+    @Req() req: any,
+    @Body() createHandrailEndingDto: CreateHandrailEndingDto,
+  ) {
+    const userId = req.user?.userId;
+    return this.handrailEndingsService.create(createHandrailEndingDto, userId);
   }
 
   @Get()
@@ -33,11 +41,18 @@ export class HandrailEndingsController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
+    @Req() req: any,
     @Param('id') id: string,
     @Body() updateHandrailEndingDto: UpdateHandrailEndingDto,
   ) {
-    return this.handrailEndingsService.update(id, updateHandrailEndingDto);
+    const userId = req.user?.userId;
+    return this.handrailEndingsService.update(
+      id,
+      updateHandrailEndingDto,
+      userId,
+    );
   }
 
   @Delete(':id')

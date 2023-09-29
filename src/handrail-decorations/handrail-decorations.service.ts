@@ -7,7 +7,10 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class HandrailDecorationsService {
-  async create(createHandrailDecorationDto: CreateHandrailDecorationDto) {
+  async create(
+    createHandrailDecorationDto: CreateHandrailDecorationDto,
+    userId: string,
+  ) {
     return await prisma.cmsHandrailDecorations.create({
       data: {
         name: createHandrailDecorationDto.name,
@@ -40,6 +43,13 @@ export class HandrailDecorationsService {
             id: mechanism,
           })),
         },
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -69,6 +79,7 @@ export class HandrailDecorationsService {
   async update(
     id: string,
     updateHandrailDecorationDto: UpdateHandrailDecorationDto,
+    userId: string,
   ) {
     await prisma.cmsHandrailDecorations.update({
       where: { id: id },
@@ -111,6 +122,13 @@ export class HandrailDecorationsService {
             id: mechanism,
           })),
         },
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

@@ -7,7 +7,10 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class SupportedDecorationsService {
-  async create(createSupportedDecorationDto: CreateSupportedDecorationDto) {
+  async create(
+    createSupportedDecorationDto: CreateSupportedDecorationDto,
+    userId: string,
+  ) {
     return await prisma.cmsSupportedDecorations.create({
       data: {
         price: createSupportedDecorationDto.price,
@@ -23,6 +26,13 @@ export class SupportedDecorationsService {
           ? {
               connect: {
                 id: createSupportedDecorationDto.handrailDecoration,
+              },
+            }
+          : undefined,
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
               },
             }
           : undefined,
@@ -69,6 +79,7 @@ export class SupportedDecorationsService {
   async update(
     id: string,
     updateSupportedDecorationDto: UpdateSupportedDecorationDto,
+    userId: string,
   ) {
     return await prisma.cmsSupportedDecorations.update({
       where: {
@@ -89,6 +100,13 @@ export class SupportedDecorationsService {
           ? {
               connect: {
                 id: updateSupportedDecorationDto.handrailDecoration,
+              },
+            }
+          : undefined,
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
               },
             }
           : undefined,
