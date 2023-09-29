@@ -6,18 +6,23 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { DepartmentsService } from './departments.service';
 import { CreateDepartmentDto } from './dto/create-department.dto';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('departments')
 export class DepartmentsController {
   constructor(private readonly departmentsService: DepartmentsService) {}
 
   @Post()
-  create(@Body() createDepartmentDto: CreateDepartmentDto) {
-    return this.departmentsService.create(createDepartmentDto);
+  @UseGuards(AuthGuard)
+  create(@Req() req: any, @Body() createDepartmentDto: CreateDepartmentDto) {
+    const userId = req.user?.userId;
+    return this.departmentsService.create(createDepartmentDto, userId);
   }
 
   @Get()
@@ -31,11 +36,14 @@ export class DepartmentsController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
+    @Req() req: any,
     @Param('id') id: string,
     @Body() updateDepartmentDto: UpdateDepartmentDto,
   ) {
-    return this.departmentsService.update(id, updateDepartmentDto);
+    const userId = req.user?.userId;
+    return this.departmentsService.update(id, updateDepartmentDto, userId);
   }
 
   @Delete(':id')

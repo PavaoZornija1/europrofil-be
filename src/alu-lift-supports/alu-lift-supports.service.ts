@@ -7,7 +7,10 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class AluLiftSupportsService {
-  async create(createAluLiftSupportDto: CreateAluLiftSupportDto) {
+  async create(
+    createAluLiftSupportDto: CreateAluLiftSupportDto,
+    userId: string,
+  ) {
     return await prisma.cmsAluLiftSupports.create({
       data: {
         name: createAluLiftSupportDto.name,
@@ -20,6 +23,13 @@ export class AluLiftSupportsService {
             id: frameType,
           })),
         },
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -42,7 +52,11 @@ export class AluLiftSupportsService {
     });
   }
 
-  async update(id: string, updateAluLiftSupportDto: UpdateAluLiftSupportDto) {
+  async update(
+    id: string,
+    updateAluLiftSupportDto: UpdateAluLiftSupportDto,
+    userId: string,
+  ) {
     await prisma.cmsAluLiftSupports.update({
       where: { id: id },
       data: {
@@ -68,6 +82,13 @@ export class AluLiftSupportsService {
             id: frameType,
           })),
         },
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

@@ -190,29 +190,69 @@ export class MechanismsService {
       },
       include: {
         cmsOrders: true,
-        cmsHorizontalProfiles: true,
+        cmsHorizontalProfiles: {
+          where: {
+            isActive: true,
+          },
+        },
         cmsDoorMechanisms: {
           include: {
             cmsOrderDoors: true,
-            cmsHandrails: true,
-          },
-        },
-        cmsHandrails: {
-          include: {
-            cmsDoorMechanisms: true,
-            cmsSupportedDecorations: true,
-            cmsHandrailEndings: {
-              include: {
-                children: true,
+            cmsHandrails: {
+              where: {
+                isActive: true,
               },
             },
           },
         },
-        cmsHandrailEndings: true,
-        cmsHandrailDecorations: true,
-        cmsPvcProfiles: true,
-        cmsFills: true,
-        cmsExtras: true,
+        cmsHandrails: {
+          include: {
+            cmsDoorMechanisms: {
+              where: {
+                isActive: true,
+              },
+            },
+            cmsSupportedDecorations: {
+              where: {
+                isActive: true,
+              },
+            },
+            cmsHandrailEndings: {
+              include: {
+                children: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        cmsHandrailEndings: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsHandrailDecorations: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsPvcProfiles: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsFills: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsExtras: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }
@@ -222,14 +262,69 @@ export class MechanismsService {
       where: { id: id },
       include: {
         cmsOrders: true,
-        cmsHorizontalProfiles: true,
-        cmsDoorMechanisms: true,
-        cmsHandrails: true,
-        cmsHandrailEndings: true,
-        cmsHandrailDecorations: true,
-        cmsPvcProfiles: true,
-        cmsFills: true,
-        cmsExtras: true,
+        cmsHorizontalProfiles: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsDoorMechanisms: {
+          include: {
+            cmsOrderDoors: true,
+            cmsHandrails: {
+              where: {
+                isActive: true,
+              },
+            },
+          },
+        },
+        cmsHandrails: {
+          include: {
+            cmsDoorMechanisms: {
+              where: {
+                isActive: true,
+              },
+            },
+            cmsSupportedDecorations: {
+              where: {
+                isActive: true,
+              },
+            },
+            cmsHandrailEndings: {
+              include: {
+                children: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        cmsHandrailEndings: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsHandrailDecorations: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsPvcProfiles: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsFills: {
+          where: {
+            isActive: true,
+          },
+        },
+        cmsExtras: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }

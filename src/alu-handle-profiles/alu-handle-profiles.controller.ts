@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { AluHandleProfilesService } from './alu-handle-profiles.service';
 import { CreateAluHandleProfileDto } from './dto/create-alu-handle-profile.dto';
 import { UpdateAluHandleProfileDto } from './dto/update-alu-handle-profile.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('alu-handle-profiles')
 export class AluHandleProfilesController {
@@ -18,8 +21,16 @@ export class AluHandleProfilesController {
   ) {}
 
   @Post()
-  create(@Body() createAluHandleProfileDto: CreateAluHandleProfileDto) {
-    return this.aluHandleProfilesService.create(createAluHandleProfileDto);
+  @UseGuards(AuthGuard)
+  create(
+    @Req() req: any,
+    @Body() createAluHandleProfileDto: CreateAluHandleProfileDto,
+  ) {
+    const userId = req.user?.userId;
+    return this.aluHandleProfilesService.create(
+      createAluHandleProfileDto,
+      userId,
+    );
   }
 
   @Get()
@@ -33,11 +44,18 @@ export class AluHandleProfilesController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
+    @Req() req: any,
     @Param('id') id: string,
     @Body() updateAluHandleProfileDto: UpdateAluHandleProfileDto,
   ) {
-    return this.aluHandleProfilesService.update(id, updateAluHandleProfileDto);
+    const userId = req.user?.userId;
+    return this.aluHandleProfilesService.update(
+      id,
+      updateAluHandleProfileDto,
+      userId,
+    );
   }
 
   @Delete(':id')

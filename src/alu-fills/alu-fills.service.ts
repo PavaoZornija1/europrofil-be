@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class AluFillsService {
-  async create(createAluFillDto: CreateAluFillDto) {
+  async create(createAluFillDto: CreateAluFillDto, userId: string) {
     return await prisma.cmsAluFills.create({
       data: {
         name: createAluFillDto.name,
@@ -27,6 +27,13 @@ export class AluFillsService {
             id: frameType,
           })),
         },
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -75,7 +82,7 @@ export class AluFillsService {
     });
   }
 
-  async update(id: string, updateAluFillDto: UpdateAluFillDto) {
+  async update(id: string, updateAluFillDto: UpdateAluFillDto, userId: string) {
     await prisma.cmsAluFills.update({
       where: { id: id },
       data: {
@@ -108,6 +115,13 @@ export class AluFillsService {
             id: frameType,
           })),
         },
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

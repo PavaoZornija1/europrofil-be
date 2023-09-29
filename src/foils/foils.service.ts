@@ -7,13 +7,20 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class FoilsService {
-  async create(createFoilDto: CreateFoilDto) {
+  async create(createFoilDto: CreateFoilDto, userId: string) {
     return await prisma.cmsFoils.create({
       data: {
         name: createFoilDto.name,
         productCode: createFoilDto.productCode,
         colorCode: createFoilDto.colorCode,
         ralCode: createFoilDto.ralCode,
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -28,7 +35,7 @@ export class FoilsService {
     });
   }
 
-  async update(id: string, updateFoilDto: UpdateFoilDto) {
+  async update(id: string, updateFoilDto: UpdateFoilDto, userId: string) {
     return await prisma.cmsFoils.update({
       where: {
         id: id,
@@ -39,6 +46,13 @@ export class FoilsService {
         colorCode: updateFoilDto.colorCode,
         ralCode: updateFoilDto.ralCode,
         modified: new Date(),
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

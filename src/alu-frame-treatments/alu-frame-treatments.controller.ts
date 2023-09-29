@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { AluFrameTreatmentsService } from './alu-frame-treatments.service';
 import { CreateAluFrameTreatmentDto } from './dto/create-alu-frame-treatment.dto';
 import { UpdateAluFrameTreatmentDto } from './dto/update-alu-frame-treatment.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('alu-frame-treatments')
 export class AluFrameTreatmentsController {
@@ -18,8 +21,16 @@ export class AluFrameTreatmentsController {
   ) {}
 
   @Post()
-  create(@Body() createAluFrameTreatmentDto: CreateAluFrameTreatmentDto) {
-    return this.aluFrameTreatmentsService.create(createAluFrameTreatmentDto);
+  @UseGuards(AuthGuard)
+  create(
+    @Req() req: any,
+    @Body() createAluFrameTreatmentDto: CreateAluFrameTreatmentDto,
+  ) {
+    const userId = req.user?.userId;
+    return this.aluFrameTreatmentsService.create(
+      createAluFrameTreatmentDto,
+      userId,
+    );
   }
 
   @Get()
@@ -33,13 +44,17 @@ export class AluFrameTreatmentsController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
+    @Req() req: any,
     @Param('id') id: string,
     @Body() updateAluFrameTreatmentDto: UpdateAluFrameTreatmentDto,
   ) {
+    const userId = req.user?.userId;
     return this.aluFrameTreatmentsService.update(
       id,
       updateAluFrameTreatmentDto,
+      userId,
     );
   }
 

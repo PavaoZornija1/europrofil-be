@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class AluProfilesService {
-  async create(createAluProfileDto: CreateAluProfileDto) {
+  async create(createAluProfileDto: CreateAluProfileDto, userId: string) {
     return await prisma.cmsAluFrameTypes.create({
       data: {
         name: createAluProfileDto.name,
@@ -25,6 +25,13 @@ export class AluProfilesService {
         ordering: createAluProfileDto.ordering,
         corverCoverProductCode: createAluProfileDto.cornerCoverProductCode,
         detailsLink: createAluProfileDto.detailsLink,
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -110,7 +117,11 @@ export class AluProfilesService {
     });
   }
 
-  async update(id: string, updateAluProfileDto: UpdateAluProfileDto) {
+  async update(
+    id: string,
+    updateAluProfileDto: UpdateAluProfileDto,
+    userId: string,
+  ) {
     return await prisma.cmsAluFrameTypes.update({
       where: {
         id: id,
@@ -132,6 +143,13 @@ export class AluProfilesService {
         ordering: updateAluProfileDto.ordering,
         corverCoverProductCode: updateAluProfileDto.cornerCoverProductCode,
         detailsLink: updateAluProfileDto.detailsLink,
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

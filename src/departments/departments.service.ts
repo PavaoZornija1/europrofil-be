@@ -7,10 +7,17 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class DepartmentsService {
-  async create(createDepartmentDto: CreateDepartmentDto) {
+  async create(createDepartmentDto: CreateDepartmentDto, userId: string) {
     return await prisma.cmsDepartments.create({
       data: {
         name: createDepartmentDto.name,
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -25,7 +32,11 @@ export class DepartmentsService {
     });
   }
 
-  async update(id: string, updateDepartmentDto: UpdateDepartmentDto) {
+  async update(
+    id: string,
+    updateDepartmentDto: UpdateDepartmentDto,
+    userId: string,
+  ) {
     return await prisma.cmsDepartments.update({
       where: {
         id: id,
@@ -33,6 +44,13 @@ export class DepartmentsService {
       data: {
         name: updateDepartmentDto.name,
         modified: new Date(),
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

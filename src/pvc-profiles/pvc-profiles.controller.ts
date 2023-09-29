@@ -6,18 +6,23 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { PvcProfilesService } from './pvc-profiles.service';
 import { CreatePvcProfileDto } from './dto/create-pvc-profile.dto';
 import { UpdatePvcProfileDto } from './dto/update-pvc-profile.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('pvc-profiles')
 export class PvcProfilesController {
   constructor(private readonly pvcProfilesService: PvcProfilesService) {}
 
   @Post()
-  create(@Body() createPvcProfileDto: CreatePvcProfileDto) {
-    return this.pvcProfilesService.create(createPvcProfileDto);
+  @UseGuards(AuthGuard)
+  create(@Req() req: any, @Body() createPvcProfileDto: CreatePvcProfileDto) {
+    const userId = req.user?.userId;
+    return this.pvcProfilesService.create(createPvcProfileDto, userId);
   }
 
   @Get()
@@ -31,11 +36,14 @@ export class PvcProfilesController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
+    @Req() req: any,
     @Param('id') id: string,
     @Body() updatePvcProfileDto: UpdatePvcProfileDto,
   ) {
-    return this.pvcProfilesService.update(id, updatePvcProfileDto);
+    const userId = req.user?.userId;
+    return this.pvcProfilesService.update(id, updatePvcProfileDto, userId);
   }
 
   @Delete(':id')

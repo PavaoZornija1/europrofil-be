@@ -7,7 +7,10 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class AluHandleProfilesService {
-  async create(createAluHandleProfileDto: CreateAluHandleProfileDto) {
+  async create(
+    createAluHandleProfileDto: CreateAluHandleProfileDto,
+    userId: string,
+  ) {
     return await prisma.cmsAluHandleProfiles.create({
       data: {
         name: createAluHandleProfileDto.name,
@@ -22,6 +25,13 @@ export class AluHandleProfilesService {
             id: frameType,
           })),
         },
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -47,6 +57,7 @@ export class AluHandleProfilesService {
   async update(
     id: string,
     updateAluHandleProfileDto: UpdateAluHandleProfileDto,
+    userId: string,
   ) {
     await prisma.cmsAluHandleProfiles.update({
       where: { id: id },
@@ -75,6 +86,13 @@ export class AluHandleProfilesService {
             id: frameType,
           })),
         },
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

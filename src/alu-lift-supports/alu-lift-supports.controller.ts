@@ -6,10 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { AluLiftSupportsService } from './alu-lift-supports.service';
 import { CreateAluLiftSupportDto } from './dto/create-alu-lift-support.dto';
 import { UpdateAluLiftSupportDto } from './dto/update-alu-lift-support.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('alu-lift-supports')
 export class AluLiftSupportsController {
@@ -18,8 +21,13 @@ export class AluLiftSupportsController {
   ) {}
 
   @Post()
-  create(@Body() createAluLiftSupportDto: CreateAluLiftSupportDto) {
-    return this.aluLiftSupportsService.create(createAluLiftSupportDto);
+  @UseGuards(AuthGuard)
+  create(
+    @Req() req: any,
+    @Body() createAluLiftSupportDto: CreateAluLiftSupportDto,
+  ) {
+    const userId = req.user?.userId;
+    return this.aluLiftSupportsService.create(createAluLiftSupportDto, userId);
   }
 
   @Get()
@@ -33,11 +41,18 @@ export class AluLiftSupportsController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
+    @Req() req: any,
     @Param('id') id: string,
     @Body() updateAluLiftSupportDto: UpdateAluLiftSupportDto,
   ) {
-    return this.aluLiftSupportsService.update(id, updateAluLiftSupportDto);
+    const userId = req.user?.userId;
+    return this.aluLiftSupportsService.update(
+      id,
+      updateAluLiftSupportDto,
+      userId,
+    );
   }
 
   @Delete(':id')

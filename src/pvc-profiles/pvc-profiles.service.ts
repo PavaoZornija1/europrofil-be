@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class PvcProfilesService {
-  async create(createPvcProfileDto: CreatePvcProfileDto) {
+  async create(createPvcProfileDto: CreatePvcProfileDto, userId: string) {
     return await prisma.cmsPvcProfiles.create({
       data: {
         name: createPvcProfileDto.name,
@@ -19,6 +19,13 @@ export class PvcProfilesService {
             id: mechanism,
           })),
         },
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -33,7 +40,11 @@ export class PvcProfilesService {
     });
   }
 
-  async update(id: string, updatePvcProfileDto: UpdatePvcProfileDto) {
+  async update(
+    id: string,
+    updatePvcProfileDto: UpdatePvcProfileDto,
+    userId: string,
+  ) {
     await prisma.cmsPvcProfiles.update({
       where: { id: id },
       data: {
@@ -58,6 +69,13 @@ export class PvcProfilesService {
             id: mechanism,
           })),
         },
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

@@ -7,7 +7,10 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class AluFrameTreatmentsService {
-  async create(createAluFrameTreatmentDto: CreateAluFrameTreatmentDto) {
+  async create(
+    createAluFrameTreatmentDto: CreateAluFrameTreatmentDto,
+    userId: string,
+  ) {
     return await prisma.cmsAluFrameTreatments.create({
       data: {
         name: createAluFrameTreatmentDto.name,
@@ -19,6 +22,13 @@ export class AluFrameTreatmentsService {
           ? {
               connect: {
                 id: createAluFrameTreatmentDto.frameType,
+              },
+            }
+          : undefined,
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
               },
             }
           : undefined,
@@ -41,6 +51,7 @@ export class AluFrameTreatmentsService {
   async update(
     id: string,
     updateAluFrameTreatmentDto: UpdateAluFrameTreatmentDto,
+    userId: string,
   ) {
     return await prisma.cmsAluFrameTreatments.update({
       where: {
@@ -58,6 +69,13 @@ export class AluFrameTreatmentsService {
           ? {
               connect: {
                 id: updateAluFrameTreatmentDto.frameType,
+              },
+            }
+          : undefined,
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
               },
             }
           : undefined,

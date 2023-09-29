@@ -7,11 +7,18 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class AluHingeTypeService {
-  async create(createAluHingeTypeDto: CreateAluHingeTypeDto) {
+  async create(createAluHingeTypeDto: CreateAluHingeTypeDto, userId: string) {
     return await prisma.cmsHingeTypes.create({
       data: {
         name: createAluHingeTypeDto.name,
         code: createAluHingeTypeDto.code,
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -26,7 +33,11 @@ export class AluHingeTypeService {
     });
   }
 
-  async update(id: string, updateAluHingeTypeDto: UpdateAluHingeTypeDto) {
+  async update(
+    id: string,
+    updateAluHingeTypeDto: UpdateAluHingeTypeDto,
+    userId: string,
+  ) {
     return await prisma.cmsHingeTypes.update({
       where: {
         id: id,
@@ -35,6 +46,13 @@ export class AluHingeTypeService {
         name: updateAluHingeTypeDto.name,
         code: updateAluHingeTypeDto.code,
         modified: new Date(),
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

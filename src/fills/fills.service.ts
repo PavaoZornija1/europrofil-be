@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class FillsService {
-  async create(createFillDto: CreateFillDto) {
+  async create(createFillDto: CreateFillDto, userId: string) {
     return await prisma.cmsFills.create({
       data: {
         name: createFillDto.name,
@@ -26,6 +26,13 @@ export class FillsService {
           ? {
               connect: {
                 id: createFillDto.parent,
+              },
+            }
+          : undefined,
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
               },
             }
           : undefined,
@@ -93,7 +100,7 @@ export class FillsService {
     });
   }
 
-  async update(id: string, updateFillDto: UpdateFillDto) {
+  async update(id: string, updateFillDto: UpdateFillDto, userId: string) {
     await prisma.cmsFills.update({
       where: { id: id },
       data: {
@@ -125,6 +132,13 @@ export class FillsService {
           ? {
               connect: {
                 id: updateFillDto.parent,
+              },
+            }
+          : undefined,
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
               },
             }
           : undefined,

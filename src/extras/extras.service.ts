@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class ExtrasService {
-  async create(createExtraDto: CreateExtraDto) {
+  async create(createExtraDto: CreateExtraDto, userId: string) {
     return await prisma.cmsExtras.create({
       data: {
         name: createExtraDto.name,
@@ -18,6 +18,13 @@ export class ExtrasService {
           ? {
               connect: {
                 id: createExtraDto.mechanism?.id,
+              },
+            }
+          : undefined,
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
               },
             }
           : undefined,
@@ -43,7 +50,7 @@ export class ExtrasService {
     });
   }
 
-  async update(id: string, updateExtraDto: UpdateExtraDto) {
+  async update(id: string, updateExtraDto: UpdateExtraDto, userId: string) {
     await prisma.cmsExtras.update({
       where: { id: id },
       data: {
@@ -67,6 +74,13 @@ export class ExtrasService {
           ? {
               connect: {
                 id: updateExtraDto.mechanism?.id,
+              },
+            }
+          : undefined,
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
               },
             }
           : undefined,

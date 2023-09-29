@@ -6,18 +6,26 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { AluHingeTypeService } from './alu-hinge-type.service';
 import { CreateAluHingeTypeDto } from './dto/create-alu-hinge-type.dto';
 import { UpdateAluHingeTypeDto } from './dto/update-alu-hinge-type.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('alu-hinge-type')
 export class AluHingeTypeController {
   constructor(private readonly aluHingeTypeService: AluHingeTypeService) {}
 
   @Post()
-  create(@Body() createAluHingeTypeDto: CreateAluHingeTypeDto) {
-    return this.aluHingeTypeService.create(createAluHingeTypeDto);
+  @UseGuards(AuthGuard)
+  create(
+    @Req() req: any,
+    @Body() createAluHingeTypeDto: CreateAluHingeTypeDto,
+  ) {
+    const userId = req.user?.userId;
+    return this.aluHingeTypeService.create(createAluHingeTypeDto, userId);
   }
 
   @Get()
@@ -31,11 +39,14 @@ export class AluHingeTypeController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
+    @Req() req: any,
     @Param('id') id: string,
     @Body() updateAluHingeTypeDto: UpdateAluHingeTypeDto,
   ) {
-    return this.aluHingeTypeService.update(id, updateAluHingeTypeDto);
+    const userId = req.user?.userId;
+    return this.aluHingeTypeService.update(id, updateAluHingeTypeDto, userId);
   }
 
   @Delete(':id')

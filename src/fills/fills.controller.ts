@@ -6,18 +6,23 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { FillsService } from './fills.service';
 import { CreateFillDto } from './dto/create-fill.dto';
 import { UpdateFillDto } from './dto/update-fill.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('fills')
 export class FillsController {
   constructor(private readonly fillsService: FillsService) {}
 
   @Post()
-  create(@Body() createFillDto: CreateFillDto) {
-    return this.fillsService.create(createFillDto);
+  @UseGuards(AuthGuard)
+  create(@Req() req: any, @Body() createFillDto: CreateFillDto) {
+    const userId = req.user?.userId;
+    return this.fillsService.create(createFillDto, userId);
   }
 
   @Get()
@@ -31,8 +36,14 @@ export class FillsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFillDto: UpdateFillDto) {
-    return this.fillsService.update(id, updateFillDto);
+  @UseGuards(AuthGuard)
+  update(
+    @Req() req: any,
+    @Param('id') id: string,
+    @Body() updateFillDto: UpdateFillDto,
+  ) {
+    const userId = req.user?.userId;
+    return this.fillsService.update(id, updateFillDto, userId);
   }
 
   @Delete(':id')

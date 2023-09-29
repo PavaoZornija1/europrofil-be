@@ -6,18 +6,23 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { AluHingesService } from './alu-hinges.service';
 import { CreateAluHingeDto } from './dto/create-alu-hinge.dto';
 import { UpdateAluHingeDto } from './dto/update-alu-hinge.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('alu-hinges')
 export class AluHingesController {
   constructor(private readonly aluHingesService: AluHingesService) {}
 
   @Post()
-  create(@Body() createAluHingeDto: CreateAluHingeDto) {
-    return this.aluHingesService.create(createAluHingeDto);
+  @UseGuards(AuthGuard)
+  create(@Req() req: any, @Body() createAluHingeDto: CreateAluHingeDto) {
+    const userId = req.user?.userId;
+    return this.aluHingesService.create(createAluHingeDto, userId);
   }
 
   @Get()
@@ -31,11 +36,14 @@ export class AluHingesController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
   update(
+    @Req() req: any,
     @Param('id') id: string,
     @Body() updateAluHingeDto: UpdateAluHingeDto,
   ) {
-    return this.aluHingesService.update(id, updateAluHingeDto);
+    const userId = req.user?.userId;
+    return this.aluHingesService.update(id, updateAluHingeDto, userId);
   }
 
   @Delete(':id')

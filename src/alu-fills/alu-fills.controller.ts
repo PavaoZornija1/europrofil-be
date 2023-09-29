@@ -6,18 +6,23 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { AluFillsService } from './alu-fills.service';
 import { CreateAluFillDto } from './dto/create-alu-fill.dto';
 import { UpdateAluFillDto } from './dto/update-alu-fill.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('alu-fills')
 export class AluFillsController {
   constructor(private readonly aluFillsService: AluFillsService) {}
 
   @Post()
-  create(@Body() createAluFillDto: CreateAluFillDto) {
-    return this.aluFillsService.create(createAluFillDto);
+  @UseGuards(AuthGuard)
+  create(@Req() req: any, @Body() createAluFillDto: CreateAluFillDto) {
+    const userId = req.user?.userId;
+    return this.aluFillsService.create(createAluFillDto, userId);
   }
 
   @Get()
@@ -31,8 +36,14 @@ export class AluFillsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAluFillDto: UpdateAluFillDto) {
-    return this.aluFillsService.update(id, updateAluFillDto);
+  @UseGuards(AuthGuard)
+  update(
+    @Req() req: any,
+    @Param('id') id: string,
+    @Body() updateAluFillDto: UpdateAluFillDto,
+  ) {
+    const userId = req.user?.userId;
+    return this.aluFillsService.update(id, updateAluFillDto, userId);
   }
 
   @Delete(':id')

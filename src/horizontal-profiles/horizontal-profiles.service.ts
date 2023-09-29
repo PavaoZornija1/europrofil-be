@@ -7,7 +7,10 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class HorizontalProfilesService {
-  async create(createHorizontalProfileDto: CreateHorizontalProfileDto) {
+  async create(
+    createHorizontalProfileDto: CreateHorizontalProfileDto,
+    userId: string,
+  ) {
     return await prisma.cmsHorizontalProfiles.create({
       data: {
         name: createHorizontalProfileDto.name,
@@ -19,6 +22,13 @@ export class HorizontalProfilesService {
             id: mechanism,
           })),
         },
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -46,6 +56,7 @@ export class HorizontalProfilesService {
   async update(
     id: string,
     updateHorizontalProfileDto: UpdateHorizontalProfileDto,
+    userId: string,
   ) {
     await prisma.cmsHorizontalProfiles.update({
       where: { id: id },
@@ -71,6 +82,13 @@ export class HorizontalProfilesService {
             id: mechanism,
           })),
         },
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }

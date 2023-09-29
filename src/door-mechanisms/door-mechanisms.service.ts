@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class DoorMechanismsService {
-  async create(createDoorMechanismDto: CreateDoorMechanismDto) {
+  async create(createDoorMechanismDto: CreateDoorMechanismDto, userId: string) {
     return await prisma.cmsDoorMechanisms.create({
       data: {
         name: createDoorMechanismDto.name,
@@ -20,6 +20,13 @@ export class DoorMechanismsService {
             id: mechanism,
           })),
         },
+        createdBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -46,7 +53,11 @@ export class DoorMechanismsService {
     });
   }
 
-  async update(id: string, updateDoorMechanismDto: UpdateDoorMechanismDto) {
+  async update(
+    id: string,
+    updateDoorMechanismDto: UpdateDoorMechanismDto,
+    userId: string,
+  ) {
     await prisma.cmsDoorMechanisms.update({
       where: { id: id },
       data: {
@@ -72,6 +83,13 @@ export class DoorMechanismsService {
             id: mechanism,
           })),
         },
+        modifiedBy: userId
+          ? {
+              connect: {
+                id: userId,
+              },
+            }
+          : undefined,
       },
     });
   }
