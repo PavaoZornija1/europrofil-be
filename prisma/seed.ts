@@ -10,7 +10,7 @@ const hashPassword = async (data: string): Promise<string> => {
 const prisma = new PrismaClient();
 
 async function main() {
-  const vanja = await prisma.user.upsert({
+  await prisma.user.upsert({
     where: { email: 'vanja@manageit.com' },
     update: {},
     create: {
@@ -19,13 +19,31 @@ async function main() {
       password: await hashPassword('opatovo10'),
     },
   });
-  const nemanja = await prisma.user.upsert({
+  await prisma.user.upsert({
     where: { email: 'nemanja@manageit.com' },
     update: {},
     create: {
       email: 'nemanja@manageit.com',
       username: 'nemanja',
       password: await hashPassword('opatovo10'),
+    },
+  });
+  await prisma.user.upsert({
+    where: { email: 'europrofil@random.com' },
+    update: {},
+    create: {
+      email: 'europrofil@random.com',
+      username: 'europrofil',
+      password: await hashPassword('opatovo10'),
+    },
+  });
+
+  await prisma.cmsUsers.create({
+    data: {
+      email: 'europrofil@random.com',
+      username: 'europrofil',
+      password: await hashPassword('opatovo10'),
+      name: 'Europrofil',
     },
   });
 

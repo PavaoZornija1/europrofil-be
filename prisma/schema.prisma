@@ -889,6 +889,7 @@ model CmsAluSettings {
   vat                                      Decimal?
   introText                                String?
   handleHolePrice                          Decimal?
+  specialHingeHolePrice                    Decimal?
   hingeHolePrice                           Decimal?
   hingeHoleWithInstallationPrice           Decimal?
   lockHolePrice                            Decimal?

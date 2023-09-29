@@ -9,6 +9,6 @@ const seedMechanism = async () => {
     data: mechanism,
     skipDuplicates: true,
   });
-}
+};
 
 export default seedMechanism;

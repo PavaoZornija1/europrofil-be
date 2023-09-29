@@ -8,6 +8,14 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class CustomersService {
+  public findByUsername(username: string) {
+    return prisma.cmsUsers.findFirst({
+      where: {
+        username: username,
+      },
+    });
+  }
+
   async create(createCustomerDto: CreateCustomerDto) {
     const salt = await genSalt(10);
     const hashedPw = await hash(createCustomerDto.password, salt);
@@ -27,7 +35,7 @@ export class CustomersService {
         discount: createCustomerDto.discount,
         email: createCustomerDto.email,
         useDetailedBilling: createCustomerDto.useDetailedBilling,
-        // deliveryAddress: createCustomerDto.deliveryAddress,
+        deliveryAddress: createCustomerDto.deliveryAddress,
       },
     });
   }
@@ -64,6 +72,7 @@ export class CustomersService {
         approvalStatus: updateCustomerDto.approvalStatus,
         lockedDiscount: updateCustomerDto.lockedDiscounts,
         email: updateCustomerDto.email,
+        deliveryAddress: updateCustomerDto.deliveryAddress,
         useDetailedBilling: updateCustomerDto.useDetailedBilling,
         modified: new Date(),
       },

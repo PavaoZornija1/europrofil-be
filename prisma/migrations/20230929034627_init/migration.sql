@@ -758,6 +758,7 @@ CREATE TABLE "CmsAluSettings" (
     "vat" DECIMAL(65,30),
     "introText" TEXT,
     "handleHolePrice" DECIMAL(65,30),
+    "specialHingeHolePrice" DECIMAL(65,30),
     "hingeHolePrice" DECIMAL(65,30),
     "hingeHoleWithInstallationPrice" DECIMAL(65,30),
     "lockHolePrice" DECIMAL(65,30),

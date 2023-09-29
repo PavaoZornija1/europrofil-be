@@ -10,4 +10,9 @@ export class AuthController {
   public async login(@Body() loginDto: LoginDto) {
     return await this.authService.login(loginDto);
   }
+
+  @Post('customer-login')
+  public async customerLogin(@Body() loginDto: LoginDto) {
+    return await this.authService.customerLogin(loginDto);
+  }
 }
