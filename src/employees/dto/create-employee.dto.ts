@@ -1,5 +1,5 @@
 import { ApprovalStatus, CmsDepartments } from '@prisma/client';
-import { IsString, IsNotEmpty, IsBoolean } from 'class-validator';
+import { IsString, IsNotEmpty, IsBoolean, IsOptional } from 'class-validator';
 
 export class CreateEmployeeDto {
   @IsString()
@@ -37,5 +37,6 @@ export class CreateEmployeeDto {
   @IsString()
   public approvalStatus: ApprovalStatus;
 
-  public department: CmsDepartments;
+  @IsOptional()
+  public department: string;
 }

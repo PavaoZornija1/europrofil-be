@@ -8,20 +8,19 @@ const prisma = new PrismaClient();
 @Injectable()
 export class EmployeesService {
   async create(createEmployeeDto: CreateEmployeeDto) {
-    return await prisma.cmsUsers.create({
+    return await prisma.user.create({
       data: {
-        name: createEmployeeDto.name,
+        username: createEmployeeDto.name,
         email: createEmployeeDto.email,
-        username: createEmployeeDto.username,
-        isEmployee: true,
-        isAdministrator: createEmployeeDto.isAdministrator,
         // hesirati
         password: createEmployeeDto.password,
-        phone: createEmployeeDto.phone,
-        address: createEmployeeDto.address,
-        note: createEmployeeDto.note,
-        approvalStatus: createEmployeeDto.approvalStatus,
-        // cmsDepartmentId: createEmployeeDto.department?.id,
+        cmsDepartment: createEmployeeDto.department
+          ? {
+              connect: {
+                id: createEmployeeDto.department,
+              },
+            }
+          : undefined,
       },
     });
   }
@@ -39,23 +38,22 @@ export class EmployeesService {
   }
 
   async update(id: string, updateEmployeeDto: UpdateEmployeeDto) {
-    return await prisma.cmsUsers.update({
+    return await prisma.user.update({
       where: {
         id: id,
       },
       data: {
-        name: updateEmployeeDto.name,
+        username: updateEmployeeDto.name,
         email: updateEmployeeDto.email,
-        username: updateEmployeeDto.username,
-        isEmployee: true,
-        modified: new Date(),
-        isAdministrator: updateEmployeeDto.isAdministrator,
+        // hesirati
         password: updateEmployeeDto.password,
-        phone: updateEmployeeDto.phone,
-        address: updateEmployeeDto.address,
-        note: updateEmployeeDto.note,
-        approvalStatus: updateEmployeeDto.approvalStatus,
-        // cmsDepartmentId: updateEmployeeDto.department?.id,
+        cmsDepartment: updateEmployeeDto.department
+          ? {
+              connect: {
+                id: updateEmployeeDto.department,
+              },
+            }
+          : undefined,
       },
     });
   }
