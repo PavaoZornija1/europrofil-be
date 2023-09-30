@@ -18,6 +18,10 @@ model User {
   email                          String?                     @unique
   cmsDepartment                  CmsDepartments?             @relation(fields: [cmsDepartmentId], references: [id])
   cmsDepartmentId                String?
+  // isActive                       Boolean                     @default(true)
+  // isDeleted                      Boolean                     @default(false)
+  // deleted                        DateTime?
+  // modified                       DateTime?
   createdUsers                   CmsUsers[]                  @relation(name: "CreatedUsers")
   modifiedUsers                  CmsUsers[]                  @relation(name: "ModifiedUsers")
   createdHorizontalProfiles      CmsHorizontalProfiles[]     @relation(name: "CreatedHorizontalProfiles")
