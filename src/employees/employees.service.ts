@@ -26,14 +26,19 @@ export class EmployeesService {
   }
 
   async findAll() {
-    return await prisma.cmsUsers.findMany({
-      where: { isActive: true, isEmployee: true, isAdministrator: false },
+    return await prisma.user.findMany({
+      include: {
+        cmsDepartment: true,
+      },
     });
   }
 
   async findOne(id: string) {
-    return await prisma.cmsUsers.findUnique({
+    return await prisma.user.findUnique({
       where: { id: id },
+      include: {
+        cmsDepartment: true,
+      },
     });
   }
 
@@ -59,14 +64,14 @@ export class EmployeesService {
   }
 
   async remove(id: string) {
-    return await prisma.cmsUsers.update({
+    return await prisma.user.update({
       where: {
         id: id,
       },
       data: {
-        isActive: false,
-        isDeleted: true,
-        deleted: new Date(),
+        // isActive: false,
+        // isDeleted: true,
+        // deleted: new Date(),
       },
     });
   }
