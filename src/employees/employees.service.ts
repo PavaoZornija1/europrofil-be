@@ -34,6 +34,9 @@ export class EmployeesService {
 
   async findAll() {
     return await prisma.user.findMany({
+      where: {
+        isActive: true,
+      },
       include: {
         cmsDepartment: true,
       },
