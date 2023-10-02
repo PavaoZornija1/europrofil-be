@@ -304,6 +304,13 @@ export class MechanismsService {
           where: {
             isActive: true,
           },
+          include: {
+            children: {
+              where: {
+                isActive: true,
+              },
+            },
+          },
         },
         cmsHandrailDecorations: {
           where: {
