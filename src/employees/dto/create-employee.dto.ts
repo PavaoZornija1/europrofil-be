@@ -1,10 +1,22 @@
-import { ApprovalStatus, CmsDepartments } from '@prisma/client';
-import { IsString, IsNotEmpty, IsBoolean, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateEmployeeDto {
   @IsString()
   @IsNotEmpty()
+  public username: string;
+
+  @IsString()
+  @IsNotEmpty()
   public name: string;
+
+  @IsOptional()
+  public address: string;
+
+  @IsOptional()
+  public note: string;
+
+  @IsOptional()
+  public phone: string;
 
   @IsString()
   @IsNotEmpty()

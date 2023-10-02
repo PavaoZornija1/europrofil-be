@@ -14,14 +14,18 @@ datasource db {
 model User {
   id                             String                      @id @default(uuid())
   username                       String                      @unique
+  name                           String?
+  phone                          String?
+  address                        String?
+  note                           String?
   password                       String
   email                          String?                     @unique
   cmsDepartment                  CmsDepartments?             @relation(fields: [cmsDepartmentId], references: [id])
   cmsDepartmentId                String?
-  // isActive                       Boolean                     @default(true)
-  // isDeleted                      Boolean                     @default(false)
-  // deleted                        DateTime?
-  // modified                       DateTime?
+  isActive                       Boolean                     @default(true)
+  isDeleted                      Boolean                     @default(false)
+  deleted                        DateTime?
+  modified                       DateTime?
   createdUsers                   CmsUsers[]                  @relation(name: "CreatedUsers")
   modifiedUsers                  CmsUsers[]                  @relation(name: "ModifiedUsers")
   createdHorizontalProfiles      CmsHorizontalProfiles[]     @relation(name: "CreatedHorizontalProfiles")

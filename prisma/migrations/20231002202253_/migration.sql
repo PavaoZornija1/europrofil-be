@@ -5,9 +5,17 @@ CREATE TYPE "ApprovalStatus" AS ENUM ('Pending', 'Postponed', 'Rejected', 'Accep
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "username" TEXT NOT NULL,
+    "name" TEXT,
+    "phone" TEXT,
+    "address" TEXT,
+    "note" TEXT,
     "password" TEXT NOT NULL,
     "email" TEXT,
     "cmsDepartmentId" TEXT,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "deleted" TIMESTAMP(3),
+    "modified" TIMESTAMP(3),
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

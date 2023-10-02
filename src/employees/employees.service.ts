@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
+import { genSalt, hash } from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -8,12 +9,18 @@ const prisma = new PrismaClient();
 @Injectable()
 export class EmployeesService {
   async create(createEmployeeDto: CreateEmployeeDto) {
+    const salt = await genSalt(10);
+    const hashedPw = await hash(createEmployeeDto.password, salt);
+
     return await prisma.user.create({
       data: {
         username: createEmployeeDto.name,
+        name: createEmployeeDto.name,
+        note: createEmployeeDto.note,
+        address: createEmployeeDto.address,
+        phone: createEmployeeDto.phone,
         email: createEmployeeDto.email,
-        // hesirati
-        password: createEmployeeDto.password,
+        password: hashedPw,
         cmsDepartment: createEmployeeDto.department
           ? {
               connect: {
@@ -43,6 +50,9 @@ export class EmployeesService {
   }
 
   async update(id: string, updateEmployeeDto: UpdateEmployeeDto) {
+    const salt = await genSalt(10);
+    const hashedPw = await hash(updateEmployeeDto.password, salt);
+
     return await prisma.user.update({
       where: {
         id: id,
@@ -50,8 +60,11 @@ export class EmployeesService {
       data: {
         username: updateEmployeeDto.name,
         email: updateEmployeeDto.email,
-        // hesirati
-        password: updateEmployeeDto.password,
+        name: updateEmployeeDto.name,
+        note: updateEmployeeDto.note,
+        address: updateEmployeeDto.address,
+        phone: updateEmployeeDto.phone,
+        password: hashedPw,
         cmsDepartment: updateEmployeeDto.department
           ? {
               connect: {
@@ -69,9 +82,9 @@ export class EmployeesService {
         id: id,
       },
       data: {
-        // isActive: false,
-        // isDeleted: true,
-        // deleted: new Date(),
+        isActive: false,
+        isDeleted: true,
+        deleted: new Date(),
       },
     });
   }
