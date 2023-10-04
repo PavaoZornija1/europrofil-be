@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class CreatePvcProfileDto {
   @IsString()
@@ -14,7 +14,7 @@ export class CreatePvcProfileDto {
   public pricePerM: number;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public ralCode: string;
 
   @IsNotEmpty()
