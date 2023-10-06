@@ -19,5 +19,5 @@ export class CreateExtraDto {
   public pricePerUnit: number;
 
   @IsNotEmpty()
-  public mechanism: CmsMechanisms;
+  public mechanisms: any[];
 }
