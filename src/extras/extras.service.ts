@@ -14,13 +14,11 @@ export class ExtrasService {
         productCode: createExtraDto.productCode,
         unit: createExtraDto.unit,
         pricePerUnit: createExtraDto.pricePerUnit,
-        cmsMechanisms: createExtraDto.mechanism?.id
-          ? {
-              connect: {
-                id: createExtraDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: createExtraDto.mechanisms.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
         createdBy: userId
           ? {
               connect: {
@@ -70,13 +68,11 @@ export class ExtrasService {
         unit: updateExtraDto.unit,
         modified: new Date(),
         pricePerUnit: updateExtraDto.pricePerUnit,
-        cmsMechanisms: updateExtraDto.mechanism?.id
-          ? {
-              connect: {
-                id: updateExtraDto.mechanism?.id,
-              },
-            }
-          : undefined,
+        cmsMechanisms: {
+          connect: updateExtraDto.mechanisms.map((mechanism) => ({
+            id: mechanism,
+          })),
+        },
         modifiedBy: userId
           ? {
               connect: {
