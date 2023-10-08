@@ -31,12 +31,28 @@ export class PvcProfilesService {
   }
 
   async findAll() {
-    return prisma.cmsPvcProfiles.findMany({ where: { isActive: true } });
+    return prisma.cmsPvcProfiles.findMany({
+      where: { isActive: true },
+      include: {
+        cmsMechanisms: {
+          where: {
+            isActive: true,
+          },
+        },
+      },
+    });
   }
 
   async findOne(id: string) {
     return prisma.cmsPvcProfiles.findUnique({
       where: { id: id },
+      include: {
+        cmsMechanisms: {
+          where: {
+            isActive: true,
+          },
+        },
+      },
     });
   }
 
