@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 @Injectable()
 export class SettingsService {
   async findAll() {
-    return await prisma.cmsHandrails.findMany();
+    return await prisma.cmsSettings.findMany();
   }
 
   async update(id: string, updateSettingDto: UpdateSettingDto) {
