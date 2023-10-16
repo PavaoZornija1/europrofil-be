@@ -11,11 +11,11 @@ export class CreateHandrailEndingDto {
   public name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public productCode: string;
 
   @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   public pricePerM: number;
 
   @IsOptional()
