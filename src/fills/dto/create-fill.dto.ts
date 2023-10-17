@@ -12,27 +12,27 @@ export class CreateFillDto {
   public name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public productCode: string;
 
   @IsBoolean()
-  @IsNotEmpty()
+  @IsOptional()
   public requiresPvcProfile: boolean;
 
   @IsBoolean()
-  @IsNotEmpty()
+  @IsOptional()
   public requiresThinning: boolean;
 
   @IsBoolean()
-  @IsNotEmpty()
+  @IsOptional()
   public customNameAllowed: boolean;
 
   @IsBoolean()
-  @IsNotEmpty()
+  @IsOptional()
   public foilAvailable: boolean;
 
   @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   public pricePerMSquare: number;
 
   @IsOptional()

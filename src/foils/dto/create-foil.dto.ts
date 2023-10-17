@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateFoilDto {
   @IsString()
@@ -6,14 +6,14 @@ export class CreateFoilDto {
   public name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public productCode: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public colorCode: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public ralCode: string;
 }
