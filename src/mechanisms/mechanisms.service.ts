@@ -213,6 +213,18 @@ export class MechanismsService {
               },
             },
             cmsSupportedDecorations: {
+              include: {
+                cmsHandrail: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+                cmsHandrailDecoration: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+              },
               where: {
                 isActive: true,
               },
@@ -292,6 +304,18 @@ export class MechanismsService {
               },
             },
             cmsSupportedDecorations: {
+              include: {
+                cmsHandrail: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+                cmsHandrailDecoration: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+              },
               where: {
                 isActive: true,
               },
