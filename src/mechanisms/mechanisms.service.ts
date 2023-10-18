@@ -206,6 +206,9 @@ export class MechanismsService {
           },
         },
         cmsHandrails: {
+          where: {
+            isActive: true,
+          },
           include: {
             cmsDoorMechanisms: {
               where: {
@@ -297,6 +300,9 @@ export class MechanismsService {
           },
         },
         cmsHandrails: {
+          where: {
+            isActive: true,
+          },
           include: {
             cmsDoorMechanisms: {
               where: {
