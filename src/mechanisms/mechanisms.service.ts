@@ -261,6 +261,13 @@ export class MechanismsService {
         cmsFills: {
           include: {
             children: {
+              include: {
+                children: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+              },
               where: {
                 isActive: true,
               },
@@ -362,6 +369,13 @@ export class MechanismsService {
         cmsFills: {
           include: {
             children: {
+              include: {
+                children: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+              },
               where: {
                 isActive: true,
               },
