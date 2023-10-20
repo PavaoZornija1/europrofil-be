@@ -2,936 +2,937 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id                             String                      @id @default(uuid())
-  username                       String                      @unique
-  name                           String?
-  phone                          String?
-  address                        String?
-  note                           String?
-  password                       String
-  email                          String?                     @unique
-  cmsDepartment                  CmsDepartments?             @relation(fields: [cmsDepartmentId], references: [id])
-  cmsDepartmentId                String?
-  isActive                       Boolean                     @default(true)
-  isDeleted                      Boolean                     @default(false)
-  deleted                        DateTime?
-  modified                       DateTime?
-  createdUsers                   CmsUsers[]                  @relation(name: "CreatedUsers")
-  modifiedUsers                  CmsUsers[]                  @relation(name: "ModifiedUsers")
-  createdHorizontalProfiles      CmsHorizontalProfiles[]     @relation(name: "CreatedHorizontalProfiles")
-  modifiedHorizontalProfiles     CmsHorizontalProfiles[]     @relation(name: "ModifiedHorizontalProfiles")
-  createdOrderDoors              CmsOrderDoors[]             @relation(name: "CreatedOD")
-  modifiedOrderDoors             CmsOrderDoors[]             @relation(name: "ModifiedOD")
-  createdSupportedProfiles       CmsSupportedProfiles[]      @relation(name: "CreatedSP")
-  modifiedSupportedProfiles      CmsSupportedProfiles[]      @relation(name: "ModifiedSP")
-  createdHandrailsDecorations    CmsHandrailDecorations[]    @relation(name: "CreatedHD")
-  modifiedHandrailsDecorations   CmsHandrailDecorations[]    @relation(name: "ModifiedHD")
-  createdSupportedDecorations    CmsSupportedDecorations[]   @relation(name: "CreatedSD")
-  modifiedSupportedDecorations   CmsSupportedDecorations[]   @relation(name: "ModifiedSD")
-  createdHandrailEndings         CmsHandrailEndings[]        @relation(name: "CreatedHE")
-  modifiedHandrailEndings        CmsHandrailEndings[]        @relation(name: "ModifiedHE")
-  createdMechanisms              CmsMechanisms[]             @relation(name: "CreatedM")
-  modifiedMechanisms             CmsMechanisms[]             @relation(name: "ModifiedM")
-  createdDoorMechanisms          CmsDoorMechanisms[]         @relation(name: "CreatedDM")
-  modifiedDoorMechanisms         CmsDoorMechanisms[]         @relation(name: "ModifiedDM")
-  createdHandrails               CmsHandrails[]              @relation(name: "CreatedH")
-  modifiedHandrails              CmsHandrails[]              @relation(name: "ModifiedH")
-  createdPvcProfiles             CmsPvcProfiles[]            @relation(name: "CreatedPP")
-  modifiedPvcProfiles            CmsPvcProfiles[]            @relation(name: "ModifiedPP")
-  createdExtras                  CmsExtras[]                 @relation(name: "CreatedE")
-  modifiedExtras                 CmsExtras[]                 @relation(name: "ModifiedE")
-  createdOrderExtras             CmsOrderExtras[]            @relation(name: "CreatedOE")
-  modifiedOrderExtras            CmsOrderExtras[]            @relation(name: "ModifiedOE")
-  createdFoils                   CmsFoils[]                  @relation(name: "CreatedFO")
-  modifiedFoils                  CmsFoils[]                  @relation(name: "ModifiedFO")
-  createdFills                   CmsFills[]                  @relation(name: "CreatedFI")
-  modifiedFills                  CmsFills[]                  @relation(name: "ModifiedFI")
-  createdAluFrameTreatments      CmsAluFrameTreatments[]     @relation(name: "CreatedAFT")
-  modifiedAluFrameTreatments     CmsAluFrameTreatments[]     @relation(name: "ModifiedAFT")
-  createdAluBevelOptions         CmsAluBevelOptions[]        @relation(name: "CreatedABO")
-  modifiedAluBevelOptions        CmsAluBevelOptions[]        @relation(name: "ModifiedABO")
-  createdAluSandBlastingOptions  CmsAluSandBlastingOptions[] @relation(name: "CreatedASBO")
-  modifiedAluSandBlastingOptions CmsAluSandBlastingOptions[] @relation(name: "ModifiedASBO")
+    id                             String                      @id @default(uuid())
+    username                       String                      @unique
+    name                           String?
+    phone                          String?
+    address                        String?
+    note                           String?
+    password                       String
+    email                          String?                     @unique
+    cmsDepartment                  CmsDepartments?             @relation(fields: [cmsDepartmentId], references: [id])
+    cmsDepartmentId                String?
+    isActive                       Boolean                     @default(true)
+    isDeleted                      Boolean                     @default(false)
+    deleted                        DateTime?
+    modified                       DateTime?
+    createdUsers                   CmsUsers[]                  @relation(name: "CreatedUsers")
+    modifiedUsers                  CmsUsers[]                  @relation(name: "ModifiedUsers")
+    createdHorizontalProfiles      CmsHorizontalProfiles[]     @relation(name: "CreatedHorizontalProfiles")
+    modifiedHorizontalProfiles     CmsHorizontalProfiles[]     @relation(name: "ModifiedHorizontalProfiles")
+    createdOrderDoors              CmsOrderDoors[]             @relation(name: "CreatedOD")
+    modifiedOrderDoors             CmsOrderDoors[]             @relation(name: "ModifiedOD")
+    createdSupportedProfiles       CmsSupportedProfiles[]      @relation(name: "CreatedSP")
+    modifiedSupportedProfiles      CmsSupportedProfiles[]      @relation(name: "ModifiedSP")
+    createdHandrailsDecorations    CmsHandrailDecorations[]    @relation(name: "CreatedHD")
+    modifiedHandrailsDecorations   CmsHandrailDecorations[]    @relation(name: "ModifiedHD")
+    createdSupportedDecorations    CmsSupportedDecorations[]   @relation(name: "CreatedSD")
+    modifiedSupportedDecorations   CmsSupportedDecorations[]   @relation(name: "ModifiedSD")
+    createdHandrailEndings         CmsHandrailEndings[]        @relation(name: "CreatedHE")
+    modifiedHandrailEndings        CmsHandrailEndings[]        @relation(name: "ModifiedHE")
+    createdMechanisms              CmsMechanisms[]             @relation(name: "CreatedM")
+    modifiedMechanisms             CmsMechanisms[]             @relation(name: "ModifiedM")
+    createdDoorMechanisms          CmsDoorMechanisms[]         @relation(name: "CreatedDM")
+    modifiedDoorMechanisms         CmsDoorMechanisms[]         @relation(name: "ModifiedDM")
+    createdHandrails               CmsHandrails[]              @relation(name: "CreatedH")
+    modifiedHandrails              CmsHandrails[]              @relation(name: "ModifiedH")
+    createdPvcProfiles             CmsPvcProfiles[]            @relation(name: "CreatedPP")
+    modifiedPvcProfiles            CmsPvcProfiles[]            @relation(name: "ModifiedPP")
+    createdExtras                  CmsExtras[]                 @relation(name: "CreatedE")
+    modifiedExtras                 CmsExtras[]                 @relation(name: "ModifiedE")
+    createdOrderExtras             CmsOrderExtras[]            @relation(name: "CreatedOE")
+    modifiedOrderExtras            CmsOrderExtras[]            @relation(name: "ModifiedOE")
+    createdFoils                   CmsFoils[]                  @relation(name: "CreatedFO")
+    modifiedFoils                  CmsFoils[]                  @relation(name: "ModifiedFO")
+    createdFills                   CmsFills[]                  @relation(name: "CreatedFI")
+    modifiedFills                  CmsFills[]                  @relation(name: "ModifiedFI")
+    createdAluFrameTreatments      CmsAluFrameTreatments[]     @relation(name: "CreatedAFT")
+    modifiedAluFrameTreatments     CmsAluFrameTreatments[]     @relation(name: "ModifiedAFT")
+    createdAluBevelOptions         CmsAluBevelOptions[]        @relation(name: "CreatedABO")
+    modifiedAluBevelOptions        CmsAluBevelOptions[]        @relation(name: "ModifiedABO")
+    createdAluSandBlastingOptions  CmsAluSandBlastingOptions[] @relation(name: "CreatedASBO")
+    modifiedAluSandBlastingOptions CmsAluSandBlastingOptions[] @relation(name: "ModifiedASBO")
 
-  createdAluFrameTypes  CmsAluFrameTypes[] @relation(name: "CreatedAFTT")
-  modifiedAluFrameTypes CmsAluFrameTypes[] @relation(name: "ModifiedAFTT")
+    createdAluFrameTypes  CmsAluFrameTypes[] @relation(name: "CreatedAFTT")
+    modifiedAluFrameTypes CmsAluFrameTypes[] @relation(name: "ModifiedAFTT")
 
-  createdAluHandleHoles  CmsAluHandleHoles[] @relation(name: "CreatedAHH")
-  modifiedAluHandleHoles CmsAluHandleHoles[] @relation(name: "ModifiedAHH")
+    createdAluHandleHoles  CmsAluHandleHoles[] @relation(name: "CreatedAHH")
+    modifiedAluHandleHoles CmsAluHandleHoles[] @relation(name: "ModifiedAHH")
 
-  createdAluFoils  CmsAluFoils[] @relation(name: "CreatedAFO")
-  modifiedAluFoils CmsAluFoils[] @relation(name: "ModifiedAFO")
+    createdAluFoils  CmsAluFoils[] @relation(name: "CreatedAFO")
+    modifiedAluFoils CmsAluFoils[] @relation(name: "ModifiedAFO")
 
-  createdDepartments  CmsDepartments[] @relation(name: "CreatedAD")
-  modifiedDepartments CmsDepartments[] @relation(name: "ModifiedAD")
+    createdDepartments  CmsDepartments[] @relation(name: "CreatedAD")
+    modifiedDepartments CmsDepartments[] @relation(name: "ModifiedAD")
 
-  createdAluLiftSupports  CmsAluLiftSupports[] @relation(name: "CreatedALS")
-  modifiedAluLiftSupports CmsAluLiftSupports[] @relation(name: "ModifiedALS")
+    createdAluLiftSupports  CmsAluLiftSupports[] @relation(name: "CreatedALS")
+    modifiedAluLiftSupports CmsAluLiftSupports[] @relation(name: "ModifiedALS")
 
-  createdAluHandleProfiles  CmsAluHandleProfiles[] @relation(name: "CreatedAHP")
-  modifiedAluHandleProfiles CmsAluHandleProfiles[] @relation(name: "ModifiedAHP")
+    createdAluHandleProfiles  CmsAluHandleProfiles[] @relation(name: "CreatedAHP")
+    modifiedAluHandleProfiles CmsAluHandleProfiles[] @relation(name: "ModifiedAHP")
 
-  createdAluFills  CmsAluFills[] @relation(name: "CreatedAFI")
-  modifiedAluFills CmsAluFills[] @relation(name: "ModifiedAFI")
+    createdAluFills  CmsAluFills[] @relation(name: "CreatedAFI")
+    modifiedAluFills CmsAluFills[] @relation(name: "ModifiedAFI")
 
-  createdAluHinges  CmsAluHinges[] @relation(name: "CreatedAH")
-  modifiedAluHinges CmsAluHinges[] @relation(name: "ModifiedAH")
+    createdAluHinges  CmsAluHinges[] @relation(name: "CreatedAH")
+    modifiedAluHinges CmsAluHinges[] @relation(name: "ModifiedAH")
 
-  createdAluHingeTypes  CmsHingeTypes[] @relation(name: "CreatedAHT")
-  modifiedAluHingeTypes CmsHingeTypes[] @relation(name: "ModifiedAHT")
+    createdAluHingeTypes  CmsHingeTypes[] @relation(name: "CreatedAHT")
+    modifiedAluHingeTypes CmsHingeTypes[] @relation(name: "ModifiedAHT")
 }
 
 model Mechanism {
-  id         String  @id @default(uuid())
-  src        String?
-  alt        String?
-  title      String
-  filler     String
-  thickness  String
-  doorWidth  String
-  doorHeight String
+    id         String  @id @default(uuid())
+    src        String?
+    alt        String?
+    title      String
+    filler     String
+    thickness  String
+    doorWidth  String
+    doorHeight String
 }
 
 model Acos {
-  id          String  @id @default(uuid())
-  parent      Acos?   @relation("ParentChildren", fields: [parentId], references: [id])
-  parentId    String?
-  model       String?
-  foreign_key Int?
-  alias       String?
-  lft         Int?
-  rght        Int?
-  children    Acos[]  @relation("ParentChildren")
+    id          String  @id @default(uuid())
+    parent      Acos?   @relation("ParentChildren", fields: [parentId], references: [id])
+    parentId    String?
+    model       String?
+    foreign_key Int?
+    alias       String?
+    lft         Int?
+    rght        Int?
+    children    Acos[]  @relation("ParentChildren")
 }
 
 model Aros {
-  id          String  @id @default(uuid())
-  parent      Aros?   @relation("ParentChildren", fields: [parentId], references: [id])
-  parentId    String?
-  model       String?
-  foreign_key Int?
-  alias       String?
-  lft         Int?
-  rght        Int?
-  children    Aros[]  @relation("ParentChildren")
+    id          String  @id @default(uuid())
+    parent      Aros?   @relation("ParentChildren", fields: [parentId], references: [id])
+    parentId    String?
+    model       String?
+    foreign_key Int?
+    alias       String?
+    lft         Int?
+    rght        Int?
+    children    Aros[]  @relation("ParentChildren")
 }
 
 // Make connection between aros and acos
 
 model Group {
-  id             String          @id @default(uuid())
-  name           String
-  desc           String?
-  modified       DateTime?
-  created        DateTime        @default(now())
-  administrators Administrator[]
-  // createdBy
-  // modifiedBy
+    id             String          @id @default(uuid())
+    name           String
+    desc           String?
+    modified       DateTime?
+    created        DateTime        @default(now())
+    administrators Administrator[]
+    // createdBy
+    // modifiedBy
 }
 
 model Administrator {
-  id           String    @id @default(uuid())
-  group        Group     @relation(fields: [groupId], references: [id])
-  groupId      String
-  username     String
-  password     String
-  fullName     String
-  email        String
-  style        String
-  isActive     Boolean   @default(true)
-  recoveryHash String?
-  modified     DateTime?
-  created      DateTime  @default(now())
-  // modifiedBy
-  // createdBy
+    id           String    @id @default(uuid())
+    group        Group     @relation(fields: [groupId], references: [id])
+    groupId      String
+    username     String
+    password     String
+    fullName     String
+    email        String
+    style        String
+    isActive     Boolean   @default(true)
+    recoveryHash String?
+    modified     DateTime?
+    created      DateTime  @default(now())
+    // modifiedBy
+    // createdBy
 }
 
 enum ApprovalStatus {
-  Pending
-  Postponed
-  Rejected
-  Accepted
+    Pending
+    Postponed
+    Rejected
+    Accepted
 }
 
 model CmsUsers {
-  id                 String         @id @default(uuid())
-  isAdministrator    Boolean        @default(false)
-  isEmployee         Boolean        @default(false)
-  discount           Decimal?
-  username           String?
-  email              String?
-  password           String?
-  name               String?
-  phone              String?
-  address            String?
-  deliveryAddress    String?
-  discountHardware   Boolean        @default(false)
-  discountFillings   Boolean        @default(false)
-  useDetailedBilling Boolean        @default(false)
-  lockedDiscount     Boolean        @default(true)
-  note               String?
-  orderCount         Int            @default(0)
-  accessCount        Int            @default(0)
-  approvalStatus     ApprovalStatus @default(Pending)
-  isActive           Boolean        @default(true)
-  isDeleted          Boolean        @default(false)
-  deleted            DateTime?
-  modified           DateTime?
-  created            DateTime       @default(now())
-  createdBy          User?          @relation(fields: [createdById], references: [id], name: "CreatedUsers")
-  createdById        String?
-  modifiedBy         User?          @relation(fields: [modifiedById], references: [id], name: "ModifiedUsers")
-  modifiedById       String?
+    id                 String         @id @default(uuid())
+    isAdministrator    Boolean        @default(false)
+    isEmployee         Boolean        @default(false)
+    discount           Decimal?
+    username           String?
+    email              String?
+    password           String?
+    name               String?
+    phone              String?
+    address            String?
+    deliveryAddress    String?
+    discountHardware   Boolean        @default(false)
+    discountFillings   Boolean        @default(false)
+    useDetailedBilling Boolean        @default(false)
+    lockedDiscount     Boolean        @default(true)
+    note               String?
+    orderCount         Int            @default(0)
+    accessCount        Int            @default(0)
+    approvalStatus     ApprovalStatus @default(Pending)
+    isActive           Boolean        @default(true)
+    isDeleted          Boolean        @default(false)
+    deleted            DateTime?
+    modified           DateTime?
+    created            DateTime       @default(now())
+    createdBy          User?          @relation(fields: [createdById], references: [id], name: "CreatedUsers")
+    createdById        String?
+    modifiedBy         User?          @relation(fields: [modifiedById], references: [id], name: "ModifiedUsers")
+    modifiedById       String?
 }
 
 model CmsHorizontalProfiles {
-  id                   String                 @id @default(uuid())
-  cmsOrders            CmsOrders[]
-  cmsSupportedProfiles CmsSupportedProfiles[]
-  name                 String?
-  cmsMechanisms        CmsMechanisms[]
-  constantsThickness   Decimal?
-  constantsGlassGap    Decimal?
-  constantsWoodGap     Decimal?
-  isActive             Boolean                @default(true)
-  isDeleted            Boolean                @default(false)
-  deleted              DateTime?
-  modified             DateTime?
-  created              DateTime               @default(now())
-  pic                  Files?                 @relation(name: "HorizontalProfilePic")
-  createdBy            User?                  @relation(fields: [createdById], references: [id], name: "CreatedHorizontalProfiles")
-  createdById          String?
-  modifiedBy           User?                  @relation(fields: [modifiedById], references: [id], name: "ModifiedHorizontalProfiles")
-  modifiedById         String?
+    id                   String                 @id @default(uuid())
+    cmsOrders            CmsOrders[]
+    cmsSupportedProfiles CmsSupportedProfiles[]
+    name                 String?
+    cmsMechanisms        CmsMechanisms[]
+    constantsThickness   Decimal?
+    constantsGlassGap    Decimal?
+    constantsWoodGap     Decimal?
+    isActive             Boolean                @default(true)
+    isDeleted            Boolean                @default(false)
+    deleted              DateTime?
+    modified             DateTime?
+    created              DateTime               @default(now())
+    pic                  Files?                 @relation(name: "HorizontalProfilePic")
+    createdBy            User?                  @relation(fields: [createdById], references: [id], name: "CreatedHorizontalProfiles")
+    createdById          String?
+    modifiedBy           User?                  @relation(fields: [modifiedById], references: [id], name: "ModifiedHorizontalProfiles")
+    modifiedById         String?
 }
 
 model CmsOrderDoors {
-  id                 String             @id @default(uuid())
-  cmsOrder           CmsOrders?         @relation(fields: [cmsOrderId], references: [id])
-  cmsOrderId         String?
-  doorWidthValue     Decimal
-  doorWidthManual    Decimal
-  doorHandrailLeft   Decimal
-  doorHandrailRight  Decimal
-  cmsDoorMechanism   CmsDoorMechanisms? @relation(fields: [cmsDoorMechanismId], references: [id])
-  cmsDoorMechanismId String?
-  confectionOnly     Boolean
-  forceHeave         Boolean
-  profileLength      Decimal
-  fillWidthGlass     Decimal
-  fillWidthWood      Decimal
-  deceleratorsLeft   String?
-  deceleratorsRight  String?
-  numberOfFields     Int?
-  modified           DateTime?
-  created            DateTime           @default(now())
-  modifiedBy         User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedOD")
-  modifiedById       String?
-  createdBy          User?              @relation(fields: [createdById], references: [id], name: "CreatedOD")
-  createdById        String?
+    id                 String             @id @default(uuid())
+    cmsOrder           CmsOrders?         @relation(fields: [cmsOrderId], references: [id])
+    cmsOrderId         String?
+    doorWidthValue     Decimal
+    doorWidthManual    Decimal
+    doorHandrailLeft   Decimal
+    doorHandrailRight  Decimal
+    cmsDoorMechanism   CmsDoorMechanisms? @relation(fields: [cmsDoorMechanismId], references: [id])
+    cmsDoorMechanismId String?
+    confectionOnly     Boolean
+    forceHeave         Boolean
+    profileLength      Decimal
+    fillWidthGlass     Decimal
+    fillWidthWood      Decimal
+    deceleratorsLeft   String?
+    deceleratorsRight  String?
+    numberOfFields     Int?
+    modified           DateTime?
+    created            DateTime           @default(now())
+    modifiedBy         User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedOD")
+    modifiedById       String?
+    createdBy          User?              @relation(fields: [createdById], references: [id], name: "CreatedOD")
+    createdById        String?
 }
 
 model CmsOrders {
-  id                            String                  @id @default(uuid())
-  customerName                  String?
-  customerPhone                 String?
-  customerAddress               String?
-  customerDeliveryAddress       String?
-  customerDesiredDeliveryDate   DateTime?
-  customerDiscountFrame         Decimal?
-  customerDiscountFills         Decimal?
-  customerShowPriceBreakdown    Boolean                 @default(false)
-  customerLockedDiscounts       Boolean                 @default(false)
-  customerOwnOrderNumber        String?
-  // issuedBy
-  notes                         String?
-  givenOrderNumber              String?
-  orderDate                     DateTime?
-  cmsOrderDoors                 CmsOrderDoors[]
-  cmsMechanism                  CmsMechanisms?          @relation(fields: [cmsMechanismId], references: [id])
-  cmsMechanismId                String?
-  cmsHandrail                   CmsHandrails?           @relation(fields: [cmsHandrailId], references: [id])
-  cmsHandrailId                 String?
-  cmsHandrailDecoration         CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
-  cmsHandrailDecorationId       String?
-  // cmsUserId
-  cmsHorizontalProfile          CmsHorizontalProfiles?  @relation(fields: [cmsHorizontalProfileid], references: [id])
-  cmsHorizontalProfileid        String?
-  handrailDecorationCustomColor String?
-  firstHandrailEnding           Decimal?
-  secondHandrailEnding          Decimal?
-  cmsHandrailEnding             CmsHandrailEndings?     @relation(fields: [cmsHandrailEndingId], references: [id])
-  cmsHandrailEndingId           String?
-  openingHeight                 Decimal?
-  openingWidth                  Decimal?
-  openingDoors                  Int?
-  railsType                     String?
-  railsLengthTopValue           Decimal?
-  railsLengthTopManual          Boolean                 @default(false)
-  railsLengthBottomValue        Decimal?
-  railsLengthBottomManual       Boolean                 @default(false)
-  handrailHeight                Decimal?
-  totalDeceleratorPairs         Int?
-  servicesFrameName             String?
-  servicesFrameChosen           Boolean                 @default(false)
-  servicesFillName              String?
-  servicesFillChosen            Boolean                 @default(false)
-  servicesConfectionName        String?
-  servicesConfectionChosen      Boolean                 @default(false)
-  servicesInstallationName      String?
-  servicesInstallationChosen    Boolean                 @default(false)
-  isActive                      Boolean                 @default(false)
-  deleted                       DateTime?
-  modified                      DateTime?
-  created                       DateTime                @default(now())
-  // createdBy
-  // modifiedBy
-  // deletedBy
+    id                            String                  @id @default(uuid())
+    customerName                  String?
+    customerPhone                 String?
+    customerAddress               String?
+    customerDeliveryAddress       String?
+    customerDesiredDeliveryDate   DateTime?
+    customerDiscountFrame         Decimal?
+    customerDiscountFills         Decimal?
+    customerShowPriceBreakdown    Boolean                 @default(false)
+    customerLockedDiscounts       Boolean                 @default(false)
+    customerOwnOrderNumber        String?
+    // issuedBy
+    notes                         String?
+    givenOrderNumber              String?
+    orderDate                     DateTime?
+    cmsOrderDoors                 CmsOrderDoors[]
+    cmsMechanism                  CmsMechanisms?          @relation(fields: [cmsMechanismId], references: [id])
+    cmsMechanismId                String?
+    cmsHandrail                   CmsHandrails?           @relation(fields: [cmsHandrailId], references: [id])
+    cmsHandrailId                 String?
+    cmsHandrailDecoration         CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
+    cmsHandrailDecorationId       String?
+    // cmsUserId
+    cmsHorizontalProfile          CmsHorizontalProfiles?  @relation(fields: [cmsHorizontalProfileid], references: [id])
+    cmsHorizontalProfileid        String?
+    handrailDecorationCustomColor String?
+    firstHandrailEnding           Decimal?
+    secondHandrailEnding          Decimal?
+    cmsHandrailEnding             CmsHandrailEndings?     @relation(fields: [cmsHandrailEndingId], references: [id])
+    cmsHandrailEndingId           String?
+    openingHeight                 Decimal?
+    openingWidth                  Decimal?
+    openingDoors                  Int?
+    railsType                     String?
+    railsLengthTopValue           Decimal?
+    railsLengthTopManual          Boolean                 @default(false)
+    railsLengthBottomValue        Decimal?
+    railsLengthBottomManual       Boolean                 @default(false)
+    handrailHeight                Decimal?
+    totalDeceleratorPairs         Int?
+    servicesFrameName             String?
+    servicesFrameChosen           Boolean                 @default(false)
+    servicesFillName              String?
+    servicesFillChosen            Boolean                 @default(false)
+    servicesConfectionName        String?
+    servicesConfectionChosen      Boolean                 @default(false)
+    servicesInstallationName      String?
+    servicesInstallationChosen    Boolean                 @default(false)
+    isActive                      Boolean                 @default(true)
+    isDeleted                     Boolean                 @default(false)
+    deleted                       DateTime?
+    modified                      DateTime?
+    created                       DateTime                @default(now())
+    // createdBy
+    // modifiedBy
+    // deletedBy
 }
 
 model CmsSupportedProfiles {
-  id                      String                  @id @default(uuid())
-  cmsHorizontalProfile    CmsHorizontalProfiles?  @relation(fields: [cmsHorizontalProfileId], references: [id])
-  cmsHorizontalProfileId  String?
-  cmsHandrailDecoration   CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
-  cmsHandrailDecorationId String?
-  price                   Decimal?
-  productCode             String?
-  isActive                Boolean                 @default(true)
-  isDeleted               Boolean                 @default(false)
-  deleted                 DateTime?
-  modified                DateTime?
-  created                 DateTime                @default(now())
-  modifiedBy              User?                   @relation(fields: [modifiedById], references: [id], name: "ModifiedSP")
-  modifiedById            String?
-  createdBy               User?                   @relation(fields: [createdById], references: [id], name: "CreatedSP")
-  createdById             String?
+    id                      String                  @id @default(uuid())
+    cmsHorizontalProfile    CmsHorizontalProfiles?  @relation(fields: [cmsHorizontalProfileId], references: [id])
+    cmsHorizontalProfileId  String?
+    cmsHandrailDecoration   CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
+    cmsHandrailDecorationId String?
+    price                   Decimal?
+    productCode             String?
+    isActive                Boolean                 @default(true)
+    isDeleted               Boolean                 @default(false)
+    deleted                 DateTime?
+    modified                DateTime?
+    created                 DateTime                @default(now())
+    modifiedBy              User?                   @relation(fields: [modifiedById], references: [id], name: "ModifiedSP")
+    modifiedById            String?
+    createdBy               User?                   @relation(fields: [createdById], references: [id], name: "CreatedSP")
+    createdById             String?
 }
 
 model CmsHandrailDecorations {
-  id                          String                    @id @default(uuid())
-  cmsSupportedDecorations     CmsSupportedDecorations[]
-  cmsSupportedProfiles        CmsSupportedProfiles[]
-  cmsOrders                   CmsOrders[]
-  name                        String?
-  cmsMechanisms               CmsMechanisms[]
-  customColorAvailable        Boolean                   @default(true)
-  isSilverGloss               Boolean                   @default(false)
-  priceTopRailSingle          Decimal?
-  priceTopRailDouble          Decimal?
-  priceBottomRailSingle       Decimal?
-  priceBottomRailDouble       Decimal?
-  priceDivider                Decimal?
-  priceTopProfile             Decimal?
-  priceBottomProfile          Decimal?
-  productCodeTopRailSingle    String?
-  productCodeBottomRailSingle String?
-  productCodeTopRailDouble    String?
-  productCodeBottomRailDouble String?
-  productCodeDivider          String?
-  productCodeTopProfile       String?
-  productCodeBottomProfile    String?
-  isActive                    Boolean                   @default(true)
-  isDeleted                   Boolean                   @default(false)
-  deleted                     DateTime?
-  modified                    DateTime?
-  created                     DateTime                  @default(now())
-  modifiedBy                  User?                     @relation(fields: [modifiedById], references: [id], name: "ModifiedHD")
-  modifiedById                String?
-  createdBy                   User?                     @relation(fields: [createdById], references: [id], name: "CreatedHD")
-  createdById                 String?
+    id                          String                    @id @default(uuid())
+    cmsSupportedDecorations     CmsSupportedDecorations[]
+    cmsSupportedProfiles        CmsSupportedProfiles[]
+    cmsOrders                   CmsOrders[]
+    name                        String?
+    cmsMechanisms               CmsMechanisms[]
+    customColorAvailable        Boolean                   @default(true)
+    isSilverGloss               Boolean                   @default(false)
+    priceTopRailSingle          Decimal?
+    priceTopRailDouble          Decimal?
+    priceBottomRailSingle       Decimal?
+    priceBottomRailDouble       Decimal?
+    priceDivider                Decimal?
+    priceTopProfile             Decimal?
+    priceBottomProfile          Decimal?
+    productCodeTopRailSingle    String?
+    productCodeBottomRailSingle String?
+    productCodeTopRailDouble    String?
+    productCodeBottomRailDouble String?
+    productCodeDivider          String?
+    productCodeTopProfile       String?
+    productCodeBottomProfile    String?
+    isActive                    Boolean                   @default(true)
+    isDeleted                   Boolean                   @default(false)
+    deleted                     DateTime?
+    modified                    DateTime?
+    created                     DateTime                  @default(now())
+    modifiedBy                  User?                     @relation(fields: [modifiedById], references: [id], name: "ModifiedHD")
+    modifiedById                String?
+    createdBy                   User?                     @relation(fields: [createdById], references: [id], name: "CreatedHD")
+    createdById                 String?
 }
 
 model CmsSupportedDecorations {
-  id                      String                  @id @default(uuid())
-  cmsHandrail             CmsHandrails?           @relation(fields: [cmsHandrailId], references: [id])
-  cmsHandrailId           String?
-  cmsHandrailDecoration   CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
-  cmsHandrailDecorationId String?
-  price                   Decimal
-  productCode             String?
-  isActive                Boolean                 @default(true)
-  isDeleted               Boolean                 @default(false)
-  deleted                 DateTime?
-  modified                DateTime?
-  created                 DateTime                @default(now())
-  modifiedBy              User?                   @relation(fields: [modifiedById], references: [id], name: "ModifiedSD")
-  modifiedById            String?
-  createdBy               User?                   @relation(fields: [createdById], references: [id], name: "CreatedSD")
-  createdById             String?
+    id                      String                  @id @default(uuid())
+    cmsHandrail             CmsHandrails?           @relation(fields: [cmsHandrailId], references: [id])
+    cmsHandrailId           String?
+    cmsHandrailDecoration   CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
+    cmsHandrailDecorationId String?
+    price                   Decimal
+    productCode             String?
+    isActive                Boolean                 @default(true)
+    isDeleted               Boolean                 @default(false)
+    deleted                 DateTime?
+    modified                DateTime?
+    created                 DateTime                @default(now())
+    modifiedBy              User?                   @relation(fields: [modifiedById], references: [id], name: "ModifiedSD")
+    modifiedById            String?
+    createdBy               User?                   @relation(fields: [createdById], references: [id], name: "CreatedSD")
+    createdById             String?
 }
 
 model CmsHandrailEndings {
-  id            String               @id @default(uuid())
-  parentId      String?
-  parent        CmsHandrailEndings?  @relation("ParentChildren", fields: [parentId], references: [id])
-  children      CmsHandrailEndings[] @relation("ParentChildren")
-  cmsOrders     CmsOrders[]
-  name          String?
-  productCode   String?
-  cmsMechanisms CmsMechanisms[]
-  cmsHandrails  CmsHandrails[]
-  pricePerM     Decimal
-  isActive      Boolean              @default(true)
-  isDeleted     Boolean              @default(false)
-  deleted       DateTime?
-  modified      DateTime?
-  created       DateTime             @default(now())
-  modifiedBy    User?                @relation(fields: [modifiedById], references: [id], name: "ModifiedHE")
-  modifiedById  String?
-  createdBy     User?                @relation(fields: [createdById], references: [id], name: "CreatedHE")
-  createdById   String?
+    id            String               @id @default(uuid())
+    parentId      String?
+    parent        CmsHandrailEndings?  @relation("ParentChildren", fields: [parentId], references: [id])
+    children      CmsHandrailEndings[] @relation("ParentChildren")
+    cmsOrders     CmsOrders[]
+    name          String?
+    productCode   String?
+    cmsMechanisms CmsMechanisms[]
+    cmsHandrails  CmsHandrails[]
+    pricePerM     Decimal
+    isActive      Boolean              @default(true)
+    isDeleted     Boolean              @default(false)
+    deleted       DateTime?
+    modified      DateTime?
+    created       DateTime             @default(now())
+    modifiedBy    User?                @relation(fields: [modifiedById], references: [id], name: "ModifiedHE")
+    modifiedById  String?
+    createdBy     User?                @relation(fields: [createdById], references: [id], name: "CreatedHE")
+    createdById   String?
 }
 
 model CmsMechanisms {
-  id                          String                   @id @default(uuid())
-  name                        String?
-  productCode                 String?
-  constantsHeight             Decimal?
-  constantsHandrailHeight     Decimal?
-  constantsDeceleratorHeight  Decimal?
-  constantsProfileTopWood     Decimal?
-  constantsProfileTopGlass    Decimal?
-  constantsProfileBottomWood  Decimal?
-  constantsProfileBottomGlass Decimal?
-  constantsSeparatorThickness Decimal?
-  constantsSeparatorGlassGap  Decimal?
-  constantsSeparatorWoodGap   Decimal?
-  pvcProfileAvailable         Boolean?
-  thinningAvailable           Boolean?
-  deceleratorSupport          Boolean?
-  differentHandrails          Boolean?
-  withoutTopAndBottomProfiles Boolean?
-  loadMin                     Decimal?
-  loadMax                     Decimal?
-  widthMin                    Decimal?
-  widthMax                    Decimal?
-  heightMin                   Decimal?
-  heightMax                   Decimal?
-  fillThicknessMin            Decimal?
-  fillThicknessMax            Decimal?
-  heavyThreshold              Decimal?
-  fillTypes                   String?
-  detailsLink                 String?
-  confectionPricePerDoor      Decimal?
-  installationPricePerDoor    Decimal?
-  confectionProductCode       String?
-  installationProductCode     String?
-  ordering                    Int?
-  cmsOrders                   CmsOrders[]
-  cmsHorizontalProfiles       CmsHorizontalProfiles[]
-  cmsDoorMechanisms           CmsDoorMechanisms[]
-  cmsHandrails                CmsHandrails[]
-  cmsHandrailEndings          CmsHandrailEndings[]
-  cmsHandrailDecorations      CmsHandrailDecorations[]
-  cmsPvcProfiles              CmsPvcProfiles[]
-  cmsFills                    CmsFills[]
-  cmsExtras                   CmsExtras[]
-  isActive                    Boolean                  @default(true)
-  isDeleted                   Boolean                  @default(false)
-  deleted                     DateTime?
-  modified                    DateTime?
-  created                     DateTime                 @default(now())
-  pic                         Files?                   @relation(name: "MechanismPic")
-  thinningpPic                Files?                   @relation(name: "MechanismThinningPic")
-  modifiedBy                  User?                    @relation(fields: [modifiedById], references: [id], name: "ModifiedM")
-  modifiedById                String?
-  createdBy                   User?                    @relation(fields: [createdById], references: [id], name: "CreatedM")
-  createdById                 String?
+    id                          String                   @id @default(uuid())
+    name                        String?
+    productCode                 String?
+    constantsHeight             Decimal?
+    constantsHandrailHeight     Decimal?
+    constantsDeceleratorHeight  Decimal?
+    constantsProfileTopWood     Decimal?
+    constantsProfileTopGlass    Decimal?
+    constantsProfileBottomWood  Decimal?
+    constantsProfileBottomGlass Decimal?
+    constantsSeparatorThickness Decimal?
+    constantsSeparatorGlassGap  Decimal?
+    constantsSeparatorWoodGap   Decimal?
+    pvcProfileAvailable         Boolean?
+    thinningAvailable           Boolean?
+    deceleratorSupport          Boolean?
+    differentHandrails          Boolean?
+    withoutTopAndBottomProfiles Boolean?
+    loadMin                     Decimal?
+    loadMax                     Decimal?
+    widthMin                    Decimal?
+    widthMax                    Decimal?
+    heightMin                   Decimal?
+    heightMax                   Decimal?
+    fillThicknessMin            Decimal?
+    fillThicknessMax            Decimal?
+    heavyThreshold              Decimal?
+    fillTypes                   String?
+    detailsLink                 String?
+    confectionPricePerDoor      Decimal?
+    installationPricePerDoor    Decimal?
+    confectionProductCode       String?
+    installationProductCode     String?
+    ordering                    Int?
+    cmsOrders                   CmsOrders[]
+    cmsHorizontalProfiles       CmsHorizontalProfiles[]
+    cmsDoorMechanisms           CmsDoorMechanisms[]
+    cmsHandrails                CmsHandrails[]
+    cmsHandrailEndings          CmsHandrailEndings[]
+    cmsHandrailDecorations      CmsHandrailDecorations[]
+    cmsPvcProfiles              CmsPvcProfiles[]
+    cmsFills                    CmsFills[]
+    cmsExtras                   CmsExtras[]
+    isActive                    Boolean                  @default(true)
+    isDeleted                   Boolean                  @default(false)
+    deleted                     DateTime?
+    modified                    DateTime?
+    created                     DateTime                 @default(now())
+    pic                         Files?                   @relation(name: "MechanismPic")
+    thinningpPic                Files?                   @relation(name: "MechanismThinningPic")
+    modifiedBy                  User?                    @relation(fields: [modifiedById], references: [id], name: "ModifiedM")
+    modifiedById                String?
+    createdBy                   User?                    @relation(fields: [createdById], references: [id], name: "CreatedM")
+    createdById                 String?
 }
 
 model CmsDoorMechanisms {
-  id                   String          @id @default(uuid())
-  name                 String
-  productCode          String
-  deceleratorSupport   Boolean         @default(false)
-  deceleratorOpposites String?
-  price                Decimal?
-  cmsMechanisms        CmsMechanisms[]
-  cmsOrderDoors        CmsOrderDoors[]
-  cmsHandrails         CmsHandrails[]
-  isActive             Boolean         @default(true)
-  isDeleted            Boolean         @default(false)
-  deleted              DateTime?
-  modified             DateTime?
-  created              DateTime        @default(now())
-  modifiedBy           User?           @relation(fields: [modifiedById], references: [id], name: "CreatedDM", map: "modified_dm_fk")
-  modifiedById         String?
-  createdBy            User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedDM", map: "created_dm_fk")
-  createdById          String?
+    id                   String          @id @default(uuid())
+    name                 String
+    productCode          String
+    deceleratorSupport   Boolean         @default(false)
+    deceleratorOpposites String?
+    price                Decimal?
+    cmsMechanisms        CmsMechanisms[]
+    cmsOrderDoors        CmsOrderDoors[]
+    cmsHandrails         CmsHandrails[]
+    isActive             Boolean         @default(true)
+    isDeleted            Boolean         @default(false)
+    deleted              DateTime?
+    modified             DateTime?
+    created              DateTime        @default(now())
+    modifiedBy           User?           @relation(fields: [modifiedById], references: [id], name: "CreatedDM", map: "modified_dm_fk")
+    modifiedById         String?
+    createdBy            User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedDM", map: "created_dm_fk")
+    createdById          String?
 }
 
 model CmsHandrails {
-  id                      String                    @id @default(uuid())
-  cmsMechanisms           CmsMechanisms[]
-  cmsDoorMechanisms       CmsDoorMechanisms[]
-  cmsSupportedDecorations CmsSupportedDecorations[]
-  cmsOrders               CmsOrders[]
-  cmsHandrailEndings      CmsHandrailEndings[]
-  roundingSteps           String?
-  name                    String?
-  doorWidth               Decimal?
-  profileLength           Decimal?
-  fillWidthGlass          Decimal?
-  fillWidthWood           Decimal?
-  isActive                Boolean                   @default(true)
-  isDeleted               Boolean                   @default(false)
-  deleted                 DateTime?
-  modified                DateTime?
-  created                 DateTime                  @default(now())
-  modifiedBy              User?                     @relation(fields: [modifiedById], references: [id], name: "ModifiedH")
-  modifiedById            String?
-  createdBy               User?                     @relation(fields: [createdById], references: [id], name: "CreatedH")
-  createdById             String?
-  pic                     Files?                    @relation(name: "HandrailPic")
+    id                      String                    @id @default(uuid())
+    cmsMechanisms           CmsMechanisms[]
+    cmsDoorMechanisms       CmsDoorMechanisms[]
+    cmsSupportedDecorations CmsSupportedDecorations[]
+    cmsOrders               CmsOrders[]
+    cmsHandrailEndings      CmsHandrailEndings[]
+    roundingSteps           String?
+    name                    String?
+    doorWidth               Decimal?
+    profileLength           Decimal?
+    fillWidthGlass          Decimal?
+    fillWidthWood           Decimal?
+    isActive                Boolean                   @default(true)
+    isDeleted               Boolean                   @default(false)
+    deleted                 DateTime?
+    modified                DateTime?
+    created                 DateTime                  @default(now())
+    modifiedBy              User?                     @relation(fields: [modifiedById], references: [id], name: "ModifiedH")
+    modifiedById            String?
+    createdBy               User?                     @relation(fields: [createdById], references: [id], name: "CreatedH")
+    createdById             String?
+    pic                     Files?                    @relation(name: "HandrailPic")
 }
 
 model CmsPvcProfiles {
-  id            String          @id @default(uuid())
-  productCode   String?
-  cmsMechanisms CmsMechanisms[]
-  name          String?
-  pricePerM     Decimal?
-  ralCode       String?
-  isActive      Boolean         @default(true)
-  isDeleted     Boolean         @default(false)
-  deleted       DateTime?
-  modified      DateTime?
-  created       DateTime        @default(now())
-  modifiedBy    User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedPP")
-  modifiedById  String?
-  createdBy     User?           @relation(fields: [createdById], references: [id], name: "CreatedPP")
-  createdById   String?
+    id            String          @id @default(uuid())
+    productCode   String?
+    cmsMechanisms CmsMechanisms[]
+    name          String?
+    pricePerM     Decimal?
+    ralCode       String?
+    isActive      Boolean         @default(true)
+    isDeleted     Boolean         @default(false)
+    deleted       DateTime?
+    modified      DateTime?
+    created       DateTime        @default(now())
+    modifiedBy    User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedPP")
+    modifiedById  String?
+    createdBy     User?           @relation(fields: [createdById], references: [id], name: "CreatedPP")
+    createdById   String?
 }
 
 model CmsExtras {
-  id            String          @id @default(uuid())
-  name          String?
-  productCode   String?
-  cmsMechanisms CmsMechanisms[]
-  unit          String?
-  pricePerUnit  Decimal
-  isActive      Boolean         @default(true)
-  isDeleted     Boolean         @default(false)
-  deleted       DateTime?
-  modified      DateTime?
-  created       DateTime        @default(now())
-  modifiedBy    User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedE")
-  modifiedById  String?
-  createdBy     User?           @relation(fields: [createdById], references: [id], name: "CreatedE")
-  createdById   String?
+    id            String          @id @default(uuid())
+    name          String?
+    productCode   String?
+    cmsMechanisms CmsMechanisms[]
+    unit          String?
+    pricePerUnit  Decimal
+    isActive      Boolean         @default(true)
+    isDeleted     Boolean         @default(false)
+    deleted       DateTime?
+    modified      DateTime?
+    created       DateTime        @default(now())
+    modifiedBy    User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedE")
+    modifiedById  String?
+    createdBy     User?           @relation(fields: [createdById], references: [id], name: "CreatedE")
+    createdById   String?
 }
 
 model CmsOrderExtras {
-  id              String    @id @default(uuid())
-  cmsOrderId      String
-  cmsExtraId      String
-  // quantity Int
-  // Ordering Int
-  productCode     String?
-  cmsMechanismSet String?
-  name            String?
-  pricePerM       Decimal?
-  ralCode         String?
-  isActive        Boolean   @default(true)
-  deleted         DateTime?
-  modified        DateTime?
-  created         DateTime  @default(now())
-  modifiedBy      User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedOE")
-  modifiedById    String?
-  createdBy       User?     @relation(fields: [createdById], references: [id], name: "CreatedOE")
-  createdById     String?
+    id              String    @id @default(uuid())
+    cmsOrderId      String
+    cmsExtraId      String
+    // quantity Int
+    // Ordering Int
+    productCode     String?
+    cmsMechanismSet String?
+    name            String?
+    pricePerM       Decimal?
+    ralCode         String?
+    isActive        Boolean   @default(true)
+    deleted         DateTime?
+    modified        DateTime?
+    created         DateTime  @default(now())
+    modifiedBy      User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedOE")
+    modifiedById    String?
+    createdBy       User?     @relation(fields: [createdById], references: [id], name: "CreatedOE")
+    createdById     String?
 }
 
 model CmsFoils {
-  id           String    @id @default(uuid())
-  name         String?
-  productCode  String?
-  colorCode    String?
-  ralCode      String?
-  isActive     Boolean   @default(true)
-  isDeleted    Boolean   @default(false)
-  deleted      DateTime?
-  modified     DateTime?
-  created      DateTime  @default(now())
-  modifiedBy   User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedFO")
-  modifiedById String?
-  createdBy    User?     @relation(fields: [createdById], references: [id], name: "CreatedFO")
-  createdById  String?
+    id           String    @id @default(uuid())
+    name         String?
+    productCode  String?
+    colorCode    String?
+    ralCode      String?
+    isActive     Boolean   @default(true)
+    isDeleted    Boolean   @default(false)
+    deleted      DateTime?
+    modified     DateTime?
+    created      DateTime  @default(now())
+    modifiedBy   User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedFO")
+    modifiedById String?
+    createdBy    User?     @relation(fields: [createdById], references: [id], name: "CreatedFO")
+    createdById  String?
 }
 
 model CmsFills {
-  id                 String          @id @default(uuid())
-  parent             CmsFills?       @relation("ParentChildren", fields: [parentId], references: [id])
-  children           CmsFills[]      @relation("ParentChildren")
-  cmsMechanisms      CmsMechanisms[]
-  parentId           String?
-  name               String?
-  productCode        String?
-  requiresPvcProfile Boolean         @default(false)
-  requiresThinning   Boolean         @default(false)
-  customNameAllowed  Boolean         @default(false)
-  lft                Int?
-  rght               Int?
-  foilAvailable      Boolean         @default(false)
-  pricePerMSquare    Decimal?
-  isActive           Boolean         @default(true)
-  isDeleted          Boolean         @default(false)
-  deleted            DateTime?
-  modified           DateTime?
-  created            DateTime        @default(now())
-  modifiedBy         User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedFI")
-  modifiedById       String?
-  createdBy          User?           @relation(fields: [createdById], references: [id], name: "CreatedFI")
-  createdById        String?
+    id                 String          @id @default(uuid())
+    parent             CmsFills?       @relation("ParentChildren", fields: [parentId], references: [id])
+    children           CmsFills[]      @relation("ParentChildren")
+    cmsMechanisms      CmsMechanisms[]
+    parentId           String?
+    name               String?
+    productCode        String?
+    requiresPvcProfile Boolean         @default(false)
+    requiresThinning   Boolean         @default(false)
+    customNameAllowed  Boolean         @default(false)
+    lft                Int?
+    rght               Int?
+    foilAvailable      Boolean         @default(false)
+    pricePerMSquare    Decimal?
+    isActive           Boolean         @default(true)
+    isDeleted          Boolean         @default(false)
+    deleted            DateTime?
+    modified           DateTime?
+    created            DateTime        @default(now())
+    modifiedBy         User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedFI")
+    modifiedById       String?
+    createdBy          User?           @relation(fields: [createdById], references: [id], name: "CreatedFI")
+    createdById        String?
 }
 
 // Aluramovi dio:
 
 model CmsAluOrders {
-  id                          String    @id @default(uuid())
-  code                        String?
-  codeNumber                  Int?
-  codeMonth                   Int?
-  codeYear                    Int?
-  customerName                String?
-  customerPhone               String?
-  customerAddress             String?
-  customerDeliveryAddress     String?
-  customerDesiredDeliveryDate DateTime?
-  customerInternalOrderNumber String?
-  customerNotes               String?
-  customerDiscount            Decimal?
-  // cmsFrameTypeId String?
-  // cmsFrameTreatmentId String?
-  // cmsFillId String?
-  frameTypeCode               String?
-  frameTypeName               String?
-  frameTreatmentCode          String?
-  frameTreatmentName          String?
-  frameTreatmentPrice         Decimal?
-  frameTreatmentPriceIncrease Decimal?
-  fillCode                    String?
-  fillName                    String?
-  fillPrice                   Decimal?
-  fillPriceIncrease           Decimal?
-  cornerCoverProductCode      String?
-  cornerCoverCount            Int?
-  costVatRate                 Decimal?
-  costBase                    Decimal?
-  costVat                     Decimal?
-  costTotal                   Decimal?
-  costPerMeterBase            Decimal?
-  costPerMeterTotal           Decimal?
-  totalFrameCount             Int?
-  totalFrameLength            Decimal?
-  totalFillArea               Decimal?
-  // issuedBy String?
-  // giverOrderNumber String?
-  orderDate                   DateTime?
-  jsonConfiguration           String?
-  jsonOrder                   String?
-  jsonHeader                  String?
-  jsonFronts                  String?
-  jsonCost                    String?
-  confirmed                   String?
-  confirmedOn                 DateTime?
-  isHandled                   Boolean   @default(false)
-  isDeleted                   Boolean   @default(false)
-  deleted                     DateTime?
-  modified                    DateTime?
-  // modifiedBy String?
-  created                     DateTime  @default(now())
-  // createdBy String
+    id                          String    @id @default(uuid())
+    code                        String?
+    codeNumber                  Int?
+    codeMonth                   Int?
+    codeYear                    Int?
+    customerName                String?
+    customerPhone               String?
+    customerAddress             String?
+    customerDeliveryAddress     String?
+    customerDesiredDeliveryDate DateTime?
+    customerInternalOrderNumber String?
+    customerNotes               String?
+    customerDiscount            Decimal?
+    // cmsFrameTypeId String?
+    // cmsFrameTreatmentId String?
+    // cmsFillId String?
+    frameTypeCode               String?
+    frameTypeName               String?
+    frameTreatmentCode          String?
+    frameTreatmentName          String?
+    frameTreatmentPrice         Decimal?
+    frameTreatmentPriceIncrease Decimal?
+    fillCode                    String?
+    fillName                    String?
+    fillPrice                   Decimal?
+    fillPriceIncrease           Decimal?
+    cornerCoverProductCode      String?
+    cornerCoverCount            Int?
+    costVatRate                 Decimal?
+    costBase                    Decimal?
+    costVat                     Decimal?
+    costTotal                   Decimal?
+    costPerMeterBase            Decimal?
+    costPerMeterTotal           Decimal?
+    totalFrameCount             Int?
+    totalFrameLength            Decimal?
+    totalFillArea               Decimal?
+    // issuedBy String?
+    // giverOrderNumber String?
+    orderDate                   DateTime?
+    jsonConfiguration           String?
+    jsonOrder                   String?
+    jsonHeader                  String?
+    jsonFronts                  String?
+    jsonCost                    String?
+    confirmed                   String?
+    confirmedOn                 DateTime?
+    isHandled                   Boolean   @default(false)
+    isDeleted                   Boolean   @default(false)
+    deleted                     DateTime?
+    modified                    DateTime?
+    // modifiedBy String?
+    created                     DateTime  @default(now())
+    // createdBy String
 }
 
 model CmsAluFrameTreatments {
-  id                   String            @id @default(uuid())
-  cmsAluFrameType      CmsAluFrameTypes? @relation(fields: [cmsAluFrameTypeId], references: [id])
-  cmsAluFrameTypeId    String?
-  name                 String?
-  productCode          String?
-  customColorAvailable Boolean           @default(false)
-  pricePerMeter        Decimal?
-  priceIncrease        Decimal?
-  ordering             Int?
-  isActive             Boolean           @default(true)
-  isDeleted            Boolean           @default(false)
-  deleted              DateTime?
-  modified             DateTime?
-  created              DateTime          @default(now())
-  modifiedBy           User?             @relation(fields: [modifiedById], references: [id], name: "ModifiedAFT")
-  modifiedById         String?
-  createdBy            User?             @relation(fields: [createdById], references: [id], name: "CreatedAFT")
-  createdById          String?
+    id                   String            @id @default(uuid())
+    cmsAluFrameType      CmsAluFrameTypes? @relation(fields: [cmsAluFrameTypeId], references: [id])
+    cmsAluFrameTypeId    String?
+    name                 String?
+    productCode          String?
+    customColorAvailable Boolean           @default(false)
+    pricePerMeter        Decimal?
+    priceIncrease        Decimal?
+    ordering             Int?
+    isActive             Boolean           @default(true)
+    isDeleted            Boolean           @default(false)
+    deleted              DateTime?
+    modified             DateTime?
+    created              DateTime          @default(now())
+    modifiedBy           User?             @relation(fields: [modifiedById], references: [id], name: "ModifiedAFT")
+    modifiedById         String?
+    createdBy            User?             @relation(fields: [createdById], references: [id], name: "CreatedAFT")
+    createdById          String?
 
-  gallery Files[]
+    gallery Files[]
 }
 
 model CmsAluBevelOptions {
-  id           String   @id @default(uuid())
-  name         String?
-  code         String?
-  price        Decimal?
-  modifiedBy   User?    @relation(fields: [modifiedById], references: [id], name: "ModifiedABO")
-  modifiedById String?
-  createdBy    User?    @relation(fields: [createdById], references: [id], name: "CreatedABO")
-  createdById  String?
+    id           String   @id @default(uuid())
+    name         String?
+    code         String?
+    price        Decimal?
+    modifiedBy   User?    @relation(fields: [modifiedById], references: [id], name: "ModifiedABO")
+    modifiedById String?
+    createdBy    User?    @relation(fields: [createdById], references: [id], name: "CreatedABO")
+    createdById  String?
 }
 
 model CmsAluSandBlastingOptions {
-  id           String   @id @default(uuid())
-  name         String?
-  code         String?
-  price        Decimal?
-  modifiedBy   User?    @relation(fields: [modifiedById], references: [id], name: "ModifiedASBO")
-  modifiedById String?
-  createdBy    User?    @relation(fields: [createdById], references: [id], name: "CreatedASBO")
-  createdById  String?
+    id           String   @id @default(uuid())
+    name         String?
+    code         String?
+    price        Decimal?
+    modifiedBy   User?    @relation(fields: [modifiedById], references: [id], name: "ModifiedASBO")
+    modifiedById String?
+    createdBy    User?    @relation(fields: [createdById], references: [id], name: "CreatedASBO")
+    createdById  String?
 }
 
 model CmsAluFrameTypes {
-  id                     String                  @id @default(uuid())
-  name                   String?
-  productCode            String?
-  detailsLink            String?
-  fillingWidthReduction  Decimal?
-  fillingHeightReduction Decimal?
-  handleHoleInlet        Decimal?
-  handleHoleOffset       Decimal?
-  requiresKp             Boolean                 @default(false)
-  requiresPvc            Boolean                 @default(false)
-  requiresSpecialHinges  Boolean                 @default(false)
-  pricePerMeter          Decimal?
-  priceIncrease          Decimal?
-  corverCoverPrice       Decimal?
-  corverCoverProductCode String?
-  ordering               Int?
-  isActive               Boolean                 @default(true)
-  isDeleted              Boolean                 @default(false)
-  deleted                DateTime?
-  modified               DateTime?
-  created                DateTime                @default(now())
-  createdBy              User?                   @relation(fields: [createdById], references: [id], name: "CreatedAFTT")
-  createdById            String?
-  modifiedBy             User?                   @relation(fields: [modifiedById], references: [id], name: "ModifiedAFTT")
-  modifiedById           String?
-  cmsAluFills            CmsAluFills[]
-  cmsAluFrameTreatments  CmsAluFrameTreatments[]
-  cmsAluHinges           CmsAluHinges[]
-  cmsAluHandleProfiles   CmsAluHandleProfiles[]
-  cmsAluLiftSupports     CmsAluLiftSupports[]
+    id                     String                  @id @default(uuid())
+    name                   String?
+    productCode            String?
+    detailsLink            String?
+    fillingWidthReduction  Decimal?
+    fillingHeightReduction Decimal?
+    handleHoleInlet        Decimal?
+    handleHoleOffset       Decimal?
+    requiresKp             Boolean                 @default(false)
+    requiresPvc            Boolean                 @default(false)
+    requiresSpecialHinges  Boolean                 @default(false)
+    pricePerMeter          Decimal?
+    priceIncrease          Decimal?
+    corverCoverPrice       Decimal?
+    corverCoverProductCode String?
+    ordering               Int?
+    isActive               Boolean                 @default(true)
+    isDeleted              Boolean                 @default(false)
+    deleted                DateTime?
+    modified               DateTime?
+    created                DateTime                @default(now())
+    createdBy              User?                   @relation(fields: [createdById], references: [id], name: "CreatedAFTT")
+    createdById            String?
+    modifiedBy             User?                   @relation(fields: [modifiedById], references: [id], name: "ModifiedAFTT")
+    modifiedById           String?
+    cmsAluFills            CmsAluFills[]
+    cmsAluFrameTreatments  CmsAluFrameTreatments[]
+    cmsAluHinges           CmsAluHinges[]
+    cmsAluHandleProfiles   CmsAluHandleProfiles[]
+    cmsAluLiftSupports     CmsAluLiftSupports[]
 
-  pic          Files?  @relation(name: "AluFrameTypePic")
-  technicalPic Files?  @relation(name: "AluFrameTypeTechnicalPic")
-  gallery      Files[] @relation(name: "AluFrameTypeGalleryPic")
+    pic          Files?  @relation(name: "AluFrameTypePic")
+    technicalPic Files?  @relation(name: "AluFrameTypeTechnicalPic")
+    gallery      Files[] @relation(name: "AluFrameTypeGalleryPic")
 }
 
 model CmsAluHandleHoles {
-  id           String    @id @default(uuid())
-  length       Decimal?
-  isActive     Boolean   @default(true)
-  isDeleted    Boolean   @default(false)
-  deleted      DateTime?
-  modified     DateTime?
-  created      DateTime  @default(now())
-  createdBy    User?     @relation(fields: [createdById], references: [id], name: "CreatedAHH")
-  createdById  String?
-  modifiedBy   User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedAHH")
-  modifiedById String?
+    id           String    @id @default(uuid())
+    length       Decimal?
+    isActive     Boolean   @default(true)
+    isDeleted    Boolean   @default(false)
+    deleted      DateTime?
+    modified     DateTime?
+    created      DateTime  @default(now())
+    createdBy    User?     @relation(fields: [createdById], references: [id], name: "CreatedAHH")
+    createdById  String?
+    modifiedBy   User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedAHH")
+    modifiedById String?
 }
 
 model CmsAluFoils {
-  id                  String    @id @default(uuid())
-  name                String?
-  productCode         String?
-  color               String?
-  ralCode             String?
-  pricePerSquareMeter Decimal?
-  priceIncrease       Decimal?
-  isActive            Boolean   @default(true)
-  isDeleted           Boolean   @default(false)
-  deleted             DateTime?
-  modified            DateTime?
-  created             DateTime  @default(now())
-  createdBy           User?     @relation(fields: [createdById], references: [id], name: "CreatedAFO")
-  createdById         String?
-  modifiedBy          User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedAFO")
-  modifiedById        String?
+    id                  String    @id @default(uuid())
+    name                String?
+    productCode         String?
+    color               String?
+    ralCode             String?
+    pricePerSquareMeter Decimal?
+    priceIncrease       Decimal?
+    isActive            Boolean   @default(true)
+    isDeleted           Boolean   @default(false)
+    deleted             DateTime?
+    modified            DateTime?
+    created             DateTime  @default(now())
+    createdBy           User?     @relation(fields: [createdById], references: [id], name: "CreatedAFO")
+    createdById         String?
+    modifiedBy          User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedAFO")
+    modifiedById        String?
 }
 
 model CmsDepartments {
-  id           String    @id @default(uuid())
-  name         String?
-  isActive     Boolean   @default(true)
-  isDeleted    Boolean   @default(false)
-  isAlu        Boolean   @default(false)
-  users        User[]
-  deleted      DateTime?
-  modified     DateTime?
-  created      DateTime  @default(now())
-  createdBy    User?     @relation(fields: [createdById], references: [id], name: "CreatedAD")
-  createdById  String?
-  modifiedBy   User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedAD")
-  modifiedById String?
+    id           String    @id @default(uuid())
+    name         String?
+    isActive     Boolean   @default(true)
+    isDeleted    Boolean   @default(false)
+    isAlu        Boolean   @default(false)
+    users        User[]
+    deleted      DateTime?
+    modified     DateTime?
+    created      DateTime  @default(now())
+    createdBy    User?     @relation(fields: [createdById], references: [id], name: "CreatedAD")
+    createdById  String?
+    modifiedBy   User?     @relation(fields: [modifiedById], references: [id], name: "ModifiedAD")
+    modifiedById String?
 }
 
 model CmsAluLiftSupports {
-  id               String             @id @default(uuid())
-  name             String?
-  productCode      String?
-  pricePerUnit     Decimal?
-  description      String?
-  ordering         Int?
-  isActive         Boolean            @default(true)
-  isDeleted        Boolean            @default(false)
-  deleted          DateTime?
-  modified         DateTime?
-  created          DateTime           @default(now())
-  createdBy        User?              @relation(fields: [createdById], references: [id], name: "CreatedALS")
-  createdById      String?
-  modifiedBy       User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedALS")
-  modifiedById     String?
-  cmsAluFrameTypes CmsAluFrameTypes[]
-  gallery          Files[]
+    id               String             @id @default(uuid())
+    name             String?
+    productCode      String?
+    pricePerUnit     Decimal?
+    description      String?
+    ordering         Int?
+    isActive         Boolean            @default(true)
+    isDeleted        Boolean            @default(false)
+    deleted          DateTime?
+    modified         DateTime?
+    created          DateTime           @default(now())
+    createdBy        User?              @relation(fields: [createdById], references: [id], name: "CreatedALS")
+    createdById      String?
+    modifiedBy       User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedALS")
+    modifiedById     String?
+    cmsAluFrameTypes CmsAluFrameTypes[]
+    gallery          Files[]
 }
 
 model CmsAluHandleProfiles {
-  id                   String             @id @default(uuid())
-  name                 String?
-  productCode          String?
-  pricePerMeter        Decimal?
-  priceIncrease        Decimal?
-  frameLengthReduction Decimal?
-  customColorAvailable Boolean            @default(true)
-  ordering             Int?
-  isActive             Boolean            @default(true)
-  isDeleted            Boolean            @default(false)
-  deleted              DateTime?
-  modified             DateTime?
-  created              DateTime           @default(now())
-  createdBy            User?              @relation(fields: [createdById], references: [id], name: "CreatedAHP")
-  createdById          String?
-  modifiedBy           User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedAHP")
-  modifiedById         String?
-  cmsAluFrameTypes     CmsAluFrameTypes[]
+    id                   String             @id @default(uuid())
+    name                 String?
+    productCode          String?
+    pricePerMeter        Decimal?
+    priceIncrease        Decimal?
+    frameLengthReduction Decimal?
+    customColorAvailable Boolean            @default(true)
+    ordering             Int?
+    isActive             Boolean            @default(true)
+    isDeleted            Boolean            @default(false)
+    deleted              DateTime?
+    modified             DateTime?
+    created              DateTime           @default(now())
+    createdBy            User?              @relation(fields: [createdById], references: [id], name: "CreatedAHP")
+    createdById          String?
+    modifiedBy           User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedAHP")
+    modifiedById         String?
+    cmsAluFrameTypes     CmsAluFrameTypes[]
 }
 
 model CmsAluFills {
-  id                  String             @id @default(uuid())
-  parent              CmsAluFills?       @relation("ParentChildren", fields: [parentId], references: [id])
-  parentId            String?
-  children            CmsAluFills[]      @relation("ParentChildren")
-  name                String?
-  productCode         String?
-  foilAvailable       Boolean            @default(true)
-  pricePerSquareMeter Decimal?
-  priceIncrease       Decimal?
-  lft                 Decimal?
-  rght                Decimal?
-  isActive            Boolean            @default(true)
-  isDeleted           Boolean            @default(false)
-  deleted             DateTime?
-  modified            DateTime?
-  created             DateTime           @default(now())
-  createdBy           User?              @relation(fields: [createdById], references: [id], name: "CreatedAFI")
-  createdById         String?
-  modifiedBy          User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedAFI")
-  modifiedById        String?
-  cmsAluFrameTypes    CmsAluFrameTypes[]
-  gallery             Files[]
+    id                  String             @id @default(uuid())
+    parent              CmsAluFills?       @relation("ParentChildren", fields: [parentId], references: [id])
+    parentId            String?
+    children            CmsAluFills[]      @relation("ParentChildren")
+    name                String?
+    productCode         String?
+    foilAvailable       Boolean            @default(true)
+    pricePerSquareMeter Decimal?
+    priceIncrease       Decimal?
+    lft                 Decimal?
+    rght                Decimal?
+    isActive            Boolean            @default(true)
+    isDeleted           Boolean            @default(false)
+    deleted             DateTime?
+    modified            DateTime?
+    created             DateTime           @default(now())
+    createdBy           User?              @relation(fields: [createdById], references: [id], name: "CreatedAFI")
+    createdById         String?
+    modifiedBy          User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedAFI")
+    modifiedById        String?
+    cmsAluFrameTypes    CmsAluFrameTypes[]
+    gallery             Files[]
 }
 
 model CmsAluHinges {
-  id               String             @id @default(uuid())
-  name             String?
-  productCode      String?
-  price            Decimal?
-  cmsHingeType     CmsHingeTypes?     @relation(fields: [cmsHingeTypeId], references: [id])
-  cmsHingeTypeId   String?
-  isActive         Boolean            @default(true)
-  isDeleted        Boolean            @default(false)
-  deleted          DateTime?
-  modified         DateTime?
-  created          DateTime           @default(now())
-  createdBy        User?              @relation(fields: [createdById], references: [id], name: "CreatedAH")
-  createdById      String?
-  modifiedBy       User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedAH")
-  modifiedById     String?
-  cmsAluFrameTypes CmsAluFrameTypes[]
-  pic              Files?
+    id               String             @id @default(uuid())
+    name             String?
+    productCode      String?
+    price            Decimal?
+    cmsHingeType     CmsHingeTypes?     @relation(fields: [cmsHingeTypeId], references: [id])
+    cmsHingeTypeId   String?
+    isActive         Boolean            @default(true)
+    isDeleted        Boolean            @default(false)
+    deleted          DateTime?
+    modified         DateTime?
+    created          DateTime           @default(now())
+    createdBy        User?              @relation(fields: [createdById], references: [id], name: "CreatedAH")
+    createdById      String?
+    modifiedBy       User?              @relation(fields: [modifiedById], references: [id], name: "ModifiedAH")
+    modifiedById     String?
+    cmsAluFrameTypes CmsAluFrameTypes[]
+    pic              Files?
 }
 
 model CmsHingeTypes {
-  id           String         @id @default(uuid())
-  name         String?
-  code         String?
-  cmsAluHinges CmsAluHinges[]
-  ordering     Int?
-  isActive     Boolean        @default(true)
-  isDeleted    Boolean        @default(false)
-  deleted      DateTime?
-  modified     DateTime?
-  created      DateTime       @default(now())
-  createdBy    User?          @relation(fields: [createdById], references: [id], name: "CreatedAHT")
-  createdById  String?
-  modifiedBy   User?          @relation(fields: [modifiedById], references: [id], name: "ModifiedAHT")
-  modifiedById String?
+    id           String         @id @default(uuid())
+    name         String?
+    code         String?
+    cmsAluHinges CmsAluHinges[]
+    ordering     Int?
+    isActive     Boolean        @default(true)
+    isDeleted    Boolean        @default(false)
+    deleted      DateTime?
+    modified     DateTime?
+    created      DateTime       @default(now())
+    createdBy    User?          @relation(fields: [createdById], references: [id], name: "CreatedAHT")
+    createdById  String?
+    modifiedBy   User?          @relation(fields: [modifiedById], references: [id], name: "ModifiedAHT")
+    modifiedById String?
 }
 
 model CmsAluSettings {
-  id                                       String    @id @default(uuid())
-  iso9001DocumentName                      String?
-  orderEmail                               String?
-  currency                                 String?
-  vat                                      Decimal?
-  introText                                String?
-  handleHolePrice                          Decimal?
-  specialHingeHolePrice                    Decimal?
-  hingeHolePrice                           Decimal?
-  hingeHoleWithInstallationPrice           Decimal?
-  lockHolePrice                            Decimal?
-  serviceCostPercentage                    Decimal?
-  serviceCostPerFrame                      Decimal?
-  serviceCostPerMeter                      Decimal?
-  kpPricePerMeter                          Decimal?
-  bevel5mmPricePerMeter                    Decimal?
-  bevel10mmPricePerMeter                   Decimal?
-  bevel15mmPricePerMeter                   Decimal?
-  bevel20mmPricePerMeter                   Decimal?
-  sandblastingPricePerMeterSquared         Decimal?
-  sandblastingWithFoilPricePerMeterSquared Decimal?
-  temperingGlassPerMeterSquared            Decimal?
-  protectiveFoilPerMeterSquared            Decimal?
-  decorativeFoilPerMeterSquared            Decimal?
-  motiveFoilPerMeterSquared                Decimal?
-  sandblastedFoilPerMeterSquared           Decimal?
-  modified                                 DateTime?
-  // modifiedBy String?
-  created                                  DateTime  @default(now())
-  // createdBy String
+    id                                       String    @id @default(uuid())
+    iso9001DocumentName                      String?
+    orderEmail                               String?
+    currency                                 String?
+    vat                                      Decimal?
+    introText                                String?
+    handleHolePrice                          Decimal?
+    specialHingeHolePrice                    Decimal?
+    hingeHolePrice                           Decimal?
+    hingeHoleWithInstallationPrice           Decimal?
+    lockHolePrice                            Decimal?
+    serviceCostPercentage                    Decimal?
+    serviceCostPerFrame                      Decimal?
+    serviceCostPerMeter                      Decimal?
+    kpPricePerMeter                          Decimal?
+    bevel5mmPricePerMeter                    Decimal?
+    bevel10mmPricePerMeter                   Decimal?
+    bevel15mmPricePerMeter                   Decimal?
+    bevel20mmPricePerMeter                   Decimal?
+    sandblastingPricePerMeterSquared         Decimal?
+    sandblastingWithFoilPricePerMeterSquared Decimal?
+    temperingGlassPerMeterSquared            Decimal?
+    protectiveFoilPerMeterSquared            Decimal?
+    decorativeFoilPerMeterSquared            Decimal?
+    motiveFoilPerMeterSquared                Decimal?
+    sandblastedFoilPerMeterSquared           Decimal?
+    modified                                 DateTime?
+    // modifiedBy String?
+    created                                  DateTime  @default(now())
+    // createdBy String
 }
 
 model CmsSettings {
-  id         String    @id @default(uuid())
-  orderEmail String?
-  currency   String?
-  vat        Decimal?
-  introText  String?
-  modified   DateTime?
-  // modifiedBy String?
-  created    DateTime  @default(now())
-  // createdBy String
+    id         String    @id @default(uuid())
+    orderEmail String?
+    currency   String?
+    vat        Decimal?
+    introText  String?
+    modified   DateTime?
+    // modifiedBy String?
+    created    DateTime  @default(now())
+    // createdBy String
 }
 
 // model AluUploads {
@@ -957,52 +958,52 @@ model CmsSettings {
 // }
 
 model Files {
-  id        String    @id @default(uuid())
-  locale    String?
-  file      String?
-  filename  String?
-  path      String?
-  filesize  Decimal?
-  extension String?
-  mimetype  String?
-  width     Int?
-  height    Int?
-  isImage   Boolean?
-  extra     String?
-  alt       String?
-  source    String?
-  meta      String?
-  modified  DateTime?
+    id        String    @id @default(uuid())
+    locale    String?
+    file      String?
+    filename  String?
+    path      String?
+    filesize  Decimal?
+    extension String?
+    mimetype  String?
+    width     Int?
+    height    Int?
+    isImage   Boolean?
+    extra     String?
+    alt       String?
+    source    String?
+    meta      String?
+    modified  DateTime?
 
-  mechanismPic                CmsMechanisms?         @relation(fields: [mechanismPicId], references: [id], name: "MechanismPic")
-  mechanismPicId              String?                @unique
-  mechanismThinningPic        CmsMechanisms?         @relation(fields: [mechanismThinningPicId], references: [id], name: "MechanismThinningPic")
-  mechanismThinningPicId      String?                @unique
-  horizontalProfilePic        CmsHorizontalProfiles? @relation(fields: [horizontalProfilePicId], references: [id], name: "HorizontalProfilePic")
-  horizontalProfilePicId      String?                @unique
-  handrailPic                 CmsHandrails?          @relation(fields: [handrailPicId], references: [id], name: "HandrailPic")
-  handrailPicId               String?                @unique
-  aluFrameTypePic             CmsAluFrameTypes?      @relation(fields: [aluFrameTypePicId], references: [id], name: "AluFrameTypePic")
-  aluFrameTypePicId           String?                @unique
-  aluFrameTypeTechnicalPic    CmsAluFrameTypes?      @relation(fields: [aluFrameTypeTechnicalPicId], references: [id], name: "AluFrameTypeTechnicalPic")
-  aluFrameTypeTechnicalPicId  String?                @unique
-  aluFrameTypeGallery         CmsAluFrameTypes?      @relation(fields: [aluFrameTypeGalleryId], references: [id], name: "AluFrameTypeGalleryPic")
-  aluFrameTypeGalleryId       String?
-  aluFrameTreatmentsGallery   CmsAluFrameTreatments? @relation(fields: [aluFrameTreatmentsGalleryId], references: [id])
-  aluFrameTreatmentsGalleryId String?
-  aluFill                     CmsAluFills?           @relation(fields: [aluFillId], references: [id])
-  aluFillId                   String?
-  aluHinge                    CmsAluHinges?          @relation(fields: [aluHingeId], references: [id])
-  aluHingeId                  String?                @unique
-  aluLiftSupports             CmsAluLiftSupports?    @relation(fields: [aluLiftSupportId], references: [id])
-  aluLiftSupportId            String?                @unique
-  // entityId   String?
-  // entityType String?
+    mechanismPic                CmsMechanisms?         @relation(fields: [mechanismPicId], references: [id], name: "MechanismPic")
+    mechanismPicId              String?                @unique
+    mechanismThinningPic        CmsMechanisms?         @relation(fields: [mechanismThinningPicId], references: [id], name: "MechanismThinningPic")
+    mechanismThinningPicId      String?                @unique
+    horizontalProfilePic        CmsHorizontalProfiles? @relation(fields: [horizontalProfilePicId], references: [id], name: "HorizontalProfilePic")
+    horizontalProfilePicId      String?                @unique
+    handrailPic                 CmsHandrails?          @relation(fields: [handrailPicId], references: [id], name: "HandrailPic")
+    handrailPicId               String?                @unique
+    aluFrameTypePic             CmsAluFrameTypes?      @relation(fields: [aluFrameTypePicId], references: [id], name: "AluFrameTypePic")
+    aluFrameTypePicId           String?                @unique
+    aluFrameTypeTechnicalPic    CmsAluFrameTypes?      @relation(fields: [aluFrameTypeTechnicalPicId], references: [id], name: "AluFrameTypeTechnicalPic")
+    aluFrameTypeTechnicalPicId  String?                @unique
+    aluFrameTypeGallery         CmsAluFrameTypes?      @relation(fields: [aluFrameTypeGalleryId], references: [id], name: "AluFrameTypeGalleryPic")
+    aluFrameTypeGalleryId       String?
+    aluFrameTreatmentsGallery   CmsAluFrameTreatments? @relation(fields: [aluFrameTreatmentsGalleryId], references: [id])
+    aluFrameTreatmentsGalleryId String?
+    aluFill                     CmsAluFills?           @relation(fields: [aluFillId], references: [id])
+    aluFillId                   String?
+    aluHinge                    CmsAluHinges?          @relation(fields: [aluHingeId], references: [id])
+    aluHingeId                  String?                @unique
+    aluLiftSupports             CmsAluLiftSupports?    @relation(fields: [aluLiftSupportId], references: [id])
+    aluLiftSupportId            String?                @unique
+    // entityId   String?
+    // entityType String?
 
-  // MechanismPic CmsMechanisms? @relation("MechanismPic", fields: [entityId], references: [id], map: "mechanismPic_entityId")
-  // MechanismThinningpic CmsMechanisms? @relation("MechanismThinningpic", fields: [entityId], references: [id], map: "mechanismThinningpic_entityId")
+    // MechanismPic CmsMechanisms? @relation("MechanismPic", fields: [entityId], references: [id], map: "mechanismPic_entityId")
+    // MechanismThinningpic CmsMechanisms? @relation("MechanismThinningpic", fields: [entityId], references: [id], map: "mechanismThinningpic_entityId")
 
-  // modifiedBy String?
-  created DateTime @default(now())
-  // createdBy String
+    // modifiedBy String?
+    created DateTime @default(now())
+    // createdBy String
 }
