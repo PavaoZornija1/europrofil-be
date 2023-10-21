@@ -16,8 +16,8 @@ export class CreateDoorMechanismDto {
   @IsNotEmpty()
   public price: number;
 
-  @IsString()
-  public deceleratorOpposites?: string;
+  @IsNotEmpty()
+  public deceleratorOpposites?: string[];
 
   @IsNotEmpty()
   public mechanism: any[];

@@ -205,7 +205,8 @@ CREATE TABLE "CmsOrders" (
     "servicesConfectionChosen" BOOLEAN NOT NULL DEFAULT false,
     "servicesInstallationName" TEXT,
     "servicesInstallationChosen" BOOLEAN NOT NULL DEFAULT false,
-    "isActive" BOOLEAN NOT NULL DEFAULT false,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "deleted" TIMESTAMP(3),
     "modified" TIMESTAMP(3),
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -351,7 +352,6 @@ CREATE TABLE "CmsDoorMechanisms" (
     "name" TEXT NOT NULL,
     "productCode" TEXT NOT NULL,
     "deceleratorSupport" BOOLEAN NOT NULL DEFAULT false,
-    "deceleratorOpposites" TEXT,
     "price" DECIMAL(65,30),
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
@@ -875,7 +875,13 @@ CREATE TABLE "_CmsDoorMechanismsToCmsMechanisms" (
 );
 
 -- CreateTable
-CREATE TABLE "_CmsDoorMechanismsToCmsHandrails" (
+CREATE TABLE "_cmsHandrails" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_deceleratorOpposites" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
@@ -989,10 +995,16 @@ CREATE UNIQUE INDEX "_CmsDoorMechanismsToCmsMechanisms_AB_unique" ON "_CmsDoorMe
 CREATE INDEX "_CmsDoorMechanismsToCmsMechanisms_B_index" ON "_CmsDoorMechanismsToCmsMechanisms"("B");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_CmsDoorMechanismsToCmsHandrails_AB_unique" ON "_CmsDoorMechanismsToCmsHandrails"("A", "B");
+CREATE UNIQUE INDEX "_cmsHandrails_AB_unique" ON "_cmsHandrails"("A", "B");
 
 -- CreateIndex
-CREATE INDEX "_CmsDoorMechanismsToCmsHandrails_B_index" ON "_CmsDoorMechanismsToCmsHandrails"("B");
+CREATE INDEX "_cmsHandrails_B_index" ON "_cmsHandrails"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_deceleratorOpposites_AB_unique" ON "_deceleratorOpposites"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_deceleratorOpposites_B_index" ON "_deceleratorOpposites"("B");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_CmsHandrailsToCmsMechanisms_AB_unique" ON "_CmsHandrailsToCmsMechanisms"("A", "B");
@@ -1328,10 +1340,16 @@ ALTER TABLE "_CmsDoorMechanismsToCmsMechanisms" ADD CONSTRAINT "_CmsDoorMechanis
 ALTER TABLE "_CmsDoorMechanismsToCmsMechanisms" ADD CONSTRAINT "_CmsDoorMechanismsToCmsMechanisms_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_CmsDoorMechanismsToCmsHandrails" ADD CONSTRAINT "_CmsDoorMechanismsToCmsHandrails_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsDoorMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_cmsHandrails" ADD CONSTRAINT "_cmsHandrails_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsDoorMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_CmsDoorMechanismsToCmsHandrails" ADD CONSTRAINT "_CmsDoorMechanismsToCmsHandrails_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsHandrails"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_cmsHandrails" ADD CONSTRAINT "_cmsHandrails_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsHandrails"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_deceleratorOpposites" ADD CONSTRAINT "_deceleratorOpposites_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsDoorMechanisms"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_deceleratorOpposites" ADD CONSTRAINT "_deceleratorOpposites_B_fkey" FOREIGN KEY ("B") REFERENCES "CmsHandrails"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CmsHandrailsToCmsMechanisms" ADD CONSTRAINT "_CmsHandrailsToCmsMechanisms_A_fkey" FOREIGN KEY ("A") REFERENCES "CmsHandrails"("id") ON DELETE CASCADE ON UPDATE CASCADE;

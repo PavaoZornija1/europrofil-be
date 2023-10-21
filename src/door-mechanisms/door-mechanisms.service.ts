@@ -14,19 +14,24 @@ export class DoorMechanismsService {
         productCode: createDoorMechanismDto.productCode,
         price: createDoorMechanismDto.price,
         deceleratorSupport: createDoorMechanismDto.deceleratorSupport,
-        deceleratorOpposites: createDoorMechanismDto.deceleratorOpposites,
+        deceleratorOpposites: {
+          connect: createDoorMechanismDto.deceleratorOpposites.map((dopp) => ({
+            id: dopp,
+          })),
+        },
+        // deceleratorOpposites: createDoorMechanismDto.deceleratorOpposites,
         cmsMechanisms: {
           connect: createDoorMechanismDto.mechanism.map((mechanism) => ({
             id: mechanism,
           })),
         },
-        createdBy: userId
-          ? {
-              connect: {
-                id: userId,
-              },
-            }
-          : undefined,
+        // createdBy: userId
+        //   ? {
+        //       connect: {
+        //         id: userId,
+        //       },
+        //     }
+        //   : undefined,
       },
     });
   }
@@ -64,6 +69,9 @@ export class DoorMechanismsService {
         cmsMechanisms: {
           set: [],
         },
+        deceleratorOpposites: {
+          set: [],
+        },
       },
     });
 
@@ -76,20 +84,25 @@ export class DoorMechanismsService {
         productCode: updateDoorMechanismDto.productCode,
         price: updateDoorMechanismDto.price,
         deceleratorSupport: updateDoorMechanismDto.deceleratorSupport,
-        deceleratorOpposites: updateDoorMechanismDto.deceleratorOpposites,
+        // deceleratorOpposites: updateDoorMechanismDto.deceleratorOpposites,
+        deceleratorOpposites: {
+          connect: updateDoorMechanismDto.deceleratorOpposites.map((dopp) => ({
+            id: dopp,
+          })),
+        },
         modified: new Date(),
         cmsMechanisms: {
           connect: updateDoorMechanismDto.mechanism.map((mechanism) => ({
             id: mechanism,
           })),
         },
-        modifiedBy: userId
-          ? {
-              connect: {
-                id: userId,
-              },
-            }
-          : undefined,
+        // modifiedBy: userId
+        //   ? {
+        //       connect: {
+        //         id: userId,
+        //       },
+        //     }
+        //   : undefined,
       },
     });
   }

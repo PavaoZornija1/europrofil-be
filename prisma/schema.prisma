@@ -42,8 +42,8 @@ model User {
     modifiedHandrailEndings        CmsHandrailEndings[]        @relation(name: "ModifiedHE")
     createdMechanisms              CmsMechanisms[]             @relation(name: "CreatedM")
     modifiedMechanisms             CmsMechanisms[]             @relation(name: "ModifiedM")
-    createdDoorMechanisms          CmsDoorMechanisms[]         @relation(name: "CreatedDM")
-    modifiedDoorMechanisms         CmsDoorMechanisms[]         @relation(name: "ModifiedDM")
+    // createdDoorMechanisms          CmsDoorMechanisms[]         @relation(name: "CreatedDM")
+    // modifiedDoorMechanisms         CmsDoorMechanisms[]         @relation(name: "ModifiedDM")
     createdHandrails               CmsHandrails[]              @relation(name: "CreatedH")
     modifiedHandrails              CmsHandrails[]              @relation(name: "ModifiedH")
     createdPvcProfiles             CmsPvcProfiles[]            @relation(name: "CreatedPP")
@@ -452,30 +452,32 @@ model CmsMechanisms {
 }
 
 model CmsDoorMechanisms {
-    id                   String          @id @default(uuid())
-    name                 String
-    productCode          String
-    deceleratorSupport   Boolean         @default(false)
-    deceleratorOpposites String?
-    price                Decimal?
-    cmsMechanisms        CmsMechanisms[]
-    cmsOrderDoors        CmsOrderDoors[]
-    cmsHandrails         CmsHandrails[]
-    isActive             Boolean         @default(true)
-    isDeleted            Boolean         @default(false)
+    id                 String          @id @default(uuid())
+    name               String
+    productCode        String
+    deceleratorSupport Boolean         @default(false)
+    price              Decimal?
+    cmsMechanisms      CmsMechanisms[]
+    cmsOrderDoors      CmsOrderDoors[]
+    cmsHandrails       CmsHandrails[]  @relation(name: "cmsHandrails")
+
+    deceleratorOpposites CmsHandrails[] @relation(name: "deceleratorOpposites")
+    isActive             Boolean        @default(true)
+    isDeleted            Boolean        @default(false)
     deleted              DateTime?
     modified             DateTime?
-    created              DateTime        @default(now())
-    modifiedBy           User?           @relation(fields: [modifiedById], references: [id], name: "CreatedDM", map: "modified_dm_fk")
+    created              DateTime       @default(now())
+    // modifiedBy           User?          @relation(fields: [modifiedById], references: [id], name: "CreatedDM", map: "modified_dm_fk")
     modifiedById         String?
-    createdBy            User?           @relation(fields: [modifiedById], references: [id], name: "ModifiedDM", map: "created_dm_fk")
+    // createdBy            User?          @relation(fields: [modifiedById], references: [id], name: "ModifiedDM", map: "created_dm_fk")
     createdById          String?
 }
 
 model CmsHandrails {
     id                      String                    @id @default(uuid())
     cmsMechanisms           CmsMechanisms[]
-    cmsDoorMechanisms       CmsDoorMechanisms[]
+    cmsDoorMechanisms       CmsDoorMechanisms[]       @relation(name: "cmsHandrails")
+    cmsDoorMechanismsDeOpp  CmsDoorMechanisms[]       @relation(name: "deceleratorOpposites")
     cmsSupportedDecorations CmsSupportedDecorations[]
     cmsOrders               CmsOrders[]
     cmsHandrailEndings      CmsHandrailEndings[]

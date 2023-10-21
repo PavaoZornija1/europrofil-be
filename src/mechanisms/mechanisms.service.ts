@@ -74,6 +74,11 @@ export class MechanismsService {
         },
         cmsDoorMechanisms: {
           include: {
+            deceleratorOpposites: {
+              where: {
+                isActive: true,
+              },
+            },
             cmsOrderDoors: true,
             cmsHandrails: {
               where: {
@@ -87,6 +92,11 @@ export class MechanismsService {
             isActive: true,
           },
           include: {
+            cmsDoorMechanismsDeOpp: {
+              where: {
+                isActive: true,
+              },
+            },
             cmsDoorMechanisms: {
               where: {
                 isActive: true,
@@ -175,6 +185,11 @@ export class MechanismsService {
         },
         cmsDoorMechanisms: {
           include: {
+            deceleratorOpposites: {
+              where: {
+                isActive: true,
+              },
+            },
             cmsOrderDoors: true,
             cmsHandrails: {
               where: {
@@ -188,6 +203,11 @@ export class MechanismsService {
             isActive: true,
           },
           include: {
+            cmsDoorMechanismsDeOpp: {
+              where: {
+                isActive: true,
+              },
+            },
             cmsDoorMechanisms: {
               where: {
                 isActive: true,
