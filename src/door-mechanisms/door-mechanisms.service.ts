@@ -40,9 +40,18 @@ export class DoorMechanismsService {
     return await prisma.cmsDoorMechanisms.findMany({
       where: { isActive: true },
       include: {
+        deceleratorOpposites: {
+          where: {
+            isActive: true,
+          },
+        },
         cmsMechanisms: true,
         cmsOrderDoors: true,
-        cmsHandrails: true,
+        cmsHandrails: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }
@@ -51,9 +60,18 @@ export class DoorMechanismsService {
     return prisma.cmsDoorMechanisms.findUnique({
       where: { id: id },
       include: {
+        deceleratorOpposites: {
+          where: {
+            isActive: true,
+          },
+        },
         cmsMechanisms: true,
         cmsOrderDoors: true,
-        cmsHandrails: true,
+        cmsHandrails: {
+          where: {
+            isActive: true,
+          },
+        },
       },
     });
   }
