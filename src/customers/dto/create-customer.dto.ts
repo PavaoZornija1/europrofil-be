@@ -42,6 +42,12 @@ export class CreateCustomerDto {
   public discount?: number;
 
   @IsOptional()
+  public discountHardware?: number;
+
+  @IsOptional()
+  public discountFillings?: number;
+
+  @IsOptional()
   @IsBoolean()
   public useDetailedBilling?: boolean;
 
