@@ -20,5 +20,8 @@ export class CreateDoorMechanismDto {
   public deceleratorOpposites?: string[];
 
   @IsNotEmpty()
+  public deceleratorOppositesChildren?: string[];
+
+  @IsNotEmpty()
   public mechanism: any[];
 }
