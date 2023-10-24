@@ -471,6 +471,8 @@ model CmsDoorMechanisms {
     modifiedById         String?
     // createdBy            User?          @relation(fields: [modifiedById], references: [id], name: "ModifiedDM", map: "created_dm_fk")
     createdById          String?
+    DoorMechanismDeceleratorOpposites       CmsDoorMechanisms[] @relation(name: "DoorMechanismDeceleratorOpposites")
+    DoorMechanismDeceleratorOppositesParent CmsDoorMechanisms[] @relation(name: "DoorMechanismDeceleratorOpposites")
 }
 
 model CmsHandrails {
