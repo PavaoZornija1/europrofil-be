@@ -175,8 +175,8 @@ model CmsUsers {
     phone              String?
     address            String?
     deliveryAddress    String?
-    discountHardware   Boolean        @default(false)
-    discountFillings   Boolean        @default(false)
+    discountHardware   Decimal?
+    discountFillings   Decimal?
     useDetailedBilling Boolean        @default(false)
     lockedDiscount     Boolean        @default(true)
     note               String?
@@ -461,16 +461,16 @@ model CmsDoorMechanisms {
     cmsOrderDoors      CmsOrderDoors[]
     cmsHandrails       CmsHandrails[]  @relation(name: "cmsHandrails")
 
-    deceleratorOpposites CmsHandrails[] @relation(name: "deceleratorOpposites")
-    isActive             Boolean        @default(true)
-    isDeleted            Boolean        @default(false)
-    deleted              DateTime?
-    modified             DateTime?
-    created              DateTime       @default(now())
+    deceleratorOpposites                    CmsHandrails[]      @relation(name: "deceleratorOpposites")
+    isActive                                Boolean             @default(true)
+    isDeleted                               Boolean             @default(false)
+    deleted                                 DateTime?
+    modified                                DateTime?
+    created                                 DateTime            @default(now())
     // modifiedBy           User?          @relation(fields: [modifiedById], references: [id], name: "CreatedDM", map: "modified_dm_fk")
-    modifiedById         String?
+    modifiedById                            String?
     // createdBy            User?          @relation(fields: [modifiedById], references: [id], name: "ModifiedDM", map: "created_dm_fk")
-    createdById          String?
+    createdById                             String?
     DoorMechanismDeceleratorOpposites       CmsDoorMechanisms[] @relation(name: "DoorMechanismDeceleratorOpposites")
     DoorMechanismDeceleratorOppositesParent CmsDoorMechanisms[] @relation(name: "DoorMechanismDeceleratorOpposites")
 }
