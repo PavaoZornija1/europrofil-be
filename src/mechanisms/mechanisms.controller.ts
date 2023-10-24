@@ -10,12 +10,16 @@ import {
   UseGuards,
   UploadedFile,
   UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common';
 import { MechanismsService } from './mechanisms.service';
 import { CreateMechanismDto } from './dto/create-mechanism.dto';
 import { UpdateMechanismDto } from './dto/update-mechanism.dto';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
-import { FileInterceptor } from '@nestjs/platform-express';
+import {
+  FileFieldsInterceptor,
+  FileInterceptor,
+} from '@nestjs/platform-express';
 
 @Controller('mechanisms')
 export class MechanismsController {
@@ -23,10 +27,16 @@ export class MechanismsController {
 
   @Post()
   @UseGuards(AuthGuard)
-  @UseInterceptors(FileInterceptor('thinningPic'))
+  @UseInterceptors(
+    FileFieldsInterceptor([
+      { name: 'thinningPic', maxCount: 1 }, // 'file1' is the field name for the first file
+      { name: 'pic', maxCount: 1 }, // 'file2' is the field name for the second file
+    ]),
+  )
   create(
     @Req() req: any,
-    @UploadedFile() thinningPic: Express.Multer.File,
+    @UploadedFiles()
+    files: { thinningPic: Express.Multer.File; pic: Express.Multer.File },
     @Body() createMechanismDto: CreateMechanismDto,
   ) {
     const userId = req.user?.userId;
