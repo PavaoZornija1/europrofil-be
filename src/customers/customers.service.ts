@@ -55,8 +55,8 @@ export class CustomersService {
   }
 
   async update(id: string, updateCustomerDto: UpdateCustomerDto) {
-    const salt = await genSalt(10);
-    const hashedPw = await hash(updateCustomerDto.password, salt);
+    // const salt = await genSalt(10);
+    // const hashedPw = await hash(updateCustomerDto.password, salt);
 
     return await prisma.cmsUsers.update({
       where: {
@@ -68,7 +68,7 @@ export class CustomersService {
         isEmployee: false,
         isAdministrator: false,
         phone: updateCustomerDto.phone,
-        password: hashedPw,
+        // password: hashedPw,
         address: updateCustomerDto.address,
         note: updateCustomerDto.note,
         approvalStatus: updateCustomerDto.approvalStatus,
