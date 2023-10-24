@@ -19,6 +19,13 @@ export class DoorMechanismsService {
             id: dopp,
           })),
         },
+        DoorMechanismDeceleratorOpposites: {
+          connect: createDoorMechanismDto.deceleratorOppositesChildren.map(
+            (dopp) => ({
+              id: dopp,
+            }),
+          ),
+        },
         // deceleratorOpposites: createDoorMechanismDto.deceleratorOpposites,
         cmsMechanisms: {
           connect: createDoorMechanismDto.mechanism.map((mechanism) => ({
@@ -40,6 +47,8 @@ export class DoorMechanismsService {
     return await prisma.cmsDoorMechanisms.findMany({
       where: { isActive: true },
       include: {
+        DoorMechanismDeceleratorOpposites: true,
+
         deceleratorOpposites: {
           where: {
             isActive: true,
@@ -60,6 +69,7 @@ export class DoorMechanismsService {
     return prisma.cmsDoorMechanisms.findUnique({
       where: { id: id },
       include: {
+        DoorMechanismDeceleratorOpposites: true,
         deceleratorOpposites: {
           where: {
             isActive: true,
@@ -90,6 +100,9 @@ export class DoorMechanismsService {
         deceleratorOpposites: {
           set: [],
         },
+        DoorMechanismDeceleratorOpposites: {
+          set: [],
+        },
       },
     });
 
@@ -107,6 +120,13 @@ export class DoorMechanismsService {
           connect: updateDoorMechanismDto.deceleratorOpposites.map((dopp) => ({
             id: dopp,
           })),
+        },
+        DoorMechanismDeceleratorOpposites: {
+          connect: updateDoorMechanismDto.deceleratorOppositesChildren.map(
+            (dopp) => ({
+              id: dopp,
+            }),
+          ),
         },
         modified: new Date(),
         cmsMechanisms: {
