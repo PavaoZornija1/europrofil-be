@@ -54,11 +54,15 @@ export class MechanismsController {
     }
     // console.log('PIIIIIC: ', pic);
     // Save the files to the public folder
-    fs.writeFileSync(`${savePath}/${pic[0].originalname}`, pic[0].buffer);
-    // fs.writeFileSync(
-    //    `${savePath}/${thinningPic.originalname}`,
-    //    thinningPic.buffer,
-    // );
+    if (pic) {
+      fs.writeFileSync(`${savePath}/${pic[0].originalname}`, pic[0].buffer);
+    }
+    if (thinningPic) {
+      fs.writeFileSync(
+        `${savePath}/${thinningPic.originalname}`,
+        thinningPic.buffer,
+      );
+    }
     // return false;
     return this.mechanismsService.create(createMechanismDto, userId, files);
   }

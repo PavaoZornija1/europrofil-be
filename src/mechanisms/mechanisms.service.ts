@@ -100,7 +100,19 @@ export class MechanismsService {
         },
       });
     }
-
+    if (thinningPic) {
+      const thinningPic = await prisma.files.create({
+        data: {
+          mimetype: pic.mimetype,
+          path: `public/uploads/${pic[0].originalname}`,
+          mechanismThinningPic: {
+            connect: {
+              id: newMech.id,
+            },
+          },
+        },
+      });
+    }
     return newMech;
 
     // locale    String?
