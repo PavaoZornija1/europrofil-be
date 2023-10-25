@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import {
   Controller,
   Get,
@@ -41,6 +42,23 @@ export class MechanismsController {
   ) {
     const userId = req.user?.userId;
     console.log(files);
+
+    const { pic, thinningPic } = files;
+
+    // Define the directory where you want to save the files
+    const savePath = 'public/uploads/'; // Adjust the path to your desired public folder
+
+    // Create the public folder if it doesn't exist
+    if (!fs.existsSync(savePath)) {
+      fs.mkdirSync(savePath, { recursive: true });
+    }
+
+    // Save the files to the public folder
+    fs.writeFileSync(`${savePath}/${pic.originalname}`, pic.buffer);
+    fs.writeFileSync(
+      `${savePath}/${thinningPic.originalname}`,
+      thinningPic.buffer,
+    );
     // return false;
     return this.mechanismsService.create(createMechanismDto, userId);
   }

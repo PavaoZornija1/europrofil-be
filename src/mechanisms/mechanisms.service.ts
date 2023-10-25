@@ -83,6 +83,8 @@ export class MechanismsService {
         isActive: true,
       },
       include: {
+        pic: true,
+        thinningpPic: true,
         cmsOrders: true,
         cmsHorizontalProfiles: {
           where: {
@@ -199,6 +201,8 @@ export class MechanismsService {
     return prisma.cmsMechanisms.findUnique({
       where: { id: id },
       include: {
+        pic: true,
+        thinningpPic: true,
         cmsOrders: true,
         cmsHorizontalProfiles: {
           where: {
