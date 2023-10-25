@@ -6,18 +6,25 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.ordersService.create(createOrderDto);
+  @UseGuards(AuthGuard)
+  create(@Req() req: any, @Body() createOrderDto: CreateOrderDto) {
+    const userId = req.user?.userId;
+    // return false;
+    // return this.mechanismsService.create(createMechanismDto, userId);
+    return this.ordersService.create(createOrderDto, userId);
   }
 
   @Get()
@@ -31,8 +38,14 @@ export class OrdersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
-    return this.ordersService.update(id, updateOrderDto);
+  @UseGuards(AuthGuard)
+  update(
+    @Req() req: any,
+    @Param('id') id: string,
+    @Body() updateOrderDto: UpdateOrderDto,
+  ) {
+    const userId = req.user?.userId;
+    return this.ordersService.update(id, updateOrderDto, userId);
   }
 
   @Delete(':id')

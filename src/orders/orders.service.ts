@@ -7,8 +7,74 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class OrdersService {
-  create(createOrderDto: CreateOrderDto) {
-    return 'This action adds a new order';
+  async create(createOrderDto: CreateOrderDto, userId: string) {
+    return await prisma.cmsOrders.create({
+      data: {
+        customerName: createOrderDto.customerName,
+        customerPhone: createOrderDto.customerPhone,
+        customerAddress: createOrderDto.customerAddress,
+        customerDeliveryAddress: createOrderDto.customerDeliveryAddress,
+        customerDesiredDeliveryDate: createOrderDto.customerDesiredDeliveryDate,
+        customerDiscountFrame: createOrderDto.customerDiscountFrame,
+        customerDiscountFills: createOrderDto.customerDiscountFills,
+        customerShowPriceBreakdown: createOrderDto.customerShowPriceBreakdown,
+        customerLockedDiscounts: createOrderDto.customerLockedDiscounts,
+        customerOwnOrderNumber: createOrderDto.customerOwnOrderNumber,
+        notes: createOrderDto.notes,
+        givenOrderNumber: createOrderDto.givenOrderNumber,
+        orderDate: new Date(),
+        cmsMechanism: createOrderDto.mechanism
+          ? {
+              connect: {
+                id: createOrderDto.mechanism,
+              },
+            }
+          : undefined,
+        cmsHandrail: createOrderDto.handrail
+          ? {
+              connect: {
+                id: createOrderDto.handrail,
+              },
+            }
+          : undefined,
+
+        cmsHandrailDecoration: createOrderDto.handrailDecoration
+          ? {
+              connect: {
+                id: createOrderDto.handrailDecoration,
+              },
+            }
+          : undefined,
+        handrailDecorationCustomColor:
+          createOrderDto.handrailDecorationCustomColor,
+        cmsHandrailEnding: createOrderDto.handrailEnding
+          ? {
+              connect: {
+                id: createOrderDto.handrailEnding,
+              },
+            }
+          : undefined,
+        openingHeight: createOrderDto.openingHeight,
+        openingWidth: createOrderDto.openingWidth,
+        openingDoors: createOrderDto.openingDoors,
+        railsType: createOrderDto.railsType,
+        railsLengthTopValue: createOrderDto.railsLengthTopValue,
+        railsLengthTopManual: createOrderDto.railsLengthTopManual,
+        railsLengthBottomValue: createOrderDto.railsLengthBottomValue,
+        railsLengthBottomManual: createOrderDto.railsLengthBottomManual,
+        handrailHeight: createOrderDto.handrailHeight,
+        totalDeceleratorPairs: createOrderDto.totalDeceleratorPairs,
+        servicesFrameName: createOrderDto.servicesFrameName,
+        servicesFrameChosen: createOrderDto.servicesFrameChosen,
+        servicesFillName: createOrderDto.servicesFillName,
+        servicesFillChosen: createOrderDto.servicesFillChosen,
+        servicesConfectionName: createOrderDto.servicesConfectionName,
+        servicesConfectionChosen: createOrderDto.servicesConfectionChosen,
+        servicesInstallationName: createOrderDto.servicesInstallationName,
+        servicesInstallationChosen: createOrderDto.servicesInstallationChosen,
+        // issuedBy:
+      },
+    });
   }
 
   async findAll() {
@@ -41,7 +107,7 @@ export class OrdersService {
     });
   }
 
-  update(id: string, updateOrderDto: UpdateOrderDto) {
+  update(id: string, updateOrderDto: UpdateOrderDto, userId: string) {
     return `This action updates a #${id} order`;
   }
 
