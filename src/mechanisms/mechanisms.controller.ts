@@ -40,6 +40,7 @@ export class MechanismsController {
     @Body() createMechanismDto: CreateMechanismDto,
   ) {
     const userId = req.user?.userId;
+    console.log(files);
     // return false;
     return this.mechanismsService.create(createMechanismDto, userId);
   }
