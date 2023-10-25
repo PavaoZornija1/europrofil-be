@@ -20,6 +20,7 @@ import { AppModule } from './app.module';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 // import express from 'express';
+import * as express from 'express';
 
 function setupOpenApi(app: INestApplication) {
   const config = new DocumentBuilder()
@@ -43,11 +44,9 @@ async function bootstrap() {
     },
   });
   const globalPrefix = 'api';
-  //   app.use('/public', express.static(join(__dirname, '..', 'public')));
-  app.useStaticAssets(join(__dirname, '..', 'public'), {
-    index: false,
-    prefix: '/public',
-  });
+  // app.use('/public', express.static(join(__dirname, '..', 'public')));
+  app.use('/public', express.static('public'));
+  //   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   setupOpenApi(app);
