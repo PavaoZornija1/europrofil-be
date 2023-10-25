@@ -11,42 +11,59 @@ export class MechanismsService {
     return await prisma.cmsMechanisms.create({
       data: {
         name: createMechanismDto.name,
-        ordering: createMechanismDto.ordering,
+        ordering: Number(createMechanismDto.ordering),
         productCode: createMechanismDto.productCode,
-        constantsHeight: createMechanismDto.constantsHeight,
-        constantsHandrailHeight: createMechanismDto.constantsHandrailHeight,
-        constantsDeceleratorHeight:
+        constantsHeight: Number(createMechanismDto.constantsHeight),
+        constantsHandrailHeight: Number(
+          createMechanismDto.constantsHandrailHeight,
+        ),
+        constantsDeceleratorHeight: Number(
           createMechanismDto.constantsDeceleratorHeight,
-        constantsProfileTopWood: createMechanismDto.constantsDeceleratorHeight,
-        constantsProfileTopGlass: createMechanismDto.constantsProfileTopGlass,
-        constantsProfileBottomWood:
+        ),
+        constantsProfileTopWood: Number(
+          createMechanismDto.constantsDeceleratorHeight,
+        ),
+        constantsProfileTopGlass: Number(
+          createMechanismDto.constantsProfileTopGlass,
+        ),
+        constantsProfileBottomWood: Number(
           createMechanismDto.constantsProfileBottomWood,
-        constantsProfileBottomGlass:
+        ),
+        constantsProfileBottomGlass: Number(
           createMechanismDto.constantsProfileBottomGlass,
-        constantsSeparatorThickness:
+        ),
+        constantsSeparatorThickness: Number(
           createMechanismDto.constantsSeparatorThickness,
-        constantsSeparatorGlassGap:
+        ),
+        constantsSeparatorGlassGap: Number(
           createMechanismDto.constantsSeparatorGlassGap,
-        constantsSeparatorWoodGap: createMechanismDto.constantsSeparatorWoodGap,
+        ),
+        constantsSeparatorWoodGap: Number(
+          createMechanismDto.constantsSeparatorWoodGap,
+        ),
         pvcProfileAvailable: createMechanismDto.pvcProfileAvailable,
         thinningAvailable: createMechanismDto.thinningAvailable,
         deceleratorSupport: createMechanismDto.deceleratorSupport,
         differentHandrails: createMechanismDto.differentHandrails,
         withoutTopAndBottomProfiles:
           createMechanismDto.withoutTopAndBottomProfiles,
-        loadMin: createMechanismDto.loadMin,
-        loadMax: createMechanismDto.loadMax,
-        widthMin: createMechanismDto.widthMin,
-        heavyThreshold: createMechanismDto.heavyThreshold,
-        widthMax: createMechanismDto.widthMax,
-        heightMin: createMechanismDto.heightMin,
-        heightMax: createMechanismDto.heightMax,
-        fillThicknessMin: createMechanismDto.fillThicknessMin,
-        fillThicknessMax: createMechanismDto.fillThicknessMax,
+        loadMin: Number(createMechanismDto.loadMin),
+        loadMax: Number(createMechanismDto.loadMax),
+        widthMin: Number(createMechanismDto.widthMin),
+        heavyThreshold: Number(createMechanismDto.heavyThreshold),
+        widthMax: Number(createMechanismDto.widthMax),
+        heightMin: Number(createMechanismDto.heightMin),
+        heightMax: Number(createMechanismDto.heightMax),
+        fillThicknessMin: Number(createMechanismDto.fillThicknessMin),
+        fillThicknessMax: Number(createMechanismDto.fillThicknessMax),
         fillTypes: createMechanismDto.fillTypes,
         detailsLink: createMechanismDto.detailsLink,
-        confectionPricePerDoor: createMechanismDto.confectionPricePerDoor,
-        installationPricePerDoor: createMechanismDto.installationPricePerDoor,
+        confectionPricePerDoor: Number(
+          createMechanismDto.confectionPricePerDoor,
+        ),
+        installationPricePerDoor: Number(
+          createMechanismDto.installationPricePerDoor,
+        ),
         confectionProductCode: createMechanismDto.confectionProductCode,
         installationProductCode: createMechanismDto.installationProductCode,
         createdBy: userId
