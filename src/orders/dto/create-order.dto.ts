@@ -26,6 +26,7 @@ export class CreateOrderDto {
   public customerShowPriceBreakdown: boolean;
 
   @IsBoolean()
+  @IsOptional()
   public customerLockedDiscounts: boolean;
 
   @IsOptional()
@@ -67,12 +68,14 @@ export class CreateOrderDto {
   @IsOptional()
   public railsLengthTopValue: number;
 
+  @IsOptional()
   @IsBoolean()
   public railsLengthTopManual: boolean;
 
   @IsOptional()
   public railsLengthBottomValue: number;
 
+  @IsOptional()
   @IsBoolean()
   public railsLengthBottomManual: boolean;
 
