@@ -1,108 +1,218 @@
-import { IsString, IsNotEmpty, IsNumber, IsBoolean } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsBoolean,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateMechanismDto {
-  @IsString()
-  @IsNotEmpty()
+  // @IsString()
+  // @IsNotEmpty()
+  // public name: string;
+
+  // @IsString()
+  // @IsNotEmpty()
+  // public productCode: string;
+
+  // @IsNumber()
+  // public ordering: number;
+
+  // @IsNumber()
+  // public constantsHeight: number;
+
+  // @IsNumber()
+  // public constantsHandrailHeight: number;
+
+  // @IsNumber()
+  // public constantsDeceleratorHeight: number;
+
+  // @IsNumber()
+  // public constantsProfileTopWood: number;
+
+  // @IsNumber()
+  // public constantsProfileTopGlass: number;
+
+  // @IsNumber()
+  // public constantsProfileBottomWood: number;
+
+  // @IsNumber()
+  // public constantsProfileBottomGlass: number;
+
+  // @IsNumber()
+  // public constantsSeparatorThickness: number;
+
+  // @IsNumber()
+  // public constantsSeparatorGlassGap: number;
+
+  // @IsNumber()
+  // public constantsSeparatorWoodGap: number;
+
+  // @IsBoolean()
+  // public pvcProfileAvailable: boolean;
+
+  // @IsBoolean()
+  // public thinningAvailable: boolean;
+
+  // @IsBoolean()
+  // public deceleratorSupport: boolean;
+
+  // @IsBoolean()
+  // public differentHandrails: boolean;
+
+  // @IsBoolean()
+  // public withoutTopAndBottomProfiles: boolean;
+
+  // @IsNumber()
+  // public loadMin: number;
+
+  // @IsNumber()
+  // public loadMax: number;
+
+  // @IsNumber()
+  // public widthMin: number;
+
+  // @IsNumber()
+  // public heavyThreshold: number;
+
+  // @IsNumber()
+  // public widthMax: number;
+
+  // @IsNumber()
+  // public heightMin: number;
+
+  // @IsNumber()
+  // public heightMax: number;
+
+  // @IsNumber()
+  // public fillThicknessMin: number;
+
+  // @IsNumber()
+  // public fillThicknessMax: number;
+
+  // @IsString()
+  // public fillTypes: string;
+
+  // @IsString()
+  // public detailsLink: string;
+
+  // @IsNumber()
+  // public confectionPricePerDoor: number;
+
+  // @IsNumber()
+  // public installationPricePerDoor: number;
+
+  // @IsString()
+  // public confectionProductCode: string;
+
+  // @IsString()
+  // public installationProductCode: string;
+
+  // public picture: any;
+
+  // public thinningPicture: any;
+  @IsOptional()
   public name: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public productCode: string;
 
-  @IsNumber()
+  @IsOptional()
   public ordering: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsHeight: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsHandrailHeight: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsDeceleratorHeight: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsProfileTopWood: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsProfileTopGlass: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsProfileBottomWood: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsProfileBottomGlass: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsSeparatorThickness: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsSeparatorGlassGap: number;
 
-  @IsNumber()
+  @IsOptional()
   public constantsSeparatorWoodGap: number;
 
-  @IsBoolean()
+  @IsOptional()
   public pvcProfileAvailable: boolean;
 
-  @IsBoolean()
+  @IsOptional()
   public thinningAvailable: boolean;
 
-  @IsBoolean()
+  @IsOptional()
   public deceleratorSupport: boolean;
 
-  @IsBoolean()
+  @IsOptional()
   public differentHandrails: boolean;
 
-  @IsBoolean()
+  @IsOptional()
   public withoutTopAndBottomProfiles: boolean;
 
-  @IsNumber()
+  @IsOptional()
   public loadMin: number;
 
-  @IsNumber()
+  @IsOptional()
   public loadMax: number;
 
-  @IsNumber()
+  @IsOptional()
   public widthMin: number;
 
-  @IsNumber()
+  @IsOptional()
   public heavyThreshold: number;
 
-  @IsNumber()
+  @IsOptional()
   public widthMax: number;
 
-  @IsNumber()
+  @IsOptional()
   public heightMin: number;
 
-  @IsNumber()
+  @IsOptional()
   public heightMax: number;
 
-  @IsNumber()
+  @IsOptional()
   public fillThicknessMin: number;
 
-  @IsNumber()
+  @IsOptional()
   public fillThicknessMax: number;
 
-  @IsString()
+  @IsOptional()
   public fillTypes: string;
 
-  @IsString()
+  @IsOptional()
   public detailsLink: string;
 
-  @IsNumber()
+  @IsOptional()
   public confectionPricePerDoor: number;
 
-  @IsNumber()
+  @IsOptional()
   public installationPricePerDoor: number;
 
-  @IsString()
+  @IsOptional()
   public confectionProductCode: string;
 
-  @IsString()
+  @IsOptional()
   public installationProductCode: string;
 
-  public picture: any;
+  @IsOptional()
+  public pic: any;
 
-  public thinningPicture: any;
+  @IsOptional()
+  public thinningPic: any;
 }
