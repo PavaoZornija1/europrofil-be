@@ -17,6 +17,8 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { join } from 'path';
+import express from 'express';
 
 function setupOpenApi(app: INestApplication) {
   const config = new DocumentBuilder()
@@ -35,6 +37,7 @@ async function bootstrap() {
     },
   });
   const globalPrefix = 'api';
+  app.use('/public', express.static(join(__dirname, '..', 'public')));
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   setupOpenApi(app);
