@@ -18,7 +18,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 import { join } from 'path';
-import express from 'express';
+import { NestExpressApplication } from '@nestjs/platform-express';
+// import express from 'express';
 
 function setupOpenApi(app: INestApplication) {
   const config = new DocumentBuilder()
@@ -31,13 +32,22 @@ function setupOpenApi(app: INestApplication) {
 }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+  //   const app = await NestFactory.create(AppModule, {
+  //     cors: {
+  //       origin: '*',
+  //     },
+  //   });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     cors: {
       origin: '*',
     },
   });
   const globalPrefix = 'api';
-  app.use('/public', express.static(join(__dirname, '..', 'public')));
+  //   app.use('/public', express.static(join(__dirname, '..', 'public')));
+  app.useStaticAssets(join(__dirname, '..', 'public'), {
+    index: false,
+    prefix: '/public',
+  });
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   setupOpenApi(app);
