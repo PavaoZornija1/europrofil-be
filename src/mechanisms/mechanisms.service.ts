@@ -7,11 +7,12 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class MechanismsService {
-  async create(createMechanismDto: CreateMechanismDto, userId: string) {
-    const pvcProf =
-      createMechanismDto.pvcProfileAvailable === 'false' ? false : true;
-
-    return await prisma.cmsMechanisms.create({
+  async create(
+    createMechanismDto: CreateMechanismDto,
+    userId: string,
+    files: any,
+  ) {
+    const newMech = await prisma.cmsMechanisms.create({
       data: {
         name: createMechanismDto.name,
         ordering: Number(createMechanismDto.ordering),
@@ -84,6 +85,44 @@ export class MechanismsService {
           : undefined,
       },
     });
+
+    const { pic, thinningPic } = files;
+    if (pic) {
+      const newPic = await prisma.files.create({
+        data: {
+          mimetype: pic.mimetype,
+          path: `public/uploads/${pic[0].originalname}`,
+          mechanismPic: {
+            connect: {
+              id: newMech.id,
+            },
+          },
+        },
+      });
+    }
+
+    return newMech;
+
+    // locale    String?
+    // file      String?
+    // filename  String?
+    // path      String?
+    // filesize  Decimal?
+    // extension String?
+    // mimetype  String?
+    // width     Int?
+    // height    Int?
+    // isImage   Boolean?
+    // extra     String?
+    // alt       String?
+    // source    String?
+    // meta      String?
+    // modified  DateTime?
+
+    // mechanismPic                CmsMechanisms?         @relation(fields: [mechanismPicId], references: [id], name: "MechanismPic")
+    // mechanismPicId              String?                @unique
+    // mechanismThinningPic        CmsMechanisms?         @relation(fields: [mechanismThinningPicId], references: [id], name: "MechanismThinningPic")
+    // mechanismThinningPicId
   }
 
   async findAll() {

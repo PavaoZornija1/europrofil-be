@@ -60,7 +60,7 @@ export class MechanismsController {
     //    thinningPic.buffer,
     // );
     // return false;
-    return this.mechanismsService.create(createMechanismDto, userId);
+    return this.mechanismsService.create(createMechanismDto, userId, files);
   }
 
   @Get()
