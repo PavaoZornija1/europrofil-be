@@ -52,13 +52,13 @@ export class MechanismsController {
     if (!fs.existsSync(savePath)) {
       fs.mkdirSync(savePath, { recursive: true });
     }
-
+    // console.log('PIIIIIC: ', pic);
     // Save the files to the public folder
-    fs.writeFileSync(`${savePath}/${pic.originalname}`, pic.buffer);
-    fs.writeFileSync(
-      `${savePath}/${thinningPic.originalname}`,
-      thinningPic.buffer,
-    );
+    fs.writeFileSync(`${savePath}/${pic[0].originalname}`, pic[0].buffer);
+    // fs.writeFileSync(
+    //    `${savePath}/${thinningPic.originalname}`,
+    //    thinningPic.buffer,
+    // );
     // return false;
     return this.mechanismsService.create(createMechanismDto, userId);
   }

@@ -8,6 +8,9 @@ const prisma = new PrismaClient();
 @Injectable()
 export class MechanismsService {
   async create(createMechanismDto: CreateMechanismDto, userId: string) {
+    const pvcProf =
+      createMechanismDto.pvcProfileAvailable === 'false' ? false : true;
+
     return await prisma.cmsMechanisms.create({
       data: {
         name: createMechanismDto.name,
@@ -41,12 +44,18 @@ export class MechanismsService {
         constantsSeparatorWoodGap: Number(
           createMechanismDto.constantsSeparatorWoodGap,
         ),
-        pvcProfileAvailable: createMechanismDto.pvcProfileAvailable,
-        thinningAvailable: createMechanismDto.thinningAvailable,
-        deceleratorSupport: createMechanismDto.deceleratorSupport,
-        differentHandrails: createMechanismDto.differentHandrails,
+        pvcProfileAvailable:
+          createMechanismDto.pvcProfileAvailable === 'false' ? false : true,
+        thinningAvailable:
+          createMechanismDto.thinningAvailable === 'false' ? false : true,
+        deceleratorSupport:
+          createMechanismDto.deceleratorSupport === 'false' ? false : true,
+        differentHandrails:
+          createMechanismDto.differentHandrails === 'false' ? false : true,
         withoutTopAndBottomProfiles:
-          createMechanismDto.withoutTopAndBottomProfiles,
+          createMechanismDto.withoutTopAndBottomProfiles === 'false'
+            ? false
+            : true,
         loadMin: Number(createMechanismDto.loadMin),
         loadMax: Number(createMechanismDto.loadMax),
         widthMin: Number(createMechanismDto.widthMin),
@@ -351,12 +360,18 @@ export class MechanismsService {
         constantsSeparatorGlassGap:
           updateMechanismDto.constantsSeparatorGlassGap,
         constantsSeparatorWoodGap: updateMechanismDto.constantsSeparatorWoodGap,
-        pvcProfileAvailable: updateMechanismDto.pvcProfileAvailable,
-        thinningAvailable: updateMechanismDto.thinningAvailable,
-        deceleratorSupport: updateMechanismDto.deceleratorSupport,
-        differentHandrails: updateMechanismDto.differentHandrails,
+        pvcProfileAvailable:
+          updateMechanismDto.pvcProfileAvailable === 'false' ? false : true,
+        thinningAvailable:
+          updateMechanismDto.thinningAvailable === 'false' ? false : true,
+        deceleratorSupport:
+          updateMechanismDto.deceleratorSupport === 'false' ? false : true,
+        differentHandrails:
+          updateMechanismDto.differentHandrails === 'false' ? false : true,
         withoutTopAndBottomProfiles:
-          updateMechanismDto.withoutTopAndBottomProfiles,
+          updateMechanismDto.withoutTopAndBottomProfiles === 'false'
+            ? false
+            : true,
         loadMin: updateMechanismDto.loadMin,
         loadMax: updateMechanismDto.loadMax,
         widthMin: updateMechanismDto.widthMin,

@@ -151,19 +151,19 @@ export class CreateMechanismDto {
   public constantsSeparatorWoodGap: number;
 
   @IsOptional()
-  public pvcProfileAvailable: boolean;
+  public pvcProfileAvailable: string;
 
   @IsOptional()
-  public thinningAvailable: boolean;
+  public thinningAvailable: string;
 
   @IsOptional()
-  public deceleratorSupport: boolean;
+  public deceleratorSupport: string;
 
   @IsOptional()
-  public differentHandrails: boolean;
+  public differentHandrails: string;
 
   @IsOptional()
-  public withoutTopAndBottomProfiles: boolean;
+  public withoutTopAndBottomProfiles: string;
 
   @IsOptional()
   public loadMin: number;
