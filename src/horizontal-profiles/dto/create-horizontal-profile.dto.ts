@@ -17,8 +17,9 @@ export class CreateHorizontalProfileDto {
   @IsNotEmpty()
   public constantsWoodGap: number;
 
-  @IsNotEmpty()
   public picture: any;
+
+  public pic: any;
 
   @IsNotEmpty()
   public mechanisms: any[];
