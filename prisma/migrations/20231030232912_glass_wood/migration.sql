@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "CmsFills" ADD COLUMN     "isGlass" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "isWood" BOOLEAN NOT NULL DEFAULT true;

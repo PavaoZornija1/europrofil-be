@@ -31,6 +31,14 @@ export class CreateFillDto {
   @IsOptional()
   public foilAvailable: boolean;
 
+  @IsBoolean()
+  @IsOptional()
+  public isGlass: boolean;
+
+  @IsBoolean()
+  @IsOptional()
+  public isWood: boolean;
+
   @IsNumber()
   @IsOptional()
   public pricePerMSquare: number;

@@ -17,6 +17,8 @@ export class FillsService {
         customNameAllowed: createFillDto.customNameAllowed,
         foilAvailable: createFillDto.foilAvailable,
         pricePerMSquare: createFillDto.pricePerMSquare,
+        isGlass: createFillDto.isGlass,
+        isWood: createFillDto.isWood,
         cmsMechanisms: {
           connect: createFillDto.mechanism.map((mechanism) => ({
             id: mechanism,
@@ -123,6 +125,8 @@ export class FillsService {
         customNameAllowed: updateFillDto.customNameAllowed,
         foilAvailable: updateFillDto.foilAvailable,
         pricePerMSquare: updateFillDto.pricePerMSquare,
+        isGlass: updateFillDto.isGlass,
+        isWood: updateFillDto.isWood,
         cmsMechanisms: {
           connect: updateFillDto.mechanism.map((mechanism) => ({
             id: mechanism,
