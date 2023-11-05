@@ -55,7 +55,10 @@ export class MechanismsController {
     // console.log('PIIIIIC: ', pic);
     // Save the files to the public folder
     if (pic) {
-      fs.writeFileSync(`${savePath}/${pic[0].originalname}`, pic[0].buffer);
+      fs.writeFileSync(
+        `${savePath}/${pic[0].originalname}_mechanism`,
+        pic[0].buffer,
+      );
     }
     if (thinningPic) {
       fs.writeFileSync(

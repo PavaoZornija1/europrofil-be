@@ -7,8 +7,12 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class HandrailsService {
-  async create(createHandrailDto: CreateHandrailDto, userId: string) {
-    return await prisma.cmsHandrails.create({
+  async create(
+    createHandrailDto: CreateHandrailDto,
+    userId: string,
+    files: any,
+  ) {
+    const newHandrail = await prisma.cmsHandrails.create({
       data: {
         name: createHandrailDto.name,
         roundingSteps: createHandrailDto.roundingSteps,
@@ -35,6 +39,23 @@ export class HandrailsService {
           : undefined,
       },
     });
+
+    const { pic } = files;
+    if (pic) {
+      const newPic = await prisma.files.create({
+        data: {
+          mimetype: pic.mimetype,
+          path: `public/uploads/${pic[0].originalname}_handrail`,
+          mechanismPic: {
+            connect: {
+              id: newHandrail.id,
+            },
+          },
+        },
+      });
+    }
+
+    return newHandrail;
   }
 
   async findAll() {

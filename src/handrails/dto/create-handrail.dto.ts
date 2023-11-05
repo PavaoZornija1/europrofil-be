@@ -1,5 +1,5 @@
 import { CmsDoorMechanisms, CmsMechanisms } from '@prisma/client';
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateHandrailDto {
   @IsString()
@@ -32,6 +32,6 @@ export class CreateHandrailDto {
   @IsNotEmpty()
   public doorMechanisms: any[];
 
-  @IsNotEmpty()
-  public picture: any;
+  @IsOptional()
+  public pic: any;
 }

@@ -91,7 +91,7 @@ export class MechanismsService {
       const newPic = await prisma.files.create({
         data: {
           mimetype: pic.mimetype,
-          path: `public/uploads/${pic[0].originalname}`,
+          path: `public/uploads/${pic[0].originalname}_mechanism`,
           mechanismPic: {
             connect: {
               id: newMech.id,
