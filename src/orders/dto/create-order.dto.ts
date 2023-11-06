@@ -86,6 +86,9 @@ export class CreateOrderDto {
   public totalDeceleratorPairs: number;
 
   @IsOptional()
+  public finalPrice: number;
+
+  @IsOptional()
   public servicesFrameName: string;
 
   @IsOptional()

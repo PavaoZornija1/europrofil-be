@@ -250,6 +250,7 @@ model CmsOrders {
     customerDesiredDeliveryDate   DateTime?
     customerDiscountFrame         Decimal?
     customerDiscountFills         Decimal?
+    finalPrice                    Decimal?
     customerShowPriceBreakdown    Boolean                 @default(false)
     customerLockedDiscounts       Boolean                 @default(false)
     customerOwnOrderNumber        String?

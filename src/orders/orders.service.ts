@@ -11,6 +11,7 @@ export class OrdersService {
     return await prisma.cmsOrders.create({
       data: {
         customerName: createOrderDto.customerName,
+        finalPrice: createOrderDto.finalPrice,
         customerPhone: createOrderDto.customerPhone,
         customerAddress: createOrderDto.customerAddress,
         customerDeliveryAddress: createOrderDto.customerDeliveryAddress,
