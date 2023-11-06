@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Req,
+  UseInterceptors,
   UploadedFiles,
 } from '@nestjs/common';
 import * as fs from 'fs';
@@ -15,6 +16,7 @@ import { HandrailsService } from './handrails.service';
 import { CreateHandrailDto } from './dto/create-handrail.dto';
 import { UpdateHandrailDto } from './dto/update-handrail.dto';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @Controller('handrails')
 export class HandrailsController {
@@ -22,6 +24,7 @@ export class HandrailsController {
 
   @Post()
   @UseGuards(AuthGuard)
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'pic', maxCount: 1 }]))
   create(
     @Req() req: any,
     @Body() createHandrailDto: CreateHandrailDto,
