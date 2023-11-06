@@ -19,9 +19,11 @@ export class HorizontalProfilesService {
         constantsThickness: createHorizontalProfileDto.constantsThickness,
         constantsWoodGap: createHorizontalProfileDto.constantsWoodGap,
         cmsMechanisms: {
-          connect: createHorizontalProfileDto.mechanisms.map((mechanism) => ({
-            id: mechanism,
-          })),
+          connect: JSON.parse(createHorizontalProfileDto.mechanisms).map(
+            (mechanism) => ({
+              id: mechanism,
+            }),
+          ),
         },
         createdBy: userId
           ? {
@@ -38,7 +40,7 @@ export class HorizontalProfilesService {
       const newPic = await prisma.files.create({
         data: {
           mimetype: pic.mimetype,
-          path: `public/uploads/handrail_prof_${pic[0].originalname}`,
+          path: `public/uploads/hor_prof_${pic[0].originalname}`,
           horizontalProfilePic: {
             connect: {
               id: newHorizontalProfile.id,

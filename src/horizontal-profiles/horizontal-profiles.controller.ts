@@ -35,6 +35,8 @@ export class HorizontalProfilesController {
   ) {
     const userId = req.user?.userId;
 
+    console.log('CONTROLLER: ', createHorizontalProfileDto);
+
     const { pic } = files;
 
     // Define the directory where you want to save the files
@@ -47,7 +49,7 @@ export class HorizontalProfilesController {
     // Save the files to the public folder
     if (pic) {
       fs.writeFileSync(
-        `${savePath}/${pic[0].originalname}_hor_profile`,
+        `${savePath}/hor_prof_${pic[0].originalname}`,
         pic[0].buffer,
       );
     }

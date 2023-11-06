@@ -32,7 +32,7 @@ export class HandrailsController {
     files: { pic: Express.Multer.File },
   ) {
     const userId = req.user?.userId;
-
+    console.log('HANDRIAL: ', createHandrailDto);
     const { pic } = files;
 
     // Define the directory where you want to save the files
@@ -46,7 +46,7 @@ export class HandrailsController {
     // Save the files to the public folder
     if (pic) {
       fs.writeFileSync(
-        `${savePath}/${pic[0].originalname}_handrail`,
+        `${savePath}/handrail_${pic[0].originalname}`,
         pic[0].buffer,
       );
     }

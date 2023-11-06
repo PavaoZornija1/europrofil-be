@@ -10,27 +10,23 @@ export class CreateHandrailDto {
   @IsNotEmpty()
   public roundingSteps: string;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   public doorWidth: number;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   public profileLength: number;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   public fillWidthGlass: number;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   public fillWidthWood: number;
 
   @IsNotEmpty()
-  public mechanisms: any[];
+  public mechanisms: any;
 
   @IsNotEmpty()
-  public doorMechanisms: any[];
+  public doorMechanisms: any;
 
   @IsOptional()
   public pic: any;

@@ -16,19 +16,23 @@ export class HandrailsService {
       data: {
         name: createHandrailDto.name,
         roundingSteps: createHandrailDto.roundingSteps,
-        doorWidth: createHandrailDto.doorWidth,
-        profileLength: createHandrailDto.profileLength,
-        fillWidthGlass: createHandrailDto.fillWidthGlass,
-        fillWidthWood: createHandrailDto.fillWidthWood,
+        doorWidth: Number(createHandrailDto.doorWidth),
+        profileLength: Number(createHandrailDto.profileLength),
+        fillWidthGlass: Number(createHandrailDto.fillWidthGlass),
+        fillWidthWood: Number(createHandrailDto.fillWidthWood),
         cmsMechanisms: {
-          connect: createHandrailDto.mechanisms.map((mechanism) => ({
-            id: mechanism,
-          })),
+          connect: JSON.parse(createHandrailDto.mechanisms).map(
+            (mechanism) => ({
+              id: mechanism,
+            }),
+          ),
         },
         cmsDoorMechanisms: {
-          connect: createHandrailDto.doorMechanisms.map((doorMechanism) => ({
-            id: doorMechanism,
-          })),
+          connect: JSON.parse(createHandrailDto.doorMechanisms).map(
+            (doorMechanism) => ({
+              id: doorMechanism,
+            }),
+          ),
         },
         createdBy: userId
           ? {
@@ -66,6 +70,7 @@ export class HandrailsService {
         cmsMechanisms: true,
         cmsSupportedDecorations: true,
         cmsHandrailEndings: true,
+        pic: true,
       },
     });
   }
@@ -78,6 +83,7 @@ export class HandrailsService {
         cmsMechanisms: true,
         cmsSupportedDecorations: true,
         cmsHandrailEndings: true,
+        pic: true,
       },
     });
   }

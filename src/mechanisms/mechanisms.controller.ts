@@ -52,7 +52,6 @@ export class MechanismsController {
     if (!fs.existsSync(savePath)) {
       fs.mkdirSync(savePath, { recursive: true });
     }
-    // console.log('PIIIIIC: ', pic);
     // Save the files to the public folder
     if (pic) {
       fs.writeFileSync(
