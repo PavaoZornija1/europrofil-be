@@ -35,6 +35,8 @@ export class HorizontalProfilesController {
   ) {
     const userId = req.user?.userId;
 
+    console.log('CONTROLLER: ', createHorizontalProfileDto);
+
     const { pic } = files;
 
     // Define the directory where you want to save the files

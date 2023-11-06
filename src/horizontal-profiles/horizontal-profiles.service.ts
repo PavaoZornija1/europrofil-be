@@ -19,9 +19,11 @@ export class HorizontalProfilesService {
         constantsThickness: createHorizontalProfileDto.constantsThickness,
         constantsWoodGap: createHorizontalProfileDto.constantsWoodGap,
         cmsMechanisms: {
-          connect: createHorizontalProfileDto.mechanisms.map((mechanism) => ({
-            id: mechanism,
-          })),
+          connect: JSON.parse(createHorizontalProfileDto.mechanisms).map(
+            (mechanism) => ({
+              id: mechanism,
+            }),
+          ),
         },
         createdBy: userId
           ? {

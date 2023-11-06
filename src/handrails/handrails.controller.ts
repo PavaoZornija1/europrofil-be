@@ -32,8 +32,7 @@ export class HandrailsController {
     files: { pic: Express.Multer.File },
   ) {
     const userId = req.user?.userId;
-    console.log('POSTL:', createHandrailDto);
-
+    console.log('HANDRIAL: ', createHandrailDto);
     const { pic } = files;
 
     // Define the directory where you want to save the files
