@@ -150,6 +150,9 @@ export class MechanismsService {
           where: {
             isActive: true,
           },
+          include: {
+            pic: true,
+          },
         },
         cmsDoorMechanisms: {
           include: {
@@ -268,6 +271,9 @@ export class MechanismsService {
         cmsHorizontalProfiles: {
           where: {
             isActive: true,
+          },
+          include: {
+            pic: true,
           },
         },
         cmsDoorMechanisms: {
