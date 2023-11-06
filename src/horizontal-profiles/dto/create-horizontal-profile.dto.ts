@@ -13,8 +13,6 @@ export class CreateHorizontalProfileDto {
   @IsOptional()
   public constantsWoodGap: any;
 
-  public picture: any;
-
   @IsOptional()
   public pic: any;
 
