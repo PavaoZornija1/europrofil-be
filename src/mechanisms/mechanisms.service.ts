@@ -212,6 +212,7 @@ export class MechanismsService {
                 },
               },
             },
+            pic: true,
           },
         },
         cmsHandrailEndings: {
@@ -330,6 +331,7 @@ export class MechanismsService {
                 },
               },
             },
+            pic: true,
           },
         },
         cmsHandrailEndings: {
