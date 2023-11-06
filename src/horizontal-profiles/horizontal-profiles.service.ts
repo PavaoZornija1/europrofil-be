@@ -4,14 +4,15 @@ import { UpdateHorizontalProfileDto } from './dto/update-horizontal-profile.dto'
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-
+// horizontalProfilePic
 @Injectable()
 export class HorizontalProfilesService {
   async create(
     createHorizontalProfileDto: CreateHorizontalProfileDto,
     userId: string,
+    files: any,
   ) {
-    return await prisma.cmsHorizontalProfiles.create({
+    const newHorizontalProfile = await prisma.cmsHorizontalProfiles.create({
       data: {
         name: createHorizontalProfileDto.name,
         constantsGlassGap: createHorizontalProfileDto.constantsGlassGap,
@@ -31,6 +32,23 @@ export class HorizontalProfilesService {
           : undefined,
       },
     });
+
+    const { pic } = files;
+    if (pic) {
+      const newPic = await prisma.files.create({
+        data: {
+          mimetype: pic.mimetype,
+          path: `public/uploads/${pic[0].originalname}_handrail`,
+          horizontalProfilePic: {
+            connect: {
+              id: newHorizontalProfile.id,
+            },
+          },
+        },
+      });
+    }
+
+    return newHorizontalProfile;
   }
 
   findAll() {
@@ -39,6 +57,7 @@ export class HorizontalProfilesService {
       include: {
         cmsSupportedProfiles: true,
         cmsMechanisms: true,
+        pic: true,
       },
     });
   }
@@ -49,6 +68,7 @@ export class HorizontalProfilesService {
       include: {
         cmsSupportedProfiles: true,
         cmsMechanisms: true,
+        pic: true,
       },
     });
   }

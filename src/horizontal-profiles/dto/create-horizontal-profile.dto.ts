@@ -1,26 +1,23 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsOptional } from 'class-validator';
 
 export class CreateHorizontalProfileDto {
-  @IsString()
-  @IsNotEmpty()
-  public name: string;
+  @IsOptional()
+  public name: any;
 
-  @IsNumber()
-  @IsNotEmpty()
-  public constantsThickness: number;
+  @IsOptional()
+  public constantsThickness: any;
 
-  @IsNumber()
-  @IsNotEmpty()
-  public constantsGlassGap: number;
+  @IsOptional()
+  public constantsGlassGap: any;
 
-  @IsNumber()
-  @IsNotEmpty()
-  public constantsWoodGap: number;
+  @IsOptional()
+  public constantsWoodGap: any;
 
   public picture: any;
 
+  @IsOptional()
   public pic: any;
 
-  @IsNotEmpty()
-  public mechanisms: any[];
+  @IsOptional()
+  public mechanisms: any;
 }
