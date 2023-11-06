@@ -56,7 +56,7 @@ export class MechanismsController {
     // Save the files to the public folder
     if (pic) {
       fs.writeFileSync(
-        `${savePath}/${pic[0].originalname}_mechanism`,
+        `${savePath}/mechanism_${pic[0].originalname}`,
         pic[0].buffer,
       );
     }

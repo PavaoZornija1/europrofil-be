@@ -38,7 +38,7 @@ export class HorizontalProfilesService {
       const newPic = await prisma.files.create({
         data: {
           mimetype: pic.mimetype,
-          path: `public/uploads/${pic[0].originalname}_handrail`,
+          path: `public/uploads/handrail_prof_${pic[0].originalname}`,
           horizontalProfilePic: {
             connect: {
               id: newHorizontalProfile.id,
