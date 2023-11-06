@@ -49,7 +49,7 @@ export class HorizontalProfilesController {
     // Save the files to the public folder
     if (pic) {
       fs.writeFileSync(
-        `${savePath}/${pic[0].originalname}_hor_profile`,
+        `${savePath}/hor_prof_${pic[0].originalname}`,
         pic[0].buffer,
       );
     }

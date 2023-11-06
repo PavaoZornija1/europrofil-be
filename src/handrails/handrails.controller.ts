@@ -46,7 +46,7 @@ export class HandrailsController {
     // Save the files to the public folder
     if (pic) {
       fs.writeFileSync(
-        `${savePath}/${pic[0].originalname}_handrail`,
+        `${savePath}/handrail_${pic[0].originalname}`,
         pic[0].buffer,
       );
     }

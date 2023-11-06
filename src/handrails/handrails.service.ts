@@ -49,8 +49,8 @@ export class HandrailsService {
       const newPic = await prisma.files.create({
         data: {
           mimetype: pic.mimetype,
-          path: `public/uploads/${pic[0].originalname}_handrail`,
-          handrailPic: {
+          path: `public/uploads/handrail_${pic[0].originalname}`,
+          mechanismPic: {
             connect: {
               id: newHandrail.id,
             },
