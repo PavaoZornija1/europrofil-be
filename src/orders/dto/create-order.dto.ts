@@ -5,6 +5,9 @@ export class CreateOrderDto {
   public customerName: string;
 
   @IsOptional()
+  public customerEmail: string;
+
+  @IsOptional()
   public customerPhone: string;
 
   @IsOptional()
