@@ -56,6 +56,13 @@ export class OrdersService {
               },
             }
           : undefined,
+        cmsHorizontalProfile: createOrderDto.horizontalProfile
+          ? {
+              connect: {
+                id: createOrderDto.horizontalProfile,
+              },
+            }
+          : undefined,
         openingHeight: createOrderDto.openingHeight,
         openingWidth: createOrderDto.openingWidth,
         openingDoors: createOrderDto.openingDoors,

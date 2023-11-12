@@ -57,6 +57,9 @@ export class CreateOrderDto {
   public handrailDecorationCustomColor: string;
 
   @IsOptional()
+  public horizontalProfile: string;
+
+  @IsOptional()
   public openingHeight: number;
 
   @IsOptional()
