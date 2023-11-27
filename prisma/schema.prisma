@@ -819,6 +819,7 @@ model CmsAluHandleProfiles {
     id                   String             @id @default(uuid())
     name                 String?
     productCode          String?
+    isIntegrated         Boolean            @default(false)
     pricePerMeter        Decimal?
     priceIncrease        Decimal?
     frameLengthReduction Decimal?

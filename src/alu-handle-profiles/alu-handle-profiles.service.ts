@@ -20,6 +20,7 @@ export class AluHandleProfilesService {
         pricePerMeter: createAluHandleProfileDto.pricePerMeter,
         priceIncrease: createAluHandleProfileDto.priceIncrease,
         ordering: createAluHandleProfileDto.ordering,
+        isIntegrated: createAluHandleProfileDto.isIntegrated,
         cmsAluFrameTypes: {
           connect: createAluHandleProfileDto.frameTypes.map((frameType) => ({
             id: frameType,
@@ -80,6 +81,7 @@ export class AluHandleProfilesService {
         pricePerMeter: updateAluHandleProfileDto.pricePerMeter,
         priceIncrease: updateAluHandleProfileDto.priceIncrease,
         ordering: updateAluHandleProfileDto.ordering,
+        isIntegrated: updateAluHandleProfileDto.isIntegrated,
         modified: new Date(),
         cmsAluFrameTypes: {
           connect: updateAluHandleProfileDto.frameTypes.map((frameType) => ({

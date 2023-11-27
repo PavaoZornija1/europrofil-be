@@ -18,6 +18,10 @@ export class CreateAluHandleProfileDto {
   @IsNotEmpty()
   public customColorAvailable: boolean;
 
+  @IsBoolean()
+  @IsNotEmpty()
+  public isIntegrated: boolean;
+
   @IsNumber()
   @IsNotEmpty()
   public pricePerMeter: number;
