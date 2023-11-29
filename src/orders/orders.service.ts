@@ -8,7 +8,8 @@ const prisma = new PrismaClient();
 @Injectable()
 export class OrdersService {
   async create(createOrderDto: CreateOrderDto, userId: string) {
-    return await prisma.cmsOrders.create({
+    // CmsOrderDoors
+    const newOrder = await prisma.cmsOrders.create({
       data: {
         customerName: createOrderDto.customerName,
         customerEmail: createOrderDto.customerEmail,
@@ -84,6 +85,43 @@ export class OrdersService {
         // issuedBy:
       },
     });
+
+    const doorIds = [];
+    // const newMech = await prisma.cmsMechanisms.create({
+    const doorsFrom = createOrderDto.doors;
+    for (let i = 0; i < doorsFrom.length; ++i) {
+      const newOrderDoor = await prisma.cmsOrderDoors.create({
+        data: {
+          forceHeave: doorsFrom[i].forceHeave,
+          profileLength: doorsFrom[i].profileLength,
+          fillWidthGlass: doorsFrom[i].fillWidthGlass,
+          fillWidthWood: doorsFrom[i].fillWidthWood,
+          deceleratorsLeft: doorsFrom[i].deceleratorsLeft,
+          deceleratorsRight: doorsFrom[i].deceleratorsRight,
+          numberOfFields: doorsFrom[i].numberOfFields,
+          confectionOnly: doorsFrom[i].confectionOnly,
+          doorWidthValue: doorsFrom[i].width,
+          doorWidthManual: doorsFrom[i].manualWidth,
+          doorHandrailLeft: {
+            connect: {
+              id: doorsFrom[i].leftHandrail.id,
+            },
+          },
+          doorHandrailRight: {
+            connect: {
+              id: doorsFrom[i].rightHandrail.id,
+            },
+          },
+          cmsOrder: {
+            connect: {
+              id: newOrder.id,
+            },
+          },
+        },
+      });
+    }
+
+    return newOrder;
   }
 
   async findAll() {
@@ -97,7 +135,14 @@ export class OrdersService {
         cmsHandrailEnding: true,
         cmsHorizontalProfile: true,
         cmsMechanism: true,
-        cmsOrderDoors: true,
+        cmsOrderDoors: {
+          include: {
+            doorHandrailLeft: true,
+            doorHandrailRight: true,
+            cmsDoorMechanism: true,
+            cmsOrder: true,
+          },
+        },
       },
     });
   }

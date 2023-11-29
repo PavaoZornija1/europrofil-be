@@ -221,8 +221,10 @@ model CmsOrderDoors {
     cmsOrderId         String?
     doorWidthValue     Decimal
     doorWidthManual    Decimal
-    doorHandrailLeft   Decimal
-    doorHandrailRight  Decimal
+    doorHandrailLeft   CmsHandrails?           @relation(fields: [doorHandrailLeftId], references: [id], name: "LeftHandrails")
+    doorHandrailLeftId String?
+    doorHandrailRight   CmsHandrails?           @relation(fields: [doorHandrailRightId], references: [id], name: "RightHandrails")
+    doorHandrailRightId String?
     cmsDoorMechanism   CmsDoorMechanisms? @relation(fields: [cmsDoorMechanismId], references: [id])
     cmsDoorMechanismId String?
     confectionOnly     Boolean
@@ -485,6 +487,8 @@ model CmsHandrails {
     cmsSupportedDecorations CmsSupportedDecorations[]
     cmsOrders               CmsOrders[]
     cmsHandrailEndings      CmsHandrailEndings[]
+    cmsOrderDoorsLeft CmsOrderDoors[] @relation(name: "LeftHandrails")
+    cmsOrderDoorsRight CmsOrderDoors[] @relation(name: "RightHandrails")
     roundingSteps           String?
     name                    String?
     doorWidth               Decimal?
