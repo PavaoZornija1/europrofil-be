@@ -82,44 +82,45 @@ export class OrdersService {
         servicesConfectionChosen: createOrderDto.servicesConfectionChosen,
         servicesInstallationName: createOrderDto.servicesInstallationName,
         servicesInstallationChosen: createOrderDto.servicesInstallationChosen,
+        doors: JSON.stringify(createOrderDto.doors),
         // issuedBy:
       },
     });
 
-    const doorIds = [];
-    // const newMech = await prisma.cmsMechanisms.create({
-    const doorsFrom = createOrderDto.doors;
-    for (let i = 0; i < doorsFrom.length; ++i) {
-      const newOrderDoor = await prisma.cmsOrderDoors.create({
-        data: {
-          forceHeave: doorsFrom[i].forceHeave,
-          profileLength: doorsFrom[i].profileLength,
-          fillWidthGlass: doorsFrom[i].fillWidthGlass,
-          fillWidthWood: doorsFrom[i].fillWidthWood,
-          deceleratorsLeft: doorsFrom[i].deceleratorsLeft,
-          deceleratorsRight: doorsFrom[i].deceleratorsRight,
-          numberOfFields: doorsFrom[i].numberOfFields,
-          confectionOnly: doorsFrom[i].confectionOnly,
-          doorWidthValue: doorsFrom[i].width,
-          doorWidthManual: doorsFrom[i].manualWidth,
-          doorHandrailLeft: {
-            connect: {
-              id: doorsFrom[i].leftHandrail.id,
-            },
-          },
-          doorHandrailRight: {
-            connect: {
-              id: doorsFrom[i].rightHandrail.id,
-            },
-          },
-          cmsOrder: {
-            connect: {
-              id: newOrder.id,
-            },
-          },
-        },
-      });
-    }
+    // const doorIds = [];
+    // // const newMech = await prisma.cmsMechanisms.create({
+    // const doorsFrom = createOrderDto.doors;
+    // for (let i = 0; i < doorsFrom.length; ++i) {
+    //   const newOrderDoor = await prisma.cmsOrderDoors.create({
+    //     data: {
+    //       forceHeave: doorsFrom[i].forceHeave,
+    //       profileLength: doorsFrom[i].profileLength,
+    //       fillWidthGlass: doorsFrom[i].fillWidthGlass,
+    //       fillWidthWood: doorsFrom[i].fillWidthWood,
+    //       deceleratorsLeft: doorsFrom[i].deceleratorsLeft,
+    //       deceleratorsRight: doorsFrom[i].deceleratorsRight,
+    //       numberOfFields: doorsFrom[i].numberOfFields,
+    //       confectionOnly: doorsFrom[i].confectionOnly,
+    //       doorWidthValue: doorsFrom[i].width,
+    //       doorWidthManual: doorsFrom[i].manualWidth,
+    //       doorHandrailLeft: {
+    //         connect: {
+    //           id: doorsFrom[i].leftHandrail.id,
+    //         },
+    //       },
+    //       doorHandrailRight: {
+    //         connect: {
+    //           id: doorsFrom[i].rightHandrail.id,
+    //         },
+    //       },
+    //       cmsOrder: {
+    //         connect: {
+    //           id: newOrder.id,
+    //         },
+    //       },
+    //     },
+    //   });
+    // }
 
     return newOrder;
   }

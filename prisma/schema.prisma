@@ -286,6 +286,7 @@ model CmsOrders {
     railsLengthBottomManual       Boolean                 @default(false)
     handrailHeight                Decimal?
     totalDeceleratorPairs         Int?
+    doors Json?
     servicesFrameName             String?
     servicesFrameChosen           Boolean                 @default(false)
     servicesFillName              String?
