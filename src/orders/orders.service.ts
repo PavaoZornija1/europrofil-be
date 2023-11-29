@@ -156,7 +156,14 @@ export class OrdersService {
         cmsHandrailEnding: true,
         cmsHorizontalProfile: true,
         cmsMechanism: true,
-        cmsOrderDoors: true,
+        cmsOrderDoors: {
+          include: {
+            doorHandrailLeft: true,
+            doorHandrailRight: true,
+            cmsDoorMechanism: true,
+            cmsOrder: true,
+          },
+        },
       },
     });
   }
