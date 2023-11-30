@@ -186,6 +186,9 @@ export class OrdersService {
               },
             },
             cmsMechanisms: {
+              include: {
+                cmsPvcProfiles: true,
+              },
               where: {
                 isActive: true,
               },
@@ -278,6 +281,9 @@ export class OrdersService {
               },
             },
             cmsMechanisms: {
+              include: {
+                cmsPvcProfiles: true,
+              },
               where: {
                 isActive: true,
               },
