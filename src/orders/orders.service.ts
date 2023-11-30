@@ -57,6 +57,13 @@ export class OrdersService {
               },
             }
           : undefined,
+        cmsHandrailEndingChild: createOrderDto.handrailEndingChild
+          ? {
+              connect: {
+                id: createOrderDto.handrailEndingChild,
+              },
+            }
+          : undefined,
         cmsHorizontalProfile: createOrderDto.horizontalProfile
           ? {
               connect: {
@@ -189,6 +196,15 @@ export class OrdersService {
             },
           },
         },
+        cmsHandrailEndingChild: {
+          include: {
+            children: {
+              where: {
+                isActive: true,
+              },
+            },
+          },
+        },
         cmsHorizontalProfile: true,
         cmsMechanism: true,
         cmsOrderDoors: {
@@ -257,6 +273,15 @@ export class OrdersService {
         },
         cmsHandrailDecoration: true,
         cmsHandrailEnding: {
+          include: {
+            children: {
+              where: {
+                isActive: true,
+              },
+            },
+          },
+        },
+        cmsHandrailEndingChild: {
           include: {
             children: {
               where: {
