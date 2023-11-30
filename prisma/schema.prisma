@@ -274,8 +274,10 @@ model CmsOrders {
     handrailDecorationCustomColor String?
     firstHandrailEnding           Decimal?
     secondHandrailEnding          Decimal?
-    cmsHandrailEnding             CmsHandrailEndings?     @relation(fields: [cmsHandrailEndingId], references: [id])
+    cmsHandrailEnding             CmsHandrailEndings?     @relation(fields: [cmsHandrailEndingId], references: [id], name: "OrderHandrailEndingParent")
     cmsHandrailEndingId           String?
+    cmsHandrailEndingChild            CmsHandrailEndings?     @relation(fields: [cmsHandrailEndingChildId], references: [id], name: "OrderHandrailEndingChild")
+    cmsHandrailEndingChildId           String?
     openingHeight                 Decimal?
     openingWidth                  Decimal?
     openingDoors                  Int?
@@ -382,7 +384,8 @@ model CmsHandrailEndings {
     parentId      String?
     parent        CmsHandrailEndings?  @relation("ParentChildren", fields: [parentId], references: [id])
     children      CmsHandrailEndings[] @relation("ParentChildren")
-    cmsOrders     CmsOrders[]
+    cmsOrders     CmsOrders[] @relation("OrderHandrailEndingParent")
+    cmsOrdersChildren     CmsOrders[] @relation("OrderHandrailEndingChild")
     name          String?
     productCode   String?
     cmsMechanisms CmsMechanisms[]
