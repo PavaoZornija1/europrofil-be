@@ -64,6 +64,13 @@ export class OrdersService {
               },
             }
           : undefined,
+        cmsPvcProfile: createOrderDto.pvcProfile
+          ? {
+              connect: {
+                id: createOrderDto.pvcProfile,
+              },
+            }
+          : undefined,
         cmsHandrailEndingChild: createOrderDto.handrailEndingChild
           ? {
               connect: {
@@ -151,6 +158,7 @@ export class OrdersService {
             cmsHandrailDecoration: true,
           },
         },
+        cmsPvcProfile: true,
         cmsHandrail: {
           include: {
             cmsDoorMechanisms: {
@@ -236,6 +244,7 @@ export class OrdersService {
     return prisma.cmsOrders.findUnique({
       where: { id: id },
       include: {
+        cmsPvcProfile: true,
         cmsSupportedDecoration: {
           include: {
             cmsHandrail: true,
