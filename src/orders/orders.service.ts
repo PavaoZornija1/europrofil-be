@@ -232,7 +232,11 @@ export class OrdersService {
           },
         },
         cmsHorizontalProfile: true,
-        cmsMechanism: true,
+        cmsMechanism: {
+          include: {
+            cmsPvcProfiles: true,
+          },
+        },
         cmsOrderDoors: {
           include: {
             doorHandrailLeft: true,
@@ -327,7 +331,11 @@ export class OrdersService {
           },
         },
         cmsHorizontalProfile: true,
-        cmsMechanism: true,
+        cmsMechanism: {
+          include: {
+            cmsPvcProfiles: true,
+          },
+        },
         cmsOrderDoors: {
           include: {
             doorHandrailLeft: true,
