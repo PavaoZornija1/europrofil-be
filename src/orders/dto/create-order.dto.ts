@@ -60,6 +60,9 @@ export class CreateOrderDto {
   public handrailEnding: string;
 
   @IsOptional()
+  public pvcProfile: string;
+
+  @IsOptional()
   public handrailEndingChild: string;
 
   @IsOptional()

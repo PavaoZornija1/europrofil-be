@@ -270,6 +270,8 @@ model CmsOrders {
     cmsHandrailDecorationId       String?
     cmsSupportedDecoration         CmsSupportedDecorations? @relation(fields: [cmsSupportedDecorationId], references: [id])
     cmsSupportedDecorationId       String?
+    cmsPvcProfile         CmsPvcProfiles? @relation(fields: [cmsPvcProfileId], references: [id])
+    cmsPvcProfileId       String?
     // cmsUserId
     cmsHorizontalProfile          CmsHorizontalProfiles?  @relation(fields: [cmsHorizontalProfileid], references: [id])
     cmsHorizontalProfileid        String?
@@ -518,6 +520,7 @@ model CmsPvcProfiles {
     id            String          @id @default(uuid())
     productCode   String?
     cmsMechanisms CmsMechanisms[]
+    cmsOrders CmsOrders[]
     name          String?
     pricePerM     Decimal?
     ralCode       String?
