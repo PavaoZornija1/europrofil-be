@@ -180,7 +180,15 @@ export class OrdersService {
           },
         },
         cmsHandrailDecoration: true,
-        cmsHandrailEnding: true,
+        cmsHandrailEnding: {
+          include: {
+            children: {
+              where: {
+                isActive: true,
+              },
+            },
+          },
+        },
         cmsHorizontalProfile: true,
         cmsMechanism: true,
         cmsOrderDoors: {
@@ -199,9 +207,64 @@ export class OrdersService {
     return prisma.cmsOrders.findUnique({
       where: { id: id },
       include: {
-        cmsHandrail: true,
+        cmsHandrail: {
+          include: {
+            cmsDoorMechanisms: {
+              where: {
+                isActive: true,
+              },
+            },
+            cmsDoorMechanismsDeOpp: {
+              where: {
+                isActive: true,
+              },
+            },
+            cmsHandrailEndings: {
+              include: {
+                children: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+              },
+              where: {
+                isActive: true,
+              },
+            },
+            cmsMechanisms: {
+              where: {
+                isActive: true,
+              },
+            },
+            cmsSupportedDecorations: {
+              include: {
+                cmsHandrail: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+                cmsHandrailDecoration: {
+                  where: {
+                    isActive: true,
+                  },
+                },
+              },
+              where: {
+                isActive: true,
+              },
+            },
+          },
+        },
         cmsHandrailDecoration: true,
-        cmsHandrailEnding: true,
+        cmsHandrailEnding: {
+          include: {
+            children: {
+              where: {
+                isActive: true,
+              },
+            },
+          },
+        },
         cmsHorizontalProfile: true,
         cmsMechanism: true,
         cmsOrderDoors: {
