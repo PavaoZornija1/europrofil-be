@@ -54,6 +54,9 @@ export class CreateOrderDto {
   public handrailDecoration: string;
 
   @IsOptional()
+  public supportedDecoration: string;
+
+  @IsOptional()
   public handrailEnding: string;
 
   @IsOptional()

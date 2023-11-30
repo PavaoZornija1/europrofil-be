@@ -268,6 +268,8 @@ model CmsOrders {
     cmsHandrailId                 String?
     cmsHandrailDecoration         CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
     cmsHandrailDecorationId       String?
+    cmsSupportedDecoration         CmsSupportedDecorations? @relation(fields: [cmsSupportedDecorationId], references: [id])
+    cmsSupportedDecorationId       String?
     // cmsUserId
     cmsHorizontalProfile          CmsHorizontalProfiles?  @relation(fields: [cmsHorizontalProfileid], references: [id])
     cmsHorizontalProfileid        String?
@@ -366,6 +368,7 @@ model CmsSupportedDecorations {
     cmsHandrailId           String?
     cmsHandrailDecoration   CmsHandrailDecorations? @relation(fields: [cmsHandrailDecorationId], references: [id])
     cmsHandrailDecorationId String?
+    cmsOrders                   CmsOrders[]
     price                   Decimal
     productCode             String?
     isActive                Boolean                 @default(true)

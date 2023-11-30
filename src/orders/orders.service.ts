@@ -48,6 +48,13 @@ export class OrdersService {
               },
             }
           : undefined,
+        //   cmssu: createOrderDto.handrailDecoration
+        //   ? {
+        //       connect: {
+        //         id: createOrderDto.handrailDecoration,
+        //       },
+        //     }
+        //   : undefined,
         handrailDecorationCustomColor:
           createOrderDto.handrailDecorationCustomColor,
         cmsHandrailEnding: createOrderDto.handrailEnding
