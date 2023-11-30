@@ -48,13 +48,13 @@ export class OrdersService {
               },
             }
           : undefined,
-        //   cmssu: createOrderDto.handrailDecoration
-        //   ? {
-        //       connect: {
-        //         id: createOrderDto.handrailDecoration,
-        //       },
-        //     }
-        //   : undefined,
+        cmsSupportedDecoration: createOrderDto.supportedDecoration
+          ? {
+              connect: {
+                id: createOrderDto.supportedDecoration,
+              },
+            }
+          : undefined,
         handrailDecorationCustomColor:
           createOrderDto.handrailDecorationCustomColor,
         cmsHandrailEnding: createOrderDto.handrailEnding
@@ -145,6 +145,7 @@ export class OrdersService {
         isActive: true,
       },
       include: {
+        cmsSupportedDecoration: true,
         cmsHandrail: {
           include: {
             cmsDoorMechanisms: {
@@ -230,6 +231,7 @@ export class OrdersService {
     return prisma.cmsOrders.findUnique({
       where: { id: id },
       include: {
+        cmsSupportedDecoration: true,
         cmsHandrail: {
           include: {
             cmsDoorMechanisms: {
