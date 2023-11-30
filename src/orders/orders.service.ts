@@ -145,7 +145,12 @@ export class OrdersService {
         isActive: true,
       },
       include: {
-        cmsSupportedDecoration: true,
+        cmsSupportedDecoration: {
+          include: {
+            cmsHandrail: true,
+            cmsHandrailDecoration: true,
+          },
+        },
         cmsHandrail: {
           include: {
             cmsDoorMechanisms: {
@@ -231,7 +236,12 @@ export class OrdersService {
     return prisma.cmsOrders.findUnique({
       where: { id: id },
       include: {
-        cmsSupportedDecoration: true,
+        cmsSupportedDecoration: {
+          include: {
+            cmsHandrail: true,
+            cmsHandrailDecoration: true,
+          },
+        },
         cmsHandrail: {
           include: {
             cmsDoorMechanisms: {
