@@ -27,11 +27,7 @@ export class OrdersService {
         notes: createOrderDto.notes,
         givenOrderNumber: createOrderDto.givenOrderNumber,
         orderDate: new Date(),
-        cmsExtras: {
-          connect: createOrderDto.extraElements.map((extraElement) => ({
-            id: extraElement,
-          })),
-        },
+        extraElements: JSON.stringify(createOrderDto.extraElements),
         cmsMechanism: createOrderDto.mechanism
           ? {
               connect: {
@@ -158,7 +154,6 @@ export class OrdersService {
         isActive: true,
       },
       include: {
-        cmsExtras: true,
         cmsSupportedDecoration: {
           include: {
             cmsHandrail: true,
@@ -251,7 +246,6 @@ export class OrdersService {
     return prisma.cmsOrders.findUnique({
       where: { id: id },
       include: {
-        cmsExtras: true,
         cmsPvcProfile: true,
         cmsSupportedDecoration: {
           include: {

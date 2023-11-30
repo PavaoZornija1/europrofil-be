@@ -272,7 +272,6 @@ model CmsOrders {
     cmsSupportedDecorationId       String?
     cmsPvcProfile         CmsPvcProfiles? @relation(fields: [cmsPvcProfileId], references: [id])
     cmsPvcProfileId       String?
-    cmsExtras CmsExtras[]
     // cmsUserId
     cmsHorizontalProfile          CmsHorizontalProfiles?  @relation(fields: [cmsHorizontalProfileid], references: [id])
     cmsHorizontalProfileid        String?
@@ -294,6 +293,7 @@ model CmsOrders {
     handrailHeight                Decimal?
     totalDeceleratorPairs         Int?
     doors Json?
+    extraElements Json?
     servicesFrameName             String?
     servicesFrameChosen           Boolean                 @default(false)
     servicesFillName              String?
@@ -541,8 +541,6 @@ model CmsExtras {
     name          String?
     productCode   String?
     cmsMechanisms CmsMechanisms[]
-    cmsOrder         CmsOrders? @relation(fields: [cmsOrderId], references: [id])
-    cmsOrderId       String?
     unit          String?
     pricePerUnit  Decimal
     isActive      Boolean         @default(true)
