@@ -145,117 +145,117 @@ export class MechanismsService {
       include: {
         pic: true,
         thinningpPic: true,
-        cmsHorizontalProfiles: {
-          where: {
-            isActive: true,
-          },
-          include: {
-            pic: true,
-          },
-        },
-        cmsDoorMechanisms: {
-          include: {
-            deceleratorOpposites: {
-              where: {
-                isActive: true,
-              },
-            },
-            DoorMechanismDeceleratorOpposites: {
-              where: {
-                isActive: true,
-              },
-            },
-            cmsOrderDoors: true,
-            cmsHandrails: {
-              where: {
-                isActive: true,
-              },
-            },
-          },
-        },
-        cmsHandrails: {
-          where: {
-            isActive: true,
-          },
-          include: {
-            cmsDoorMechanismsDeOpp: {
-              where: {
-                isActive: true,
-              },
-            },
-            cmsDoorMechanisms: {
-              where: {
-                isActive: true,
-              },
-            },
-            cmsSupportedDecorations: {
-              include: {
-                cmsHandrail: {
-                  where: {
-                    isActive: true,
-                  },
-                },
-                cmsHandrailDecoration: {
-                  where: {
-                    isActive: true,
-                  },
-                },
-              },
-              where: {
-                isActive: true,
-              },
-            },
-            cmsHandrailEndings: {
-              include: {
-                children: {
-                  where: {
-                    isActive: true,
-                  },
-                },
-              },
-            },
-            pic: true,
-          },
-        },
-        cmsHandrailEndings: {
-          where: {
-            isActive: true,
-          },
-        },
-        cmsHandrailDecorations: {
-          where: {
-            isActive: true,
-          },
-        },
-        cmsPvcProfiles: {
-          where: {
-            isActive: true,
-          },
-        },
-        cmsFills: {
-          include: {
-            children: {
-              include: {
-                children: {
-                  where: {
-                    isActive: true,
-                  },
-                },
-              },
-              where: {
-                isActive: true,
-              },
-            },
-          },
-          where: {
-            isActive: true,
-          },
-        },
-        cmsExtras: {
-          where: {
-            isActive: true,
-          },
-        },
+        // cmsHorizontalProfiles: {
+        //   where: {
+        //     isActive: true,
+        //   },
+        //   include: {
+        //     pic: true,
+        //   },
+        // },
+        // cmsDoorMechanisms: {
+        //   include: {
+        //     deceleratorOpposites: {
+        //       where: {
+        //         isActive: true,
+        //       },
+        //     },
+        //     DoorMechanismDeceleratorOpposites: {
+        //       where: {
+        //         isActive: true,
+        //       },
+        //     },
+        //     cmsOrderDoors: true,
+        //     cmsHandrails: {
+        //       where: {
+        //         isActive: true,
+        //       },
+        //     },
+        //   },
+        // },
+        // cmsHandrails: {
+        //   where: {
+        //     isActive: true,
+        //   },
+        //   include: {
+        //     cmsDoorMechanismsDeOpp: {
+        //       where: {
+        //         isActive: true,
+        //       },
+        //     },
+        //     cmsDoorMechanisms: {
+        //       where: {
+        //         isActive: true,
+        //       },
+        //     },
+        //     cmsSupportedDecorations: {
+        //       include: {
+        //         cmsHandrail: {
+        //           where: {
+        //             isActive: true,
+        //           },
+        //         },
+        //         cmsHandrailDecoration: {
+        //           where: {
+        //             isActive: true,
+        //           },
+        //         },
+        //       },
+        //       where: {
+        //         isActive: true,
+        //       },
+        //     },
+        //     cmsHandrailEndings: {
+        //       include: {
+        //         children: {
+        //           where: {
+        //             isActive: true,
+        //           },
+        //         },
+        //       },
+        //     },
+        //     pic: true,
+        //   },
+        // },
+        // cmsHandrailEndings: {
+        //   where: {
+        //     isActive: true,
+        //   },
+        // },
+        // cmsHandrailDecorations: {
+        //   where: {
+        //     isActive: true,
+        //   },
+        // },
+        // cmsPvcProfiles: {
+        //   where: {
+        //     isActive: true,
+        //   },
+        // },
+        // cmsFills: {
+        //   include: {
+        //     children: {
+        //       include: {
+        //         children: {
+        //           where: {
+        //             isActive: true,
+        //           },
+        //         },
+        //       },
+        //       where: {
+        //         isActive: true,
+        //       },
+        //     },
+        //   },
+        //   where: {
+        //     isActive: true,
+        //   },
+        // },
+        // cmsExtras: {
+        //   where: {
+        //     isActive: true,
+        //   },
+        // },
       },
     });
   }
