@@ -145,7 +145,6 @@ export class MechanismsService {
       include: {
         pic: true,
         thinningpPic: true,
-        cmsOrders: true,
         cmsHorizontalProfiles: {
           where: {
             isActive: true,
@@ -267,7 +266,6 @@ export class MechanismsService {
       include: {
         pic: true,
         thinningpPic: true,
-        cmsOrders: true,
         cmsHorizontalProfiles: {
           where: {
             isActive: true,
