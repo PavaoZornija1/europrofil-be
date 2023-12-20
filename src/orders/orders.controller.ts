@@ -37,6 +37,12 @@ export class OrdersController {
     return this.ordersService.findOne(id);
   }
 
+  @Patch('send-to-create/:id')
+  @UseGuards(AuthGuard)
+  sendToCreate(@Req() req: any, @Param('id') id: string) {
+    const userId = req.user?.userId;
+    return this.ordersService.sendToCreate(id);
+  }
   @Patch(':id')
   @UseGuards(AuthGuard)
   update(

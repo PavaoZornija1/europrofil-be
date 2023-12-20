@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "CmsOrders" ADD COLUMN     "status" TEXT NOT NULL DEFAULT 'CREATED';

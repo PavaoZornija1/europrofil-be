@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -146,6 +146,17 @@ export class OrdersService {
     // }
 
     return newOrder;
+  }
+
+  async sendToCreate(id: string) {
+    return await prisma.cmsOrders.update({
+      where: {
+        id: id,
+      },
+      data: {
+        status: 'OBRADA',
+      },
+    });
   }
 
   async findAll() {
