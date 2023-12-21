@@ -86,33 +86,33 @@ export class MechanismsService {
       },
     });
 
-    const { pic, thinningPic } = files;
-    if (pic) {
-      const newPic = await prisma.files.create({
-        data: {
-          mimetype: pic.mimetype,
-          path: `public/uploads/mechanism_${pic[0].originalname}`,
-          mechanismPic: {
-            connect: {
-              id: newMech.id,
-            },
-          },
-        },
-      });
-    }
-    if (thinningPic) {
-      const thinningPic = await prisma.files.create({
-        data: {
-          mimetype: pic.mimetype,
-          path: `public/uploads/${pic[0].originalname}`,
-          mechanismThinningPic: {
-            connect: {
-              id: newMech.id,
-            },
-          },
-        },
-      });
-    }
+    // const { pic, thinningPic } = files;
+    // if (pic) {
+    //   const newPic = await prisma.files.create({
+    //     data: {
+    //       mimetype: pic.mimetype,
+    //       path: `public/uploads/mechanism_${pic[0].originalname}`,
+    //       mechanismPic: {
+    //         connect: {
+    //           id: newMech.id,
+    //         },
+    //       },
+    //     },
+    //   });
+    // }
+    // if (thinningPic) {
+    //   const thinningPic = await prisma.files.create({
+    //     data: {
+    //       mimetype: pic.mimetype,
+    //       path: `public/uploads/${pic[0].originalname}`,
+    //       mechanismThinningPic: {
+    //         connect: {
+    //           id: newMech.id,
+    //         },
+    //       },
+    //     },
+    //   });
+    // }
     return newMech;
 
     // locale    String?

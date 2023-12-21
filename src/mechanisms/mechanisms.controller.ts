@@ -46,25 +46,25 @@ export class MechanismsController {
     const { pic, thinningPic } = files;
 
     // Define the directory where you want to save the files
-    const savePath = 'public/uploads/'; // Adjust the path to your desired public folder
+    // const savePath = 'public/uploads/'; // Adjust the path to your desired public folder
 
     // Create the public folder if it doesn't exist
-    if (!fs.existsSync(savePath)) {
-      fs.mkdirSync(savePath, { recursive: true });
-    }
-    // Save the files to the public folder
-    if (pic) {
-      fs.writeFileSync(
-        `${savePath}/mechanism_${pic[0].originalname}`,
-        pic[0].buffer,
-      );
-    }
-    if (thinningPic) {
-      fs.writeFileSync(
-        `${savePath}/${thinningPic.originalname}`,
-        thinningPic.buffer,
-      );
-    }
+    // if (!fs.existsSync(savePath)) {
+    //   fs.mkdirSync(savePath, { recursive: true });
+    // }
+    // // Save the files to the public folder
+    // if (pic) {
+    //   fs.writeFileSync(
+    //     `${savePath}/mechanism_${pic[0].originalname}`,
+    //     pic[0].buffer,
+    //   );
+    // }
+    // if (thinningPic) {
+    //   fs.writeFileSync(
+    //     `${savePath}/${thinningPic.originalname}`,
+    //     thinningPic.buffer,
+    //   );
+    // }
     // return false;
     return this.mechanismsService.create(createMechanismDto, userId, files);
   }
