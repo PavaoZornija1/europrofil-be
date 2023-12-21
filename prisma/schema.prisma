@@ -308,7 +308,7 @@ model CmsOrders {
     deleted                       DateTime?
     modified                      DateTime?
     created                       DateTime                @default(now())
-    status                          String                  @default("CREATED")
+    status                          String                  @default("KREIRANO")
     // createdBy
     // modifiedBy
     // deletedBy

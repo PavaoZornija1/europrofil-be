@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "CmsOrders" ALTER COLUMN "status" SET DEFAULT 'KREIRANO';
