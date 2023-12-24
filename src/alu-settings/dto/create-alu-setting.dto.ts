@@ -2,94 +2,71 @@ import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateAluSettingDto {
   @IsString()
-  @IsNotEmpty()
-  public iso9001DocumentName: string;
+  public iso9001DocumentName?: string;
 
   @IsString()
-  @IsNotEmpty()
-  public orderEmail: string;
+  public orderEmail?: string;
 
   @IsString()
-  @IsNotEmpty()
-  public currency: string;
+  public currency?: string;
 
   @IsString()
-  @IsNotEmpty()
-  public introText: string;
+  public introText?: string;
 
   @IsNumber()
-  @IsNotEmpty()
-  public vat: number;
+  public vat?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public handleHolePrice: number;
+  public handleHolePrice?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public hingeHolePrice: number;
+  public hingeHolePrice?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public hingeHoleWithInstallationPrice: number;
+  public hingeHoleWithInstallationPrice?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public lockHolePrice: number;
+  public lockHolePrice?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public serviceCostPercentage: number;
+  public serviceCostPercentage?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public serviceCostPerFrame: number;
+  public serviceCostPerFrame?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public serviceCostPerMeter: number;
+  public serviceCostPerMeter?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public bevel5mmPricePerMeter: number;
+  public bevel5mmPricePerMeter?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public bevel10mmPricePerMeter: number;
+  public bevel10mmPricePerMeter?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public bevel15mmPricePerMeter: number;
+  public bevel15mmPricePerMeter?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public bevel20mmPricePerMeter: number;
+  public bevel20mmPricePerMeter?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public sandblastingPricePerMeterSquared: number;
+  public sandblastingPricePerMeterSquared?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public sandblastingWithFoilPricePerMeterSquared: number;
+  public sandblastingWithFoilPricePerMeterSquared?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public temperingGlassPerMeterSquared: number;
+  public temperingGlassPerMeterSquared?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public protectiveFoilPerMeterSquared: number;
+  public protectiveFoilPerMeterSquared?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public decorativeFoilPerMeterSquared: number;
+  public decorativeFoilPerMeterSquared?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public motiveFoilPerMeterSquared: number;
+  public motiveFoilPerMeterSquared?: number;
 
   @IsNumber()
-  @IsNotEmpty()
-  public sandblastedFoilPerMeterSquared: number;
+  public sandblastedFoilPerMeterSquared?: number;
 }
