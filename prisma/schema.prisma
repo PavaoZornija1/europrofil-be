@@ -664,6 +664,7 @@ model CmsAluOrders {
     totalFillArea               Decimal?
     // issuedBy String?
     // giverOrderNumber String?
+    
     orderDate                   DateTime?
     jsonConfiguration           String?
     jsonOrder                   String?
@@ -672,6 +673,7 @@ model CmsAluOrders {
     jsonCost                    String?
     confirmed                   String?
     confirmedOn                 DateTime?
+    status                          String                  @default("KREIRANO")
     isHandled                   Boolean   @default(false)
     isDeleted                   Boolean   @default(false)
     deleted                     DateTime?

@@ -36,6 +36,7 @@ import { FilesModule } from './files/files.module';
 import { BevelOptionsModule } from './bevel-options/bevel-options.module';
 import { SandBlastingOptionsModule } from './sand-blasting-options/sand-blasting-options.module';
 import { AluDepartmentsModule } from './alu-departments/alu-departments.module';
+import { AluOrdersModule } from './alu-orders/alu-orders.module';
 
 @Module({
   imports: [
@@ -78,6 +79,7 @@ import { AluDepartmentsModule } from './alu-departments/alu-departments.module';
     BevelOptionsModule,
     SandBlastingOptionsModule,
     AluDepartmentsModule,
+    AluOrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
