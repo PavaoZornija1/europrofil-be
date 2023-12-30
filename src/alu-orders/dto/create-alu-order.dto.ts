@@ -1,1 +1,42 @@
-export class CreateAluOrderDto {}
+export class CreateAluOrderDto {
+  codeYear: any;
+  codeNumber: any;
+  code: any;
+  customerDesiredDeliveryDate: string | Date;
+  customerDeliveryAddress: string;
+  customerAddress: string;
+  customerPhone: string;
+  codeMonth: any;
+  frameTreatmentPrice: any;
+  frameTreatmentName: any;
+  frameTreatmentCode: any;
+  frameTypeName: any;
+  frameTypeCode: any;
+  customerInternalOrderNumber: any;
+  customerNotes: any;
+  customerDiscount: any;
+  fillPriceIncrease: any;
+  fillPrice: any;
+  fillName: any;
+  fillCode: any;
+  frameTreatmentPriceIncrease: any;
+  cornerCoverProductCode: any;
+  confirmedOn: any;
+  confirmed: any;
+  jsonCost: any;
+  jsonFronts: any;
+  jsonHeader: any;
+  jsonOrder: any;
+  jsonConfiguration: any;
+  orderDate: string | Date;
+  totalFillArea: any;
+  totalFrameLength: any;
+  totalFrameCount: any;
+  costPerMeterTotal: any;
+  costPerMeterBase: any;
+  costTotal: any;
+  costVat: any;
+  costBase: any;
+  costVatRate: any;
+  cornerCoverCount: any;
+}

@@ -260,8 +260,8 @@ export class OrdersService {
     });
   }
 
-  findOne(id: string) {
-    return prisma.cmsOrders.findUnique({
+  async findOne(id: string) {
+    return await prisma.cmsOrders.findUnique({
       where: { id: id },
       include: {
         cmsPvcProfile: true,
