@@ -19,7 +19,6 @@ export class CreateAluHandleProfileDto {
   public customColorAvailable: boolean;
 
   @IsBoolean()
-  @IsNotEmpty()
   public isIntegrated: boolean;
 
   @IsNumber()
