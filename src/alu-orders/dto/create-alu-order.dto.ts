@@ -1,42 +1,86 @@
+import { IsNumber, IsOptional, IsString } from 'class-validator';
+
 export class CreateAluOrderDto {
-  codeYear: any;
-  codeNumber: any;
-  code: any;
+  @IsOptional()
+  codeYear: number;
+  @IsOptional()
+  codeNumber: number;
+  @IsOptional()
+  code: string;
+
+  @IsOptional()
   customerDesiredDeliveryDate: string | Date;
+  @IsOptional()
   customerDeliveryAddress: string;
+  @IsOptional()
   customerAddress: string;
+  @IsOptional()
   customerPhone: string;
-  codeMonth: any;
-  frameTreatmentPrice: any;
-  frameTreatmentName: any;
-  frameTreatmentCode: any;
-  frameTypeName: any;
-  frameTypeCode: any;
-  customerInternalOrderNumber: any;
-  customerNotes: any;
-  customerDiscount: any;
-  fillPriceIncrease: any;
-  fillPrice: any;
-  fillName: any;
-  fillCode: any;
-  frameTreatmentPriceIncrease: any;
-  cornerCoverProductCode: any;
+  @IsOptional()
+  codeMonth: number;
+  @IsOptional()
+  frameTreatmentPrice: number;
+  @IsOptional()
+  frameTreatmentName: string;
+  @IsOptional()
+  frameTreatmentCode: string;
+  @IsOptional()
+  frameTypeName: string;
+  @IsOptional()
+  frameTypeCode: string;
+  @IsOptional()
+  customerInternalOrderNumber: string;
+  @IsOptional()
+  customerNotes: string;
+  @IsOptional()
+  customerDiscount: number;
+  @IsOptional()
+  fillPriceIncrease: number;
+  @IsOptional()
+  fillPrice: number;
+  @IsOptional()
+  fillName: string;
+  @IsOptional()
+  fillCode: string;
+  @IsOptional()
+  frameTreatmentPriceIncrease: number;
+  @IsOptional()
+  cornerCoverProductCode: string;
+  @IsOptional()
   confirmedOn: any;
+  @IsOptional()
   confirmed: any;
+  @IsOptional()
   jsonCost: any;
+  @IsOptional()
   jsonFronts: any;
+  @IsOptional()
   jsonHeader: any;
+  @IsOptional()
   jsonOrder: any;
+  @IsOptional()
   jsonConfiguration: any;
+  @IsOptional()
   orderDate: string | Date;
-  totalFillArea: any;
-  totalFrameLength: any;
-  totalFrameCount: any;
-  costPerMeterTotal: any;
-  costPerMeterBase: any;
-  costTotal: any;
-  costVat: any;
-  costBase: any;
-  costVatRate: any;
-  cornerCoverCount: any;
+  @IsOptional()
+  totalFillArea: number;
+  @IsOptional()
+  totalFrameLength: number;
+  @IsOptional()
+  totalFrameCount: number;
+  @IsOptional()
+  costPerMeterTotal: number;
+  @IsOptional()
+  costPerMeterBase: number;
+  @IsOptional()
+  costTotal: number;
+
+  @IsOptional()
+  costVat: number;
+  @IsOptional()
+  costBase: number;
+  @IsOptional()
+  costVatRate: number;
+  @IsOptional()
+  cornerCoverCount: number;
 }
