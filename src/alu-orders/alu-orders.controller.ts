@@ -56,6 +56,6 @@ export class AluOrdersController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.aluOrdersService.remove(+id);
+    return this.aluOrdersService.remove(id);
   }
 }
