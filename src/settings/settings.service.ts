@@ -17,6 +17,7 @@ export class SettingsService {
       },
       data: {
         orderEmail: updateSettingDto.orderEmail,
+        isoDocument: updateSettingDto.isoDocument,
         currency: updateSettingDto.currency,
         vat: updateSettingDto.vat,
         introText: updateSettingDto.introText,

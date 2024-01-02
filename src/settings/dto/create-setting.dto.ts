@@ -1,6 +1,10 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateSettingDto {
+  @IsString()
+  @IsNotEmpty()
+  public isoDocument: string;
+
   @IsString()
   @IsNotEmpty()
   public orderEmail: string;
@@ -13,7 +17,6 @@ export class CreateSettingDto {
   @IsNotEmpty()
   public vat: number;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   public introText: string;
 }
