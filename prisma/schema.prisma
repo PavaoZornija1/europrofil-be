@@ -955,6 +955,7 @@ model CmsAluSettings {
 model CmsSettings {
     id         String    @id @default(uuid())
     orderEmail String?
+    isoDocument String?
     currency   String?
     vat        Decimal?
     introText  String?
