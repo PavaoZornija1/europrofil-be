@@ -39,7 +39,7 @@ export class AluOrdersService {
         confirmedOn: createAluOrderDto.confirmedOn,
         confirmed: createAluOrderDto.confirmed,
         jsonCost: createAluOrderDto.jsonCost,
-        jsonFronts: createAluOrderDto.jsonFronts,
+        jsonFronts: JSON.stringify(createAluOrderDto.jsonFronts),
         jsonHeader: createAluOrderDto.jsonHeader,
         jsonOrder: createAluOrderDto.jsonOrder,
         jsonConfiguration: createAluOrderDto.jsonConfiguration,
