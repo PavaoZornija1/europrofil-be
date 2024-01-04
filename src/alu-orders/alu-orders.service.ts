@@ -62,7 +62,7 @@ export class AluOrdersService {
   }
 
   async findAll() {
-    return await prisma.cmsOrders.findMany({
+    return await prisma.cmsAluOrders.findMany({
       where: {
         isActive: true,
       },
