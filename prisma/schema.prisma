@@ -662,6 +662,11 @@ model CmsAluOrders {
     totalFrameCount             Int?
     totalFrameLength            Decimal?
     totalFillArea               Decimal?
+    additionallFillTreatment    String?
+    fill                            String?
+    frameType                   String?
+    treatment                   String?
+    user                   String?
     // issuedBy String?
     // giverOrderNumber String?
     

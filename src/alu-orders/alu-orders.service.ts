@@ -54,6 +54,13 @@ export class AluOrdersService {
         costBase: createAluOrderDto.costBase,
         costVatRate: createAluOrderDto.costVatRate,
         cornerCoverCount: createAluOrderDto.cornerCoverCount,
+        additionallFillTreatment: JSON.stringify(
+          createAluOrderDto.additionallFillTreatment,
+        ),
+        fill: JSON.stringify(createAluOrderDto.fill),
+        frameType: JSON.stringify(createAluOrderDto.frameType),
+        treatment: JSON.stringify(createAluOrderDto.treatment),
+        user: JSON.stringify(createAluOrderDto.user),
         // issuedBy:
       },
     });

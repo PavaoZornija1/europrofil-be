@@ -83,4 +83,14 @@ export class CreateAluOrderDto {
   costVatRate: number;
   @IsOptional()
   cornerCoverCount: number;
+  @IsOptional()
+  additionallFillTreatment: any;
+  @IsOptional()
+  fill: any;
+  @IsOptional()
+  frameType: any;
+  @IsOptional()
+  treatment: any;
+  @IsOptional()
+  user: any;
 }
